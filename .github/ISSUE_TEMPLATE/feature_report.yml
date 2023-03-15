@@ -1,0 +1,40 @@
+name: ✨ Suggestion d'amélioration
+description: Suggérez une idée pour le projet
+title: "[FEATURE] "
+labels: ["type: feature", "status: triage"]
+assignees: "developers-v4"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci d'avoir pris le temps de remplir ce formulaire!
+  - type: textarea
+    attributes:
+      label: Est-ce que votre suggestion est liée à un problème ? Décrivez-le
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Décrivez la feature que vous souhaiteriez voir
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Capture(s) d'écran"
+      description: Si vous avez déjà fait des concepts, ajoutez-les ici
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Notes
+      description: Ajoutez tout autre contexte sur la feature qui ne rentre dans aucune catégorie ici
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Code de Conduite
+      description: En soumettant cette issue, vous acceptez notre [Code de conduite](https://github.com/ae-utbm/sith4/blob/main/.github/CODE_OF_CONDUCT.md)
+      options:
+        - label: "J'accepte de suivre le code de conduite de ce projet"
+          required: true
+      

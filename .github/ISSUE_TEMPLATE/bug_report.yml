@@ -1,0 +1,44 @@
+name: 🐛 Rapport de bug
+description: Remplissez un rapport de bug
+title: "[BUG] "
+labels: ["type: bug", "status: triage"]
+assignees: "developers-v4"
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci d'avoir pris le temps de remplir ce formulaire!
+  - type: textarea
+    attributes:
+      label: "Qu'est-il arrivé ?"
+      description: Dites nous aussi ce que vous attendiez à la place !
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Étapes de reproduction
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Écrivez ceci
+        2. Cliquez sur ça
+        3. Et boom, ça crash
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Capture(s) d'écran"
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Notes
+      description: Ajoutez tout autre contexte sur le problème qui ne rentre dans aucune catégorie ici
+    validations:
+      required: false
+  - type: checkboxes
+    attributes:
+      label: Code de Conduite
+      description: En soumettant cette issue, vous acceptez notre [Code de conduite](https://github.com/ae-utbm/sith4/blob/main/.github/CODE_OF_CONDUCT.md)
+      options:
+        - label: "J'accepte de suivre le code de conduite de ce projet"
+          required: true
