@@ -1,0 +1,44 @@
+// MENU NAVBAR
+
+.mobile-navbar__menu {
+  display: flex;
+  position: sticky;
+  height: 5%;
+  background: #C6CDD5;
+}
+
+.mobile-navbar__item-container {
+  display: flex;
+  padding-left: 2%;
+  padding-right: 3%;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile-navbar__item-container__icons {
+  display: flex;
+  gap: 5%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.mobile-navbar__item-container__icons__left {
+  display: flex;
+  align-items: flex-start;
+}
+
+.mobile-navbar__item-container__icons__right {
+  display: flex;
+  align-items: flex-end;
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: transparent;
+}
+
+.icon-menu {
+  object-fit: contain;
+}
