@@ -1,0 +1,67 @@
+.mobile-navbar {
+  display: flex;
+  position: sticky;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0%;
+  width: auto;
+  height: 10%;
+  background: #21262D;
+  flex: auto;
+}
+
+.mobile-navbar__item-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: inherit;
+  justify-content: space-between;
+  margin: 0%;
+  flex: auto;
+  width: 15%;
+  height: 100%;
+  padding-left: 2%;
+  padding-right: 3%
+}
+
+.icon-container {
+  display: flex;
+  margin: 0%;
+  flex: auto;
+  height: 100%;
+  align-items: center;
+  
+}
+
+.mobile-navbar__item-container__image {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 100%;
+  object-fit: contain;
+}
+
+.mobile-navbar__item-container__icons {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  max-height: max-content;
+  height: 100%;
+  gap: 5%;
+}
+
+.logo {
+  object-fit: contain;
+  height: 80%;
+}
+
+.icon-settings {
+  filter: invert(100%);
+  filter: invert(100%);
+  height: 65%;
+}
+
+.icon-profile {
+  object-fit: contain;
+  height: 60%;
+}
