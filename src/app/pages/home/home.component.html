@@ -1,0 +1,9 @@
+<div>
+  <div>{{ 'change_language' | translate }}</div>
+  <select (change)="selectLangage($event)" [ngModel]="lang">
+    <option *ngFor="let lang of langs" [value]="lang.code">{{lang.label}}</option>
+  </select>
+</div>
+
+<h1>{{ 'test_title' | translate }}</h1>
+<h2>{{ 'test_subtitle' | translate }}</h2>
