@@ -6,8 +6,8 @@ import { ISelectOption } from '../../any/select/select.component';
 
 @Component({
 	selector: 'app-mobile-lang-selector',
-	templateUrl: './lang-selector.component.html',
-	styleUrls: ['./lang-selector.component.scss'],
+	templateUrl: './lang-selector.html',
+	styleUrls: ['./lang-selector.scss'],
 })
 export class LangSelectorComponent {
 	lang: string = localStorage.getItem('lang') ?? getLanguage(window.navigator.language);

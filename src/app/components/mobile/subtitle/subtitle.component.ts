@@ -2,8 +2,8 @@ import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-subtitle',
-	templateUrl: './subtitle.component.html',
-	styleUrls: ['./subtitle.component.scss'],
+	templateUrl: './subtitle.html',
+	styleUrls: ['./subtitle.scss'],
 })
 export class SubtitleComponent {
 	@Input() text = '';

@@ -5,8 +5,8 @@ import { getLanguage } from 'src/utils';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
-	styleUrls: ['./app.component.scss'],
+	template: '<router-outlet></router-outlet>',
+	styleUrls: [],
 })
 export class AppComponent {
 	title = 'sith4';

@@ -8,8 +8,8 @@ export interface ISelectOption {
 
 @Component({
 	selector: 'app-select',
-	templateUrl: './select.component.html',
-	styleUrls: ['./select.component.scss'],
+	templateUrl: './select.html',
+	styleUrls: ['./select.scss'],
 })
 export class SelectComponent {
 	private readonly DEFAULT_OPTION: ISelectOption = {

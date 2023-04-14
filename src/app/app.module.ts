@@ -3,41 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NotFoundComponent } from './pages/404/not-found.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ActivatedRoute } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LangSelectorComponent } from './components/mobile/lang-selector/lang-selector.component';
-import { SubtitleComponent } from './components/mobile/subtitle/subtitle.component';
-import { SelectComponent } from './components/any/select/select.component';
 import { CommonModule } from '@angular/common';
-import { IconExpandLessComponent } from './components/any/icons/expand_less/expand_less.component';
-import { IconExpandMoreComponent } from './components/any/icons/expand_more/expand_more.component';
+import { IconsModule } from './icons/icons.module';
+import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
 @NgModule({
-	declarations: [
-		AppComponent,
-		HomeComponent,
-		NotFoundComponent,
-		LangSelectorComponent,
-		SubtitleComponent,
-		SelectComponent,
-		IconExpandLessComponent,
-		IconExpandMoreComponent,
-	],
+	declarations: [AppComponent],
 	imports: [
+		AppRoutingModule,
 		BrowserModule,
 		CommonModule,
-		AppRoutingModule,
-		FormsModule,
-		ReactiveFormsModule,
+		ComponentsModule,
+		IconsModule,
+		PagesModule,
 		HttpClientModule,
 		TranslateModule.forRoot({
 			defaultLanguage: 'en-US',
