@@ -1,6 +1,6 @@
 [
   {
-    "codes": ["en", "en-US"],
+    "codes": ["en", "en-US", "en-GB"],
     "filename": "en-US",
     "label": "English",
     "image": "assets/icons/flags/en-GB.svg"
