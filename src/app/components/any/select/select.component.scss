@@ -1,0 +1,114 @@
+$height: 26px;
+$border-radius: 5px;
+$icon-size: 20px;
+$padding: 5px;
+$background-color: #161b22;
+$background-color-hover: #1e242e;
+$text-color: #fff;
+
+.select {
+  width: 100%;
+  height: $height;
+  position: relative;
+
+  > .selector {
+    cursor: pointer;
+    position: relative;
+    background-color: $background-color;
+    border: 0;
+    border-radius: $border-radius;
+    display: flex;
+    flex-direction: row;
+    height: $height;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: $padding;
+
+    &.active {
+      border-radius: $border-radius $border-radius 0 0;
+    }
+
+    > .content {
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: $padding;
+      align-items: center;
+
+      > .image {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+      }
+
+      > .label {
+        font-family: 'Inter';
+        font-size: 12px;
+        color: $text-color;
+      }
+    }
+
+    > .icon {
+      position: absolute;
+      display: block;
+      background-color: $text-color;
+      height: $icon-size;
+      width: $icon-size;
+      right: calc(($height - $icon-size) / 2);
+      top: calc(($height - $icon-size) / 2);
+
+      &-closed {
+        mask: url('../../../../assets/icons/expand_more.svg') no-repeat center / contain;
+        -webkit-mask: url('../../../../assets/icons/expand_more.svg') no-repeat center / contain;
+      }
+
+      &-opened {
+        mask: url('../../../../assets/icons/expand_less.svg') no-repeat center / contain;
+        -webkit-mask: url('../../../../assets/icons/expand_less.svg') no-repeat center / contain;
+      }
+    }
+  }
+
+  > .dropdown {
+    position: absolute;
+    top: $height;
+    background-color: $background-color;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--user-custom-color);
+    border-radius: 0 0 $border-radius $border-radius;
+
+    > .item {
+      cursor: pointer;
+      list-style-type: none;
+      height: $height;
+      padding: $padding;
+      display: flex;
+      flex-direction: row;
+      gap: $padding;
+      align-items: center;
+
+      &:hover {
+        background-color: $background-color-hover;
+
+        &:last-of-type {
+          border-radius: 0 0 $border-radius $border-radius;
+        }
+      }
+
+      > .image {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+      }
+
+      > .label {
+        font-family: 'Inter';
+        font-size: 12px;
+        color: $text-color;
+      }
+    }
+  }
+}

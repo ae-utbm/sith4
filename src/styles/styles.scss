@@ -1,2 +1,32 @@
-@import url(./roboto.scss);
-@import url(./inter.scss);
+@import url('./roboto.scss');
+@import url('./inter.scss');
+
+// TODO: implements this with themes
+$user-custom-color: #420447;
+$background-color: #21262d;
+// --
+
+:root {
+  --user-custom-color: $user-custom-color;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+// TODO: remove this once the theme is implemented
+body {
+  padding: 30px;
+  background-color: $background-color;
+}
+// --

@@ -1,10 +1,14 @@
 [
   {
-    "code": "en-US",
-    "label": "English"
+    "codes": ["en", "en-US"],
+    "filename": "en-US",
+    "label": "English",
+    "image": "assets/icons/flags/en-GB.svg"
   },
   {
-    "code": "fr-FR",
-    "label": "Français"
+    "codes": ["fr", "fr-FR"],
+    "filename": "fr-FR",
+    "label": "Français",
+    "image": "assets/icons/flags/fr-FR.svg"
   }
 ]

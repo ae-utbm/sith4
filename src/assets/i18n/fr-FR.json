@@ -1,4 +1,7 @@
 {
-  "change_language": "Changer la langue",
-  "test_title": "Test Titre"
+  "i18n": {
+    "switch_lang": "Choix de langue",
+    "select_lang": "Sélectionnez une langue",
+    "help_us_translate": "Aidez-nous à traduire le site"
+  }
 }

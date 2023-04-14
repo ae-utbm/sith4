@@ -1,0 +1,25 @@
+$text-color: #000;
+$dark-mode-text-color: #fff;
+
+h2 {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.bordered {
+  border-left: 4px solid $text-color;
+  padding-left: 6px;
+
+  &.dark-mode {
+    border-left: 4px solid $dark-mode-text-color;
+  }
+}
+
+.dark-mode {
+  color: $dark-mode-text-color;
+}

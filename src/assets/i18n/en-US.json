@@ -1,5 +1,7 @@
 {
-  "change_language": "Change Language",
-  "test_title": "Test Title",
-  "test_subtitle": "Test Subtitle"
+  "i18n": {
+    "switch_lang": "Language selection",
+    "select_lang": "Select a language",
+    "help_us_translate": "Help us translate this website"
+  }
 }

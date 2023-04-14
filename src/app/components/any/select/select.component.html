@@ -1,0 +1,15 @@
+<div class="select">
+  <button class="selector" [ngClass]="{ 'active': dropdownVisible }" (click)="toggleDropdown()">
+    <div class="content">
+      <img class="image" *ngIf="selectedOption.image" [src]="selectedOption.image">
+      <span class="label">{{ selectedOption.label }}</span>
+    </div>
+    <div class="icon" [ngClass]="{ 'icon-opened': dropdownVisible, 'icon-closed': !dropdownVisible }"></div>
+  </button>
+  <ul *ngIf="dropdownVisible" class="dropdown">
+    <li class="item" *ngFor="let option of options" (click)="selectOption(option)">
+      <img class="image" *ngIf="option.image" [src]="option.image">
+      <span class="label">{{ option.label }}</span>
+    </li>
+  </ul>
+</div>
