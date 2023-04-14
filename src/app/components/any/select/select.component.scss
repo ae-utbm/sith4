@@ -52,21 +52,11 @@ $text-color: #fff;
     > .icon {
       position: absolute;
       display: block;
-      background-color: $text-color;
+      fill: $text-color;
       height: $icon-size;
       width: $icon-size;
       right: calc(($height - $icon-size) / 2);
       top: calc(($height - $icon-size) / 2);
-
-      &-closed {
-        mask: url('../../../../assets/icons/expand_more.svg') no-repeat center / contain;
-        -webkit-mask: url('../../../../assets/icons/expand_more.svg') no-repeat center / contain;
-      }
-
-      &-opened {
-        mask: url('../../../../assets/icons/expand_less.svg') no-repeat center / contain;
-        -webkit-mask: url('../../../../assets/icons/expand_less.svg') no-repeat center / contain;
-      }
     }
   }
 

@@ -3,12 +3,12 @@
     "codes": ["en", "en-US", "en-GB"],
     "filename": "en-US",
     "label": "English",
-    "image": "assets/icons/flags/en-GB.svg"
+    "image": "assets/flags/en-GB.svg"
   },
   {
     "codes": ["fr", "fr-FR"],
     "filename": "fr-FR",
     "label": "Français",
-    "image": "assets/icons/flags/fr-FR.svg"
+    "image": "assets/flags/fr-FR.svg"
   }
 ]

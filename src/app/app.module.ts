@@ -14,6 +14,8 @@ import { LangSelectorComponent } from './components/mobile/lang-selector/lang-se
 import { SubtitleComponent } from './components/mobile/subtitle/subtitle.component';
 import { SelectComponent } from './components/any/select/select.component';
 import { CommonModule } from '@angular/common';
+import { IconExpandLessComponent } from './components/any/icons/expand_less/expand_less.component';
+import { IconExpandMoreComponent } from './components/any/icons/expand_more/expand_more.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
 	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -27,6 +29,8 @@ export function HttpLoaderFactory(http: HttpClient) {
 		LangSelectorComponent,
 		SubtitleComponent,
 		SelectComponent,
+		IconExpandLessComponent,
+		IconExpandMoreComponent,
 	],
 	imports: [
 		BrowserModule,
