@@ -1,20 +1,34 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
+export interface ISelectOption {
+	image?: string;
+	label: string;
+	value: string;
+}
+
 @Component({
 	selector: 'app-select',
 	templateUrl: './select.component.html',
 	styleUrls: ['./select.component.scss'],
 })
 export class SelectComponent {
-	@Input() options: ISelectOption[] = [];
-	@Input() selectedOption: ISelectOption = {
-		label: 'Select an option',
+	private readonly DEFAULT_OPTION: ISelectOption = {
+		label: '',
 		value: '',
 	};
-	@Output() optionSelected = new EventEmitter<string>();
 
 	dropdownVisible = false;
 
+	/** Options to display in the dropdown */
+	@Input() options: ISelectOption[] = [];
+	/** The currently selected option */
+	@Input() selectedOption: ISelectOption = this.DEFAULT_OPTION;
+	/** Emit an event with a string being the `value` of the selected option */
+	@Output() optionSelected = new EventEmitter<string>();
+
+	/**
+	 * Displays or hides the dropdown.
+	 */
 	toggleDropdown() {
 		this.dropdownVisible = !this.dropdownVisible;
 	}
@@ -36,10 +50,4 @@ export class SelectComponent {
 		this.optionSelected.emit(option.value);
 		this.toggleDropdown();
 	}
-}
-
-export interface ISelectOption {
-	image?: string;
-	label: string;
-	value: string;
 }

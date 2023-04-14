@@ -17,7 +17,10 @@ export class LangSelectorComponent {
 		image: lang.image,
 	}));
 
-	constructor(private readonly translate: TranslateService, @Inject(DOCUMENT) private document: Document) {}
+	constructor(
+		@Inject(TranslateService) private readonly translate: TranslateService,
+		@Inject(DOCUMENT) private document: Document,
+	) {}
 
 	/**
 	 * Select a language and redirect to the same page
