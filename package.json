@@ -5,6 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "lint": "eslint \"{src,test}/**/*.{ts,js,html}\" --fix && sass-lint --fix",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -30,12 +31,20 @@
     "@angular/compiler-cli": "^15.2.7",
     "@types/jasmine": "~4.3.1",
     "@types/node": "^18.15.11",
+    "@typescript-eslint/eslint-plugin": "^5.58.0",
+    "@typescript-eslint/parser": "^5.58.0",
+    "eslint": "^8.38.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.1",
     "karma-chrome-launcher": "~3.1.1",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
+    "prettier": "^2.8.7",
+    "sass-lint": "^1.13.1",
     "typescript": "~4.9.5"
   },
   "browser": {
