@@ -1,9 +1,10 @@
-@import url('./roboto.scss');
-@import url('./inter.scss');
+@import './roboto';
+@import './inter';
 
 // TODO: implements this with themes
 $user-custom-color: #420447;
 $background-color: #21262d;
+
 // --
 
 :root {
@@ -29,4 +30,5 @@ body {
   padding: 30px;
   background-color: $background-color;
 }
+
 // --

@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "lint": "eslint \"{src,test}/**/*.{ts,js,html}\" --fix && sass-lint --fix",
+    "lint": "eslint \"{src,test}/**/*.{ts,js,html}\" --fix && npx stylelint {src,test}/**/*.scss --fix",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -44,7 +44,9 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.0.0",
     "prettier": "^2.8.7",
-    "sass-lint": "^1.13.1",
+    "stylelint": "^15.4.0",
+    "stylelint-config-standard-scss": "^8.0.0",
+    "stylelint-scss": "^4.6.0",
     "typescript": "~4.9.5"
   },
   "browser": {
