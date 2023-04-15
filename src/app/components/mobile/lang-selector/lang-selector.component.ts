@@ -2,14 +2,14 @@ import { DOCUMENT } from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { getLanguage, LANGUAGES } from 'src/utils';
-import { ISelectOption } from '../../any/select/select.component';
+import { ISelectOption } from '../../common/select/select.component';
 
 @Component({
 	selector: 'app-mobile-lang-selector',
 	templateUrl: './lang-selector.html',
 	styleUrls: ['./lang-selector.scss'],
 })
-export class LangSelectorComponent {
+export class MobileLangSelectorComponent {
 	lang: string = localStorage.getItem('lang') ?? getLanguage(window.navigator.language);
 	langs: ISelectOption[] = LANGUAGES.map((lang) => ({
 		value: lang.filename,
