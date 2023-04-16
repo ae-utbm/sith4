@@ -18,11 +18,6 @@ const routes: Routes = [
 		component: NotFoundComponent,
 	},
 	{
-		path: '',
-		redirectTo: 'home',
-		pathMatch: 'full',
-	},
-	{
 		path: '**',
 		redirectTo: '404',
 	},
