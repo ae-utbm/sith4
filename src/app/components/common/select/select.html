@@ -4,8 +4,8 @@
       <img class="image" *ngIf="selectedOption.image" [src]="selectedOption.image">
       <span class="label">{{ selectedOption.label }}</span>
     </div>
-    <icon-expand-less class="icon" *ngIf="dropdownVisible" />
-    <icon-expand-more class="icon" *ngIf="!dropdownVisible" />
+    <icon-expand-less class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="dropdownVisible" />
+    <icon-expand-more class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="!dropdownVisible" />
   </button>
   <ul *ngIf="dropdownVisible" class="dropdown">
     <li class="item" *ngFor="let option of sortOptions()" (click)="selectOption(option)">

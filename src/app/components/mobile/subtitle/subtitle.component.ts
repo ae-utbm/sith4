@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { isRTL } from 'src/utils/document';
 
 @Component({
 	selector: 'app-mobile-subtitle',
@@ -10,8 +11,7 @@ export class MobileSubtitleComponent {
 	@Input() public bordered = false;
 	@Input() public onDarkBackground = false;
 
-	// detect if the text is ltr or rtl
-	public isRTL(): boolean {
-		return document.documentElement.dir === 'rtl';
+	public get isRTL(): boolean {
+		return isRTL();
 	}
 }

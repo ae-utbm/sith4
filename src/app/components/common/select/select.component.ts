@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { isRTL } from 'src/utils';
 
 export interface ISelectOption {
 	image?: string;
@@ -26,6 +27,9 @@ export class SelectComponent {
 	/** Emit an event with a string being the `value` of the selected option */
 	@Output() public optionSelected = new EventEmitter<string>();
 
+	public get isRTL(): boolean {
+		return isRTL();
+	}
 	/**
 	 * Displays or hides the dropdown.
 	 */

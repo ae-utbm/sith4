@@ -57,6 +57,11 @@ $text-color: #fff;
       width: $icon-size;
       right: calc(($height - $icon-size) / 2);
       top: calc(($height - $icon-size) / 2);
+
+			&.rtl {
+				right: unset;
+				left: calc(($height - $icon-size) / 2);
+			}
     }
   }
 
