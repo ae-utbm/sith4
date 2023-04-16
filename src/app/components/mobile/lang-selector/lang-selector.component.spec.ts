@@ -3,7 +3,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MobileLangSelectorComponent } from './lang-selector.component';
 import { MobileComponentsModule } from '../mobile.module';
 import { ISelectOption } from '../../common/select/select.component';
-import { DEFAULT_LANGUAGE, getLanguage } from 'src/utils';
+import { getLanguage } from 'src/utils';
 
 describe('MobileLangSelectorComponent', () => {
 	let component: MobileLangSelectorComponent;

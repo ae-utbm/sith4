@@ -1,20 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
-import {
-	DEFAULT_LANGUAGE,
-	HttpLoaderFactory,
-	TranslateHttpLoader,
-	getAllKeysOfObject,
-	getLanguage,
-	getLanguageDirection,
-} from './i18n';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpLoaderFactory, TranslateHttpLoader, getAllKeysOfObject, getLanguage, getLanguageDirection } from './i18n';
 
 describe('i18n', () => {
 	let httpTestingController: HttpTestingController;
 	let translateHttpLoader: TranslateHttpLoader;
-	let httpClient: HttpClient;
 
 	beforeEach(() => {
 		TestBed.configureTestingModule({
@@ -22,7 +13,6 @@ describe('i18n', () => {
 			providers: [{ provide: TranslateHttpLoader, useFactory: HttpLoaderFactory, deps: [HttpClient] }],
 		});
 
-		httpClient = TestBed.inject(HttpClient);
 		httpTestingController = TestBed.inject(HttpTestingController);
 		translateHttpLoader = TestBed.inject(TranslateHttpLoader);
 	});
@@ -88,7 +78,6 @@ describe('i18n', () => {
 			};
 
 			translateHttpLoader.getTranslation('invalid').subscribe((mergedData) => {
-				console.log(mergedData);
 				expect(mergedData).toEqual(Object.merge(baseLangData));
 			});
 
