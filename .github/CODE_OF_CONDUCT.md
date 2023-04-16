@@ -2,7 +2,7 @@
 
 ## Nos engagements
 
-Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs nous engageons à faire de la participation à notre projet et à notre notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, du l'âge, la taille, le handicap, l'origine ethnique, les caractéristiques sexuelles, l'identité et l'expression de genre, niveau d'expérience, d'éducation, de statut socio-économique, de nationalité, d'apparence personnelle l'apparence personnelle, la race, la religion, l'identité et l'orientation sexuelles.
+Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs nous engageons à faire de la participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, d'un handicap, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et l'expression de genre, du niveau d'expérience et d'éducation, du statut socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion et de l'identité et l'orientation sexuelle.
 
 ## Nos normes
 
@@ -26,7 +26,7 @@ Voici quelques exemples de comportements inacceptables :
 
 Les responsables de projet sont chargés de clarifier et d'appliquer nos normes de comportement acceptable et prendront des mesures correctives appropriées et équitables en réponse à tout cas de comportement inacceptable.
 
-Les responsables du projet ont le droit et la responsabilité de supprimer, modifier ou rejeter commentaires, commits, code, éditions wiki, problèmes et autres contributions qui ne sont pas ne sont pas conformes au présent code de conduite, ou de bannir temporairement ou définitivement tout contributeur pour d'autres comportements qu'ils jugent inappropriés, menaçants, offensants ou nuisibles.
+Les responsables du projet ont le droit et la responsabilité de supprimer, modifier ou rejeter commentaires, commits, code, éditions wiki, problèmes et autres contributions qui ne sont pas conformes au présent code de conduite, ou de bannir temporairement ou définitivement tout contributeur pour d'autres comportements qu'ils jugent inappropriés, menaçants, offensants ou nuisibles.
 
 ## Champ d'application
 
@@ -34,7 +34,7 @@ Ce code de conduite s'applique dans tous les espaces communautaires, ainsi que l
 
 ## Application de la loi
 
-Les cas d'abus, de harcèlement ou de tout autre comportement inacceptable peuvent être signalés aux responsables de la communauté chargés de faire respecter la loi. Toutes les plaintes seront examinées et feront l'objet d'une enquête rapide et équitable.
+Les cas d'abus, de harcèlements et tous les autres comportements inacceptables peuvent être signalés aux responsables de la communauté chargés de faire respecter la loi. Toutes les plaintes seront examinées et feront l'objet d'une enquête rapide et équitable.
 
 Tous les responsables communautaires sont tenus de respecter la vie privée et la sécurité de la personne qui signale un incident.
 
