@@ -12,24 +12,24 @@ export interface ISelectOption {
 	styleUrls: ['./select.scss'],
 })
 export class SelectComponent {
-	private readonly DEFAULT_OPTION: ISelectOption = {
+	public readonly DEFAULT_OPTION: ISelectOption = {
 		label: '',
 		value: '',
 	};
 
-	dropdownVisible = false;
+	public dropdownVisible = false;
 
 	/** Options to display in the dropdown */
-	@Input() options: ISelectOption[] = [];
+	@Input() public options: ISelectOption[] = [];
 	/** The currently selected option */
-	@Input() selectedOption: ISelectOption = this.DEFAULT_OPTION;
+	@Input() public selectedOption: ISelectOption = this.DEFAULT_OPTION;
 	/** Emit an event with a string being the `value` of the selected option */
-	@Output() optionSelected = new EventEmitter<string>();
+	@Output() public optionSelected = new EventEmitter<string>();
 
 	/**
 	 * Displays or hides the dropdown.
 	 */
-	toggleDropdown() {
+	public toggleDropdown() {
 		this.dropdownVisible = !this.dropdownVisible;
 	}
 
@@ -37,7 +37,7 @@ export class SelectComponent {
 	 * Sort the options by their label.
 	 * @returns {ISelectOption[]} the sorted options
 	 */
-	sortOptions(): ISelectOption[] {
+	public sortOptions(): ISelectOption[] {
 		return this.options.sort((a, b) => a.label.localeCompare(b.label));
 	}
 
@@ -45,7 +45,7 @@ export class SelectComponent {
 	 * Selects an option and emits the value of the option.
 	 * @param {ISelectOption} option the option to select
 	 */
-	selectOption(option: ISelectOption) {
+	public selectOption(option: ISelectOption) {
 		this.selectedOption = option;
 		this.optionSelected.emit(option.value);
 		this.toggleDropdown();

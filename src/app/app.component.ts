@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
-import { getLanguage } from 'src/utils';
+import { getLanguage, getLanguageDirection } from 'src/utils';
 
 @Component({
 	selector: 'app-root',
@@ -9,14 +9,14 @@ import { getLanguage } from 'src/utils';
 	styleUrls: [],
 })
 export class AppComponent {
-	title = 'sith4';
+	public title = 'sith4';
 
-	constructor(
-		@Inject(TranslateService) private readonly translate: TranslateService,
-		@Inject(DOCUMENT) private readonly document: Document,
+	public constructor(
+		@Inject(TranslateService) public readonly translate: TranslateService,
+		@Inject(DOCUMENT) public readonly document: Document,
 	) {}
 
-	ngOnInit(): void {
+	public ngOnInit(): void {
 		this.detectLanguage();
 	}
 
@@ -24,12 +24,14 @@ export class AppComponent {
 	 * Detects the language of the browser and sets it as current language.
 	 * If the language is not supported, it will be set to English.
 	 */
-	detectLanguage(): void {
+	public detectLanguage(): void {
 		this.translate.setDefaultLang('en-US');
 		const lang = localStorage.getItem('lang') ?? getLanguage(window.navigator.language);
 
 		this.document.documentElement.lang = lang;
+		this.document.documentElement.dir = getLanguageDirection(lang);
 		this.translate.use(lang);
+		this.translate.currentLang = lang; // because ngx-translate doesn't set it automatically
 		localStorage.setItem('lang', lang);
 	}
 }
