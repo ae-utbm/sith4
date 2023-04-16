@@ -3,6 +3,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MobileLangSelectorComponent } from './lang-selector.component';
 import { MobileComponentsModule } from '../mobile.module';
 import { ISelectOption } from '../../common/select/select.component';
+import { DEFAULT_LANGUAGE, getLanguage } from 'src/utils';
 
 describe('MobileLangSelectorComponent', () => {
 	let component: MobileLangSelectorComponent;
@@ -24,8 +25,17 @@ describe('MobileLangSelectorComponent', () => {
 		fixture.detectChanges();
 	});
 
+	afterEach(() => {
+		localStorage.removeItem('lang');
+	});
+
 	it('should create the component', () => {
 		expect(component).toBeTruthy();
+	});
+
+	it('should return the language from the getLanguage method if no language is stored in localStorage', () => {
+		localStorage.removeItem('lang');
+		expect(component.lang).toEqual(getLanguage(window.navigator.language));
 	});
 
 	describe('getLang()', () => {
@@ -40,7 +50,6 @@ describe('MobileLangSelectorComponent', () => {
 		});
 
 		it('should return the browser language if no language is stored in localStorage', () => {
-			localStorage.removeItem('lang');
 			spyOnProperty(window.navigator, 'language').and.returnValue('es-ES');
 			const expectedLang: ISelectOption = {
 				label: 'Español',

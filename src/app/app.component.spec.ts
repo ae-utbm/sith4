@@ -5,7 +5,7 @@ import { ComponentsModule } from './components/components.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpLoaderFactory } from './app.module';
+import { HttpLoaderFactory } from 'src/utils';
 
 describe('AppComponent', () => {
 	let component: AppComponent;

@@ -1,5 +1,5 @@
 <div class="selector">
-  <app-mobile-subtitle [bordered]="true" [onDarkBackground]="true" text="{{ 'i18n.switch_lang' | translate }}"/>
+  <app-mobile-subtitle [onDarkBackground]="true" text="{{ 'i18n.switch_lang' | translate }}"/>
   <div>
     <app-select [selectedOption]="getLang()" [options]="langs" (optionSelected)="selectLangage($event)" />
     <a class="link" href="https://ae-utbm.crowdin.com/sith4">{{ 'i18n.help_us_translate' | translate }}</a>

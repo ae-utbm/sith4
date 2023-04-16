@@ -1,5 +1,9 @@
-import { Observable, catchError, from, map, of, switchMap } from 'rxjs';
 import LANGS from '../assets/i18n/languages.json';
+import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs';
+import { TranslateLoader } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
+import { Inject, Injectable } from '@angular/core';
+
 export const LANGUAGES: ILanguage[] = LANGS as unknown as ILanguage[];
 export const DEFAULT_LANGUAGE = 'en-US';
 
@@ -44,6 +48,8 @@ export function getLanguageDirection(lang: string): ILanguage['direction'] {
  * Get all keys of an object recursively
  * @param {Record<string, unknown>} obj the object to get the keys from
  * @returns {Array<string>} The keys of the object & its nested objects
+ *
+ * @example getAllKeysOfObject({ a: 1, b: { c: 2, d: 3 } }) // ['a', 'b.c', 'b.d']
  */
 export function getAllKeysOfObject(obj: Record<string, unknown>): string[] {
 	const keys: string[] = [];
@@ -75,4 +81,38 @@ export function getLanguageCompletion(lang: string): Observable<number> {
 			),
 		),
 	);
+}
+
+/**
+ * Reimplement the TranslateHttpLoader to load the base language (English)
+ * and merge it with the given language
+ */
+@Injectable()
+export class TranslateHttpLoader implements TranslateLoader {
+	public constructor(
+		private http: HttpClient,
+		@Inject(String) public prefix: string,
+		@Inject(String) public suffix: string,
+	) {}
+
+	public getTranslation(lang: string): Observable<object> {
+		const langFile = `${this.prefix}${lang}${this.suffix}`;
+		const baseLangFile = `${this.prefix}${DEFAULT_LANGUAGE}${this.suffix}`;
+
+		const langFile$ = this.http.get(langFile).pipe(catchError(() => of({})));
+		const baseLangFile$ = this.http.get(baseLangFile);
+
+		return forkJoin([langFile$, baseLangFile$]).pipe(
+			map(([langData, baseLangData]) => Object.merge(baseLangData, langData)),
+		);
+	}
+}
+
+/**
+ * Factory function to create the TranslateHttpLoader
+ * @param {HttpClient} http the HttpClient to be used by the TranslateHttpLoader
+ * @returns {TranslateHttpLoader} The TranslateHttpLoader
+ */
+export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
+	return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
