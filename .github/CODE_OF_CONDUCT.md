@@ -2,7 +2,7 @@
 
 ## Nos engagements
 
-Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs nous engageons à faire de la participation à notre projet et à notre notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, d'un handicap, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et l'expression de genre, du niveau d'expérience et d'éducation, du statut socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion et de l'identité et l'orientation sexuelle.
+Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant que contributeurs et mainteneurs nous engageons à faire de la participation à notre projet et à notre communauté une expérience sans harcèlement pour tous, indépendamment de l'âge, de la taille, d'un handicap, de l'origine ethnique, des caractéristiques sexuelles, de l'identité et l'expression de genre, du niveau d'expérience et d'éducation, du statut socio-économique, de la nationalité, de l'apparence personnelle, de la race, de la religion et de l'identité et l'orientation sexuelle.
 
 ## Nos normes
 
@@ -34,7 +34,7 @@ Ce code de conduite s'applique dans tous les espaces communautaires, ainsi que l
 
 ## Application de la loi
 
-Les cas d'abus, de harcèlements ou de tout autres comportements inacceptables peuvent être signalés aux responsables de la communauté chargés de faire respecter la loi. Toutes les plaintes seront examinées et feront l'objet d'une enquête rapide et équitable.
+Les cas d'abus, de harcèlements et tous les autres comportements inacceptables peuvent être signalés aux responsables de la communauté chargés de faire respecter la loi. Toutes les plaintes seront examinées et feront l'objet d'une enquête rapide et équitable.
 
 Tous les responsables communautaires sont tenus de respecter la vie privée et la sécurité de la personne qui signale un incident.
 
