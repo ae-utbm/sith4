@@ -1,7 +1,7 @@
 name: Sith4 linting
 
 on:
-  pull_request: 
+  pull_request:
     branches: [ main, develop ]
   push:
     branches: [ main, develop ]
@@ -19,12 +19,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.x'
-      
+
       - name: Install pnpm
         run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint code
-        run: pnpm run lint
+      - name: Lint Typescript & HTML
+        run: pnpm eslint "{src,test}/**/*.{ts,js,html}"
+
+      - name: Lint SCSS
+        run: pnpm npx stylelint "{src,test}/**/*.scss"
