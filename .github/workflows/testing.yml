@@ -1,12 +1,11 @@
-name: Code Linting
+name: Run tests
 
 on:
   workflow_call:
   workflow_dispatch:
 
 jobs:
-
-  lint:
+  unit-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,8 +23,15 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint Typescript & HTML
-        run: pnpm eslint "{src,test}/**/*.{ts,js,html}"
+      - name: Run tests
+        run: pnpm ng test --watch false
 
-      - name: Lint SCSS
-        run: pnpm npx stylelint "{src,test}/**/*.scss"
+      - name: Export coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: Coverage results
+          path: coverage
+          retention-days: 7
+
+  # todo: add e2e tests
+  # Should run on all OSes (Windows, Linux, macOS)
