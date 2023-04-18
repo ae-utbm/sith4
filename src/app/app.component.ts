@@ -4,8 +4,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { getLanguage, getLanguageDirection } from 'src/utils';
 
 @Component({
-	selector: 'sith-root',
-	template: '<router-outlet></router-outlet>',
+	selector: 'app-root',
+	templateUrl: './app.component.html',
 	styleUrls: [],
 })
 export class AppComponent implements OnInit {
