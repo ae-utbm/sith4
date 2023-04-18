@@ -1,0 +1,31 @@
+name: Code Linting
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Lint Typescript & HTML
+        run: pnpm eslint "{src,test}/**/*.{ts,js,html}"
+
+      - name: Lint SCSS
+        run: pnpm npx stylelint "{src,test}/**/*.scss"

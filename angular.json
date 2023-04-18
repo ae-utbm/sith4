@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/styles/styles.scss"
             ],
             "scripts": []
           },
@@ -93,12 +93,17 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+							"src/app/styles/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "karmaConfig": "karma.conf.js",
+						"codeCoverage": true
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
