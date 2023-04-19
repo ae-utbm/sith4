@@ -1,0 +1,58 @@
+$background-color: #21262D;
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $background-color;
+	height: 70px;
+	padding-left: 10px;
+
+	> .title {
+		display: flex;
+		align-items: center;
+		height: 64px;
+		gap: 10px;
+
+		> img {
+			width: 64px;
+			height: 64px;
+		}
+
+		> .text {
+			color: white;
+			display: flex;
+			flex-direction: column;
+			font-family: Roboto;
+
+			> .big {
+				font-size: 20px;
+			}
+
+			> .small {
+				font-size: 8px;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	> .icons {
+		display: flex;
+		fill: white;
+		align-items: center;
+		gap: 16px;
+		padding: 0 16px;
+
+		> .icon {
+			cursor: pointer;
+			width: 32px;
+			height: 32px;
+			fill: white;
+
+			&.search {
+				width: 22px;
+				height: 22px;
+			}
+		}
+	}
+}

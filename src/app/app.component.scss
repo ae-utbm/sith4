@@ -1,0 +1,13 @@
+main {
+	max-width: 1080px;
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+}
+
+router-outlet {
+	display: none;
+}

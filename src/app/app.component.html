@@ -1,3 +1,13 @@
-<app-mobile-header />
-<app-mobile-navbar />
-<router-outlet></router-outlet>
+<div *ngIf="isDesktop">
+	<app-desktop-header *ngIf="isDesktop"/>
+	<main>
+		<app-desktop-navbar />
+		<router-outlet></router-outlet>
+	</main>
+</div>
+
+<div *ngIf="isMobile">
+	<app-mobile-header *ngIf="isMobile" />
+	<app-mobile-navbar *ngIf="isMobile" />
+	<router-outlet></router-outlet>
+</div>

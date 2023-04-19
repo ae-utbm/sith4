@@ -1,0 +1,34 @@
+$background-color: #c6cdd5;
+
+.navbar {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: $background-color;
+	height: 40px;
+	gap: 40px;
+	border-radius: 5px;
+
+	> .link {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 5px;
+
+		> .icon {
+			width: 20px;
+			height: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		> span {
+			text-transform: uppercase;
+			font-family: Roboto;
+			font-size: 12px;
+		}
+	}
+}

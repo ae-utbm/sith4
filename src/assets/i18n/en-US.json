@@ -3,5 +3,12 @@
     "switch_lang": "Language selection",
     "select_lang": "Select a language",
     "help_us_translate": "Help us translate this website"
-  }
+  },
+	"navbar": {
+		"favorites": "Favorites",
+		"shop": "Shop",
+		"events": "Events",
+		"forum": "Forum",
+		"pictures": "Pictures"
+	}
 }
