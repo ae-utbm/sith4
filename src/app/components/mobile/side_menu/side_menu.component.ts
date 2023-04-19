@@ -3,8 +3,8 @@ import { isRTL } from 'src/utils';
 
 @Component({
 	selector: 'app-side-menu',
-	templateUrl: './side-menu.html',
-	styleUrls: ['./side-menu.scss'],
+	templateUrl: './side_menu.html',
+	styleUrls: ['./side_menu.scss'],
 })
 export class MobileSideMenuComponent {
 	private _closing = false;

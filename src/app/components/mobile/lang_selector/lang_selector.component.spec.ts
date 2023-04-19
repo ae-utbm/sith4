@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MobileLangSelectorComponent } from './lang-selector.component';
+import { MobileLangSelectorComponent } from './lang_selector.component';
 import { MobileComponentsModule } from '../mobile.module';
 import { ISelectOption } from '../../common/select/select.component';
 import { getLanguage } from 'src/utils';

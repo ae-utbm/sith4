@@ -5,9 +5,9 @@ import { ISelectOption } from '../../common/select/select.component';
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'sith-mobile-lang-selector',
-	templateUrl: './lang-selector.html',
-	styleUrls: ['./lang-selector.scss'],
+	selector: 'app-mobile-lang-selector',
+	templateUrl: './lang_selector.html',
+	styleUrls: ['./lang_selector.scss'],
 })
 export class MobileLangSelectorComponent {
 	public lang: string = localStorage.getItem('lang') ?? getLanguage(window.navigator.language);
