@@ -1,7 +1,5 @@
-$background-color: #21262d;
-
 .header {
-	background-color: $background-color;
+	background-color: var(--gray3);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -21,7 +19,7 @@ $background-color: #21262d;
 		> * {
 			width: 32px;
 			height: 32px;
-			fill: white;
+			fill: var(--text-color-dark-bg);
 		}
 	}
 }
@@ -35,7 +33,7 @@ $background-color: #21262d;
 
 	animation: fade 0.5s ease-in-out;
 
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--darkened);
 	display: none;
 
 	&.open {

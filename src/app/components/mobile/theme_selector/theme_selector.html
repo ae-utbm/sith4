@@ -1,0 +1,7 @@
+<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.theme.title' | translate" />
+<ul class="themes">
+	<li *ngFor="let t of themes" (click)="theme = t.value" [ngClass]="{'selected': t.value === theme}">
+		<div class="selector"></div>
+		<span>{{ t.name }}</span>
+	</li>
+</ul>

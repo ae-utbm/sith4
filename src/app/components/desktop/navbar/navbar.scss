@@ -1,12 +1,10 @@
-$background-color: #c6cdd5;
-
 .navbar {
 	width: 100%;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	background-color: $background-color;
+	background-color: var(--gray1);
 	height: 40px;
 	gap: 40px;
 	border-radius: 5px;
@@ -23,12 +21,14 @@ $background-color: #c6cdd5;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			fill: var(--text-color-dynamic);
 		}
 
 		> span {
 			text-transform: uppercase;
 			font-family: Roboto;
 			font-size: 12px;
+			color: var(--text-color-dynamic);
 		}
 	}
 }

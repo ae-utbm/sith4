@@ -13,13 +13,8 @@
 <app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
 	<div class="options-container">
 		<app-mobile-title [onDarkBackground]="true" [text]="'navbar.options.title' | translate" [isCentered]="true" />
-
-		<!-- Todo use a component there -->
-		<div>
-			<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.theme.title' | translate" />
-		</div>
-
-		<app-mobile-lang-selector/>
+		<app-mobile-theme-selector />
+		<app-mobile-lang-selector />
 
 		<!-- Todo use a component there -->
 		<div>

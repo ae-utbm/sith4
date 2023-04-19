@@ -1,8 +1,6 @@
-$background-color: #c6cdd5;
-
 .navbar {
 	height: 40px;
-	background-color: $background-color;
+	background-color: var(--gray1);
 	display: flex;
 	justify-content: space-between;
 
@@ -29,6 +27,7 @@ $background-color: #c6cdd5;
 			display: flex;
 			align-items: center;
 			justify-content: center;
+			fill: var(--text-color-dynamic);
 		}
 	}
 }

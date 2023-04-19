@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { getLanguage, getLanguageDirection } from 'src/utils';
+import { getTheme, setTheme, watchAutoTheme } from 'src/utils/theme';
 
 @Component({
 	selector: 'app-root',
@@ -18,6 +19,7 @@ export class AppComponent implements OnInit {
 
 	public ngOnInit(): void {
 		this.detectLanguage();
+		this.detectTheme();
 	}
 
 	/**
@@ -33,5 +35,10 @@ export class AppComponent implements OnInit {
 		this.translate.use(lang);
 		this.translate.currentLang = lang; // because ngx-translate doesn't set it automatically
 		localStorage.setItem('lang', lang);
+	}
+
+	public detectTheme(): void {
+		watchAutoTheme();
+		setTheme(getTheme());
 	}
 }

@@ -1,10 +1,8 @@
-$background-color: #21262D;
-
 .header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: $background-color;
+	background-color: var(--gray3);
 	height: 70px;
 	padding-left: 10px;
 
@@ -20,7 +18,7 @@ $background-color: #21262D;
 		}
 
 		> .text {
-			color: white;
+			color: var(--text-color-dark-bg);
 			display: flex;
 			flex-direction: column;
 			font-family: Roboto;
@@ -38,7 +36,7 @@ $background-color: #21262D;
 
 	> .icons {
 		display: flex;
-		fill: white;
+		fill: var(--text-color-dark-bg);
 		align-items: center;
 		gap: 16px;
 		padding: 0 16px;
@@ -47,7 +45,7 @@ $background-color: #21262D;
 			cursor: pointer;
 			width: 32px;
 			height: 32px;
-			fill: white;
+			fill: var(--text-color-dark-bg);
 
 			&.search {
 				width: 22px;

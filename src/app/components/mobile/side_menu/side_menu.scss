@@ -8,7 +8,7 @@ $slide-rtl: slide-rtl 0.5s ease-in-out;
 	animation: $slide;
 
 	> .right {
-		background-color: $background-color;
+		background-color: var(--gray3);
 		display: block;
 		width: 316px;
 		height: 100vh;
