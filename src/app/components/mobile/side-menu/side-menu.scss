@@ -1,0 +1,53 @@
+$background-color: #21262d;
+$slide: slide 0.5s ease-in-out;
+$slide-rtl: slide-rtl 0.5s ease-in-out;
+
+.side-menu {
+	position: fixed;
+	display: flex;
+	animation: $slide;
+
+	> .right {
+		background-color: $background-color;
+		display: block;
+		width: 316px;
+		height: 100vh;
+		padding: 10px 0;
+
+		&.closing {
+			animation: reverse $slide;
+		}
+	}
+
+	> .left {
+		display: block;
+		width: calc(100vw - 316px);
+		height: 100vh;
+	}
+
+	&.rtl {
+		animation: $slide-rtl;
+
+		> .right.closing {
+			animation: reverse $slide-rtl;
+		}
+	}
+}
+
+@keyframes slide {
+	0% {
+		transform: translateX(100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}
+
+@keyframes slide-rtl {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateX(0);
+	}
+}

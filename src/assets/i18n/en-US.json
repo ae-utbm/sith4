@@ -9,6 +9,25 @@
 		"shop": "Shop",
 		"events": "Events",
 		"forum": "Forum",
-		"pictures": "Pictures"
+		"pictures": "Pictures",
+		"options": {
+			"title": "Accessibility Parameters",
+			"theme": {
+				"title": "Theme selection",
+				"light": "Light",
+				"dark": "Dark",
+				"auto": "Auto",
+				"high_contrast": "High contrast"
+			},
+			"font_size": {
+				"title": "Font size",
+				"small": "Small",
+				"medium": "Medium",
+				"large": "Large"
+			},
+			"accent_color": {
+				"title": "Accent color"
+			}
+		}
 	}
 }

@@ -1,7 +1,34 @@
 <div class="header">
 	<img class="logo" src="assets/logo_ae.webp" alt="logo_ae">
 	<div class="icons">
-		<icon-cogwheel />
-		<icon-user-icon />
+		<icon-cogwheel (click)="triggerSideMenuOptions()" />
+		<icon-user-icon (click)="triggerSideMenuProfil()" />
 	</div>
 </div>
+
+<app-side-menu (close)="triggerSideMenuProfil()" class="side-menu" [ngClass]="{ 'open': profilOpened }">
+	test 1
+</app-side-menu>
+
+<app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
+	<div class="options-container">
+		<app-mobile-title [onDarkBackground]="true" [text]="'navbar.options.title' | translate" [isCentered]="true" />
+
+		<!-- Todo use a component there -->
+		<div>
+			<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.theme.title' | translate" />
+		</div>
+
+		<app-mobile-lang-selector/>
+
+		<!-- Todo use a component there -->
+		<div>
+			<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.font_size.title' | translate" />
+		</div>
+
+		<!-- Todo use a component there -->
+		<div>
+			<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.accent_color.title' | translate" />
+		</div>
+	</div>
+</app-side-menu>

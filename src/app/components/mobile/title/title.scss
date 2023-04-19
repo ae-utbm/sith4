@@ -1,0 +1,21 @@
+$text-color: #000;
+$dark-mode-text-color: #fff;
+
+h1 {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 39px;
+  text-transform: uppercase;
+	height: 39px;
+	margin: 0;
+}
+
+.dark-mode {
+  color: $dark-mode-text-color;
+}
+
+.centered {
+	text-align: center;
+}

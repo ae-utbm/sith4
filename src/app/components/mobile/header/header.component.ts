@@ -5,4 +5,15 @@ import { Component } from '@angular/core';
 	templateUrl: './header.html',
 	styleUrls: ['./header.scss'],
 })
-export class MobileHeaderComponent {}
+export class MobileHeaderComponent {
+	public profilOpened = false;
+	public optionsOpened = false;
+
+	public triggerSideMenuProfil(): void {
+		this.profilOpened = !this.profilOpened;
+	}
+
+	public triggerSideMenuOptions(): void {
+		this.optionsOpened = !this.optionsOpened;
+	}
+}

@@ -1,11 +1,11 @@
-$background-color: #21262D;
+$background-color: #21262d;
 
 .header {
 	background-color: $background-color;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding-left: 10px;
+	padding: 0 10px;
 	height: 70px;
 
 	> .logo {
@@ -15,7 +15,7 @@ $background-color: #21262D;
 
 	> .icons {
 		display: flex;
-		padding: 16px;
+		padding: 16px 0;
 		gap: 16px;
 
 		> * {
@@ -26,58 +26,35 @@ $background-color: #21262D;
 	}
 }
 
+.side-menu {
+	position: absolute;
+	top: 0;
 
+	height: 100vh;
+	width: 100vw;
 
+	animation: fade 0.5s ease-in-out;
 
+	background-color: rgba(0, 0, 0, 0.5);
+	display: none;
 
-
-
-
-
-// MAIN NAVBAR
-.mobile-navbar {
-  display: flex;
-  position: sticky;
-  height: 10%;
-  background: #21262D;
+	&.open {
+		display: block;
+	}
 }
 
-.mobile-navbar__item-container {
-  display: flex;
-  justify-content: space-between;
-  flex: auto;
-  padding-left: 2%;
-  padding-right: 3%;
+.options-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding: 0 15px;
 }
 
-.icon-container {
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-}
-
-.mobile-navbar__item-container__image {
-  display: flex;
-  align-items: center;
-}
-
-.mobile-navbar__item-container__icons {
-  display: flex;
-  gap: 5%;
-}
-
-.logo {
-  object-fit: contain;
-  height: 80%;
-}
-
-.icon-settings {
-  filter: invert(100%);
-  height: 55%;
-}
-
-.icon-profile {
-  object-fit: contain;
-  height: 60%;
+@keyframes fade {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
 }

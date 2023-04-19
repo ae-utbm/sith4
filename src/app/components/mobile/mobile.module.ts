@@ -6,10 +6,26 @@ import { CommonComponentsModule } from '../common/common.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { MobileNavbarComponent } from './navbar/navbar.component';
 import { MobileHeaderComponent } from './header/header.component';
+import { MobileSideMenuComponent } from './side-menu/side-menu.component';
+import { MobileTitleComponent } from './title/title.component';
 
 @NgModule({
-	declarations: [MobileLangSelectorComponent, MobileSubtitleComponent, MobileHeaderComponent, MobileNavbarComponent],
-	exports: [MobileLangSelectorComponent, MobileSubtitleComponent, MobileHeaderComponent, MobileNavbarComponent],
+	declarations: [
+		MobileLangSelectorComponent,
+		MobileSubtitleComponent,
+		MobileTitleComponent,
+		MobileHeaderComponent,
+		MobileNavbarComponent,
+		MobileSideMenuComponent,
+	],
+	exports: [
+		MobileLangSelectorComponent,
+		MobileSubtitleComponent,
+		MobileTitleComponent,
+		MobileHeaderComponent,
+		MobileNavbarComponent,
+		MobileSideMenuComponent,
+	],
 	imports: [CommonModule, CommonComponentsModule, TranslateModule],
 })
 export class MobileComponentsModule {}
