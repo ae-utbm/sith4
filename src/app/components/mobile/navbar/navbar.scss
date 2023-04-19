@@ -1,44 +1,34 @@
-// MENU NAVBAR
+$background-color: #c6cdd5;
 
-.mobile-navbar__menu {
-  display: flex;
-  position: sticky;
-  height: 5%;
-  background: #C6CDD5;
-}
+.navbar {
+	height: 40px;
+	background-color: $background-color;
+	display: flex;
+	justify-content: space-between;
 
-.mobile-navbar__item-container {
-  display: flex;
-  padding-left: 2%;
-  padding-right: 3%;
-  align-items: center;
-  width: 100%;
-}
+	> .left {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 16px;
+	}
 
-.mobile-navbar__item-container__icons {
-  display: flex;
-  gap: 5%;
-  width: 100%;
-  justify-content: space-between;
-}
+	> .right {
+		justify-content: flex-end;
+		gap: 8px;
+	}
 
-.mobile-navbar__item-container__icons__left {
-  display: flex;
-  align-items: flex-start;
-}
+	> .left,
+	> .right {
+		display: flex;
+		align-items: center;
+		padding: 0 10px;
 
-.mobile-navbar__item-container__icons__right {
-  display: flex;
-  align-items: flex-end;
-}
-
-.icon-container {
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: transparent;
-}
-
-.icon-menu {
-  object-fit: contain;
+		> .icon {
+			width: 20px;
+			height: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
 }

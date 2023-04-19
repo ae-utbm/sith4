@@ -1,3 +1,39 @@
+$background-color: #21262D;
+
+.header {
+	background-color: $background-color;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding-left: 10px;
+	height: 70px;
+
+	> .logo {
+		width: 64px;
+		height: 64px;
+	}
+
+	> .icons {
+		display: flex;
+		padding: 16px;
+		gap: 16px;
+
+		> * {
+			width: 32px;
+			height: 32px;
+			fill: white;
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
 // MAIN NAVBAR
 .mobile-navbar {
   display: flex;
