@@ -9,6 +9,7 @@ import { MobileHeaderComponent } from './header/header.component';
 import { MobileSideMenuComponent } from './side_menu/side_menu.component';
 import { MobileTitleComponent } from './title/title.component';
 import { MobileThemeSelectorComponent } from './theme_selector/theme_selector.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,6 @@ import { MobileThemeSelectorComponent } from './theme_selector/theme_selector.co
 		MobileSideMenuComponent,
 		MobileThemeSelectorComponent,
 	],
-	imports: [CommonModule, CommonComponentsModule, TranslateModule],
+	imports: [CommonModule, CommonComponentsModule, TranslateModule, RouterModule],
 })
 export class MobileComponentsModule {}

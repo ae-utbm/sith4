@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeEvent, getThemeEvent } from 'src/utils';
 
@@ -10,9 +11,15 @@ import { ThemeEvent, getThemeEvent } from 'src/utils';
 export class MobileHeaderComponent {
 	public profileOpened = false;
 	public optionsOpened = false;
+	public connectionOpened = false;
+	public userLoggedIn = false;
 
 	public triggerSideMenuProfile(): void {
 		this.profileOpened = !this.profileOpened;
+	}
+
+	public triggerSideMenuConnection(): void {
+		this.connectionOpened = !this.connectionOpened;
 	}
 
 	public triggerSideMenuOptions(): void {

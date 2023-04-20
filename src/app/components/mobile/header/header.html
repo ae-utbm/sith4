@@ -2,7 +2,8 @@
 	<img class="logo" [src]="logo" alt="logo_ae">
 	<div class="icons">
 		<icon-cogwheel (click)="triggerSideMenuOptions()" />
-		<icon-user-icon (click)="triggerSideMenuProfile()" />
+		<icon-user-icon *ngIf="userLoggedIn" (click)="triggerSideMenuProfile()" />
+		<icon-burger-menu *ngIf="!userLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
 
@@ -37,6 +38,26 @@
 			</ul>
 		</main>
 	</div>
+</app-side-menu>
+
+<app-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
+<div>
+	<div class="logo"></div>
+
+	<div class="text-container">
+		<div class="text">
+			Association des Étudiants
+		</div>
+		<div class="text small">
+			de l'université de technologie de belfort-montbéliard
+		</div>
+	</div>
+</div>
+<div class="buttons">
+	<app-button [text]="'navbar.burger.connexion' | translate" [routerLink]="['/login']" routerLinkActive="router-link-active" />
+	<app-button [text]="'navbar.burger.register' | translate" [routerLink]="['/register']" routerLinkActive="router-link-active" />
+
+</div>
 </app-side-menu>
 
 <app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >

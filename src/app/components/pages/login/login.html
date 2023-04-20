@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="header">
+		<div class="logo"></div>
+
+		<div class="text-container">
+			<div class="text">
+				Association des Étudiants
+			</div>
+			<div class="text small">
+				de l'université de technologie de belfort-montbéliard
+			</div>
+		</div>
+	</div>
+
+	<div class="body">
+		<div class="text-container">
+			<div class="text big">
+				{{ 'connection.connection' | translate}}
+			</div>
+			<a class="text small" href="/register">
+				{{ 'connection.no_account' | translate}}
+			</a>
+		</div>
+
+		<div class="input-group">
+			<div class="input-container">
+				<icon-at class="icon" />
+				<input id="mail" type="text" placeholder="{{ 'connection.email' | translate}}" />
+			</div>
+			<div class="input-container">
+				<icon-password class="icon" />
+				<input id="password" type="password" placeholder="**********" />
+			</div>
+			<a class="text" href="/register">
+				{{ 'connection.forgot_password' | translate}}
+			</a>
+		</div>
+
+		<app-button class="button" [text]="'connection.connection_action' | translate"></app-button>
+	</div>
+</div>

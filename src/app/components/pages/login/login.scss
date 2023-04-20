@@ -1,0 +1,99 @@
+.container {
+	background-color: #21262D;
+	width: 100vw;
+	height: 100vh;
+	display: block;
+
+	.header {
+		padding-top: 20px;
+
+		> .logo {
+			width: 256px;
+			height: 160px;
+			margin-left: auto;
+			margin-right: auto;
+			background-image: url('/assets/logo_ae.webp');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		> .text-container {
+			text-align: center;
+			> .text {
+				font-family: Inter, sans-serif;
+				color: white;
+				font-size: 30.5px;
+			}
+
+			> .small {
+				text-transform: uppercase;
+				font-size: 11px;
+			}
+		}
+	}
+
+	.body {
+		> .text-container {
+			padding-top: 35px;
+			padding-left: 20px;
+
+			> .text {
+				font-family: Inter, sans-serif;
+				color: white;
+				font-size: 21px;
+			}
+
+			> .big {
+				text-transform: uppercase;
+			}
+
+			> .small {
+				font-size: 14px;
+				color: #78C1FF;
+				font-style: italic;
+			}
+		}
+
+		> .input-group {
+			flex-direction: column;
+			padding-top: 20px;
+
+			> .input-container {
+				flex-direction: row;
+				display: flex;
+				justify-items: center;
+				padding: 5px;
+				width: 85%;
+				margin-left: 20px;
+				gap: 10px;
+
+				> input {
+					color: white;
+					background-color: #161B2280;
+					width: 100%;
+					border: none;
+					height: 32px;
+
+				}
+			}
+
+			> .text {
+				font-family: Inter, sans-serif;
+				font-size: 14px;
+				color: #78C1FF;
+				font-style: italic;
+
+				display: flex;
+				justify-content: center;
+			}
+		}
+
+		.button {
+			display: flex;
+			justify-content: center;
+
+			padding-top: 20px;
+		}
+	}
+}

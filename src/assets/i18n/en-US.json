@@ -9,8 +9,11 @@
 		"shop": "Shop",
 		"events": "Events",
 		"forum": "Forum",
-		"pictures": "Pictures"
-	},
+		"pictures": "Pictures",
+		"burger": {
+			"connexion": "Sign in",
+			"register": "Register"
+		}},
 	"header": {
 		"options": {
 			"title": "Accessibility Parameters",
@@ -40,5 +43,13 @@
 			"pictures": "Pictures",
 			"payments": "Payments"
 		}
+	},
+	"connection":{
+		"connection": "Log In",
+		"no_account": "No account ? Register",
+		"forgot_password": "Forgot your password ?",
+		"email": "exemple@website.com",
+		"connection_action": "Log In",
+		"external_connection": "Or connect with"
 	}
 }

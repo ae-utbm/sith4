@@ -1,5 +1,5 @@
 <div *ngIf="isDesktop">
-	<app-desktop-header *ngIf="isDesktop"/>
+	<app-desktop-header *ngIf="!headless"/>
 	<main>
 		<app-desktop-navbar />
 		<router-outlet></router-outlet>
@@ -7,7 +7,7 @@
 </div>
 
 <div *ngIf="isMobile">
-	<app-mobile-header *ngIf="isMobile" />
-	<app-mobile-navbar *ngIf="isMobile" />
+	<app-mobile-header *ngIf="!headless"/>
+	<app-mobile-navbar *ngIf="!headless"/>
 	<router-outlet></router-outlet>
 </div>

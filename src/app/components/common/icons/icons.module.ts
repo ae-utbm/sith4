@@ -15,6 +15,8 @@ import { IconShoppingCartComponent } from './shopping_cart/shopping_cart.compone
 import { CommonModule } from '@angular/common';
 import { IconPersonComponent } from './person/person.component';
 import { IconPaymentsComponent } from './payments/payments.component';
+import { IconAtComponent } from './at/at.component';
+import { IconPasswordComponent } from './password/password.component';
 
 @NgModule({
 	declarations: [
@@ -33,6 +35,8 @@ import { IconPaymentsComponent } from './payments/payments.component';
 		IconShoppingCartComponent,
 		IconPersonComponent,
 		IconPaymentsComponent,
+		IconAtComponent,
+		IconPasswordComponent,
 	],
 	exports: [
 		IconBurgerMenuComponent,
@@ -50,6 +54,8 @@ import { IconPaymentsComponent } from './payments/payments.component';
 		IconShoppingCartComponent,
 		IconPersonComponent,
 		IconPaymentsComponent,
+		IconAtComponent,
+		IconPasswordComponent,
 	],
 	imports: [CommonModule],
 })

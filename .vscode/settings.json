@@ -14,5 +14,6 @@
     "sith",
     "stylelint",
     "truetype"
-  ]
+  ],
+  "files.eol": "\n"
 }

@@ -6,10 +6,12 @@ import { CommonComponentsModule } from '../common/common.module';
 import { MobileComponentsModule } from '../mobile/mobile.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { DesktopComponentsModule } from '../desktop/desktop.module';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
-	declarations: [NotFoundComponent, HomeComponent],
-	exports: [NotFoundComponent, HomeComponent],
+	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent],
+	exports: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent],
 	imports: [CommonModule, TranslateModule, CommonComponentsModule, MobileComponentsModule, DesktopComponentsModule],
 })
 export class PagesModule {}
