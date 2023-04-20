@@ -2,7 +2,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: var(--gray3);
+	background-color: var(--navbar-background-color);
 	height: 70px;
 	padding-left: 10px;
 
@@ -18,10 +18,12 @@
 		}
 
 		> .text {
-			color: var(--text-color-dark-bg);
+			color: var(--navbar-text-color);
 			display: flex;
 			flex-direction: column;
 			font-family: Roboto;
+			font-weight: 500;
+			margin-bottom: 5px;
 
 			> .big {
 				font-size: 20px;
@@ -36,7 +38,7 @@
 
 	> .icons {
 		display: flex;
-		fill: var(--text-color-dark-bg);
+		fill: var(--navbar-text-color);
 		align-items: center;
 		gap: 16px;
 		padding: 0 16px;
@@ -45,7 +47,7 @@
 			cursor: pointer;
 			width: 32px;
 			height: 32px;
-			fill: var(--text-color-dark-bg);
+			fill: var(--navbar-text-color);
 
 			&.search {
 				width: 22px;

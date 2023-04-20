@@ -4,12 +4,12 @@
 	margin-top: 10px;
 	display: flex;
 	flex-direction: column;
-	gap: 5px;
 
 	> li {
 		display: flex;
 		align-items: center;
 		gap: 15px;
+		height: 20px;
 
 		.selector {
 			background-color: white;
@@ -19,6 +19,10 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
+
+			&.square {
+				border-radius: 0;
+			}
 		}
 
 		&.selected {
@@ -29,6 +33,10 @@
 				background-color: var(--user-custom-color);
 				width: 8px;
 				height: 8px;
+			}
+
+			> .selector.square::before {
+				border-radius: 0;
 			}
 		}
 

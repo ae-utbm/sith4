@@ -1,5 +1,5 @@
 .header {
-	background-color: var(--gray3);
+	background-color: var(--navbar-background-color);
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -19,7 +19,7 @@
 		> * {
 			width: 32px;
 			height: 32px;
-			fill: var(--text-color-dark-bg);
+			fill: var(--navbar-text-color);
 		}
 	}
 }

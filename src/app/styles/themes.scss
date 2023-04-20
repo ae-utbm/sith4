@@ -3,6 +3,11 @@
 	--text-color-dark-bg: #ddd;
 
 	--darkened: rgba(0, 0, 0, 0.5);
+	--navbar-background-color: var(--gray4);
+	--navbar-text-color: var(--text-color-dark-bg);
+
+	--navbar-user-icon-light-color: #c6cdd5;
+	--navbar-user-icon-dark-color: var(--gray3-hover);
 }
 
 :root[data-theme=light] {
@@ -14,10 +19,17 @@
 	--dark-blue: #7597d1;
 	--purple: #cea5fb;
 
+	--purple-hover: #cea5fb80;
+
 	--gray4: #161b22;
 	--gray3: #21262d;
 	--gray2: #a5afb9;
 	--gray1: #c6cdd5;
+
+	--gray4-hover: #161b2280;
+	--gray3-hover: #21262d80;
+	--gray2-hover: #a5afb980;
+	--gray1-hover: #c6cdd580;
 
 	--text-color-dynamic: #000;
 }
@@ -31,12 +43,35 @@
 	--dark-blue: #3592e4;
 	--purple: #cea5fb;
 
+	--purple-hover: #cea5fb80;
+
 	--gray4: #12161d;
 	--gray3: #161b22;
 	--gray2: #1c2128;
 	--gray1: #21262d;
 
+	--gray4-hover: #12161d80;
+	--gray3-hover: #161b2280;
+	--gray2-hover: #1c212880;
+	--gray1-hover: #21262d80;
+
 	--text-color-dynamic: #fff;
+}
+
+:root[data-event-theme=pinktober] {
+	--navbar-background-color: #e891dc;
+	--navbar-text-color: #400547;
+
+	--navbar-user-icon-light-color: #400547;
+	--navbar-user-icon-dark-color: var(--purple-hover);
+}
+
+:root[data-event-theme=christmas] {
+	--navbar-background-color: #095228;
+	--navbar-text-color: #002111;
+
+	--navbar-user-icon-light-color: #002111;
+	--navbar-user-icon-dark-color: #095228;
 }
 
 :root[data-theme=high_contrast] {
@@ -53,5 +88,15 @@
 	--gray2: #222;
 	--gray1: #333;
 
+	--gray4-hover: #00000080;
+	--gray3-hover: #11111180;
+	--gray2-hover: #22222280;
+	--gray1-hover: #33333380;
+
 	--text-color-dynamic: #fff;
+	--navbar-background-color: var(--gray4);
+	--navbar-text-color: var(--text-color-dark-bg);
+
+	--navbar-user-icon-light-color: var(--text-color-dark-bg);
+	--navbar-user-icon-dark-color: var(--gray1);
 }

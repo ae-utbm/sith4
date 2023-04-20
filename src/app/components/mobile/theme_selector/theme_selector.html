@@ -1,7 +1,16 @@
-<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.theme.title' | translate" />
+<app-mobile-subtitle [onDarkBackground]="true" [text]="'navbar.options.themes.title' | translate" />
 <ul class="themes">
 	<li *ngFor="let t of themes" (click)="theme = t.value" [ngClass]="{'selected': t.value === theme}">
 		<div class="selector"></div>
 		<span>{{ t.name }}</span>
 	</li>
 </ul>
+
+<div *ngIf="eventThemes.length > 0">
+	<ul class="themes">
+		<li *ngFor="let t of eventThemes" (click)="eventTheme = t.value" [ngClass]="{'selected': t.value === eventTheme}">
+			<div class="selector square"></div>
+			<span>{{ t.name }}</span>
+		</li>
+	</ul>
+</div>

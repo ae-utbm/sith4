@@ -1,6 +1,3 @@
-$color-red: #ff1a0a;
-$white: #fff;
-
 .icon {
 	position: relative;
 
@@ -15,6 +12,15 @@ $white: #fff;
 			height: 100%;
 			border-radius: 50%;
 		}
+
+		> svg {
+			.light {
+				fill: var(--navbar-user-icon-light-color);
+			}
+			.dark {
+				fill: var(--navbar-user-icon-dark-color);
+			}
+		}
 	}
 
 	> .notification {
@@ -25,8 +31,8 @@ $white: #fff;
 		min-width: 16px;
 		height: 16px;
 
-		color: $white;
-		background-color: $color-red;
+		color: var(--text-color-dark-bg);
+		background-color: var(--red);
 		border-radius: 50%;
 		font-family: Roboto;
 		font-size: 12px;
@@ -37,7 +43,7 @@ $white: #fff;
 
 		> span {
 			display: block;
-			background-color: $white;
+			background-color: var(--text-color-dark-bg);
 			width: 100%;
 			height: 100%;
 			border-radius: 50%;

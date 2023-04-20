@@ -1,10 +1,10 @@
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Theme, getTheme, setTheme } from 'src/utils/theme';
+import { Theme, ThemeEvent, getTheme, getThemeEvent, setTheme, setThemeEvent } from 'src/utils';
 
-export interface ITheme {
+export interface ITheme<T> {
 	name: string;
-	value: Theme;
+	value: T;
 }
 
 @Component({
@@ -13,17 +13,37 @@ export interface ITheme {
 	styleUrls: ['./theme_selector.scss'],
 })
 export class MobileThemeSelectorComponent {
-	public themes: ITheme[] = [
-		{ name: 'navbar.options.theme.light', value: 'light' },
-		{ name: 'navbar.options.theme.dark', value: 'dark' },
-		{ name: 'navbar.options.theme.auto', value: 'auto' },
-		{ name: 'navbar.options.theme.high_contrast', value: 'high_contrast' },
+	public themes: ITheme<Theme>[] = [
+		{ name: 'navbar.options.themes.light', value: 'light' },
+		{ name: 'navbar.options.themes.dark', value: 'dark' },
+		{ name: 'navbar.options.themes.auto', value: 'auto' },
+		{ name: 'navbar.options.themes.high_contrast', value: 'high_contrast' },
 	];
 
-	public constructor(@Inject(TranslateService) public readonly translate: TranslateService) {}
+	public eventThemes: ITheme<ThemeEvent>[] = [];
+
+	public constructor(@Inject(TranslateService) public readonly translate: TranslateService) {
+		const now = new Date();
+
+		switch (now.getMonth()) {
+			case 11:
+				this.eventThemes.push({ name: 'navbar.options.event_themes.christmas', value: 'christmas' });
+				if (this.eventTheme === null) this.eventTheme = 'christmas';
+				break;
+			case 9:
+				this.eventThemes.push({ name: 'navbar.options.event_themes.pinktober', value: 'pinktober' });
+				if (this.eventTheme === null) this.eventTheme = 'pinktober';
+				break;
+			default:
+				this.eventTheme = null;
+		}
+	}
 
 	public ngOnInit(): void {
 		this.themes.forEach((theme) => {
+			this.translate.get(theme.name).subscribe((name) => (theme.name = name));
+		});
+		this.eventThemes.forEach((theme) => {
 			this.translate.get(theme.name).subscribe((name) => (theme.name = name));
 		});
 	}
@@ -34,5 +54,13 @@ export class MobileThemeSelectorComponent {
 
 	public get theme(): Theme {
 		return getTheme();
+	}
+
+	public set eventTheme(theme: ThemeEvent | null) {
+		setThemeEvent(this.eventTheme === theme ? 'unset' : theme);
+	}
+
+	public get eventTheme(): ThemeEvent | null {
+		return getThemeEvent();
 	}
 }

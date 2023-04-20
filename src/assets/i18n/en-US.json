@@ -12,12 +12,16 @@
 		"pictures": "Pictures",
 		"options": {
 			"title": "Accessibility Parameters",
-			"theme": {
+			"themes": {
 				"title": "Theme selection",
 				"light": "Light",
 				"dark": "Dark",
 				"auto": "Auto",
 				"high_contrast": "High contrast"
+			},
+			"event_themes": {
+				"pinktober": "Pinktober",
+				"christmas": "Christmas"
 			},
 			"font_size": {
 				"title": "Font size",
