@@ -9,7 +9,9 @@
 		"shop": "Shop",
 		"events": "Events",
 		"forum": "Forum",
-		"pictures": "Pictures",
+		"pictures": "Pictures"
+	},
+	"header": {
 		"options": {
 			"title": "Accessibility Parameters",
 			"themes": {
@@ -32,6 +34,11 @@
 			"accent_color": {
 				"title": "Accent color"
 			}
+		},
+		"profile": {
+			"profile": "Profile",
+			"pictures": "Pictures",
+			"payments": "Payments"
 		}
 	}
 }

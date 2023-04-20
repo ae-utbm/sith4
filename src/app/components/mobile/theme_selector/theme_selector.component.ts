@@ -14,10 +14,10 @@ export interface ITheme<T> {
 })
 export class MobileThemeSelectorComponent {
 	public themes: ITheme<Theme>[] = [
-		{ name: 'navbar.options.themes.light', value: 'light' },
-		{ name: 'navbar.options.themes.dark', value: 'dark' },
-		{ name: 'navbar.options.themes.auto', value: 'auto' },
-		{ name: 'navbar.options.themes.high_contrast', value: 'high_contrast' },
+		{ name: 'header.options.themes.light', value: 'light' },
+		{ name: 'header.options.themes.dark', value: 'dark' },
+		{ name: 'header.options.themes.auto', value: 'auto' },
+		{ name: 'header.options.themes.high_contrast', value: 'high_contrast' },
 	];
 
 	public eventThemes: ITheme<ThemeEvent>[] = [];
@@ -27,11 +27,11 @@ export class MobileThemeSelectorComponent {
 
 		switch (now.getMonth()) {
 			case 11:
-				this.eventThemes.push({ name: 'navbar.options.event_themes.christmas', value: 'christmas' });
+				this.eventThemes.push({ name: 'header.options.event_themes.christmas', value: 'christmas' });
 				if (this.eventTheme === null) this.eventTheme = 'christmas';
 				break;
 			case 9:
-				this.eventThemes.push({ name: 'navbar.options.event_themes.pinktober', value: 'pinktober' });
+				this.eventThemes.push({ name: 'header.options.event_themes.pinktober', value: 'pinktober' });
 				if (this.eventTheme === null) this.eventTheme = 'pinktober';
 				break;
 			default:

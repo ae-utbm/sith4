@@ -13,6 +13,8 @@ import { IconSearchComponent } from './search/search.component';
 import { IconShoppingBasketComponent } from './shopping_basket/shopping_basket.component';
 import { IconShoppingCartComponent } from './shopping_cart/shopping_cart.component';
 import { CommonModule } from '@angular/common';
+import { IconPersonComponent } from './person/person.component';
+import { IconPaymentsComponent } from './payments/payments.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +31,8 @@ import { CommonModule } from '@angular/common';
 		IconSearchComponent,
 		IconShoppingBasketComponent,
 		IconShoppingCartComponent,
+		IconPersonComponent,
+		IconPaymentsComponent,
 	],
 	exports: [
 		IconBurgerMenuComponent,
@@ -44,6 +48,8 @@ import { CommonModule } from '@angular/common';
 		IconSearchComponent,
 		IconShoppingBasketComponent,
 		IconShoppingCartComponent,
+		IconPersonComponent,
+		IconPaymentsComponent,
 	],
 	imports: [CommonModule],
 })

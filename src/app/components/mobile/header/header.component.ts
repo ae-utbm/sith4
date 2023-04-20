@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ThemeEvent, getThemeEvent } from 'src/utils';
 
 @Component({
@@ -7,11 +8,11 @@ import { ThemeEvent, getThemeEvent } from 'src/utils';
 	styleUrls: ['./header.scss'],
 })
 export class MobileHeaderComponent {
-	public profilOpened = false;
+	public profileOpened = false;
 	public optionsOpened = false;
 
-	public triggerSideMenuProfil(): void {
-		this.profilOpened = !this.profilOpened;
+	public triggerSideMenuProfile(): void {
+		this.profileOpened = !this.profileOpened;
 	}
 
 	public triggerSideMenuOptions(): void {
