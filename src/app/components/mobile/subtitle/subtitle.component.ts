@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { isRTL } from 'src/utils/document';
+import { Component, Inject, Input } from '@angular/core';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
 	selector: 'sith-mobile-subtitle',
@@ -11,7 +11,5 @@ export class MobileSubtitleComponent {
 	@Input() public bordered = false;
 	@Input() public onDarkBackground = false;
 
-	public get isRTL(): boolean {
-		return isRTL();
-	}
+	public constructor(@Inject(PageService) public readonly p: PageService) {}
 }

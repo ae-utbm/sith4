@@ -17,6 +17,7 @@ import { IconPersonComponent } from './person/person.component';
 import { IconPaymentsComponent } from './payments/payments.component';
 import { IconAtComponent } from './at/at.component';
 import { IconPasswordComponent } from './password/password.component';
+import { IconCalendarComponent } from './calendar/calendar.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +38,7 @@ import { IconPasswordComponent } from './password/password.component';
 		IconPaymentsComponent,
 		IconAtComponent,
 		IconPasswordComponent,
+		IconCalendarComponent,
 	],
 	exports: [
 		IconBurgerMenuComponent,
@@ -56,6 +58,7 @@ import { IconPasswordComponent } from './password/password.component';
 		IconPaymentsComponent,
 		IconAtComponent,
 		IconPasswordComponent,
+		IconCalendarComponent,
 	],
 	imports: [CommonModule],
 })

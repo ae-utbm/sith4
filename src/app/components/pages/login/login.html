@@ -1,41 +1,39 @@
-<div class="container">
-	<div class="header">
+<main>
+	<div class="header" (click)="p.route = '/'">
 		<div class="logo"></div>
-
-		<div class="text-container">
-			<div class="text">
-				Association des Étudiants
-			</div>
-			<div class="text small">
-				de l'université de technologie de belfort-montbéliard
-			</div>
+		<div class="text">
+			<span class="title">Association des Étudiants</span>
+			<span class="subtitle">de l'université de technologie de Belfort-Montbéliard</span>
 		</div>
 	</div>
-
-	<div class="body">
-		<div class="text-container">
-			<div class="text big">
-				{{ 'connection.connection' | translate}}
-			</div>
-			<a class="text small" href="/register">
-				{{ 'connection.no_account' | translate}}
-			</a>
+	<form>
+		<div class="form-head">
+			<app-mobile-title [text]="'connection.connection' | translate" [onDarkBackground]="true" />
+			<a class="link" href="/register">{{ 'connection.no_account' | translate}}</a>
 		</div>
 
-		<div class="input-group">
+		<div class="form-body">
 			<div class="input-container">
-				<icon-at class="icon" />
-				<input id="mail" type="text" placeholder="{{ 'connection.email' | translate}}" />
+				<div class="input">
+					<icon-at class="icon" />
+					<input id="mail" type="text" placeholder="{{ 'connection.email' | translate }}" />
+				</div>
+				<span class="error">an error occurred</span>
 			</div>
+
 			<div class="input-container">
-				<icon-password class="icon" />
-				<input id="password" type="password" placeholder="**********" />
+				<div class="input">
+					<icon-password class="icon" />
+					<input id="password" type="password" placeholder="********" />
+				</div>
+				<span class="error">an error occurred</span>
 			</div>
-			<a class="text" href="/register">
+
+			<a class="link" href="/forgot_password">
 				{{ 'connection.forgot_password' | translate}}
 			</a>
 		</div>
 
-		<app-button class="button" [text]="'connection.connection_action' | translate"></app-button>
-	</div>
-</div>
+		<app-button (click)="login()" class="form-button" [text]="'connection.connection_action' | translate"></app-button>
+	</form>
+</main>

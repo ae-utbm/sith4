@@ -1,0 +1,68 @@
+<main>
+  <div class="header" (click)="p.route = '/'">
+		<div class="logo"></div>
+		<div class="text">
+			<span class="title">Association des Étudiants</span>
+			<span class="subtitle">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+
+  <form>
+    <div class="form-head">
+      <app-mobile-title [text]="'register.register' | translate" [onDarkBackground]="true"/>
+      <a class="link" href="/login">{{ 'register.already_have_account' | translate }}</a>
+    </div>
+
+    <div class="form-body">
+      <div class="input-container">
+        <div class="input">
+          <input id="last_name" type="text" placeholder="{{ 'register.last_name' | translate }}" />
+        </div>
+        <span class="error no-margin">ERREUR</span>
+      </div>
+
+      <div class="input-container">
+        <div class="input">
+          <input id="first_name" type="text" placeholder="{{ 'register.first_name' | translate }}" />
+        </div>
+        <span class="error no-margin">ERREUR</span>
+      </div>
+
+      <div class="input-container">
+				<div class="input">
+					<icon-calendar class="icon" />
+					<input id="birthdate" type="date" />
+				</div>
+				<span class="error info">{{ 'register.date_birth_no_modif' | translate }}</span>
+			</div>
+
+      <div class="input-container">
+				<div class="input">
+					<icon-at class="icon" />
+					<input id="mail" type="text" placeholder="{{ 'register.email' | translate }}" />
+				</div>
+				<span class="error">an error occurred</span>
+			</div>
+
+			<div class="input-container">
+				<div class="input">
+					<icon-password class="icon" />
+					<input id="password" type="password" placeholder="********" />
+				</div>
+				<span class="info">{{ 'register.min_password' | translate }}</span>
+				<span class="error">test</span>
+			</div>
+
+      <div class="input-container">
+				<div class="input">
+					<icon-password class="icon" />
+					<input id="password_confirm" type="password" placeholder="********" />
+				</div>
+				<span class="info">{{ 'register.confirm_password' | translate }}</span>
+				<span class="error">test</span>
+			</div>
+    </div>
+
+    <app-button class="form-button" [text]="'register.register_action' | translate"></app-button>
+  </form>
+</main>

@@ -9,12 +9,13 @@
 		"shop": "Shop",
 		"events": "Events",
 		"forum": "Forum",
-		"pictures": "Pictures",
+		"pictures": "Pictures"
+	},
+	"header": {
 		"burger": {
 			"connexion": "Sign in",
 			"register": "Register"
-		}},
-	"header": {
+		},
 		"options": {
 			"title": "Accessibility Parameters",
 			"themes": {
@@ -41,15 +42,27 @@
 		"profile": {
 			"profile": "Profile",
 			"pictures": "Pictures",
-			"payments": "Payments"
+			"payments": "Payments",
+			"disconnect": "Disconnect"
 		}
 	},
 	"connection":{
 		"connection": "Log In",
 		"no_account": "No account ? Register",
 		"forgot_password": "Forgot your password ?",
-		"email": "exemple@website.com",
+		"email": "example@website.com",
 		"connection_action": "Log In",
 		"external_connection": "Or connect with"
+	},
+	"register":{
+		"register": "Register",
+		"already_have_account": "Already have an account ? Log In",
+		"last_name" : "Last name",
+		"first_name": "First name",
+		"date_birth_no_modif": "Your date of birth cannot be changed",
+		"email": "example@website.com",
+		"min_password": "Minimum of 8 characters including 1 special",
+		"confirm_password": "Confirm password",
+		"register_action": "Register"
 	}
 }

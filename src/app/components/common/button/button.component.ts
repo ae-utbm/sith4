@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class ButtonComponent {
 	@Input() public text = '';
+	@Input() public large = false;
 }

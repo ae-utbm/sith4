@@ -37,6 +37,7 @@ $slide-rtl: slide-rtl 0.5s ease-in-out;
 	0% {
 		transform: translateX(100%);
 	}
+
 	100% {
 		transform: translateX(0);
 	}
@@ -46,6 +47,7 @@ $slide-rtl: slide-rtl 0.5s ease-in-out;
 	0% {
 		transform: translateX(-100%);
 	}
+
 	100% {
 		transform: translateX(0);
 	}

@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { PageService } from 'src/app/services/page.service';
+import { UserService } from 'src/app/services/user.service';
 import { ThemeEvent, getThemeEvent } from 'src/utils';
 
 @Component({
@@ -13,6 +13,11 @@ export class MobileHeaderComponent {
 	public optionsOpened = false;
 	public connectionOpened = false;
 	public userLoggedIn = false;
+
+	public constructor(
+		@Inject(UserService) public readonly u: UserService,
+		@Inject(PageService) public readonly p: PageService,
+	) {}
 
 	public triggerSideMenuProfile(): void {
 		this.profileOpened = !this.profileOpened;
@@ -39,5 +44,10 @@ export class MobileHeaderComponent {
 
 	public get eventTheme(): ThemeEvent | null {
 		return getThemeEvent();
+	}
+
+	public logout(): void {
+		this.triggerSideMenuProfile();
+		this.u.logout();
 	}
 }

@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { isRTL } from 'src/utils';
+import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
+import { PageService } from 'src/app/services/page.service';
 
 export interface ISelectOption {
 	image?: string;
@@ -27,9 +27,8 @@ export class SelectComponent {
 	/** Emit an event with a string being the `value` of the selected option */
 	@Output() public optionSelected = new EventEmitter<string>();
 
-	public get isRTL(): boolean {
-		return isRTL();
-	}
+	public constructor(@Inject(PageService) public readonly p: PageService) {}
+
 	/**
 	 * Displays or hides the dropdown.
 	 */

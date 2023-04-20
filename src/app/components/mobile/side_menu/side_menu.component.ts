@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { isRTL } from 'src/utils';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { PageService } from 'src/app/services/page.service';
 
 @Component({
 	selector: 'app-side-menu',
@@ -10,6 +10,8 @@ export class MobileSideMenuComponent {
 	private _closing = false;
 
 	@Output() public close = new EventEmitter();
+
+	public constructor(@Inject(PageService) public readonly p: PageService) {}
 
 	public triggerClose(): void {
 		this._closing = true;
@@ -22,9 +24,5 @@ export class MobileSideMenuComponent {
 
 	public get closing(): boolean {
 		return this._closing;
-	}
-
-	public get isRTL(): boolean {
-		return isRTL();
 	}
 }

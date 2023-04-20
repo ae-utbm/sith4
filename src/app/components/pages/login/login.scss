@@ -1,99 +1,124 @@
-.container {
-	background-color: #21262D;
+.link {
+	font-family: Inter, sans-serif;
+	font-size: 14px;
+	color: var(--blue);
+	font-style: italic;
+	line-height: 17px;
+	text-decoration: none;
+}
+
+main {
+	background-color: var(--gray3);
 	width: 100vw;
 	height: 100vh;
-	display: block;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	gap: 40px;
+	padding: 40px 20px 60px;
 
-	.header {
-		padding-top: 20px;
+	> .header {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: flex-start;
 
 		> .logo {
-			width: 256px;
-			height: 160px;
-			margin-left: auto;
-			margin-right: auto;
+			width: 200px;
+			height: 130px;
 			background-image: url('/assets/logo_ae.webp');
 			background-size: cover;
 			background-position: center;
 			background-repeat: no-repeat;
 		}
 
-		> .text-container {
-			text-align: center;
-			> .text {
-				font-family: Inter, sans-serif;
-				color: white;
-				font-size: 30.5px;
+		> .text {
+			display: flex;
+			flex-direction: column;
+			color: var(--text-color-dark-bg);
+			font-family: Inter, sans-serif;
+
+			> .title {
+				font-size: 25.5px;
 			}
 
-			> .small {
+			> .subtitle {
 				text-transform: uppercase;
-				font-size: 11px;
+				font-size: 10px;
 			}
 		}
 	}
 
-	.body {
-		> .text-container {
-			padding-top: 35px;
-			padding-left: 20px;
+	> form {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 30px;
 
-			> .text {
-				font-family: Inter, sans-serif;
-				color: white;
-				font-size: 21px;
-			}
-
-			> .big {
-				text-transform: uppercase;
-			}
-
-			> .small {
-				font-size: 14px;
-				color: #78C1FF;
-				font-style: italic;
-			}
+		> .form-head {
+			width: 100%;
 		}
 
-		> .input-group {
+		> .form-body {
+			display: flex;
 			flex-direction: column;
-			padding-top: 20px;
+			gap: 10px;
+
+			> .link {
+				text-align: center;
+			}
 
 			> .input-container {
-				flex-direction: row;
+				width: 100%;
 				display: flex;
-				justify-items: center;
-				padding: 5px;
-				width: 85%;
-				margin-left: 20px;
-				gap: 10px;
+				flex-direction: column;
+				gap: 5px;
 
-				> input {
-					color: white;
-					background-color: #161B2280;
-					width: 100%;
-					border: none;
-					height: 32px;
-
+				> .error {
+					font-family: Roboto, sans-serif;
+					color: var(--red);
+					font-size: 12px;
+					line-height: 14px;
+					margin-left: calc(32px + 5px);
 				}
-			}
 
-			> .text {
-				font-family: Inter, sans-serif;
-				font-size: 14px;
-				color: #78C1FF;
-				font-style: italic;
+				> .input {
+					width: 100%;
+					display: flex;
+					gap: 5px;
 
-				display: flex;
-				justify-content: center;
+					>.icon {
+						width: 16px;
+						height: 16px;
+						margin: 8px;
+					}
+
+					> input {
+						font-family: Roboto, sans-serif;
+						font-weight: normal;
+						color: var(--text-color-dark-bg);
+						background-color: var(--gray4);
+						width: 100%;
+						border: none;
+						border-radius: 5px;
+						height: 32px;
+						padding: 5px 5px 5px 10px;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+
+						&::placeholder {
+							color: var(--text-color-dark-bg-placeholder);
+							font-size: 14px;
+						}
+					}
+				}
 			}
 		}
 
-		.button {
-			display: flex;
-			justify-content: center;
-
-			padding-top: 20px;
+		> .form-button {
+			width: 100%;
 		}
 	}
 }

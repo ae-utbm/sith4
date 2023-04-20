@@ -1,25 +1,25 @@
 <div class="header">
-	<img class="logo" [src]="logo" alt="logo_ae">
+	<img class="logo" [src]="logo" alt="logo_ae" (click)="p.route = '/'">
 	<div class="icons">
 		<icon-cogwheel (click)="triggerSideMenuOptions()" />
-		<icon-user-icon *ngIf="userLoggedIn" (click)="triggerSideMenuProfile()" />
-		<icon-burger-menu *ngIf="!userLoggedIn" (click)="triggerSideMenuConnection()" />
+		<icon-user-icon *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture" />
+		<icon-burger-menu *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
 
 <app-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
 	<div class="profile-container">
-		<div class="background-image">
+		<div class="background-image" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
 			<div class="promotion"></div>
 			<div class="ae-sticker"></div>
 		</div>
-		<icon-user-icon class="user-picture" />
-		<div class="infos">
+		<icon-user-icon class="user-picture" [ngClass]="{ 'rtl': p.isRTL }" [url]="u.picture" />
+		<div class="infos" [ngClass]="{ 'rtl': p.isRTL }">
 			<div class="left">
-				<span>NAME first_name</span>
-				<span>0 €</span>
+				<span>{{ u.fullName }}</span>
+				<span>{{ u.balance }} €</span>
 			</div>
-			<span class="right">12345A</span>
+			<span class="right">{{ u.accountId }}</span>
 		</div>
 		<main>
 			<ul class="links">
@@ -36,28 +36,28 @@
 					<span>{{ 'header.profile.payments' | translate }}</span>
 				</li>
 			</ul>
+
+			<a (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
 		</main>
 	</div>
 </app-side-menu>
 
 <app-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
-<div>
-	<div class="logo"></div>
-
-	<div class="text-container">
-		<div class="text">
-			Association des Étudiants
+	<div class="disconnected-container">
+		<div class="title">
+			<div class="logo"></div>
+			<div class="text-container">
+				<span class="text">Association des Étudiants</span>
+				<span class="text small">de l'université de technologie de Belfort-Montbéliard</span>
+			</div>
 		</div>
-		<div class="text small">
-			de l'université de technologie de belfort-montbéliard
+		<div class="buttons">
+			<app-button [text]="'header.burger.connexion' | translate" [routerLink]="['/login']"
+				routerLinkActive="router-link-active" />
+			<app-button [text]="'header.burger.register' | translate" [routerLink]="['/register']"
+				routerLinkActive="router-link-active" />
 		</div>
 	</div>
-</div>
-<div class="buttons">
-	<app-button [text]="'navbar.burger.connexion' | translate" [routerLink]="['/login']" routerLinkActive="router-link-active" />
-	<app-button [text]="'navbar.burger.register' | translate" [routerLink]="['/register']" routerLinkActive="router-link-active" />
-
-</div>
 </app-side-menu>
 
 <app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
