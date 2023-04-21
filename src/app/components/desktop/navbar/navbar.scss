@@ -6,14 +6,21 @@
 	justify-content: center;
 	background-color: var(--gray1);
 	height: 40px;
-	gap: 40px;
+	gap: 20px;
 	border-radius: 5px;
 
 	> .link {
+		cursor: pointer;
+		height: 100%;
+		padding: 0 30px;
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		gap: 5px;
+
+		&:hover {
+			background-color: var(--gray2);
+		}
 
 		> .icon {
 			width: 20px;

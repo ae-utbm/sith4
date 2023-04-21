@@ -1,10 +1,10 @@
 <div class="navbar">
 	<div class="left">
 		<icon-heart-plus *ngIf="u.isLoggedIn" class="icon"/>
-		<icon-shopping-cart class="icon"/>
-		<icon-party-hat class="icon"/>
-		<icon-messages class="icon"/>
-		<icon-pictures class="icon"/>
+		<icon-shopping-cart class="icon" (click)="p.route = '/shop'"/>
+		<icon-party-hat class="icon" (click)="p.route = '/events'"/>
+		<icon-messages class="icon" (click)="p.route = '/forum'"/>
+		<icon-pictures class="icon" (click)="p.route = '/pictures'"/>
 	</div>
 	<div class="right" *ngIf="u.isLoggedIn">
 		<icon-search class="icon"/>

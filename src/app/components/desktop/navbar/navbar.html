@@ -3,19 +3,19 @@
 		<icon-heart-plus class="icon" />
 		<span>{{ 'navbar.favorites' | translate }}</span>
 	</div>
-	<div class="link">
+	<div class="link" (click)="p.route = '/shop'">
 		<icon-shopping-cart class="icon" />
 		<span>{{ 'navbar.shop' | translate }}</span>
 	</div>
-	<div class="link">
+	<div class="link" (click)="p.route = '/events'">
 		<icon-party-hat class="icon" />
 		<span>{{ 'navbar.events' | translate }}</span>
 	</div>
-	<div class="link">
+	<div class="link" (click)="p.route = '/forum'">
 		<icon-messages class="icon" />
 		<span>{{ 'navbar.forum' | translate }}</span>
 	</div>
-	<div class="link">
+	<div class="link" (click)="p.route = '/pictures'">
 		<icon-pictures class="icon" />
 		<span>{{ 'navbar.pictures' | translate }}</span>
 	</div>
