@@ -7,6 +7,10 @@
 		</div>
 	</div>
 
+	<div *ngIf="u.isLoggedIn" class="warning">
+		{{ 'register.already_registered_and_logged_as_x' | translate: { name: u.fullName } }}
+	</div>
+
   <form>
     <div class="form-head">
       <app-title [text]="'register.register' | translate" [onDarkBackground]="true"/>

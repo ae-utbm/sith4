@@ -22,7 +22,7 @@ export class UserService {
 	}
 
 	public get fullName(): string | undefined {
-		return this.isLoggedIn && this.user ? `${this.user.name} ${this.user.first_name}` : undefined;
+		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.name}` : undefined;
 	}
 
 	public get accountId(): string | undefined {

@@ -12,7 +12,9 @@
 :root[data-theme="light"] {
 	--background-color: #ecf2f8;
 	--red: #ff1a0a;
+	--red-hover: #ff1a0a80;
 	--orange: #faa356;
+	--orange-hover: #faa35680;
 	--green: #7ce38b;
 	--blue: #78c1ff;
 	--dark-blue: #7597d1;
@@ -32,7 +34,9 @@
 :root[data-theme="dark"] {
 	--background-color: #0d1117;
 	--red: #aa3028;
+	--red-hover: #aa302880;
 	--orange: #e27c22;
+	--orange-hover: #e27c2280;
 	--green: #2d8655;
 	--blue: #107b82;
 	--dark-blue: #3592e4;
@@ -66,7 +70,9 @@
 :root[data-theme="high_contrast"] {
 	--background-color: #000;
 	--red: #f00;
+	--red-hover: #f00;
 	--orange: #ffa500;
+	--orange-hover: #ffa500;
 	--green: #0f0;
 	--blue: #deff00;
 	--dark-blue: #deff00;

@@ -52,7 +52,8 @@
 		"forgot_password": "Forgot your password ?",
 		"email": "example@website.com",
 		"connection_action": "Log In",
-		"external_connection": "Or connect with"
+		"external_connection": "Or connect with",
+		"already_logged_as_x": "You are already logged as {{name}}"
 	},
 	"register":{
 		"register": "Register",
@@ -63,6 +64,7 @@
 		"email": "example@website.com",
 		"min_password": "Minimum of 8 characters including 1 special",
 		"confirm_password": "Confirm password",
-		"register_action": "Register"
+		"register_action": "Register",
+		"already_registered_and_logged_as_x": "You are already registered and logged as {{name}}"
 	}
 }

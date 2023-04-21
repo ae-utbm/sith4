@@ -1,13 +1,24 @@
 main {
 	background-color: var(--gray3);
-	width: 100vw;
-	height: 100vh;
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: flex-start;
 	gap: 40px;
 	padding: 40px 20px 60px;
+
+	> .warning {
+		font-family: Roboto, sans-serif;
+		background-color: var(--orange-hover);
+		color: var(--text-color-dark-bg);
+		border: 1px solid var(--orange);
+		padding: 10px;
+		width: 100%;
+		max-width: 400px;
+		border-radius: 5px;
+		text-align: center;
+	}
 
 	> .header {
 		cursor: pointer;
