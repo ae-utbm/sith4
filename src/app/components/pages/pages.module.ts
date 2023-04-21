@@ -8,10 +8,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { DesktopComponentsModule } from '../desktop/desktop.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './forgot_password/forgot_password.component';
 
 @NgModule({
-	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent],
-	exports: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent],
+	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
+	exports: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
 	imports: [CommonModule, TranslateModule, CommonComponentsModule, MobileComponentsModule, DesktopComponentsModule],
 })
 export class PagesModule {}

@@ -13,21 +13,21 @@
 
   <form>
     <div class="form-head">
-      <app-title [text]="'register.register' | translate" [onDarkBackground]="true"/>
+      <app-title [text]="'global.register' | translate" [onDarkBackground]="true"/>
       <a class="global-link" href="/login">{{ 'register.already_have_account' | translate }}</a>
     </div>
 
     <div class="form-body">
       <div class="input-container">
         <div class="input">
-          <input id="last_name" type="text" placeholder="{{ 'register.last_name' | translate }}" />
+          <input id="last_name" type="text" placeholder="{{ 'global.last_name' | translate }}" />
         </div>
         <span class="error no-margin">ERREUR</span>
       </div>
 
       <div class="input-container">
         <div class="input">
-          <input id="first_name" type="text" placeholder="{{ 'register.first_name' | translate }}" />
+          <input id="first_name" type="text" placeholder="{{ 'global.first_name' | translate }}" />
         </div>
         <span class="error no-margin">ERREUR</span>
       </div>
@@ -43,7 +43,7 @@
       <div class="input-container">
 				<div class="input">
 					<icon-at class="icon" />
-					<input id="mail" type="text" placeholder="{{ 'register.email' | translate }}" />
+					<input id="mail" type="text" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
 				<span class="error">an error occurred</span>
 			</div>
@@ -67,6 +67,6 @@
 			</div>
     </div>
 
-    <app-button class="form-button" [text]="'register.register_action' | translate"></app-button>
+    <app-button class="form-button" [text]="'global.register' | translate"></app-button>
   </form>
 </main>

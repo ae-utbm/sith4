@@ -4,6 +4,7 @@ import { NotFoundComponent } from './components/pages/404/not-found.component';
 import { HomeComponent } from './components/pages/home/home.component';
 import { LoginComponent } from './components/pages/login/login.component';
 import { RegisterComponent } from './components/pages/register/register.component';
+import { ForgotPasswordComponent } from './components/pages/forgot_password/forgot_password.component';
 
 const routes: Routes = [
 	{
@@ -26,6 +27,10 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
+	},
+	{
+		path: 'forgot_password',
+		component: ForgotPasswordComponent,
 	},
 	{
 		path: '**',
