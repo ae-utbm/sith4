@@ -1,16 +1,3 @@
-.link {
-	font-family: Inter, sans-serif;
-	font-size: 14px;
-	color: var(--dark-blue);
-	font-style: italic;
-	line-height: 17px;
-	text-decoration: none;
-
-	&:hover {
-		color: var(--blue);
-	}
-}
-
 main {
 	background-color: var(--gray3);
 	width: 100vw;
@@ -75,7 +62,7 @@ main {
 			flex-direction: column;
 			gap: 10px;
 
-			> .link {
+			> .global-link {
 				text-align: center;
 			}
 

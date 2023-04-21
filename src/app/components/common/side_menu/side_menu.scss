@@ -32,23 +32,3 @@ $slide-rtl: slide-rtl 0.5s ease-in-out;
 		}
 	}
 }
-
-@keyframes slide {
-	0% {
-		transform: translateX(100%);
-	}
-
-	100% {
-		transform: translateX(0);
-	}
-}
-
-@keyframes slide-rtl {
-	0% {
-		transform: translateX(-100%);
-	}
-
-	100% {
-		transform: translateX(0);
-	}
-}
