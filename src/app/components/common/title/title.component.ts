@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'app-mobile-title',
+	selector: 'app-title',
 	templateUrl: './title.html',
 	styleUrls: ['./title.scss'],
 })
-export class MobileTitleComponent {
+export class TitleComponent {
 	@Input() public text = '';
 	@Input() public onDarkBackground = false;
 	@Input() public isCentered = false;

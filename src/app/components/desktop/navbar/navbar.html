@@ -1,5 +1,5 @@
 <div class="navbar">
-	<div class="link">
+	<div class="link" *ngIf="u.isLoggedIn">
 		<icon-heart-plus class="icon" />
 		<span>{{ 'navbar.favorites' | translate }}</span>
 	</div>

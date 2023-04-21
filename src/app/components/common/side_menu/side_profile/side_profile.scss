@@ -1,0 +1,122 @@
+.profile-container {
+	position: relative;
+	height: 100%;
+
+	>.background-image {
+		width: 100%;
+		height: 136px;
+		background-color: var(--navbar-background-color);
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center;
+		display: flex;
+		align-items: flex-end;
+		justify-content: flex-end;
+		padding: 5px;
+		gap: 5px;
+
+		>.promotion {
+			width: 34px;
+			border-radius: 50%;
+		}
+
+		>.ae-sticker {
+			width: 51px;
+			border-radius: 5px;
+		}
+
+		>.promotion,
+		>.ae-sticker {
+			display: block;
+			height: 34px;
+			border: dotted 2px var(--text-color-dark-bg);
+		}
+	}
+
+	>.infos {
+		margin-left: 110px;
+		color: var(--text-color-dark-bg);
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+		padding: 5px;
+		padding-left: 0;
+		min-height: 50px;
+		font-family: Roboto, sans-serif;
+		font-weight: 500;
+		font-size: 14px;
+
+		&.rtl {
+			margin-left: 0;
+			margin-right: 110px;
+		}
+
+		>.left {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	>.user-picture {
+		position: absolute;
+		width: 100px;
+		height: 100px;
+		left: 5px;
+		top: calc(136px - 50px);
+
+		&.rtl {
+			left: unset;
+			right: 5px;
+		}
+	}
+
+	> main {
+		padding: 16px 16px 40px;
+		height: calc(100vh - 136px - 50px);
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.links {
+			display: flex;
+			background-color: var(--gray4);
+			height: 30px;
+			padding: 5px 10px;
+			align-items: center;
+			justify-content: space-evenly;
+			border-radius: 5px;
+
+			> li {
+				display: flex;
+				align-items: center;
+				gap: 5px;
+
+				> .icon {
+					width: 16px;
+					height: 16px;
+					fill: var(--text-color-dark-bg);
+				}
+
+				span {
+					color: var(--text-color-dark-bg);
+					font-family: Roboto, sans-serif;
+					font-weight: 400;
+					font-size: 10px;
+					text-transform: uppercase;
+				}
+			}
+		}
+
+		.logout {
+			cursor: pointer;
+			color: var(--red);
+			font-family: Roboto, sans-serif;
+			font-weight: normal;
+			font-size: 16px;
+			height: 20px;
+			text-transform: uppercase;
+			text-align: center;
+			width: 100%;
+		}
+	}
+}

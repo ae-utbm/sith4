@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MobileLangSelectorComponent } from './lang_selector.component';
-import { MobileComponentsModule } from '../mobile.module';
-import { ISelectOption } from '../../common/select/select.component';
+import { LangSelectorComponent } from './lang_selector.component';
+import { MobileComponentsModule } from '../../mobile/mobile.module';
+import { ISelectOption } from '../select/select.component';
 import { getLanguage } from 'src/utils';
 
 describe('MobileLangSelectorComponent', () => {
-	let component: MobileLangSelectorComponent;
-	let fixture: ComponentFixture<MobileLangSelectorComponent>;
+	let component: LangSelectorComponent;
+	let fixture: ComponentFixture<LangSelectorComponent>;
 	let translateService: TranslateService;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [MobileLangSelectorComponent],
+			declarations: [LangSelectorComponent],
 			imports: [TranslateModule.forRoot(), MobileComponentsModule],
 			providers: [Document, TranslateService],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MobileLangSelectorComponent);
+		fixture = TestBed.createComponent(LangSelectorComponent);
 		component = fixture.componentInstance;
 		translateService = TestBed.inject(TranslateService);
 		fixture.detectChanges();

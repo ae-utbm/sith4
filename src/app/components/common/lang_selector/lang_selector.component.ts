@@ -1,15 +1,15 @@
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { getLanguage, getLanguageCompletion, getLanguageDirection, LANGUAGES } from 'src/utils';
-import { ISelectOption } from '../../common/select/select.component';
+import { ISelectOption } from '../select/select.component';
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'app-mobile-lang-selector',
+	selector: 'app-lang-selector',
 	templateUrl: './lang_selector.html',
 	styleUrls: ['./lang_selector.scss'],
 })
-export class MobileLangSelectorComponent {
+export class LangSelectorComponent {
 	public lang: string = localStorage.getItem('lang') ?? getLanguage(window.navigator.language);
 
 	public langs: ISelectOption[] = LANGUAGES.map((lang) => ({

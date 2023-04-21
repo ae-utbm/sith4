@@ -1,0 +1,15 @@
+<div class="options-container">
+	<app-title [onDarkBackground]="true" [text]="'header.options.title' | translate" [isCentered]="true" />
+	<app-theme-selector />
+	<app-lang-selector />
+
+	<!-- Todo use a component there -->
+	<div>
+		<app-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
+	</div>
+
+	<!-- Todo use a component there -->
+	<div *ngIf="u.isLoggedIn">
+		<app-subtitle [onDarkBackground]="true" [text]="'header.options.accent_color.title' | translate" />
+	</div>
+</div>

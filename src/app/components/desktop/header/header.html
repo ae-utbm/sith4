@@ -1,5 +1,5 @@
 <div class="header">
-	<div class="title">
+	<div class="title" (click)="p.route = '/'">
 		<img [src]="logo" />
 		<div class="text">
 			<span class="big">Association des Étudiants</span>
@@ -8,9 +8,22 @@
 	</div>
 
 	<div class="icons">
-		<icon-search class="icon search" />
-		<icon-shopping-basket class="icon" />
-		<icon-cogwheel class="icon" />
-		<icon-user-icon class="icon" />
+		<icon-search class="icon search" *ngIf="u.isLoggedIn" />
+		<icon-shopping-basket class="icon" *ngIf="u.isLoggedIn" />
+		<icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
+		<icon-user-icon class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture" />
+		<icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
+
+<app-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
+	<app-side-menu-profile (close)="triggerSideMenuProfile()" />
+</app-side-menu>
+
+<app-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
+	<app-side-menu-disconnected />
+</app-side-menu>
+
+<app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }">
+	<app-side-menu-options />
+</app-side-menu>

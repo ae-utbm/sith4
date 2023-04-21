@@ -12,7 +12,6 @@ export class MobileHeaderComponent {
 	public profileOpened = false;
 	public optionsOpened = false;
 	public connectionOpened = false;
-	public userLoggedIn = false;
 
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
@@ -44,10 +43,5 @@ export class MobileHeaderComponent {
 
 	public get eventTheme(): ThemeEvent | null {
 		return getThemeEvent();
-	}
-
-	public logout(): void {
-		this.triggerSideMenuProfile();
-		this.u.logout();
 	}
 }

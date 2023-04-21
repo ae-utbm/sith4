@@ -1,0 +1,32 @@
+<div class="profile-container">
+	<div class="background-image" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
+		<div class="promotion"></div>
+		<div class="ae-sticker"></div>
+	</div>
+	<icon-user-icon class="user-picture" [ngClass]="{ 'rtl': p.isRTL }" [url]="u.picture" />
+	<div class="infos" [ngClass]="{ 'rtl': p.isRTL }">
+		<div class="left">
+			<span>{{ u.fullName }}</span>
+			<span>{{ u.balance }} €</span>
+		</div>
+		<span class="right">{{ u.accountId }}</span>
+	</div>
+	<main>
+		<ul class="links">
+			<li>
+				<icon-person class="icon" />
+				<span>{{ 'header.profile.profile' | translate }}</span>
+			</li>
+			<li>
+				<icon-pictures class="icon" />
+				<span>{{ 'header.profile.pictures' | translate }}</span>
+			</li>
+			<li>
+				<icon-payments class="icon" />
+				<span>{{ 'header.profile.payments' | translate }}</span>
+			</li>
+		</ul>
+
+		<a (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
+	</main>
+</div>

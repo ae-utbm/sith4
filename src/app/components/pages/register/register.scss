@@ -1,10 +1,14 @@
 .link {
 	font-family: Inter, sans-serif;
 	font-size: 14px;
-	color: var(--blue);
+	color: var(--dark-blue);
 	font-style: italic;
 	line-height: 17px;
 	text-decoration: none;
+
+	&:hover {
+		color: var(--blue);
+	}
 }
 
 main {
@@ -19,6 +23,7 @@ main {
 	padding: 40px 20px 60px;
 
   > .header {
+		cursor: pointer;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
@@ -48,10 +53,15 @@ main {
 				font-size: 10px;
 			}
 		}
+
+		&:hover > .text {
+			color: var(--dark-blue);
+		}
 	}
 
   > form {
     width: 100%;
+		max-width: 400px;
     display: flex;
     flex-direction: column;
     gap: 30px;

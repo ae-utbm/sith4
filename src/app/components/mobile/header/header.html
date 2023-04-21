@@ -8,72 +8,13 @@
 </div>
 
 <app-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
-	<div class="profile-container">
-		<div class="background-image" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
-			<div class="promotion"></div>
-			<div class="ae-sticker"></div>
-		</div>
-		<icon-user-icon class="user-picture" [ngClass]="{ 'rtl': p.isRTL }" [url]="u.picture" />
-		<div class="infos" [ngClass]="{ 'rtl': p.isRTL }">
-			<div class="left">
-				<span>{{ u.fullName }}</span>
-				<span>{{ u.balance }} €</span>
-			</div>
-			<span class="right">{{ u.accountId }}</span>
-		</div>
-		<main>
-			<ul class="links">
-				<li>
-					<icon-person class="icon" />
-					<span>{{ 'header.profile.profile' | translate }}</span>
-				</li>
-				<li>
-					<icon-pictures class="icon" />
-					<span>{{ 'header.profile.pictures' | translate }}</span>
-				</li>
-				<li>
-					<icon-payments class="icon" />
-					<span>{{ 'header.profile.payments' | translate }}</span>
-				</li>
-			</ul>
-
-			<a (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
-		</main>
-	</div>
+	<app-side-menu-profile (close)="triggerSideMenuProfile()" />
 </app-side-menu>
 
 <app-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
-	<div class="disconnected-container">
-		<div class="title">
-			<div class="logo"></div>
-			<div class="text-container">
-				<span class="text">Association des Étudiants</span>
-				<span class="text small">de l'université de technologie de Belfort-Montbéliard</span>
-			</div>
-		</div>
-		<div class="buttons">
-			<app-button [text]="'header.burger.connexion' | translate" [routerLink]="['/login']"
-				routerLinkActive="router-link-active" />
-			<app-button [text]="'header.burger.register' | translate" [routerLink]="['/register']"
-				routerLinkActive="router-link-active" />
-		</div>
-	</div>
+	<app-side-menu-disconnected />
 </app-side-menu>
 
 <app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
-	<div class="options-container">
-		<app-mobile-title [onDarkBackground]="true" [text]="'header.options.title' | translate" [isCentered]="true" />
-		<app-mobile-theme-selector />
-		<app-mobile-lang-selector />
-
-		<!-- Todo use a component there -->
-		<div>
-			<app-mobile-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
-		</div>
-
-		<!-- Todo use a component there -->
-		<div>
-			<app-mobile-subtitle [onDarkBackground]="true" [text]="'header.options.accent_color.title' | translate" />
-		</div>
-	</div>
+	<app-side-menu-options />
 </app-side-menu>

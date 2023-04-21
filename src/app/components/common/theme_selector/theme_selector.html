@@ -1,4 +1,4 @@
-<app-mobile-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
+<app-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
 <ul class="themes">
 	<li *ngFor="let t of themes" (click)="theme = t.value" [ngClass]="{'selected': t.value === theme}">
 		<div class="selector"></div>

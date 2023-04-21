@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MobileSubtitleComponent } from './subtitle.component';
+import { SubtitleComponent } from './subtitle.component';
 
 describe('MobileSubtitleComponent', () => {
-	let component: MobileSubtitleComponent;
-	let fixture: ComponentFixture<MobileSubtitleComponent>;
+	let component: SubtitleComponent;
+	let fixture: ComponentFixture<SubtitleComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [MobileSubtitleComponent],
+			declarations: [SubtitleComponent],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MobileSubtitleComponent);
+		fixture = TestBed.createComponent(SubtitleComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

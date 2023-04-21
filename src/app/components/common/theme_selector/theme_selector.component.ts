@@ -8,11 +8,11 @@ export interface ITheme<T> {
 }
 
 @Component({
-	selector: 'app-mobile-theme-selector',
+	selector: 'app-theme-selector',
 	templateUrl: './theme_selector.html',
 	styleUrls: ['./theme_selector.scss'],
 })
-export class MobileThemeSelectorComponent {
+export class ThemeSelectorComponent {
 	public themes: ITheme<Theme>[] = [
 		{ name: 'header.options.themes.light', value: 'light' },
 		{ name: 'header.options.themes.dark', value: 'dark' },

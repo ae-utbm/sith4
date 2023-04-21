@@ -2,10 +2,10 @@ import { Component, Inject } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-	selector: 'app-desktop-navbar',
-	templateUrl: './navbar.html',
-	styleUrls: ['./navbar.scss'],
+	selector: 'app-side-menu-options',
+	templateUrl: './side_options.html',
+	styleUrls: ['./side_options.scss'],
 })
-export class DesktopNavbarComponent {
+export class SideMenuOptionsComponent {
 	public constructor(@Inject(UserService) public readonly u: UserService) {}
 }

@@ -1,12 +1,12 @@
 <div class="navbar">
 	<div class="left">
-		<icon-heart-plus class="icon"/>
+		<icon-heart-plus *ngIf="u.isLoggedIn" class="icon"/>
 		<icon-shopping-cart class="icon"/>
 		<icon-party-hat class="icon"/>
 		<icon-messages class="icon"/>
 		<icon-pictures class="icon"/>
 	</div>
-	<div class="right">
+	<div class="right" *ngIf="u.isLoggedIn">
 		<icon-search class="icon"/>
 		<icon-shopping-basket class="icon"/>
 	</div>

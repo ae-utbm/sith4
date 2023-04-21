@@ -6,10 +6,9 @@ import { PageService } from 'src/app/services/page.service';
 	templateUrl: './side_menu.html',
 	styleUrls: ['./side_menu.scss'],
 })
-export class MobileSideMenuComponent {
+export class SideMenuComponent {
 	private _closing = false;
-
-	@Output() public close = new EventEmitter();
+	@Output() public close = new EventEmitter<void>();
 
 	public constructor(@Inject(PageService) public readonly p: PageService) {}
 

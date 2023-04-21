@@ -1,0 +1,55 @@
+.disconnected-container {
+	padding: 10px 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	>.title {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+		>.logo {
+			width: 128px;
+			height: 80px;
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			background-image: url('/assets/logo_ae.webp');
+			background-size: cover;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+
+		>.text-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			height: 40px;
+
+			>.text {
+				color: white;
+				font-family: Inter, sans-serif;
+				font-size: 23px;
+				white-space: nowrap;
+			}
+
+			>.small {
+				font-size: 9px;
+				text-transform: uppercase;
+			}
+		}
+	}
+
+	>.buttons {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 8px;
+
+		>* {
+			width: 100%;
+		}
+	}
+}

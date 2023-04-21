@@ -1,0 +1,13 @@
+<div class="disconnected-container">
+	<div class="title">
+		<div class="logo"></div>
+		<div class="text-container">
+			<span class="text">Association des Étudiants</span>
+			<span class="text small">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+	<div class="buttons">
+		<app-button [text]="'header.burger.connexion' | translate" (click)="p.route = '/login'" />
+		<app-button [text]="'header.burger.register' | translate" (click)="p.route = '/register'" />
+	</div>
+</div>
