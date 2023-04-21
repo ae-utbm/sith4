@@ -44,6 +44,10 @@ export class PageService {
 		return document.documentElement.dir === 'rtl';
 	}
 
+	public set title(title: string) {
+		document.title = `${title} - AE UTBM`;
+	}
+
 	public get logo(): string {
 		switch (getThemeEvent()) {
 			case 'christmas':

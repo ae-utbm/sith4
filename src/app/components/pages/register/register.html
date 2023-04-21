@@ -1,6 +1,6 @@
 <main>
   <div class="header" (click)="p.route = '/'">
-		<div class="logo"></div>
+		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + p.logo + ')' }"></div>
 		<div class="text">
 			<span class="title">Association des Étudiants</span>
 			<span class="subtitle">de l'université de technologie de Belfort-Montbéliard</span>

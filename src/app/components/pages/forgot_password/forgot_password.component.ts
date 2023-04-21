@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,7 +10,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ForgotPasswordComponent {
 	public constructor(
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(UserService) public readonly u: UserService,
-	) {}
+		@Inject(PageService) public readonly p: PageService,
+	) {
+		t.get('forgot_password.title').subscribe((title) => (p.title = title));
+	}
 }

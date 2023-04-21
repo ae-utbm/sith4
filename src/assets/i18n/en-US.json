@@ -53,18 +53,26 @@
 		"confirm_password": "Confirm password",
 		"date_birth": "Date of birth"
 	},
+	"404": {
+		"title": "Page not found"
+	},
+	"home": {
+		"title": "Home"
+	},
 	"forgot_password": {
 		"title": "Forgot password",
 		"description": "If you have forgotten your password, enter your email address below to reset your password.",
 		"send_email": "Send email"
 	},
-	"connection":{
+	"login":{
+		"title": "Login",
 		"no_account": "No account ? Register",
 		"forgot_password": "Forgot your password ?",
 		"external_connection": "Or connect with",
 		"already_logged_as_x": "You are already logged as {{name}}"
 	},
 	"register":{
+		"title": "Register",
 		"already_have_account": "Already have an account ? Log In",
 		"date_birth_no_modif": "Your date of birth cannot be changed",
 		"min_password": "Minimum of 8 characters including 1 special",
