@@ -5,6 +5,7 @@ const FAKE_USER = {
 	account_id: '12345a',
 	name: 'DOE',
 	first_name: 'John',
+	notifications: [],
 	profile_picture: 'https://avatars.githubusercontent.com/u/106403460',
 	profile_banner: 'https://gifdb.com/images/high/the-office-michael-yikes-x8pzowd0ud2o8e15.gif',
 };
@@ -39,6 +40,14 @@ export class UserService {
 
 	public get banner(): string | undefined {
 		return this.isLoggedIn && this.user ? this.user.profile_banner : undefined;
+	}
+
+	public get notifications(): string[] | undefined {
+		return this.isLoggedIn && this.user ? this.user.notifications : undefined;
+	}
+
+	public get notificationsCount(): number | undefined {
+		return this.isLoggedIn && this.user ? this.user.notifications.length : undefined;
 	}
 
 	public logout(): void {

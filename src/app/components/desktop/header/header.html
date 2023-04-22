@@ -11,7 +11,7 @@
 		<icon-search class="icon search" *ngIf="u.isLoggedIn" />
 		<icon-shopping-basket class="icon" *ngIf="u.isLoggedIn" />
 		<icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
-		<icon-user-icon class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture" />
+		<icon-user-icon class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture" [notifications]="u.notificationsCount ?? 0" />
 		<icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
