@@ -51,7 +51,30 @@
 		"email_template": "example@website.com",
 		"password": "Password",
 		"confirm_password": "Confirm password",
-		"date_birth": "Date of birth"
+		"date_birth": "Date of birth",
+		"errors": {
+			"email": {
+				"required": "Email is required",
+				"invalid": "Email is invalid",
+				"utbm": "Email can't be a UTBM email"
+			},
+			"birth_date": {
+				"required": "Date of birth is required",
+				"invalid": "You must be at least {{min}} and maximum {{max}} years old to register",
+				"future": "Date of birth cannot be in the future"
+			},
+			"password": {
+				"required": "Password is required",
+				"length": "Password must be at least 8 characters long",
+				"digit": "Password must contain at least one digit",
+				"special": "Password must contain at least one special character",
+				"uppercase": "Password must contain at least one uppercase character",
+				"lowercase": "Password must contain at least one lowercase character",
+				"duplicate": "Password must not contain consecutive identical characters",
+				"confirm": "Password confirmation is required",
+				"confirm_mismatch": "Password confirmation does not match password"
+			}
+		}
 	},
 	"404": {
 		"title": "Page not found"

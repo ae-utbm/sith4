@@ -35,3 +35,5 @@ export interface Language {
 	/** The language read direction */
 	direction: 'ltr' | 'rtl';
 }
+
+export type Validator<T> = Record<keyof T, string | undefined>;

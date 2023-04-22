@@ -20,50 +20,51 @@
     <div class="form-body">
       <div class="input-container">
         <div class="input">
-          <input id="last_name" type="text" placeholder="{{ 'global.last_name' | translate }}" />
+          <input name="lastName" [(ngModel)]="fields['lastName']" type="text" placeholder="{{ 'global.last_name' | translate }}" />
         </div>
-        <span class="error no-margin">ERREUR</span>
+        <span *ngIf="errors['lastName']" class="error no-margin">{{ errors['lastName'] | translate }}</span>
       </div>
 
       <div class="input-container">
         <div class="input">
-          <input id="first_name" type="text" placeholder="{{ 'global.first_name' | translate }}" />
+          <input name="firstName" [(ngModel)]="fields['firstName']" type="text" placeholder="{{ 'global.first_name' | translate }}" />
         </div>
-        <span class="error no-margin">ERREUR</span>
+        <span *ngIf="errors['firstName']" class="error no-margin">{{ errors['firstName'] | translate }}</span>
       </div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-calendar class="icon" />
-					<input id="birthdate" type="date" />
+					<input name="birthDate" [(ngModel)]="fields['birthDate']" (ngModelChange)="birthDateUpdate()" type="date" />
 				</div>
-				<span class="error info">{{ 'register.date_birth_no_modif' | translate }}</span>
+				<span class="info">{{ 'register.date_birth_no_modif' | translate }}</span>
+				<span *ngIf="errors['birthDate']" class="error">{{ errors['birthDate'] | translate }}</span>
 			</div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-at class="icon" />
-					<input id="mail" type="text" placeholder="{{ 'global.email_template' | translate }}" />
+					<input name="email" [(ngModel)]="fields['email']" (ngModelChange)="emailUpdate()" type="text" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
-				<span class="error">an error occurred</span>
+				<span *ngIf="errors['email']" class="error">{{ errors['email'] | translate }}</span>
 			</div>
 
 			<div class="input-container">
 				<div class="input">
 					<icon-password class="icon" />
-					<input id="password" type="password" placeholder="********" />
+					<input name="password" [(ngModel)]="fields['password']" (ngModelChange)="passwordUpdate()" type="password" placeholder="********" />
 				</div>
 				<span class="info">{{ 'register.min_password' | translate }}</span>
-				<span class="error">test</span>
+				<span *ngIf="errors['password']" class="error">{{ errors['password'] | translate }}</span>
 			</div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-password class="icon" />
-					<input id="password_confirm" type="password" placeholder="********" />
+					<input name="passwordConfirm" [(ngModel)]="fields['passwordConfirm']" (ngModelChange)="passwordUpdate()" type="password" placeholder="********" />
 				</div>
 				<span class="info">{{ 'register.confirm_password' | translate }}</span>
-				<span class="error">test</span>
+				<span *ngIf="errors['passwordConfirm']" class="error">{{ errors['passwordConfirm'] | translate }}</span>
 			</div>
     </div>
 

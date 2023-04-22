@@ -9,10 +9,18 @@ import { DesktopComponentsModule } from '../desktop/desktop.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot_password/forgot_password.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
 	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
 	exports: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
-	imports: [CommonModule, TranslateModule, CommonComponentsModule, MobileComponentsModule, DesktopComponentsModule],
+	imports: [
+		FormsModule,
+		CommonModule,
+		TranslateModule,
+		CommonComponentsModule,
+		MobileComponentsModule,
+		DesktopComponentsModule,
+	],
 })
 export class PagesModule {}
