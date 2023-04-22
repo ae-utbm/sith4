@@ -2,11 +2,7 @@
 	<app-title [onDarkBackground]="true" [text]="'header.options.title' | translate" [isCentered]="true" />
 	<app-theme-selector />
 	<app-lang-selector />
-
-	<!-- Todo use a component there -->
-	<div>
-		<app-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
-	</div>
+	<app-text-size-selector />
 
 	<!-- Todo use a component there -->
 	<div *ngIf="u.isLoggedIn">

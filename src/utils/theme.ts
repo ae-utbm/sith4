@@ -1,5 +1,4 @@
-export type Theme = 'light' | 'dark' | 'auto' | 'high_contrast';
-export type ThemeEvent = 'unset' | 'pinktober' | 'christmas';
+import { Theme, ThemeEvent } from 'src/types';
 
 export const getTheme = (): Theme => {
 	return (localStorage.getItem('theme') ?? 'auto') as Theme;

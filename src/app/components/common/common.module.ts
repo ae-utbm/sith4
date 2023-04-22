@@ -12,6 +12,7 @@ import { LangSelectorComponent } from './lang_selector/lang_selector.component';
 import { TitleComponent } from './title/title.component';
 import { SubtitleComponent } from './subtitle/subtitle.component';
 import { ThemeSelectorComponent } from './theme_selector/theme_selector.component';
+import { FontSizeSelectorComponent } from './text_size_selector/text_size_selector.component';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { ThemeSelectorComponent } from './theme_selector/theme_selector.componen
 		TitleComponent,
 		SubtitleComponent,
 		ThemeSelectorComponent,
+		FontSizeSelectorComponent,
 	],
 	exports: [
 		IconsModule,
@@ -38,6 +40,7 @@ import { ThemeSelectorComponent } from './theme_selector/theme_selector.componen
 		TitleComponent,
 		SubtitleComponent,
 		ThemeSelectorComponent,
+		FontSizeSelectorComponent,
 	],
 	imports: [IconsModule, CommonModule, TranslateModule],
 })

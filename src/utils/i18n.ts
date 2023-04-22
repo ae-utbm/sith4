@@ -3,22 +3,10 @@ import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs
 import { TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Language } from 'src/types';
 
-export const LANGUAGES: ILanguage[] = LANGS as unknown as ILanguage[];
+export const LANGUAGES: Language[] = LANGS as unknown as Language[];
 export const DEFAULT_LANGUAGE = 'en-US';
-
-export interface ILanguage {
-	/** Accepted codes for the language, ex: 'en-US', 'en', 'en-GB' */
-	codes: string[];
-	/** The name of the file within the i18n asset folder */
-	filename: string;
-	/** The label to display in the language selector */
-	label: string;
-	/** The image to display in the language selector */
-	image: string;
-	/** The direction of the language */
-	direction: 'ltr' | 'rtl';
-}
 
 /**
  * Get the language filename from the given language code
@@ -37,10 +25,10 @@ export function getLanguage(lang: string): string {
 /**
  * Get the read direction of the given language
  * @param {string} lang language code to be analyzed
- * @returns {ILanguage['direction']} The read direction of the language
+ * @returns {Language['direction']} The read direction of the language
  */
-export function getLanguageDirection(lang: string): ILanguage['direction'] {
-	const language: ILanguage | undefined = LANGUAGES.filter((l) => l.codes.includes(lang))[0];
+export function getLanguageDirection(lang: string): Language['direction'] {
+	const language: Language | undefined = LANGUAGES.filter((l) => l.codes.includes(lang))[0];
 	return language?.direction ?? getLanguageDirection(DEFAULT_LANGUAGE);
 }
 

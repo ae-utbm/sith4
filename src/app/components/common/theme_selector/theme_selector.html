@@ -1,6 +1,6 @@
 <app-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
 <ul class="themes">
-	<li *ngFor="let t of themes" (click)="theme = t.value" [ngClass]="{'selected': t.value === theme}">
+	<li *ngFor="let t of themes" (click)="p.theme = t.value" [ngClass]="{'selected': t.value === p.theme}">
 		<div class="selector"></div>
 		<span>{{ t.name }}</span>
 	</li>
@@ -8,7 +8,7 @@
 
 <div *ngIf="eventThemes.length > 0">
 	<ul class="themes">
-		<li *ngFor="let t of eventThemes" (click)="eventTheme = t.value" [ngClass]="{'selected': t.value === eventTheme}">
+		<li *ngFor="let t of eventThemes" (click)="p.eventTheme = t.value" [ngClass]="{'selected': t.value === p.eventTheme}">
 			<div class="selector square"></div>
 			<span>{{ t.name }}</span>
 		</li>

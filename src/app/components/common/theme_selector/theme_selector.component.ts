@@ -1,11 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { Theme, ThemeEvent, getTheme, getThemeEvent, setTheme, setThemeEvent } from 'src/utils';
-
-export interface ITheme<T> {
-	name: string;
-	value: T;
-}
+import { PageService } from 'src/app/services/page.service';
+import { Theme, ThemeEvent, ThemeSelectorComponentTheme } from 'src/types';
 
 @Component({
 	selector: 'app-theme-selector',
@@ -13,54 +9,41 @@ export interface ITheme<T> {
 	styleUrls: ['./theme_selector.scss'],
 })
 export class ThemeSelectorComponent {
-	public themes: ITheme<Theme>[] = [
+	public themes: ThemeSelectorComponentTheme<Theme>[] = [
 		{ name: 'header.options.themes.light', value: 'light' },
 		{ name: 'header.options.themes.dark', value: 'dark' },
 		{ name: 'header.options.themes.auto', value: 'auto' },
 		{ name: 'header.options.themes.high_contrast', value: 'high_contrast' },
 	];
 
-	public eventThemes: ITheme<ThemeEvent>[] = [];
+	public eventThemes: ThemeSelectorComponentTheme<ThemeEvent>[] = [];
 
-	public constructor(@Inject(TranslateService) public readonly translate: TranslateService) {
+	public constructor(
+		@Inject(TranslateService) public readonly t: TranslateService,
+		@Inject(PageService) public readonly p: PageService,
+	) {
 		const now = new Date();
 
 		switch (now.getMonth()) {
 			case 11:
 				this.eventThemes.push({ name: 'header.options.event_themes.christmas', value: 'christmas' });
-				if (this.eventTheme === null) this.eventTheme = 'christmas';
+				if (this.p.eventTheme === null) this.p.eventTheme = 'christmas';
 				break;
 			case 9:
 				this.eventThemes.push({ name: 'header.options.event_themes.pinktober', value: 'pinktober' });
-				if (this.eventTheme === null) this.eventTheme = 'pinktober';
+				if (this.p.eventTheme === null) this.p.eventTheme = 'pinktober';
 				break;
 			default:
-				this.eventTheme = null;
+				this.p.eventTheme = null;
 		}
 	}
 
 	public ngOnInit(): void {
 		this.themes.forEach((theme) => {
-			this.translate.get(theme.name).subscribe((name) => (theme.name = name));
+			this.t.get(theme.name).subscribe((name) => (theme.name = name));
 		});
 		this.eventThemes.forEach((theme) => {
-			this.translate.get(theme.name).subscribe((name) => (theme.name = name));
+			this.t.get(theme.name).subscribe((name) => (theme.name = name));
 		});
-	}
-
-	public set theme(theme: Theme) {
-		setTheme(theme);
-	}
-
-	public get theme(): Theme {
-		return getTheme();
-	}
-
-	public set eventTheme(theme: ThemeEvent | null) {
-		setThemeEvent(this.eventTheme === theme ? 'unset' : theme);
-	}
-
-	public get eventTheme(): ThemeEvent | null {
-		return getThemeEvent();
 	}
 }

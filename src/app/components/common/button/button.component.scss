@@ -6,10 +6,26 @@ button {
 	justify-content: center;
 	padding: 5px 20px;
 	width: 100%;
-	height: 40px;
 	border-radius: 5px;
 	border: none;
 	font-family: Inter, sans-serif;
 	text-transform: uppercase;
 	cursor: pointer;
+
+	&.large {
+		height: 40px;
+	}
+
+	&.medium {
+		height: 30px;
+	}
+
+	&.small {
+		height: 20px;
+	}
+
+	&:hover {
+		background-color: var(--gray2);
+		color: var(--text-color-dynamic);
+	}
 }
