@@ -30,12 +30,12 @@
 			>.text {
 				color: white;
 				font-family: Inter, sans-serif;
-				font-size: 23px;
+				font-size: calc(23px * var(--font-size));
 				white-space: nowrap;
 			}
 
 			>.small {
-				font-size: 9px;
+				font-size: calc(9px * var(--font-size));
 				text-transform: uppercase;
 			}
 		}

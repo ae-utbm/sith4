@@ -18,7 +18,7 @@ export type Theme = 'light' | 'dark' | 'auto' | 'high_contrast';
 export type ThemeEvent = 'base' | 'pinktober' | 'christmas';
 
 /** Font size in percentage */
-export type FontSize = '50' | '100' | '150';
+export type FontSize = '.75' | '1' | '1.25';
 
 /**
  * A language

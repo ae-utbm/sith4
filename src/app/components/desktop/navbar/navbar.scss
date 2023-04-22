@@ -34,7 +34,7 @@
 		> span {
 			text-transform: uppercase;
 			font-family: Roboto, sans-serif;
-			font-size: 12px;
+			font-size: calc(12px * var(--font-size));
 			color: var(--text-color-dynamic);
 		}
 	}

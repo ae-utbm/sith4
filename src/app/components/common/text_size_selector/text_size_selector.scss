@@ -12,7 +12,7 @@
 	}
 
 	>.small ::ng-deep button {
-		font-size: 10px;
+		font-size: calc(12px * .75);
 	}
 
 	>.medium ::ng-deep button {
@@ -20,6 +20,6 @@
 	}
 
 	>.large ::ng-deep button {
-		font-size: 14px;
+		font-size: calc(12px * 1.25);
 	}
 }

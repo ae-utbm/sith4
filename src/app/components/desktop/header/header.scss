@@ -27,11 +27,11 @@
 			margin-bottom: 5px;
 
 			> .big {
-				font-size: 20px;
+				font-size: calc(20px * var(--font-size));
 			}
 
 			> .small {
-				font-size: 8px;
+				font-size: calc(8px * var(--font-size));
 				text-transform: uppercase;
 			}
 		}

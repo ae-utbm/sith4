@@ -103,7 +103,7 @@ export class PageService {
 	 */
 	public get fontSize(): FontSize {
 		let size = localStorage.getItem('fontSize');
-		if (size === null || (size !== '50' && size !== '100' && size !== '150')) size = '100';
+		if (size === null || (size !== '.25' && size !== '1' && size !== '1.25')) size = '1';
 		return size as FontSize;
 	}
 
@@ -113,7 +113,8 @@ export class PageService {
 	 * @example p.fontSize = '50'; // will set the font size to 50%
 	 */
 	public set fontSize(size: FontSize) {
-		if (size !== '50' && size !== '100' && size !== '150') size = '100';
+		if (size !== '.75' && size !== '1' && size !== '1.25') size = '1';
+		document.documentElement.style.setProperty('--font-size', size);
 		localStorage.setItem('fontSize', size);
 	}
 
