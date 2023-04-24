@@ -38,7 +38,7 @@
 					<input name="birthDate" [(ngModel)]="fields['birthDate']" (ngModelChange)="birthDateUpdate()" type="date" />
 				</div>
 				<span class="info">{{ 'register.date_birth_no_modif' | translate }}</span>
-				<span *ngIf="errors['birthDate']" class="error">{{ errors['birthDate'] | translate }}</span>
+				<span *ngIf="errors['birthDate']" class="error">{{ errors['birthDate'] | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
 			</div>
 
       <div class="input-container">

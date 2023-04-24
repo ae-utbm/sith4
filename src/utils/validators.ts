@@ -1,3 +1,5 @@
+import { environment } from 'src/environments/environment';
+
 /**
  * Check if the email is valid or not
  * @param {string} email The email to check
@@ -12,7 +14,11 @@ export const validateEmail = (email: string, utbm = true): string | undefined =>
 	return undefined;
 };
 
-export const validateBirthDate = (birthDate: string, max = 64, min = 13): string | undefined => {
+export const validateBirthDate = (
+	birthDate: string,
+	max = environment.REGISTER_AGE_MAX,
+	min = environment.REGISTER_AGE_MIN,
+): string | undefined => {
 	const year = new Date().getFullYear();
 	const birthDateYear = new Date(birthDate).getFullYear();
 

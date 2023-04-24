@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
+import { environment } from 'src/environments/environment';
 import { Validator } from 'src/types';
 import { validateBirthDate, validateConfirmPassword, validateEmail, validatePassword } from 'src/utils';
 
@@ -11,6 +12,9 @@ import { validateBirthDate, validateConfirmPassword, validateEmail, validatePass
 	styleUrls: ['./register.scss'],
 })
 export class RegisterComponent {
+	public readonly MIN_AGE = environment.REGISTER_AGE_MIN;
+	public readonly MAX_AGE = environment.REGISTER_AGE_MAX;
+
 	public fields = {
 		lastName: '',
 		firstName: '',
