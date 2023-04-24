@@ -10,7 +10,7 @@ import { FontSize } from 'src/types';
 })
 export class FontSizeSelectorComponent {
 	public readonly sizes: Array<{ class: string; label: string; value: FontSize }> = [
-		{ class: 'small', label: 'header.options.font_size.small', value: '.75' },
+		{ class: 'small', label: 'header.options.font_size.small', value: '0.75' },
 		{ class: 'medium', label: 'header.options.font_size.medium', value: '1' },
 		{ class: 'large', label: 'header.options.font_size.large', value: '1.25' },
 	];
