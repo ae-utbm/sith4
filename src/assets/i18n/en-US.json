@@ -73,6 +73,11 @@
 				"duplicate": "Password must not contain consecutive identical characters",
 				"confirm": "Password confirmation is required",
 				"confirm_mismatch": "Password confirmation does not match password"
+			},
+			"name": {
+				"required": "It cannot be empty",
+				"length": "Your name must be at least 2 characters long",
+				"invalid": "Your name is invalid (check for double spaces or special characters)"
 			}
 		}
 	},
