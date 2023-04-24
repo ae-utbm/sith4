@@ -5,4 +5,10 @@ import { Component } from '@angular/core';
 	templateUrl: './alert.component.html',
 	styleUrls: ['./alert.component.scss'],
 })
-export class MobileAlertComponent {}
+export class MobileAlertComponent {
+	public isAlertVisible = false;
+
+	public closeAlert(): void {
+		this.isAlertVisible = !this.isAlertVisible;
+	}
+}

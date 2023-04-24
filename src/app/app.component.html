@@ -9,6 +9,6 @@
 <div *ngIf="p.isMobile">
 	<app-mobile-header *ngIf="!p.isHeadless"/>
 	<app-mobile-navbar *ngIf="!p.isHeadless"/>
-	<app-mobile-alert *ngIf="!p.isHeadless && isAlertVisible" (click)="isAlertComponentVisible()"/>
+	<app-mobile-alert *ngIf="!p.isHeadless"/>
 	<router-outlet></router-outlet>
 </div>

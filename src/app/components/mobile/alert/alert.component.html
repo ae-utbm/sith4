@@ -1,7 +1,9 @@
-<div class="alert">
+<div class="alert" [ngClass]="{'hidden' : isAlertVisible}">
 	<div class="alert-group">
 		<span class="alert-title">Alert</span>
 		<span class="alert-text">Alert</span>
 	</div>
-	<icon-close class="icon"></icon-close>
+	<button class="button" (click)="closeAlert()">
+		<icon-close class="icon"></icon-close>
+	</button>
 </div>

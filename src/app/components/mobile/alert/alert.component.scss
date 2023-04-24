@@ -4,6 +4,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	transition: all 0.5s ease-in-out;
 
 	> .alert-group {
 		justify-content: flex-start;
@@ -22,10 +23,26 @@
 		}
 	}
 
-	> .icon {
- 		justify-content: flex-end;
-		width: 28px;
-		padding-right: 10px;
-		display: flex;
+	> .button {
+		border: none;
+		background-color: var(--orange);
+
+		> .icon {
+			justify-content: flex-end;
+		 width: 28px;
+		 padding-right: 10px;
+		 display: flex;
+	 }
 	}
+}
+
+.alert .icon .button:before {
+  transform: translateY(-100%) ;
+}
+
+.alert.hidden {
+  height: 0;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
 }
