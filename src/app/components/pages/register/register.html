@@ -20,14 +20,14 @@
     <div class="form-body">
       <div class="input-container">
         <div class="input">
-          <input name="lastName" [(ngModel)]="fields['lastName']" type="text" placeholder="{{ 'global.last_name' | translate }}" />
+          <input name="lastName" [(ngModel)]="fields['lastName']" (ngModelChange)="lastNameUpdate()" type="text" placeholder="{{ 'global.last_name' | translate }}" />
         </div>
         <span *ngIf="errors['lastName']" class="error no-margin">{{ errors['lastName'] | translate }}</span>
       </div>
 
       <div class="input-container">
         <div class="input">
-          <input name="firstName" [(ngModel)]="fields['firstName']" type="text" placeholder="{{ 'global.first_name' | translate }}" />
+          <input name="firstName" [(ngModel)]="fields['firstName']" (ngModelChange)="firstNameUpdate()" type="text" placeholder="{{ 'global.first_name' | translate }}" />
         </div>
         <span *ngIf="errors['firstName']" class="error no-margin">{{ errors['firstName'] | translate }}</span>
       </div>

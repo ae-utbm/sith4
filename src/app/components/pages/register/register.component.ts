@@ -4,7 +4,7 @@ import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 import { Validator } from 'src/types';
-import { validateBirthDate, validateConfirmPassword, validateEmail, validatePassword } from 'src/utils';
+import { validateBirthDate, validateConfirmPassword, validateEmail, validateName, validatePassword } from 'src/utils';
 
 @Component({
 	selector: 'app-register',
@@ -39,6 +39,16 @@ export class RegisterComponent {
 		@Inject(UserService) public readonly u: UserService,
 	) {
 		t.get('register.title').subscribe((title) => (p.title = title));
+	}
+
+	public lastNameUpdate(): void {
+		this.errors['lastName'] = validateName(this.fields.lastName.trim());
+		this.fields.lastName = this.fields.lastName.trim();
+	}
+
+	public firstNameUpdate(): void {
+		this.errors['firstName'] = validateName(this.fields.firstName.trim());
+		this.fields.firstName = this.fields.firstName.trim();
 	}
 
 	public emailUpdate(): void {

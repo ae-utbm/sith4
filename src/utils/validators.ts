@@ -63,3 +63,13 @@ export const validateConfirmPassword = (password: string, confirmPassword: strin
 
 	return undefined;
 };
+
+export const validateName = (name: string): string | undefined => {
+	if (name === '') return 'global.errors.name.required';
+	if (name.length < 2) return 'global.errors.name.length';
+
+	// check if the name contains only letters (from any language), hyphens and apostrophes
+	if (/^[\p{L}'\-]+(?: [\p{L}'\-]+)*$/u.test(name) === false) return 'global.errors.name.invalid';
+
+	return undefined;
+};
