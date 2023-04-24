@@ -1,0 +1,31 @@
+.alert {
+	background-color: var(--orange);
+	height: 40px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	> .alert-group {
+		justify-content: flex-start;
+		font-family: Roboto, sans-serif;
+		padding-left: 10px;
+		display: flex;
+		flex-direction: column;
+
+		> .alert-title {
+			font-weight: 600;
+			font-size: 15px;
+		}
+
+		> .alert-text {
+			font-size: 11px;
+		}
+	}
+
+	> .icon {
+ 		justify-content: flex-end;
+		width: 28px;
+		padding-right: 10px;
+		display: flex;
+	}
+}
