@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomValidators, getErrors } from 'src/app/directives';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { Validator } from 'src/types';
-import { validateEmail } from 'src/utils';
 
 @Component({
 	selector: 'app-login',
@@ -11,20 +11,16 @@ import { validateEmail } from 'src/utils';
 	styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
-	public fields = {
-		email: '',
-		password: '',
-	};
-
-	public errors: Validator<typeof this.fields> = {
-		email: undefined,
-		password: undefined,
-	};
+	public formGroup: FormGroup = this.fb.group({
+		email: ['', [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')]],
+		password: ['', [Validators.required]],
+	});
 
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly p: PageService,
 		@Inject(UserService) public readonly u: UserService,
+		@Inject(FormBuilder) private readonly fb: FormBuilder,
 	) {
 		t.get('login.title').subscribe((title) => (p.title = title));
 	}
@@ -36,7 +32,14 @@ export class LoginComponent {
 		this.p.route = '/';
 	}
 
-	public emailUpdate() {
-		this.errors['email'] = validateEmail(this.fields.email);
+	public errors(field: string): string[] {
+		if ('passwordConfirm' === field)
+			return [...getErrors(this.formGroup.controls[field]), ...getErrors(this.formGroup)];
+
+		return getErrors(this.formGroup.controls[field]);
+	}
+
+	public getError(field: string): string {
+		return `global.errors.${field}`;
 	}
 }

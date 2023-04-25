@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
+import { CustomValidators, getErrors } from 'src/app/directives';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { Validator } from 'src/types';
-import { validateEmail } from 'src/utils';
 
 @Component({
 	selector: 'app-forgot-password',
@@ -11,23 +11,31 @@ import { validateEmail } from 'src/utils';
 	styleUrls: ['./forgot_password.scss'],
 })
 export class ForgotPasswordComponent {
-	public fields = {
-		email: '',
-	};
-
-	public errors: Validator<typeof this.fields> = {
-		email: undefined,
-	};
+	public formGroup: FormGroup = this.fb.group({
+		email: ['', [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')]],
+	});
 
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(PageService) public readonly p: PageService,
+		@Inject(FormBuilder) private readonly fb: FormBuilder,
 	) {
 		t.get('forgot_password.title').subscribe((title) => (p.title = title));
 	}
 
-	public emailUpdate(): void {
-		this.errors['email'] = validateEmail(this.fields.email);
+	public errors(field: string): string[] {
+		if ('passwordConfirm' === field)
+			return [...getErrors(this.formGroup.controls[field]), ...getErrors(this.formGroup)];
+
+		return getErrors(this.formGroup.controls[field]);
+	}
+
+	public getError(field: string): string {
+		return `global.errors.${field}`;
+	}
+
+	public sendEmail(): void {
+		return;
 	}
 }

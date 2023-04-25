@@ -9,7 +9,8 @@ import { DesktopComponentsModule } from '../desktop/desktop.module';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot_password/forgot_password.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgHcaptchaModule } from 'ng-hcaptcha';
 
 @NgModule({
 	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
@@ -18,6 +19,9 @@ import { FormsModule } from '@angular/forms';
 		FormsModule,
 		CommonModule,
 		TranslateModule,
+		NgHcaptchaModule,
+		FormsModule,
+		ReactiveFormsModule,
 		CommonComponentsModule,
 		MobileComponentsModule,
 		DesktopComponentsModule,

@@ -11,7 +11,7 @@
 		{{ 'login.already_logged_as_x' | translate: { name: u.fullName } }}
 	</div>
 
-	<form>
+	<form [formGroup]="formGroup" (ngSubmit)="login()" autocomplete="on" novalidate>
 		<div class="form-head">
 			<app-title [text]="'global.sign_in' | translate" [onDarkBackground]="true" />
 			<a class="global-link" href="/register">{{ 'login.no_account' | translate}}</a>
@@ -21,18 +21,21 @@
 			<div class="input-container">
 				<div class="input">
 					<icon-at class="icon" />
-					<input type="text" name="email" [(ngModel)]="fields.email" (ngModelChange)="emailUpdate()"
-						placeholder="{{ 'global.email_template' | translate }}" />
+					<input formControlName="email" type="text" name="email" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
-				<span *ngIf="errors['email']" class="error">{{ errors['email'] | translate }}</span>
+        <div *ngIf="errors('email').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
+				</div>
 			</div>
 
 			<div class="input-container">
 				<div class="input">
 					<icon-password class="icon" />
-					<input type="password" name="password" [(ngModel)]="fields.password" placeholder="********" />
+					<input formControlName="password" type="password" name="password" placeholder="********" />
 				</div>
-				<span *ngIf="errors['password']" class="error">{{ errors['password'] | translate }}</span>
+				<div *ngIf="errors('password').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('password')">{{ getError(error) | translate }}</span>
+				</div>
 			</div>
 
 			<a class="global-link" href="/forgot_password">
@@ -40,6 +43,6 @@
 			</a>
 		</div>
 
-		<app-button height="large" (click)="login()" class="form-button" [text]="'global.sign_in' | translate"></app-button>
+		<app-button [disabled]="!formGroup.valid" type="submit" height="large" (click)="login()" class="form-button" [text]="'global.sign_in' | translate"></app-button>
 	</form>
 </main>

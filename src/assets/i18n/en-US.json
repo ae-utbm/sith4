@@ -53,32 +53,21 @@
 		"confirm_password": "Confirm password",
 		"date_birth": "Date of birth",
 		"errors": {
-			"email": {
-				"required": "Email is required",
-				"invalid": "Email is invalid",
-				"utbm": "Email can't be a UTBM email"
-			},
-			"birth_date": {
-				"required": "Date of birth is required",
-				"invalid": "You must be at least {{min}} and maximum {{max}} years old to register",
-				"future": "Date of birth cannot be in the future"
-			},
-			"password": {
-				"required": "Password is required",
-				"length": "Password must be at least 8 characters long",
-				"digit": "Password must contain at least one digit",
-				"special": "Password must contain at least one special character",
-				"uppercase": "Password must contain at least one uppercase character",
-				"lowercase": "Password must contain at least one lowercase character",
-				"duplicate": "Password must not contain consecutive identical characters",
-				"confirm": "Password confirmation is required",
-				"confirm_mismatch": "Password confirmation does not match password"
-			},
-			"name": {
-				"required": "It cannot be empty",
-				"length": "Your name must be at least 2 characters long",
-				"invalid": "Your name is invalid (check for double spaces or special characters)"
-			}
+			"required": "This field is required",
+			"forbidden_email": "This email is forbidden",
+			"age_minimum": "You must be at least {{ min }} years old",
+			"age_maximum": "You must be at most {{ max }} years old",
+			"not_in_future": "This date cannot be in the future",
+			"invalid_name": "This name is invalid",
+			"has_one_digit": "This password must contain at least one digit",
+			"has_one_special_character": "This password must contain at least one special character",
+			"has_one_lowercase": "This password must contain at least one lowercase letter",
+			"has_one_uppercase": "This password must contain at least one uppercase letter",
+			"has_no_duplicate_characters": "This password must not contain duplicate characters next to each other",
+			"passwords_match": "The passwords do not match",
+			"minlength": "This field must contain at least {{ min }} characters",
+			"maxlength": "This field must contain at most {{ max }} characters",
+			"email": "This email is invalid"
 		}
 	},
 	"404": {

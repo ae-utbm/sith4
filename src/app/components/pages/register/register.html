@@ -11,7 +11,7 @@
 		{{ 'register.already_registered_and_logged_as_x' | translate: { name: u.fullName } }}
 	</div>
 
-  <form>
+  <form [formGroup]="formGroup" (ngSubmit)="register()" autocomplete="on" novalidate>
     <div class="form-head">
       <app-title [text]="'global.register' | translate" [onDarkBackground]="true"/>
       <a class="global-link" href="/login">{{ 'register.already_have_account' | translate }}</a>
@@ -20,54 +20,68 @@
     <div class="form-body">
       <div class="input-container">
         <div class="input">
-          <input name="lastName" [(ngModel)]="fields['lastName']" (ngModelChange)="lastNameUpdate()" type="text" placeholder="{{ 'global.last_name' | translate }}" />
+          <input formControlName="lastName" type="text" placeholder="{{ 'global.last_name' | translate }}" />
         </div>
-        <span *ngIf="errors['lastName']" class="error no-margin">{{ errors['lastName'] | translate }}</span>
+        <div *ngIf="errors('lastName').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('lastName')">{{ getError(error) | translate: { min: MIN_NAME } }}</span>
+				</div>
       </div>
 
       <div class="input-container">
         <div class="input">
-          <input name="firstName" [(ngModel)]="fields['firstName']" (ngModelChange)="firstNameUpdate()" type="text" placeholder="{{ 'global.first_name' | translate }}" />
+          <input formControlName="firstName" type="text" placeholder="{{ 'global.first_name' | translate }}" />
         </div>
-        <span *ngIf="errors['firstName']" class="error no-margin">{{ errors['firstName'] | translate }}</span>
+				<div *ngIf="errors('firstName').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('firstName')">{{ getError(error) | translate: { min: MIN_NAME } }}</span>
+				</div>
       </div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-calendar class="icon" />
-					<input name="birthDate" [(ngModel)]="fields['birthDate']" (ngModelChange)="birthDateUpdate()" type="date" />
+					<input formControlName="birthDate" type="date" />
 				</div>
 				<span class="info">{{ 'register.date_birth_no_modif' | translate }}</span>
-				<span *ngIf="errors['birthDate']" class="error">{{ errors['birthDate'] | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
+				<div *ngIf="errors('birthDate').length > 0" class="error">
+					<span *ngFor="let error of errors('birthDate')">{{ getError(error) | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
+				</div>
 			</div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-at class="icon" />
-					<input name="email" [(ngModel)]="fields['email']" (ngModelChange)="emailUpdate()" type="text" placeholder="{{ 'global.email_template' | translate }}" />
+					<input formControlName="email" type="text" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
-				<span *ngIf="errors['email']" class="error">{{ errors['email'] | translate }}</span>
+				<div *ngIf="errors('email').length > 0" class="error">
+					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
+				</div>
 			</div>
 
 			<div class="input-container">
 				<div class="input">
 					<icon-password class="icon" />
-					<input name="password" [(ngModel)]="fields['password']" (ngModelChange)="passwordUpdate()" type="password" placeholder="********" />
+					<input formControlName="password" type="password" placeholder="********" />
 				</div>
 				<span class="info">{{ 'register.min_password' | translate }}</span>
-				<span *ngIf="errors['password']" class="error">{{ errors['password'] | translate }}</span>
+				<div *ngIf="errors('password').length > 0" class="error">
+					<span *ngFor="let error of errors('password')">{{ getError(error) | translate: { min: MIN_PASSWORD } }}</span>
+				</div>
 			</div>
 
       <div class="input-container">
 				<div class="input">
 					<icon-password class="icon" />
-					<input name="passwordConfirm" [(ngModel)]="fields['passwordConfirm']" (ngModelChange)="passwordUpdate()" type="password" placeholder="********" />
+					<input formControlName="passwordConfirm" type="password" placeholder="********" />
 				</div>
 				<span class="info">{{ 'register.confirm_password' | translate }}</span>
-				<span *ngIf="errors['passwordConfirm']" class="error">{{ errors['passwordConfirm'] | translate }}</span>
+				<div *ngIf="errors('passwordConfirm').length > 0" class="error">
+					<span *ngFor="let error of errors('passwordConfirm')">{{ getError(error) | translate }}</span>
+				</div>
 			</div>
     </div>
 
-    <app-button height="large" class="form-button" [text]="'global.register' | translate"></app-button>
+		<ng-hcaptcha formControlName="captcha" class="form-captcha"></ng-hcaptcha>
+
+    <app-button type="submit" [disabled]="!formGroup.valid" height="large" class="form-button" [text]="'global.register' | translate"></app-button>
   </form>
 </main>

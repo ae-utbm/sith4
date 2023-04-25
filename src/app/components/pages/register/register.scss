@@ -85,6 +85,9 @@ main {
 					line-height: 14px;
 					margin-left: calc(32px + 5px);
 
+					display: flex;
+					flex-direction: column;
+
 					&.no-margin {
 						margin-left: 0;
 					}
@@ -130,6 +133,10 @@ main {
 					}
 				}
 			}
+		}
+
+		> .form-captcha {
+			margin: 0 auto;
 		}
 
 		> .form-button {
