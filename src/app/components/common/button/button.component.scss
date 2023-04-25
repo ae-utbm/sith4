@@ -28,4 +28,10 @@ button {
 		background-color: var(--gray2);
 		color: var(--text-color-dynamic);
 	}
+
+	&:disabled {
+		background-color: var(--gray2-hover);
+		color: var(--text-color-dark-bg);
+		cursor: not-allowed;
+	}
 }
