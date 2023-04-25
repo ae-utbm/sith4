@@ -18,5 +18,7 @@
     "truetype"
   ],
   "files.eol": "\n",
-  "vue.features.codeActions.enable": false
+	"editor.formatOnSave": true,
+	"editor.fontLigatures": true,
+	"editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
 }

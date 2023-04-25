@@ -13,6 +13,7 @@
     "eamodio.gitlens",
     "chrisbibby.hide-node-modules",
     "esbenp.prettier-vscode",
-    "yoavbls.pretty-ts-errors"
+    "yoavbls.pretty-ts-errors",
+    "pkief.material-icon-theme"
   ]
 }
