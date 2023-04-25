@@ -1,9 +1,7 @@
-<div class="alert" [ngClass]="{'hidden' : isAlertVisible}">
-	<div class="alert-group">
-		<span class="alert-title">Alert</span>
-		<span class="alert-text">Alert</span>
+<div *ngFor="let alert of alerts" class="alert" [ngClass]="{'hiding' : !isAlertVisible(alert)}">
+	<div class="content">
+		<span class="title">{{ alert.title }}</span>
+		<span class="text">{{ alert.message }}</span>
 	</div>
-	<button class="button" (click)="closeAlert()">
-		<icon-close class="icon"></icon-close>
-	</button>
+	<icon-close class="icon" (click)="closeAlert(alert)"/>
 </div>

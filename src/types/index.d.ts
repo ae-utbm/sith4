@@ -37,3 +37,14 @@ export interface Language {
 }
 
 export type Validator<T> = Record<keyof T, string | undefined>;
+
+export interface Alert {
+	/** The alert title */
+	title: string;
+	/** The alert message */
+	message: string;
+	/** The alert type */
+	// type: 'success' | 'info' | 'warning' | 'danger';
+	/** The alert type */
+	id: string;
+}

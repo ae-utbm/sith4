@@ -1,43 +1,35 @@
 .alert {
 	background-color: var(--orange);
-	height: 40px;
+	min-height: 40px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	transition: all 0.5s ease-in-out;
+	padding: 0 10px;
 
-	> .alert-group {
+	&.hiding {
+		animation: move-up 500ms linear forwards, fade-out 400ms linear forwards;
+	}
+
+	> .content {
 		justify-content: flex-start;
 		font-family: Roboto, sans-serif;
-		padding-left: 10px;
 		display: flex;
 		flex-direction: column;
 
-		> .alert-title {
+		> .title {
 			font-weight: 600;
-			font-size: 15px;
+			font-size: calc(15px * var(--font-size));
 		}
 
-		> .alert-text {
-			font-size: 11px;
+		> .text {
+			font-size: calc(11px * var(--font-size));
 		}
 	}
 
-	> .button {
-		border: none;
-		background-color: var(--orange);
-
-		> .icon {
-			justify-content: flex-end;
-		 width: 28px;
-		 padding-right: 10px;
-		 display: flex;
-	 }
+	> .icon {
+		width: 20px;
+		height: 20px;
 	}
-}
-
-.alert .icon .button:before {
-  transform: translateY(-100%) ;
 }
 
 .alert.hidden {
