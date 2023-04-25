@@ -1,5 +1,6 @@
 <div *ngIf="p.isDesktop">
 	<app-desktop-header *ngIf="!p.isHeadless" />
+	<app-desktop-alert *ngIf="!p.isHeadless && alerts.all.length > 0" />
 	<main [ngClass]="{ 'headless': p.isHeadless }">
 		<app-desktop-navbar *ngIf="!p.isHeadless" />
 		<router-outlet></router-outlet>

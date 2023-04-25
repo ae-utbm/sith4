@@ -17,6 +17,7 @@
 	--orange-hover: #faa35680;
 	--green: #7ce38b;
 	--blue: #78c1ff;
+	--blue-hover: #78c1ff80;
 	--dark-blue: #7597d1;
 	--purple: #cea5fb;
 	--purple-hover: #cea5fb80;
@@ -39,6 +40,7 @@
 	--orange-hover: #e27c2280;
 	--green: #2d8655;
 	--blue: #107b82;
+	--blue-hover: #107b8280;
 	--dark-blue: #3592e4;
 	--purple: #cea5fb;
 	--purple-hover: #cea5fb80;
@@ -50,7 +52,7 @@
 	--gray3-hover: #161b2280;
 	--gray2-hover: #1c212880;
 	--gray1-hover: #21262d80;
-	--text-color-dynamic: #fff;
+	--text-color-dynamic: #ddd;
 }
 
 :root[data-event-theme="pinktober"] {
@@ -70,12 +72,10 @@
 :root[data-theme="high_contrast"] {
 	--background-color: #000;
 	--red: #f00;
-	--red-hover: #f00;
 	--orange: #ffa500;
-	--orange-hover: #ffa500;
 	--green: #0f0;
-	--blue: #deff00;
-	--dark-blue: #deff00;
+	--blue: #00fff2;
+	--dark-blue: #00fff2;
 	--purple: #f33bee;
 	--gray4: #111;
 	--gray3: #222;

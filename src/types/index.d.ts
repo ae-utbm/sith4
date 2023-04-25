@@ -44,7 +44,7 @@ export interface Alert {
 	/** The alert message */
 	message: string;
 	/** The alert type */
-	// type: 'success' | 'info' | 'warning' | 'danger';
+	type: 'info' | 'warning' | 'danger';
 	/** The alert type */
 	id: string;
 }

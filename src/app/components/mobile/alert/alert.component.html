@@ -1,7 +1,0 @@
-<div *ngFor="let alert of alerts" class="alert" [ngClass]="{'hiding' : !isAlertVisible(alert)}">
-	<div class="content">
-		<span class="title">{{ alert.title }}</span>
-		<span class="text">{{ alert.message }}</span>
-	</div>
-	<icon-close class="icon" (click)="closeAlert(alert)"/>
-</div>
