@@ -3,7 +3,7 @@ import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs
 import { TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Language } from 'src/types';
+import { LangFile, Language } from 'src/types';
 
 export const LANGUAGES: Language[] = LANGS as unknown as Language[];
 export const DEFAULT_LANGUAGE = 'en-US';
@@ -87,8 +87,8 @@ export class TranslateHttpLoader implements TranslateLoader {
 		const langFile = `${this.prefix}${lang}${this.suffix}`;
 		const baseLangFile = `${this.prefix}${DEFAULT_LANGUAGE}${this.suffix}`;
 
-		const langFile$ = this.http.get(langFile).pipe(catchError(() => of({})));
-		const baseLangFile$ = this.http.get(baseLangFile);
+		const langFile$ = this.http.get(langFile).pipe(catchError(() => of({}))) as Observable<LangFile | object>;
+		const baseLangFile$ = this.http.get(baseLangFile) as Observable<LangFile>;
 
 		return forkJoin([langFile$, baseLangFile$]).pipe(
 			map(([langData, baseLangData]) => Object.merge(baseLangData, langData)),

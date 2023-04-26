@@ -21,24 +21,25 @@ export class ThemeSelectorComponent {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly p: PageService,
-	) {
+	) {}
+
+	public ngOnInit(): void {
 		const now = new Date();
 
 		switch (now.getMonth()) {
 			case 11:
 				this.eventThemes.push({ name: 'header.options.event_themes.christmas', value: 'christmas' });
-				if (this.p.eventTheme === null) this.p.eventTheme = 'christmas';
+				if (this.p.eventTheme !== 'christmas' && this.p.eventTheme !== null) this.p.eventTheme = 'christmas';
 				break;
 			case 9:
 				this.eventThemes.push({ name: 'header.options.event_themes.pinktober', value: 'pinktober' });
-				if (this.p.eventTheme === null) this.p.eventTheme = 'pinktober';
+				if (this.p.eventTheme !== 'pinktober' && this.p.eventTheme !== null) this.p.eventTheme = 'pinktober';
 				break;
 			default:
-				this.p.eventTheme = null;
+				this.p.eventTheme = 'base';
+				break;
 		}
-	}
 
-	public ngOnInit(): void {
 		this.themes.forEach((theme) => {
 			this.t.get(theme.name).subscribe((name) => (theme.name = name));
 		});

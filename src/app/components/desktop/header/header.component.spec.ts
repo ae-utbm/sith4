@@ -1,25 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { MobileHeaderComponent } from './header.component';
+import { TranslateModule } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
-import { UserService } from 'src/app/services/user.service';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
-import { MobileComponentsModule } from '../mobile.module';
+import { CommonComponentsModule } from '../../common/common.module';
+import { DesktopHeaderComponent } from './header.component';
 
-describe('MobileHeaderComponent', () => {
-	let component: MobileHeaderComponent;
-	let fixture: ComponentFixture<MobileHeaderComponent>;
+describe('DesktopHeaderComponent', () => {
+	let component: DesktopHeaderComponent;
+	let fixture: ComponentFixture<DesktopHeaderComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [MobileHeaderComponent],
-			imports: [TranslateModule.forRoot(), MobileComponentsModule],
-			providers: [PageService, UserService, TranslateService],
+			declarations: [DesktopHeaderComponent],
+			imports: [TranslateModule.forRoot(), CommonComponentsModule],
+			providers: [PageService],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MobileHeaderComponent);
+		fixture = TestBed.createComponent(DesktopHeaderComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

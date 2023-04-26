@@ -1,13 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { SubtitleComponent } from './subtitle.component';
+import { PageService } from 'src/app/services/page.service';
+import { TranslateModule } from '@ngx-translate/core';
 
-describe('MobileSubtitleComponent', () => {
+describe('SubtitleComponent', () => {
 	let component: SubtitleComponent;
 	let fixture: ComponentFixture<SubtitleComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [SubtitleComponent],
+			imports: [TranslateModule.forRoot()],
+			providers: [PageService],
 		}).compileComponents();
 	});
 

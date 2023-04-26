@@ -2,8 +2,10 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SelectComponent, ISelectOption } from './select.component';
+import { SelectComponent } from './select.component';
 import { IconsModule } from '../icons/icons.module';
+import type { SelectComponentOption } from 'src/types';
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('SelectComponent', () => {
 	let component: SelectComponent;
@@ -11,13 +13,13 @@ describe('SelectComponent', () => {
 	let button: DebugElement;
 	let dropdown: DebugElement;
 
-	const unsortedOptions: ISelectOption[] = [
+	const unsortedOptions: SelectComponentOption[] = [
 		{ label: 'Option 1', value: '1' },
 		{ label: 'Option 3', value: '3' },
 		{ label: 'Option 2', value: '2' },
 	];
 
-	const sortedOptions: ISelectOption[] = [
+	const sortedOptions: SelectComponentOption[] = [
 		{ label: 'Option 1', value: '1' },
 		{ label: 'Option 2', value: '2' },
 		{ label: 'Option 3', value: '3' },
@@ -26,7 +28,7 @@ describe('SelectComponent', () => {
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
 			declarations: [SelectComponent],
-			imports: [IconsModule],
+			imports: [IconsModule, TranslateModule.forRoot()],
 		}).compileComponents();
 	});
 

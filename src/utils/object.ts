@@ -10,7 +10,7 @@ declare global {
 		 * @example Object.merge({ a: 1, b: 2 }, { b: 3, c: 4 }) // { a: 1, b: 3, c: 4 }
 		 * @example Object.merge({ a: 1, b: { c: 2, d: 3 } }, { b: { d: 4, e: 5 } }) // { a: 1, b: { c: 2, d: 4, e: 5 } }
 		 */
-		merge<T>(target: T, ...sources: Array<Partial<T>>): T;
+		merge<T, S>(target: T, ...sources: Array<Partial<T & Record<string, unknown>>>): T & Record<string, unknown>;
 
 		/**
 		 * Check if the given item is a JS Object

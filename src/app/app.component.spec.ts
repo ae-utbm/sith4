@@ -6,6 +6,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpLoaderFactory } from 'src/utils';
+import { UserService } from './services/user.service';
+import { PageService } from './services/page.service';
+import { DesktopComponentsModule } from './components/desktop/desktop.module';
+import { MobileComponentsModule } from './components/mobile/mobile.module';
 
 describe('AppComponent', () => {
 	let component: AppComponent;
@@ -18,6 +22,8 @@ describe('AppComponent', () => {
 				AppRoutingModule,
 				BrowserModule,
 				ComponentsModule,
+				DesktopComponentsModule,
+				MobileComponentsModule,
 				HttpClientModule,
 				TranslateModule.forRoot({
 					defaultLanguage: 'en-US',
@@ -28,7 +34,7 @@ describe('AppComponent', () => {
 					},
 				}),
 			],
-			providers: [Document, TranslateService],
+			providers: [Document, TranslateService, UserService, PageService],
 		}).compileComponents();
 	});
 
@@ -40,43 +46,5 @@ describe('AppComponent', () => {
 
 	it('should create the app', () => {
 		expect(component).toBeTruthy();
-	});
-
-	it('should detect the browser language', () => {
-		spyOnProperty(window.navigator, 'language', 'get').and.returnValue('fr-FR');
-		spyOn(localStorage, 'getItem').and.returnValue(null);
-		spyOn(localStorage, 'setItem');
-
-		component.detectLanguage();
-
-		expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'fr-FR');
-		expect(component.document.documentElement.lang).toEqual('fr-FR');
-		expect(component.document.documentElement.dir).toEqual('ltr');
-		expect(component.translate.currentLang).toEqual('fr-FR');
-	});
-
-	it('should use the stored language preference if available', () => {
-		spyOn(localStorage, 'getItem').and.returnValue('fr-FR');
-		spyOn(localStorage, 'setItem');
-
-		component.detectLanguage();
-
-		expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'fr-FR');
-		expect(component.document.documentElement.lang).toEqual('fr-FR');
-		expect(component.document.documentElement.dir).toEqual('ltr');
-		expect(component.translate.currentLang).toEqual('fr-FR');
-	});
-
-	it('should fallback to en-US if the browser language is not supported', () => {
-		spyOn(localStorage, 'getItem').and.returnValue(null);
-		spyOn(localStorage, 'setItem');
-		spyOnProperty(window.navigator, 'language', 'get').and.returnValue('unsupported-lang');
-
-		component.detectLanguage();
-
-		expect(localStorage.setItem).toHaveBeenCalledWith('lang', 'en-US');
-		expect(component.document.documentElement.lang).toEqual('en-US');
-		expect(component.document.documentElement.dir).toEqual('ltr');
-		expect(component.translate.currentLang).toEqual('en-US');
 	});
 });

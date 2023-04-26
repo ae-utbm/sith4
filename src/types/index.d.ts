@@ -1,3 +1,7 @@
+export interface LangFile {
+	[key: string]: string | LangFile;
+}
+
 export interface SelectComponentOption {
 	/** Optional image to display next to the label */
 	image?: string;
@@ -35,8 +39,6 @@ export interface Language {
 	/** The language read direction */
 	direction: 'ltr' | 'rtl';
 }
-
-export type Validator<T> = Record<keyof T, string | undefined>;
 
 export interface Alert {
 	/** The alert title */

@@ -30,8 +30,4 @@ export class MobileHeaderComponent {
 	public triggerSideMenuOptions(): void {
 		this.optionsOpened = !this.optionsOpened;
 	}
-
-	public get eventTheme(): ThemeEvent | null {
-		return getThemeEvent();
-	}
 }

@@ -33,9 +33,6 @@ export class LoginComponent {
 	}
 
 	public errors(field: string): string[] {
-		if ('passwordConfirm' === field)
-			return [...getErrors(this.formGroup.controls[field]), ...getErrors(this.formGroup)];
-
 		return getErrors(this.formGroup.controls[field]);
 	}
 

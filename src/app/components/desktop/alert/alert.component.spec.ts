@@ -1,29 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { MobileAlertComponent } from './alert.component';
-import { AlertService } from 'src/app/services/alert.service';
-import { Alert } from 'src/types';
 import { TranslateModule } from '@ngx-translate/core';
+import { AlertService } from 'src/app/services/alert.service';
 import { CommonComponentsModule } from '../../common/common.module';
+import { DesktopAlertComponent } from './alert.component';
+import { Alert } from 'src/types';
 
-describe('MobileAlertComponent', () => {
-	let component: MobileAlertComponent;
-	let fixture: ComponentFixture<MobileAlertComponent>;
+describe('DesktopAlertComponent', () => {
+	let component: DesktopAlertComponent;
+	let fixture: ComponentFixture<DesktopAlertComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [MobileAlertComponent],
+			declarations: [DesktopAlertComponent],
 			imports: [TranslateModule.forRoot(), CommonComponentsModule],
 			providers: [AlertService],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(MobileAlertComponent);
+		fixture = TestBed.createComponent(DesktopAlertComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
 
-	it('should create', () => {
+	it('should create the component', () => {
 		expect(component).toBeTruthy();
 	});
 
@@ -35,7 +35,7 @@ describe('MobileAlertComponent', () => {
 			const alert: Alert = { id: 'id', message: 'test', type: 'info', title: 'test alert' };
 			component.dismiss(alert);
 
-			expect(dismissSpy).toHaveBeenCalledWith(alert, 500);
+			expect(dismissSpy).toHaveBeenCalledWith(alert, 400);
 		});
 	});
 });

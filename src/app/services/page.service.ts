@@ -148,7 +148,7 @@ export class PageService {
 
 	/**
 	 * Get the stored language within the local storage or the browser language if not found
-	 * @returns {ISelectOption} The found language or the default one (English)
+	 * @returns {SelectComponentOption} The found language or the default one (English)
 	 */
 	public get lang(): string {
 		return localStorage.getItem('lang') ?? getLanguage(window.navigator.language);
@@ -191,7 +191,7 @@ export class PageService {
 	 * @param {ThemeEvent | null} theme The theme to set
 	 */
 	public set eventTheme(theme: ThemeEvent | null) {
-		setThemeEvent(this.eventTheme === theme ? 'base' : theme);
+		setThemeEvent(this.eventTheme === theme ? null : theme);
 	}
 
 	/**
