@@ -70,6 +70,7 @@ export class RegisterComponent {
 	}
 
 	public register(): void {
-		return;
+		const a = undefined; // TODO: make the function once the API is ready
+		return a;
 	}
 }
