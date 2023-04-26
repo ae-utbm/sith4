@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
-import { UserService } from 'src/app/services/user.service';
 import { CommonComponentsModule } from '../../common/common.module';
-import { ForgotPasswordComponent } from './forgot_password.component';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
-describe('ForgotPasswordComponent', () => {
-	let component: ForgotPasswordComponent;
-	let fixture: ComponentFixture<ForgotPasswordComponent>;
+describe('LoginComponent', () => {
+	let component: LoginComponent;
+	let fixture: ComponentFixture<LoginComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			declarations: [ForgotPasswordComponent],
+			declarations: [LoginComponent],
 			imports: [TranslateModule.forRoot(), CommonComponentsModule, FormsModule, ReactiveFormsModule],
-			providers: [PageService, TranslateService, UserService, FormBuilder],
+			providers: [TranslateService, PageService, UserService, FormBuilder],
 		}).compileComponents();
 	});
 
 	beforeEach(() => {
-		fixture = TestBed.createComponent(ForgotPasswordComponent);
+		fixture = TestBed.createComponent(LoginComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
@@ -39,10 +39,11 @@ describe('ForgotPasswordComponent', () => {
 		});
 	});
 
-	describe('sendEmail', () => {
-		it('should send the email', () => {
-			component.formGroup.controls['email'].setValue('exemple@domain.net');
-			component.sendEmail();
+	describe('login', () => {
+		it('should login', () => {
+			component.formGroup.controls['email'].setValue('exemple@domain.com');
+			component.formGroup.controls['password'].setValue('password');
+			component.login();
 			expect(true).toBeTrue(); // TODO: add a test once the API is ready
 		});
 	});
