@@ -92,6 +92,7 @@ export class PageService {
 
 	/**
 	 * Detects the font size of the browser and sets it as current font size.
+	 * This trigger the `fontSize` setter and getter. This method is called only once, on page load.
 	 */
 	public detectFontSize(): void {
 		this.fontSize = this.fontSize;
@@ -102,7 +103,7 @@ export class PageService {
 	 * @returns {FontSize} The current font size
 	 */
 	public get fontSize(): FontSize {
-		let size = (localStorage.getItem('fontSize') ?? '1') as FontSize;
+		let size = localStorage.getItem('fontSize');
 		if (size === null || (size !== '0.75' && size !== '1' && size !== '1.25')) size = '1';
 		return size as FontSize;
 	}
@@ -113,7 +114,6 @@ export class PageService {
 	 * @example p.fontSize = '0.75'; // will set the font size to 75% of its original size
 	 */
 	public set fontSize(size: FontSize) {
-		if (size !== '0.75' && size !== '1' && size !== '1.25') size = '1';
 		document.documentElement.style.setProperty('--font-size', size);
 		localStorage.setItem('fontSize', size);
 	}

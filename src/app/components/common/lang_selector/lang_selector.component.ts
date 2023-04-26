@@ -25,7 +25,9 @@ export class LangSelectorComponent {
 	public constructor(
 		@Inject(PageService) public readonly p: PageService,
 		@Inject(TranslateService) public readonly t: TranslateService,
-	) {
+	) {}
+
+	public ngOnInit(): void {
 		this.langsCompletion.forEach(([lang, completion$]) => {
 			completion$.subscribe((completion) => {
 				const found: SelectComponentOption | undefined = this.langs.find((l) => l.label === lang);
