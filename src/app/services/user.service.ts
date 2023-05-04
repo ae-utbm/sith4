@@ -1,62 +1,81 @@
-import { Injectable } from '@angular/core';
-
-const FAKE_USER = {
-	balance: 100,
-	account_id: '12345a',
-	name: 'DOE',
-	first_name: 'John',
-	notifications: [],
-	profile_picture: 'https://avatars.githubusercontent.com/u/106403460',
-	profile_banner: 'https://gifdb.com/images/high/the-office-michael-yikes-x8pzowd0ud2o8e15.gif',
-};
+import { Inject, Injectable } from '@angular/core';
+import { Apollo, gql } from 'apollo-angular';
+import { UserObject } from 'src/types/objects';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserService {
-	private user?: undefined | typeof FAKE_USER = undefined;
+	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {}
+	private user?: undefined | UserObject['user'] = undefined;
 
 	public get isLoggedIn(): boolean {
 		if (localStorage.getItem('authToken') === null) return false;
-		this.user = FAKE_USER; // todo call api to get user info in real time
 		return true;
 	}
 
 	public get fullName(): string | undefined {
-		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.name}` : undefined;
+		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.last_name}` : undefined;
 	}
 
 	public get accountId(): string | undefined {
-		return this.isLoggedIn && this.user ? this.user.account_id : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.account_id : undefined;
 	}
 
 	public get balance(): number | undefined {
-		return this.isLoggedIn && this.user ? this.user.balance : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.balance : undefined;
 	}
 
 	public get picture(): string | undefined {
-		return this.isLoggedIn && this.user ? this.user.profile_picture : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.profile_picture : undefined;
 	}
 
 	public get banner(): string | undefined {
-		return this.isLoggedIn && this.user ? this.user.profile_banner : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.profile_banner : undefined;
 	}
 
 	public get notifications(): string[] | undefined {
-		return this.isLoggedIn && this.user ? this.user.notifications : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.notifications : undefined;
 	}
 
 	public get notificationsCount(): number | undefined {
-		return this.isLoggedIn && this.user ? this.user.notifications.length : undefined;
+		return undefined;
+		// return this.isLoggedIn && this.user ? this.user.notifications.length : undefined;
 	}
 
 	public logout(): void {
 		this.user = undefined;
 		localStorage.removeItem('authToken');
+		localStorage.removeItem('refreshToken');
 	}
 
-	public login(jwt: string): void {
-		this.user = FAKE_USER;
-		localStorage.setItem('authToken', jwt);
+	public login(id: number, jwtToken: string, refreshToken: string): void {
+		localStorage.setItem('authToken', jwtToken);
+		localStorage.setItem('refreshToken', refreshToken);
+
+		this.apollo
+			.query<UserObject>({
+				query: gql`
+					query ($user_id: Int!) {
+						user(id: $user_id) {
+							first_name
+							last_name
+							nickname
+							promotion
+						}
+					}
+				`,
+				variables: {
+					user_id: id,
+				},
+			})
+			.subscribe(({ data }) => {
+				this.user = data.user;
+			});
 	}
 }

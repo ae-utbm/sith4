@@ -67,7 +67,8 @@
 			"passwords_match": "The passwords do not match",
 			"minlength": "This field must contain at least {{ min }} characters",
 			"maxlength": "This field must contain at most {{ max }} characters",
-			"email": "This email is invalid"
+			"email": "This email is invalid",
+			"login_fail": "Email or password invalid"
 		}
 	},
 	"404": {

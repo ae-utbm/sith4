@@ -1,9 +1,13 @@
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
-import { CustomValidators, getErrors } from 'src/app/directives';
+import { getErrors } from 'src/app/directives';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
+import { Apollo } from 'apollo-angular';
+import { LoginObject } from 'src/types/objects';
+
+import gql from 'graphql-tag';
 
 @Component({
 	selector: 'app-login',
@@ -12,7 +16,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
 	public formGroup: FormGroup = this.fb.group({
-		email: ['', [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')]],
+		email: ['', [Validators.required, Validators.email]],
 		password: ['', [Validators.required]],
 	});
 
@@ -21,15 +25,38 @@ export class LoginComponent {
 		@Inject(PageService) public readonly p: PageService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
+		@Inject(Apollo) private readonly apollo: Apollo,
 	) {
 		t.get('login.title').subscribe((title) => (p.title = title));
 	}
 
 	public login(): void {
-		// todo: call api & validate credentials
-		// todo: if auth fails, set errors['password'] = 'login.errors.password.invalid';
-		this.u.login('fake-jwt-token');
-		this.p.route = '/';
+		this.apollo
+			.mutate<LoginObject>({
+				mutation: gql`
+					mutation ($email: String!, $password: String!) {
+						login(email: $email, password: $password) {
+							accessToken
+							refreshToken
+							user_id
+						}
+					}
+				`,
+				variables: {
+					email: this.formGroup.controls['email'].value,
+					password: this.formGroup.controls['password'].value,
+				},
+				errorPolicy: 'all',
+			})
+			.subscribe(({ data }) => {
+				if (data) {
+					this.u.login(data.login.user_id, data.login.accessToken, data.login.refreshToken);
+					this.p.route = '/';
+				} else {
+					this.formGroup.controls['email'].setErrors({ login_fail: true });
+					this.formGroup.controls['password'].setErrors({ login_fail: true });
+				}
+			});
 	}
 
 	public errors(field: string): string[] {

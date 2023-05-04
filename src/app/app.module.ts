@@ -12,6 +12,7 @@ import { MobileComponentsModule } from './components/mobile/mobile.module';
 import { DesktopComponentsModule } from './components/desktop/desktop.module';
 
 import { environment } from 'src/environments/environment.dev';
+import { GraphQLModule } from './graphql.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { environment } from 'src/environments/environment.dev';
 		NgHcaptchaModule.forRoot({
 			siteKey: environment.HCAPTCHA_SITE_KEY,
 		}),
+		GraphQLModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
