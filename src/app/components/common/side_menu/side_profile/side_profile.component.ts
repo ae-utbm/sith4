@@ -19,4 +19,9 @@ export class SideMenuProfileComponent {
 		this.close.emit();
 		this.u.logout();
 	}
+
+	public goto(route: string): void {
+		this.p.route = `/${this.u.accountId}/${route}`;
+		this.close.emit();
+	}
 }

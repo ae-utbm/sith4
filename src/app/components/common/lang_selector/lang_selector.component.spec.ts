@@ -3,14 +3,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LangSelectorComponent } from './lang_selector.component';
 import { PageService } from 'src/app/services/page.service';
 import { CommonComponentsModule } from '../common.module';
-import { LANGUAGES } from 'src/utils';
-import { of } from 'rxjs';
 
 describe('MobileLangSelectorComponent', () => {
 	let component: LangSelectorComponent;
 	let fixture: ComponentFixture<LangSelectorComponent>;
-	let pageService: PageService;
-	let localStore: Record<string, string>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
@@ -23,7 +19,6 @@ describe('MobileLangSelectorComponent', () => {
 	beforeEach(() => {
 		fixture = TestBed.createComponent(LangSelectorComponent);
 		component = fixture.componentInstance;
-		pageService = TestBed.inject(PageService);
 		fixture.detectChanges();
 	});
 

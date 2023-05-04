@@ -11,10 +11,25 @@ import { RegisterComponent } from './register/register.component';
 import { ForgotPasswordComponent } from './forgot_password/forgot_password.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
+import { UserPaymentsComponent } from './user/payments/payments.component';
 
 @NgModule({
-	declarations: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
-	exports: [NotFoundComponent, HomeComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent],
+	declarations: [
+		NotFoundComponent,
+		HomeComponent,
+		LoginComponent,
+		RegisterComponent,
+		ForgotPasswordComponent,
+		UserPaymentsComponent,
+	],
+	exports: [
+		NotFoundComponent,
+		HomeComponent,
+		LoginComponent,
+		RegisterComponent,
+		ForgotPasswordComponent,
+		UserPaymentsComponent,
+	],
 	imports: [
 		FormsModule,
 		CommonModule,

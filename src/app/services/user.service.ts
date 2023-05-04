@@ -7,10 +7,13 @@ import { UserObject } from 'src/types/objects';
 })
 export class UserService {
 	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {}
-	private user?: undefined | UserObject['user'] = undefined;
+
+	private fetching = false;
+	private user?: UserObject['user'] = undefined;
 
 	public get isLoggedIn(): boolean {
-		if (localStorage.getItem('authToken') === null) return false;
+		if (localStorage.getItem('token') === null) return false;
+		if (this.user === undefined) this.fetchUser(parseInt(localStorage.getItem('userId') ?? '0', 10));
 		return true;
 	}
 
@@ -18,13 +21,12 @@ export class UserService {
 		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.last_name}` : undefined;
 	}
 
-	public get accountId(): string | undefined {
-		return undefined;
-		// return this.isLoggedIn && this.user ? this.user.account_id : undefined;
+	public get accountId(): number | undefined {
+		return this.isLoggedIn && this.user ? this.user.id : undefined;
 	}
 
-	public get balance(): number | undefined {
-		return undefined;
+	public get balance(): number {
+		return 0;
 		// return this.isLoggedIn && this.user ? this.user.balance : undefined;
 	}
 
@@ -50,13 +52,20 @@ export class UserService {
 
 	public logout(): void {
 		this.user = undefined;
-		localStorage.removeItem('authToken');
-		localStorage.removeItem('refreshToken');
+		localStorage.removeItem('token');
+		localStorage.removeItem('userId');
 	}
 
-	public login(id: number, jwtToken: string, refreshToken: string): void {
-		localStorage.setItem('authToken', jwtToken);
-		localStorage.setItem('refreshToken', refreshToken);
+	public login(id: number, jwt: string): void {
+		localStorage.setItem('token', jwt);
+		localStorage.setItem('userId', id.toString());
+
+		this.fetchUser(id);
+	}
+
+	private fetchUser(id: number): void {
+		if (this.fetching === true) return;
+		this.fetching = true;
 
 		this.apollo
 			.query<UserObject>({
@@ -67,15 +76,24 @@ export class UserService {
 							last_name
 							nickname
 							promotion
+							id
 						}
 					}
 				`,
 				variables: {
 					user_id: id,
 				},
+				fetchPolicy: 'cache-first',
+				errorPolicy: 'all',
 			})
-			.subscribe(({ data }) => {
-				this.user = data.user;
+			.subscribe(({ data, errors }) => {
+				if (data) this.user = data.user;
+				else this.logout();
+
+				// Logout if the jwt token is invalid
+				if (errors) this.logout();
 			});
+
+		this.fetching = false;
 	}
 }

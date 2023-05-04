@@ -1,7 +1,6 @@
 export interface LoginObject {
 	login: {
-		accessToken: string;
-		refreshToken: string;
+		token: string;
 		user_id: number;
 	};
 }
@@ -16,5 +15,6 @@ export interface UserObject {
 		gender?: string;
 		cursus?: string;
 		promotion?: number;
+		id: number;
 	};
 }

@@ -8,8 +8,8 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 
 export function createApollo(httpLink: HttpLink) {
-	const auth = setContext(() => {
-		const token = localStorage.getItem('authToken');
+	const auth = setContext(async () => {
+		const token = localStorage.getItem('token');
 		const locale = localStorage.getItem('locale') ?? 'en-US';
 
 		if (token === null) {

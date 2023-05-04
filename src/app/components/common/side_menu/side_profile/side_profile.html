@@ -6,22 +6,22 @@
 	<icon-user-icon class="user-picture" [ngClass]="{ 'rtl': p.isRTL }" [url]="u.picture" />
 	<div class="infos" [ngClass]="{ 'rtl': p.isRTL }">
 		<div class="left">
-			<span>{{ u.fullName }}</span>
+			<span class="name">{{ u.fullName }}</span>
 			<span>{{ u.balance }} €</span>
 		</div>
 		<span class="right">{{ u.accountId }}</span>
 	</div>
 	<main>
 		<ul class="links">
-			<li>
+			<li (click)="goto('profile')">
 				<icon-person class="icon" />
 				<span>{{ 'header.profile.profile' | translate }}</span>
 			</li>
-			<li>
+			<li (click)="goto('pictures')">
 				<icon-pictures class="icon" />
 				<span>{{ 'header.profile.pictures' | translate }}</span>
 			</li>
-			<li>
+			<li (click)="goto('payments')">
 				<icon-payments class="icon" />
 				<span>{{ 'header.profile.payments' | translate }}</span>
 			</li>

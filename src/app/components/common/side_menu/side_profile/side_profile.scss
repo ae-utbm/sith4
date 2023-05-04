@@ -54,6 +54,10 @@
 		>.left {
 			display: flex;
 			flex-direction: column;
+
+			> .name {
+				text-transform: capitalize;
+			}
 		}
 	}
 
@@ -87,9 +91,11 @@
 			border-radius: 5px;
 
 			> li {
+				cursor: pointer;
 				display: flex;
 				align-items: center;
 				gap: 5px;
+
 
 				> .icon {
 					width: 16px;
@@ -103,6 +109,16 @@
 					font-weight: 400;
 					font-size: calc(10px * var(--font-size));
 					text-transform: uppercase;
+				}
+
+				&:hover {
+					> .icon {
+						fill: var(--blue);
+					}
+
+					span {
+						color: var(--blue);
+					}
 				}
 			}
 		}

@@ -36,8 +36,7 @@ export class LoginComponent {
 				mutation: gql`
 					mutation ($email: String!, $password: String!) {
 						login(email: $email, password: $password) {
-							accessToken
-							refreshToken
+							token
 							user_id
 						}
 					}
@@ -50,7 +49,7 @@ export class LoginComponent {
 			})
 			.subscribe(({ data }) => {
 				if (data) {
-					this.u.login(data.login.user_id, data.login.accessToken, data.login.refreshToken);
+					this.u.login(data.login.user_id, data.login.token);
 					this.p.route = '/';
 				} else {
 					this.formGroup.controls['email'].setErrors({ login_fail: true });

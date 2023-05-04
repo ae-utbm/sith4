@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
-import { PagesModule } from '../pages.module';
 
 describe('HomeComponent', () => {
 	let component: HomeComponent;
