@@ -1,3 +1,5 @@
+import type { RegisterObject } from 'src/types/objects';
+
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
@@ -5,6 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidators, getErrors } from 'src/app/directives';
+import { Apollo, gql } from 'apollo-angular';
 
 @Component({
 	selector: 'app-register',
@@ -54,6 +57,7 @@ export class RegisterComponent {
 		@Inject(PageService) public readonly p: PageService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
+		@Inject(Apollo) private readonly apollo: Apollo,
 	) {
 		t.get('register.title').subscribe((title) => (p.title = title));
 	}
@@ -65,12 +69,50 @@ export class RegisterComponent {
 		return getErrors(this.formGroup.controls[field]);
 	}
 
-	public getError(field: string): string {
+	public getError(field: string, control = ''): string {
+		if (field === 'api') return this.formGroup.controls[control].getError(field);
 		return `global.errors.${field}`;
 	}
 
 	public register(): void {
-		const a = undefined; // TODO: make the function once the API is ready
-		return a;
+		this.apollo
+			.mutate<RegisterObject>({
+				mutation: gql`
+					mutation (
+						$birthday: DateTime!
+						$email: String!
+						$first_name: String!
+						$last_name: String!
+						$password: String!
+					) {
+						register(
+							birthday: $birthday
+							email: $email
+							first_name: $first_name
+							last_name: $last_name
+							password: $password
+						) {
+							token
+							user_id
+						}
+					}
+				`,
+				variables: {
+					birthday: this.formGroup.controls['birthDate'].value,
+					email: this.formGroup.controls['email'].value,
+					first_name: this.formGroup.controls['firstName'].value,
+					last_name: this.formGroup.controls['lastName'].value,
+					password: this.formGroup.controls['password'].value,
+				},
+				errorPolicy: 'all',
+			})
+			.subscribe(({ data, errors }) => {
+				if (data && !errors) {
+					this.u.login(data.register.user_id, data.register.token);
+					this.p.route = '/';
+				} else if (errors) {
+					this.formGroup.controls['email'].setErrors({ api: errors[0].message });
+				}
+			});
 	}
 }

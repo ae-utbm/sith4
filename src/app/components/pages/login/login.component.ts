@@ -15,7 +15,7 @@ import gql from 'graphql-tag';
 	styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
-	public formGroup: FormGroup = this.fb.group({
+	public readonly formGroup: FormGroup = this.fb.group({
 		email: ['', [Validators.required, Validators.email]],
 		password: ['', [Validators.required]],
 	});

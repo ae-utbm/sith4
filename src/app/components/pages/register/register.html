@@ -53,7 +53,7 @@
 					<input formControlName="email" type="text" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
 				<div *ngIf="errors('email').length > 0" class="error">
-					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
+					<span *ngFor="let error of errors('email')">{{ getError(error, 'email') | translate }}</span>
 				</div>
 			</div>
 

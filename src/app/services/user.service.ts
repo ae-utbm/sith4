@@ -1,12 +1,16 @@
 import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { UserObject } from 'src/types/objects';
+import { PageService } from './page.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserService {
-	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {}
+	public constructor(
+		@Inject(PageService) private readonly p: PageService,
+		@Inject(Apollo) private readonly apollo: Apollo,
+	) {}
 
 	private fetching = false;
 	private user?: UserObject['user'] = undefined;
@@ -21,8 +25,12 @@ export class UserService {
 		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.last_name}` : undefined;
 	}
 
-	public get accountId(): number | undefined {
-		return this.isLoggedIn && this.user ? this.user.id : undefined;
+	public get nickname(): string | undefined {
+		return this.isLoggedIn && this.user ? this.user.nickname : undefined;
+	}
+
+	public get accountId(): string | undefined {
+		return this.isLoggedIn && this.user ? this.user.subscriber_account : undefined;
 	}
 
 	public get balance(): number {
@@ -54,6 +62,8 @@ export class UserService {
 		this.user = undefined;
 		localStorage.removeItem('token');
 		localStorage.removeItem('userId');
+
+		this.p.route = '/';
 	}
 
 	public login(id: number, jwt: string): void {
@@ -77,6 +87,7 @@ export class UserService {
 							nickname
 							promotion
 							id
+							subscriber_account
 						}
 					}
 				`,

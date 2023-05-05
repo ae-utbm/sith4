@@ -5,8 +5,16 @@ export interface LoginObject {
 	};
 }
 
+export interface RegisterObject {
+	register: {
+		token: string;
+		user_id: number;
+	};
+}
+
 export interface UserObject {
 	user: {
+		id: number;
 		first_name: string;
 		last_name: string;
 		email: string;
@@ -15,6 +23,6 @@ export interface UserObject {
 		gender?: string;
 		cursus?: string;
 		promotion?: number;
-		id: number;
+		subscriber_account?: string;
 	};
 }
