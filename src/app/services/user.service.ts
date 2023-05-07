@@ -21,6 +21,10 @@ export class UserService {
 		return true;
 	}
 
+	public get id(): number | undefined {
+		return this.isLoggedIn && this.user ? this.user.id : undefined;
+	}
+
 	public get fullName(): string | undefined {
 		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.last_name}` : undefined;
 	}
