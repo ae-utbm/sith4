@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
@@ -18,6 +19,7 @@ export class UserProfileComponent {
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(PageService) public readonly p: PageService,
 		@Inject(Apollo) private readonly apollo: Apollo,
+		@Inject(TranslateService) public readonly t: TranslateService,
 	) {
 		this.getUserData(parseInt(localStorage.getItem('userId') ?? '0', 10));
 	}

@@ -96,5 +96,18 @@
 		"min_password": "Minimum of 8 characters including 1 special",
 		"confirm_password": "Confirm password",
 		"already_registered_and_logged_as_x": "You are already registered and logged as {{name}}"
+	},
+	"profile":{
+		"about": "About",
+		"contact": "Contact",
+		"birthdate": "Birthdate",
+		"cursus_utbm": "UTBM Curriculum",
+		"speciality": "Speciality",
+		"joined_the_site": "Joined the site",
+		"gender": "Gender",
+		"last_seen": "Last seen",
+		"pronouns": "Pronouns",
+		"promotion": "Promotion",
+		"subscription" : "Subscription date"
 	}
 }
