@@ -12,6 +12,8 @@ import { ForgotPasswordComponent } from './forgot_password/forgot_password.compo
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgHcaptchaModule } from 'ng-hcaptcha';
 import { UserPaymentsComponent } from './user/payments/payments.component';
+import { UserProfileComponent } from './user/profile/profile.component';
+import { UserPicturesComponent } from './user/pictures/pictures.component';
 
 @NgModule({
 	declarations: [
@@ -21,6 +23,8 @@ import { UserPaymentsComponent } from './user/payments/payments.component';
 		RegisterComponent,
 		ForgotPasswordComponent,
 		UserPaymentsComponent,
+		UserProfileComponent,
+		UserPicturesComponent,
 	],
 	exports: [
 		NotFoundComponent,
@@ -29,6 +33,8 @@ import { UserPaymentsComponent } from './user/payments/payments.component';
 		RegisterComponent,
 		ForgotPasswordComponent,
 		UserPaymentsComponent,
+		UserProfileComponent,
+		UserPicturesComponent,
 	],
 	imports: [
 		FormsModule,

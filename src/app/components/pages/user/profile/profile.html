@@ -1,1 +1,84 @@
-<p>User profile works !</p>
+<div class="profile">
+	<div class="icon-list">
+		<!-- Liste des icones -->
+	</div>
+	<div class="profile-container">
+		<!-- Conteneur blanc -->
+		<div class="profile-content">
+			<!-- Reste du contenu -->
+			<icon-user-icon class="icon"></icon-user-icon>
+			<div class="promo-icon"></div>
+			<!-- Logo promo ici -->
+			<div class="upper-profile">
+				<div class="profile-name">
+					<div class="name">
+						<span>{{user?.first_name}} {{user?.last_name}}</span>
+						<!-- Add report icon -->
+					</div>
+					<span class="nickname">{{ nickname }}{{ age }}</span>
+				</div>
+				<div class="tab-and-flag">
+					<div class="tab">
+						<div class="tab-header">
+							<button class="tab-link" (click)="current = 'about'">1</button>
+							<button class="tab-link" (click)="current = 'contact'">2</button>
+							<div class="tab-band"></div>
+						</div>
+						<div class="tab-content">
+							<div class="details" [ngClass]="{ 'shown': current === 'about' }">
+								<!-- Profil -->
+								<div class="profile-line">
+									<div class="profile-column">
+										<span class="title">Date de naissance</span>
+										<span class="content">{{user?.birthday | date:'dd/MM/yyyy' }}</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Genre</span>
+										<span class="content">{{user?.gender}}</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Pronom</span>
+										<span class="content">Le pronom</span>
+									</div>
+								</div>
+								<div class="profile-line">
+									<div class="profile-column">
+										<span class="title">Cursus</span>
+										<span class="content">{{user?.cursus}}</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Filière</span>
+										<span class="content">filière</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Promotion</span>
+										<span class="content">{{user?.promotion}}</span>
+									</div>
+								</div>
+								<div class="profile-line">
+									<div class="profile-column">
+										<span class="title">A rejoint le sith</span>
+										<span class="content">Un certain jour</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Actif le</span>
+										<span class="content">Un autre jour</span>
+									</div>
+									<div class="profile-column">
+										<span class="title">Cotisation</span>
+										<span class="content">Peut-être</span>
+									</div>
+								</div>
+							</div>
+							<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
+								<!-- Contact -->
+								<span>OUI</span>
+							</div>
+						</div>
+					</div>
+					<!-- Icone Edit ici -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

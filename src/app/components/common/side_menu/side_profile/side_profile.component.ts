@@ -21,6 +21,11 @@ export class SideMenuProfileComponent {
 	}
 
 	public goto(route: string): void {
+		if (!this.u.isLoggedIn) {
+			this.p.route = '/home';
+			this.close.emit();
+			return;
+		}
 		this.p.route = `/${this.u.id}/${route}`;
 		this.close.emit();
 	}
