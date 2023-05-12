@@ -70,7 +70,7 @@ export class PageService {
 	 * @return {boolean} True if the device is a desktop device, false otherwise
 	 */
 	public get isDesktop(): boolean {
-		return this.deviceService.isDesktop();
+		return this.deviceService.isDesktop() && !this.isMobile;
 	}
 
 	/**
