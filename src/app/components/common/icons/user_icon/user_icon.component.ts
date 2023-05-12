@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'icon-user-icon',
+	selector: 'icon-user',
 	templateUrl: './user_icon.html',
 	styleUrls: ['../icons.scss', './user_icon.scss'],
 })
-export class IconUserIconComponent {
+export class IconUserComponent {
 	@Input() public url?: string;
 	@Input() public notifications = 0;
 

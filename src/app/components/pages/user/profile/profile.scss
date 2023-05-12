@@ -1,133 +1,127 @@
-.profile {
-	display: block;
-	padding-top: 40px;
-	background-color: black;
-	padding-bottom: 5px;
-	width: 100%;
+.content {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	padding: 5px;
+	min-height: calc(100vh - 110px);
 
-	>.banner {
+	background-color: var(--user-custom-color);
+
+	>.profile {
 		display: flex;
-	}
-
-	>.icon-list {
-
-	}
-
-	>.profile-container {
-		display: flex;
-		border-radius: 5px;
-		margin: 10px;
-		background-color: white;
+		flex-direction: column;
 		position: relative;
 
-		>.profile-content {
+		>.banner {
+			min-height: 52px;
+		}
+
+		>.pictures {
+			position: absolute;
+			top: 15px;
+			left: 10px;
+
+			width: 95px;
+			height: 95px;
+
+			border: 5px solid var(--background-color);
+			border-radius: 50%;
+
+			> .promotion {
+				position: absolute;
+				bottom: -5px;
+				right: -5px;
+
+				width: 40px;
+				height: 40px;
+
+				border: 2.5px solid var(--background-color);
+				border-radius: 50%;
+			}
+		}
+
+		>.infos {
 			display: flex;
 			flex-direction: column;
-			padding: 5px 10px 10px;
-			width: 100%;
+			gap: 10px;
+			background-color: var(--background-color);
+			padding: 10px;
+			border-radius: 5px;
+			min-height: 100%;
 
-			>.promo-icon {
-				width: 35px;
-				height: 35px;
-				border: solid;
-				border-width: 3px;
-				border-radius: 50%;
-				border-color: white;
-				margin-left: 52px;
-				position: absolute;
-				top: 20px;
+			>.main {
+				height: 42px;
+				margin-left: 105px;
+				font-family: Roboto, sans-serif;
 
-				background-color: black;
-			}
-
-			>.icon {
-				width: 85px;
-				height: 85px;
-				border: solid;
-				border-width: 5px;
-				border-color: white;
-				border-radius: 50%;
-				position: absolute;
-				top: -30px;
-			}
-
-			>.upper-profile {
-				display:flex;
+				display: flex;
 				flex-direction: column;
+				color: var(--text-color-dynamic);
 
-				>.profile-name {
-					height: 42px;
-					//width: 100%;
-					display: flex;
-					flex-direction: column;
-					margin-left: 95px;
-					font-family: Roboto, sans-serif;
-
-					>.name {
-						font-weight: bold;
-					}
+				> .name {
+					text-transform: capitalize;
+					font-weight: bold;
 				}
 
-				>.tab-and-flag {
+				> .nickname {
+					font-weight: 300;
+				}
+			}
+
+			>.tab {
+				width: 100%;
+				padding: 5px 0;
+
+				>.tab-header {
+					>.tab-link {
+						border: none;
+						background-color: transparent;
+
+						font-family: Roboto, sans-serif;
+						font-size: 12px;
+						color: var(--text-color-dynamic);
+
+						&.shown {
+							border-bottom: 1px solid var(--text-color-dynamic);
+						}
+					}
+
+					border-bottom: 1px solid var(--text-color-dynamic);
+				}
+
+				>.tab-content {
 					display: flex;
-					padding-top: 10px;
+					flex-direction: row;
 
-					>.tab {
+					>.details {
+						visibility: hidden;
 						width: 100%;
-						padding-bottom: 10px;
+						display: flex;
+						display: none;
+						color: var(--text-color-dynamic);
 
-						>.tab-header {
-
-							>.tab-link {
-								border: none;
-								background-color: transparent;
-
-								&.shown {
-									border-bottom: 2px solid black;
-								}
-							}
-
-							>.tab-band {
-								width: 90%;
-								height: 1px;
-								background-color: black;
-							}
+						&.shown {
+							visibility: visible;
+							display: flex;
 						}
 
-						>.tab-content {
-							display: flex;
+						>.profile-line {
+							display: block;
 							flex-direction: row;
+							width: 100%;
 
-							>.details {
-								visibility: hidden;
-								width: 100%;
+							>.profile-column {
 								display: flex;
-								display: none;
+								flex-direction: column;
+								font-family: Roboto, sans-serif;
+								font-size: 10px;
+								text-transform: uppercase;
+								padding-top: 10px;
+								width: 100%;
+								height: 35px;
 
-								&.shown {
-									visibility: visible;
-									display: flex;
-								}
-
-								>.profile-line {
-									display: block;
-									flex-direction: row;
-									width: 100%;
-
-									>.profile-column {
-										display: flex;
-										flex-direction: column;
-										font-family: Roboto, sans-serif;
-										font-size: 10px;
-										text-transform: uppercase;
-										padding-top: 10px;
-										width: 100%;
-										height: 35px;
-
-										>.title {
-											font-weight: bold;
-										}
-									}
+								>.title {
+									font-weight: bold;
 								}
 							}
 						}

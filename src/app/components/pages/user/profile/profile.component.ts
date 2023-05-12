@@ -15,6 +15,7 @@ export class UserProfileComponent {
 	public user?: UserObject['user'] = undefined;
 	public age?: number = undefined;
 	public birthdayFormatted?: string = undefined;
+
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(PageService) public readonly p: PageService,
@@ -43,7 +44,13 @@ export class UserProfileComponent {
 							gender
 							birthday
 							promotion
+							specialty
 							subscriber_account
+							last_seen
+							pronouns
+							subscription
+							created
+							updated
 						}
 					}
 				`,

@@ -98,11 +98,12 @@
 		"already_registered_and_logged_as_x": "You are already registered and logged as {{name}}"
 	},
 	"profile":{
+		"age": "{{age}} years old",
 		"about": "About",
 		"contact": "Contact",
-		"birthdate": "Birthdate",
+		"birthday": "Birth date",
 		"cursus_utbm": "UTBM Curriculum",
-		"speciality": "Speciality",
+		"specialty": "Specialty",
 		"joined_the_site": "Joined the site",
 		"gender": "Gender",
 		"last_seen": "Last seen",

@@ -2,7 +2,8 @@
 	<img class="logo" [src]="p.logo" alt="logo_ae" (click)="p.route = '/'">
 	<div class="icons">
 		<icon-cogwheel (click)="triggerSideMenuOptions()" />
-		<icon-user-icon *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture" [notifications]="u.notificationsCount ?? 0" />
+		<icon-user *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
+			[notifications]="u.notificationsCount ?? 0" />
 		<icon-burger-menu *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>

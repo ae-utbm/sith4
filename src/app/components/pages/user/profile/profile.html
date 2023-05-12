@@ -1,82 +1,79 @@
-<div class="profile">
-	<div class="icon-list">
-		<!-- Liste des icones -->
-	</div>
-	<div class="profile-container">
-		<!-- Conteneur blanc -->
-		<div class="profile-content">
-			<!-- Reste du contenu -->
-			<icon-user-icon class="icon"></icon-user-icon>
-			<div class="promo-icon"></div>
-			<!-- Logo promo ici -->
-			<div class="upper-profile">
-				<div class="profile-name">
-					<div class="name">
-						<span>{{user?.first_name}} {{user?.last_name}}</span>
-						<!-- Add report icon -->
-					</div>
-					<span class="nickname">{{ nickname }}{{ age }}</span>
+<div class="content">
+	<div class="profile">
+		<div class="banner"></div>
+		<div class="pictures">
+			<icon-user class="picture" />
+			<icon-promotion class="promotion" [number]="user?.promotion" />
+		</div>
+		<div class="infos">
+			<div class="main">
+				<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
+				<span class="nickname">{{ nickname }}{{ 'profile.age' | translate: { age } }}</span>
+			</div>
+			<div class="tab">
+				<div class="tab-header">
+					<button
+						class="tab-link"
+						[ngClass]="{ 'shown': current === 'about' }"
+						(click)="current = 'about'"
+					>{{ 'profile.about' | translate }}</button>
+					<button
+						class="tab-link"
+						[ngClass]="{ 'shown': current === 'contact' }"
+						(click)="current = 'contact'"
+					>{{ 'profile.contact' | translate }}</button>
 				</div>
-				<div class="tab-and-flag">
-					<div class="tab">
-						<div class="tab-header">
-							<button class="tab-link" [ngClass]="{ 'shown': current === 'about' }" (click)="current = 'about'">{{ 'profile.about' | translate }}</button>
-							<button class="tab-link" [ngClass]="{ 'shown': current === 'contact' }"(click)="current = 'contact'">{{ 'profile.contact' | translate }}</button>
-							<div class="tab-band"></div>
-						</div>
-						<div class="tab-content">
-							<div class="details" [ngClass]="{ 'shown': current === 'about' }">
-								<!-- Profil -->
-								<div class="profile-line">
-									<div class="profile-column">
-										<span class="title">{{ 'profile.birthdate' | translate }}</span>
-										<span class="content">{{user?.birthday | date:'dd/MM/yyyy' }}</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
-										<span class="content">{{user?.cursus || "-"}}</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
-										<span class="content">Un jour</span>
-									</div>
-								</div>
-								<div class="profile-line">
-									<div class="profile-column">
-										<span class="title">{{ 'profile.gender' | translate }}</span>
-										<span class="content">{{user?.gender || "-"}}</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.speciality' | translate }}</span>
-										<span class="content">filière</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.last_seen' | translate }}</span>
-										<span class="content">Un autre jour</span>
-									</div>
-								</div>
-								<div class="profile-line">
-									<div class="profile-column">
-										<span class="title">{{ 'profile.pronouns' | translate }}</span>
-										<span class="content">Lui</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.promotion' | translate }}</span>
-										<span class="content">{{ user?.promotion }}</span>
-									</div>
-									<div class="profile-column">
-										<span class="title">{{ 'profile.subscription' | translate }}</span>
-										<span class="content">Peut-être</span>
-									</div>
-								</div>
+
+				<div class="tab-content">
+					<div class="details" [ngClass]="{ 'shown': current === 'about' }">
+						<!-- Profil -->
+						<div class="profile-line">
+							<div class="profile-column" *ngIf="user?.birthday">
+								<span class="title">{{ 'profile.birthday' | translate }}</span>
+								<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
 							</div>
-							<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
-								<!-- Contact -->
-								<span>OUI</span>
+							<div class="profile-column" *ngIf="user?.cursus">
+								<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
+								<span>{{ user?.cursus }}</span>
+							</div>
+							<div class="profile-column" *ngIf="user?.created">
+								<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
+								<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
+							</div>
+						</div>
+						<div class="profile-line">
+							<div class="profile-column" *ngIf="user?.gender">
+								<span class="title">{{ 'profile.gender' | translate }}</span>
+								<span>{{ user?.gender }}</span>
+							</div>
+							<div class="profile-column" *ngIf="user?.specialty">
+								<span class="title">{{ 'profile.specialty' | translate }}</span>
+								<span>{{ user?.specialty }}</span>
+							</div>
+							<div class="profile-column" *ngIf="user?.last_seen">
+								<span class="title">{{ 'profile.last_seen' | translate }}</span>
+								<span>{{ user?.last_seen | date: 'dd/MM/yyyy' }}</span>
+							</div>
+						</div>
+						<div class="profile-line">
+							<div class="profile-column" *ngIf="user?.pronouns">
+								<span class="title">{{ 'profile.pronouns' | translate }}</span>
+								<span>{{ user?.pronouns }}</span>
+							</div>
+							<div class="profile-column" *ngIf="user?.promotion">
+								<span class="title">{{ 'profile.promotion' | translate }}</span>
+								<span>{{ user?.promotion }}</span>
+							</div>
+							<div class="profile-column" *ngIf="user?.subscription">
+								<span class="title">{{ 'profile.subscription' | translate }}</span>
+								<span>{{ user?.subscription | date: 'dd/MM/yyyy' }}</span>
 							</div>
 						</div>
 					</div>
-					<!-- Icone Edit ici -->
+					<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
+						<!-- Contact -->
+						<span>OUI</span>
+					</div>
 				</div>
 			</div>
 		</div>

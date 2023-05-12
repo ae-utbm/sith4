@@ -23,6 +23,22 @@ export interface UserObject {
 		gender?: string;
 		cursus?: string;
 		promotion?: number;
+		specialty?: string;
+		pronouns?: string;
 		subscriber_account?: string;
+		created: Date;
+		updated: Date;
+		last_seen: Date;
+		subscription: Date;
+	};
+}
+
+export interface PromotionObject {
+	promotion: {
+		id: number;
+		number: number;
+		picture?: string;
+		created: Date;
+		updated: Date;
 	};
 }
