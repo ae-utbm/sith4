@@ -1,3 +1,5 @@
+import type { Objected, TokenObject } from 'src/types/objects';
+
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
@@ -5,7 +7,6 @@ import { getErrors } from 'src/app/directives';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 import { Apollo } from 'apollo-angular';
-import { LoginObject } from 'src/types/objects';
 
 import gql from 'graphql-tag';
 
@@ -32,7 +33,7 @@ export class LoginComponent {
 
 	public login(): void {
 		this.apollo
-			.mutate<LoginObject>({
+			.mutate<Objected<TokenObject>>({
 				mutation: gql`
 					mutation ($email: String!, $password: String!) {
 						login(email: $email, password: $password) {
@@ -49,7 +50,7 @@ export class LoginComponent {
 			})
 			.subscribe(({ data }) => {
 				if (data) {
-					this.u.login(data.login.user_id, data.login.token);
+					this.u.login(data['login'].token, data['login'].user_id);
 					this.p.route = '/';
 				} else {
 					this.formGroup.controls['email'].setErrors({ login_fail: true });

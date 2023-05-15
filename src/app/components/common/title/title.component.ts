@@ -8,5 +8,6 @@ import { Component, Input } from '@angular/core';
 export class TitleComponent {
 	@Input() public text = '';
 	@Input() public onDarkBackground = false;
+	@Input() public adaptColor = false;
 	@Input() public isCentered = false;
 }

@@ -45,6 +45,7 @@
 	"global": {
 		"back": "Back",
 		"sign_in": "Sign in",
+		"save": "Save",
 		"register": "Register",
 		"last_name": "Last name",
 		"first_name": "First name",
@@ -109,6 +110,7 @@
 		"last_seen": "Last seen",
 		"pronouns": "Pronouns",
 		"promotion": "Promotion",
-		"subscription" : "Subscription date"
+		"subscription" : "Subscription date",
+		"picture_too_recent": "You can't change your profile picture before {{date}}"
 	}
 }

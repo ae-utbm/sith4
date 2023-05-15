@@ -1,0 +1,26 @@
+<dialog class="picture-dialog" #picture>
+	<icon-close class="close" (click)="closePictureModal()" />
+
+	<app-title [text]="'Update Profile Picture'" [adaptColor]="true" />
+	<form method="dialog" [formGroup]="pictureForm">
+		<span *ngIf="timeLeft">{{ 'profile.picture_too_recent' | translate: { date: timeLeft } }}</span>
+
+		<input
+			type="file"
+			accept="image/*"
+			formControlName="picture"
+			#pictureInput
+			(change)="updateUncroppedPicture($event)"
+		/>
+
+		<app-image-cropper
+			class="cropper"
+			*ngIf="pictureUncropped"
+			[imageUrl]="pictureUncropped"
+			[cropperOptions]="pictureOptions"
+			(export)="updateCroppedPicture($event)"
+		/>
+
+		<app-button [disabled]="!pictureForm.valid" [text]="'global.save' | translate" type="submit" (click)="pictureCropper.exportCanvas(true)" />
+	</form>
+</dialog>

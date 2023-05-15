@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, UrlTree } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { FontSize, Theme, ThemeEvent } from 'src/types';
@@ -34,10 +34,10 @@ export class PageService {
 
 	/**
 	 * Set the current route
-	 * @param {string} route The route to set
+	 * @param {string | UrlTree} route The route to set
 	 * @example p.route = '/login'; // set the route to '/login' (login page)
 	 */
-	public set route(route: string) {
+	public set route(route: string | UrlTree) {
 		this.router.navigateByUrl(route);
 	}
 

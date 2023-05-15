@@ -50,3 +50,15 @@ export interface Alert {
 	/** The alert type */
 	id: string;
 }
+
+export interface ImageCropperSetting {
+	width: number;
+	height: number;
+}
+
+export interface ImageCropperResult {
+	imageData: Cropper.ImageData;
+	cropData: Cropper.CropBoxData;
+	blob?: Blob;
+	dataUrl?: string;
+}

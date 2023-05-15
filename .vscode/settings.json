@@ -15,14 +15,18 @@
   "cSpell.words": [
     "browserconfig",
     "christmas",
+    "cropbox",
+    "cropperjs",
     "hcaptcha",
+    "ngxs",
+    "Ngxs",
     "pinktober",
     "sith",
     "stylelint",
     "truetype"
   ],
   "files.eol": "\n",
-	"editor.formatOnSave": true,
+	"editor.formatOnSave": false,
 	"editor.fontLigatures": true,
 	"editor.fontFamily": "'Fira Code', Consolas, 'Courier New', monospace",
 }

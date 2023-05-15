@@ -14,6 +14,7 @@ import { NgHcaptchaModule } from 'ng-hcaptcha';
 import { UserPaymentsComponent } from './user/payments/payments.component';
 import { UserProfileComponent } from './user/profile/profile.component';
 import { UserPicturesComponent } from './user/pictures/pictures.component';
+import { UserProfilePictureEditModalComponent } from './user/profile/picture/picture-edit-modal.component';
 
 @NgModule({
 	declarations: [
@@ -25,6 +26,7 @@ import { UserPicturesComponent } from './user/pictures/pictures.component';
 		UserPaymentsComponent,
 		UserProfileComponent,
 		UserPicturesComponent,
+		UserProfilePictureEditModalComponent,
 	],
 	exports: [
 		NotFoundComponent,
@@ -35,6 +37,7 @@ import { UserPicturesComponent } from './user/pictures/pictures.component';
 		UserPaymentsComponent,
 		UserProfileComponent,
 		UserPicturesComponent,
+		UserProfilePictureEditModalComponent,
 	],
 	imports: [
 		FormsModule,

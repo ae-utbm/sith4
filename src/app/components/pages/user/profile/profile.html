@@ -1,12 +1,14 @@
+<app-user-profile-picture-edit-modal #pictureModal />
+
 <div class="content">
 	<div class="profile">
 		<div class="banner"></div>
-		<div class="pictures">
-			<icon-user class="picture" />
-			<icon-promotion class="promotion" [number]="user?.promotion" />
+		<div class="pictures" [ngClass]="{ 'rtl': p.isRTL }">
+			<icon-user class="picture" (click)="pictureModal.openPictureModal()" [url]="profilePicture" />
+			<icon-promotion class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
 		</div>
 		<div class="infos">
-			<div class="main">
+			<div class="main" [ngClass]="{ 'rtl': p.isRTL }">
 				<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
 				<span class="nickname">{{ nickname }}{{ 'profile.age' | translate: { age } }}</span>
 			</div>

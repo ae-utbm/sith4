@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { PromotionObject } from 'src/types/objects';
+import { Objected, PromotionObject } from 'src/types/objects';
 
 @Component({
 	selector: 'icon-promotion',
@@ -14,7 +14,7 @@ export class IconPromotionComponent {
 
 	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {
 		this.apollo
-			.query<PromotionObject>({
+			.query<Objected<PromotionObject>>({
 				query: gql`
 					query ($number: Int!) {
 						promotion(number: $number) {
@@ -29,8 +29,8 @@ export class IconPromotionComponent {
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data }) => {
-				this.picture = data?.promotion?.picture;
-				this.picture = 'https://ae.utbm.fr/static/core/img/promo_21.png';
+				if (!data) return;
+				this.picture = data['promotion']?.picture;
 			});
 	}
 }

@@ -1,4 +1,4 @@
-import type { RegisterObject } from 'src/types/objects';
+import type { Objected, TokenObject } from 'src/types/objects';
 
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -76,7 +76,7 @@ export class RegisterComponent {
 
 	public register(): void {
 		this.apollo
-			.mutate<RegisterObject>({
+			.mutate<Objected<TokenObject>>({
 				mutation: gql`
 					mutation (
 						$birthday: DateTime!
@@ -108,7 +108,7 @@ export class RegisterComponent {
 			})
 			.subscribe(({ data, errors }) => {
 				if (data && !errors) {
-					this.u.login(data.register.user_id, data.register.token);
+					this.u.login(data['register'].token, data['register'].user_id);
 					this.p.route = '/';
 				} else if (errors) {
 					this.formGroup.controls['email'].setErrors({ api: errors[0].message });
