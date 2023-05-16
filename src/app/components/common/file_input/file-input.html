@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="fake-input-file">
+		<icon-upload class="icon" />
+		<span class="label">{{ filename }}</span>
+	</div>
+
+	<input
+		type="file"
+		accept="image/*"
+		(change)="onFileChange($event)"
+	/>
+</div>

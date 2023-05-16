@@ -14,6 +14,7 @@ import { SubtitleComponent } from './subtitle/subtitle.component';
 import { ThemeSelectorComponent } from './theme_selector/theme_selector.component';
 import { FontSizeSelectorComponent } from './text_size_selector/text_size_selector.component';
 import { ImageCropperComponent } from './image_cropper/image-cropper.component';
+import { FileInputComponent } from './file_input/file-input.component';
 
 @NgModule({
 	declarations: [
@@ -29,6 +30,7 @@ import { ImageCropperComponent } from './image_cropper/image-cropper.component';
 		ThemeSelectorComponent,
 		FontSizeSelectorComponent,
 		ImageCropperComponent,
+		FileInputComponent,
 	],
 	exports: [
 		IconsModule,
@@ -44,6 +46,7 @@ import { ImageCropperComponent } from './image_cropper/image-cropper.component';
 		ThemeSelectorComponent,
 		FontSizeSelectorComponent,
 		ImageCropperComponent,
+		FileInputComponent,
 	],
 	imports: [IconsModule, CommonModule, TranslateModule],
 })
