@@ -9,4 +9,5 @@ export class ButtonComponent {
 	@Input() public text = '';
 	@Input() public height: 'medium' | 'large' | 'small' = 'medium';
 	@Input() public disabled = false;
+	@Input() public aspect: 'normal' | 'danger' = 'normal';
 }

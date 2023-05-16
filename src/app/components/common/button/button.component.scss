@@ -34,4 +34,19 @@ button {
 		color: var(--text-color-dark-bg);
 		cursor: not-allowed;
 	}
+
+	&.danger {
+		background-color: var(--red);
+		color: var(--text-color-dark-bg);
+
+		&:hover {
+			background-color: var(--red-hover);
+			color: var(--text-color-dark-bg);
+		}
+
+		&:disabled {
+			background-color: var(--gray2-hover);
+			color: var(--text-color-dark-bg);
+		}
+	}
 }
