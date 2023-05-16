@@ -22,7 +22,7 @@ export class PageService {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(DeviceDetectorService) private readonly deviceService: DeviceDetectorService,
-		@Inject(Router) private readonly router: Router,
+		@Inject(Router) public readonly router: Router,
 	) {
 		// watch for route changes
 		router.events.subscribe((val) => {

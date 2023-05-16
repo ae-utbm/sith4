@@ -1,5 +1,5 @@
 <div class="profile-container">
-	<div class="background-image" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
+	<div class="background-image" [ngClass]="{ 'has-banner': u.banner !== undefined }" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
 		<div class="promotion"></div>
 		<div class="ae-sticker"></div>
 	</div>

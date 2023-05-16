@@ -1,29 +1,34 @@
-<app-user-profile-picture-edit-modal #pictureModal />
+<app-user-profile-picture-edit-modal #pictureModal (pictureUpdated)="updatePicture($event)" />
+<app-user-profile-banner-edit-modal #bannerModal (bannerUpdated)="updateBanner($event)" [existingBanner]="profileBanner !== undefined" />
 
 <div class="content">
 	<div class="profile">
-		<div class="banner"></div>
+		<div class="banner" [ngStyle]="{ 'background-image': 'url(' + profileBanner + ')' }" [ngClass]="profileBanner ? 'has-banner' : ''">
+			<span *ngIf="suspended" class="suspended">{{ 'profile.account_suspended' | translate }}</span>
+			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
+			<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()"/>
+		</div>
 		<div class="pictures" [ngClass]="{ 'rtl': p.isRTL }">
-			<icon-user class="picture" (click)="pictureModal.openPictureModal()" [url]="profilePicture" />
+			<icon-user class="picture" (click)="pictureModal.open()" [url]="profilePicture" />
 			<icon-promotion class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
 		</div>
 		<div class="infos">
 			<div class="main" [ngClass]="{ 'rtl': p.isRTL }">
-				<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
-				<span class="nickname">{{ nickname }}{{ 'profile.age' | translate: { age } }}</span>
+				<div>
+					<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
+					<div class="nickname">{{ nickname }}<div *ngIf="age">&nbsp;{{ 'profile.age' | translate: { age} }}</div></div>
+				</div>
+				<icon-flag class="flag" *ngIf="!isOwner" />
 			</div>
 			<div class="tab">
 				<div class="tab-header">
-					<button
-						class="tab-link"
-						[ngClass]="{ 'shown': current === 'about' }"
-						(click)="current = 'about'"
-					>{{ 'profile.about' | translate }}</button>
-					<button
-						class="tab-link"
-						[ngClass]="{ 'shown': current === 'contact' }"
-						(click)="current = 'contact'"
-					>{{ 'profile.contact' | translate }}</button>
+					<div class="tabs">
+						<button class="tab-link" [ngClass]="{ 'shown': current === 'about' }" (click)="current = 'about'">{{ 'profile.about' |
+							translate }}</button>
+						<button class="tab-link" [ngClass]="{ 'shown': current === 'contact' }" (click)="current = 'contact'">{{
+							'profile.contact' | translate }}</button>
+					</div>
+					<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" />
 				</div>
 
 				<div class="tab-content">

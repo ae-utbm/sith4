@@ -1,10 +1,13 @@
+$banner-height: 130px;
+$no-banner-height: 45px;
+
 .profile-container {
 	position: relative;
 	height: 100%;
 
 	>.background-image {
 		width: 100%;
-		height: 136px;
+		height: $no-banner-height;
 		background-color: var(--navbar-background-color);
 		background-size: cover;
 		background-repeat: no-repeat;
@@ -15,8 +18,12 @@
 		padding: 5px;
 		gap: 5px;
 
+		&.has-banner {
+			height: $banner-height;
+		}
+
 		>.promotion {
-			width: 34px;
+			width: 35px;
 			border-radius: 50%;
 		}
 
@@ -28,19 +35,18 @@
 		>.promotion,
 		>.ae-sticker {
 			display: block;
-			height: 34px;
-			border: dotted 2px var(--text-color-dark-bg);
+			height: 35px;
+			border: dotted 1.5px var(--text-color-dark-bg);
 		}
 	}
 
 	>.infos {
-		margin-left: 110px;
+		margin-left: 105px;
 		color: var(--text-color-dark-bg);
 		display: flex;
 		justify-content: space-between;
 		align-items: flex-start;
 		padding: 5px;
-		padding-left: 0;
 		min-height: 50px;
 		font-family: Roboto, sans-serif;
 		font-weight: 500;
@@ -66,7 +72,7 @@
 		width: 100px;
 		height: 100px;
 		left: 5px;
-		top: calc(136px - 50px);
+		top: 5px;
 
 		&.rtl {
 			left: unset;
@@ -74,9 +80,13 @@
 		}
 	}
 
+	>.background-image.has-banner ~ .user-picture {
+		top: calc($banner-height - 50px);
+	}
+
 	> main {
 		padding: 16px 16px 40px;
-		height: calc(100vh - 136px - 50px);
+		height: calc(100vh - $no-banner-height - 50px);
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
@@ -121,6 +131,10 @@
 					}
 				}
 			}
+		}
+
+		> .background-image.has-banner ~ main {
+			height: calc(100vh - $banner-height - 50px);
 		}
 
 		.logout {

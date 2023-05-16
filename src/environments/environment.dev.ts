@@ -5,6 +5,7 @@ export const environment = {
 	HCAPTCHA_SITE_KEY: '10000000-ffff-ffff-ffff-000000000001',
 	API_URL: 'http://localhost:3000/api',
 	GRAPHQL_URL: 'http://localhost:3000/graphql',
+	DELAY_UPDATE_PROFILE_PICTURE: 604800,
 };
 
 export type Environment = typeof environment;

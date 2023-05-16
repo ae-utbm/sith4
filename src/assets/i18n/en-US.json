@@ -46,6 +46,7 @@
 		"back": "Back",
 		"sign_in": "Sign in",
 		"save": "Save",
+		"delete": "Delete",
 		"register": "Register",
 		"last_name": "Last name",
 		"first_name": "First name",
@@ -111,6 +112,10 @@
 		"pronouns": "Pronouns",
 		"promotion": "Promotion",
 		"subscription" : "Subscription date",
-		"picture_too_recent": "You can't change your profile picture before {{date}}"
+		"picture_too_recent": "You can't change your profile picture before {{date}}",
+		"update_picture": "Update profile picture",
+		"update_banner": "Update profile banner",
+		"account_suspended": "Account suspended",
+		"account_banned": "Account banned : {{time}} left"
 	}
 }

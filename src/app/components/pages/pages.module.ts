@@ -15,6 +15,7 @@ import { UserPaymentsComponent } from './user/payments/payments.component';
 import { UserProfileComponent } from './user/profile/profile.component';
 import { UserPicturesComponent } from './user/pictures/pictures.component';
 import { UserProfilePictureEditModalComponent } from './user/profile/picture/picture-edit-modal.component';
+import { UserProfileBannerEditModalComponent } from './user/profile/banner/banner-edit-modal.component';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { UserProfilePictureEditModalComponent } from './user/profile/picture/pic
 		UserProfileComponent,
 		UserPicturesComponent,
 		UserProfilePictureEditModalComponent,
+		UserProfileBannerEditModalComponent,
 	],
 	exports: [
 		NotFoundComponent,
@@ -38,6 +40,7 @@ import { UserProfilePictureEditModalComponent } from './user/profile/picture/pic
 		UserProfileComponent,
 		UserPicturesComponent,
 		UserProfilePictureEditModalComponent,
+		UserProfileBannerEditModalComponent,
 	],
 	imports: [
 		FormsModule,

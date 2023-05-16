@@ -1,3 +1,5 @@
+import type { base64 } from 'src/types';
+
 import { Component, Inject, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
@@ -7,8 +9,8 @@ import { Objected, UserObject } from 'src/types/objects';
 import { UserProfilePictureEditModalComponent } from './picture/picture-edit-modal.component';
 import { environment } from 'src/environments/environment.dev';
 import { HttpClient } from '@angular/common/http';
-import { toBase64 } from 'src/utils/buffer';
 import { ActivatedRoute } from '@angular/router';
+import { UserProfileBannerEditModalComponent } from './banner/banner-edit-modal.component';
 
 @Component({
 	selector: 'app-user-profile',
@@ -18,11 +20,20 @@ import { ActivatedRoute } from '@angular/router';
 export class UserProfileComponent {
 	public current: 'about' | 'contact' = 'about';
 	public user?: UserObject;
-	public profilePicture?: string;
 	public age?: number;
 	public birthdayFormatted?: string;
 
+	public profilePicture?: base64;
+	public profileBanner?: base64;
+
+	// TODO implement those fields
+	public suspended = false;
+	public banned = false;
+
+	private userId = 0;
+
 	@ViewChild('pictureModal', { static: false }) public pictureModal!: UserProfilePictureEditModalComponent;
+	@ViewChild('bannerModal', { static: false }) public bannerModal!: UserProfileBannerEditModalComponent;
 
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
@@ -33,13 +44,35 @@ export class UserProfileComponent {
 		private activeRoute: ActivatedRoute,
 	) {
 		this.activeRoute.params.subscribe((params) => {
-			this.getUserData(parseInt(params['id'], 10));
+			this.userId = parseInt(params['id'], 10);
+			this.getUserData(this.userId);
 		});
 	}
 
 	public get nickname(): string {
 		if (!this.user?.nickname) return '';
 		return `${this.user?.nickname} — `;
+	}
+
+	/**
+	 * Returns true if the current user is the owner of the profile or has the permission to edit it.
+	 * @returns {boolean} True if the current user is the owner of the profile or has the permission to edit it.
+	 * TODO implement permission system
+	 */
+	public get isOwnerOrHasPermission(): boolean {
+		return this.isOwner;
+	}
+
+	public get isOwner(): boolean {
+		return this.userId === this.u.user?.id;
+	}
+
+	public updatePicture(output: base64) {
+		this.profilePicture = output;
+	}
+
+	public updateBanner(output: base64) {
+		this.profileBanner = output;
 	}
 
 	public getUserData(user_id: number): void {
@@ -51,8 +84,30 @@ export class UserProfileComponent {
 				},
 				responseType: 'arraybuffer',
 			})
-			.subscribe((data) => {
-				this.profilePicture = 'data:image/png;base64,' + toBase64(data);
+			.subscribe({
+				next: (data) => {
+					this.profilePicture = data.toBase64();
+				},
+				error: (_) => {
+					// do nothing (default picture will be used)
+				},
+			});
+
+		this.http
+			.get(`${environment.API_URL}/users/banner/${user_id}`, {
+				headers: {
+					Authorization: `${sessionStorage.getItem('token')}`,
+					'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
+				},
+				responseType: 'arraybuffer',
+			})
+			.subscribe({
+				next: (data) => {
+					this.profileBanner = data.toBase64();
+				},
+				error: (_) => {
+					// do nothing (default picture will be used)
+				},
 			});
 
 		this.apollo
@@ -84,11 +139,15 @@ export class UserProfileComponent {
 				fetchPolicy: 'cache-first',
 				errorPolicy: 'all',
 			})
-			.subscribe(({ data }) => {
+			.subscribe(({ data, error }) => {
 				if (data) {
 					this.user = data['user'];
 					const TimeDiff = Math.abs(Date.now() - new Date(this.user?.birthday ?? 0).getTime());
 					this.age = Math.floor(TimeDiff / (1000 * 3600 * 24) / 365.25);
+				}
+
+				if (!data || error) {
+					this.p.router.navigate(['/404']);
 				}
 			});
 	}

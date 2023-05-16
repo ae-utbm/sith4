@@ -1,10 +1,9 @@
 import type { Objected, UserObject } from 'src/types/objects';
 
-import { Inject, Injectable, OnInit } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from './page.service';
 import { environment } from 'src/environments/environment.dev';
-import { toBase64 } from 'src/utils/buffer';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -23,6 +22,7 @@ export class UserService {
 
 		this.fetchUser(userId);
 		this.fetchUserPicture(userId);
+		this.fetchUserBanner(userId);
 
 		this.p.route = `profile/${userId}`;
 	}
@@ -66,8 +66,28 @@ export class UserService {
 				},
 				responseType: 'arraybuffer',
 			})
-			.subscribe((data) => {
-				if (data) sessionStorage.setItem('user_picture', 'data:image/png;base64,' + toBase64(data));
+			.subscribe({
+				next: (data) => {
+					if (data) sessionStorage.setItem('user_picture', data.toBase64());
+				},
+				error: () => sessionStorage.removeItem('user_picture'),
+			});
+	}
+
+	public fetchUserBanner(id: number) {
+		this.http
+			.get(`${environment.API_URL}/users/banner/${id}`, {
+				headers: {
+					Authorization: `${sessionStorage.getItem('token')}`,
+					'Accept-Language': sessionStorage.getItem('lang') ?? 'en-US',
+				},
+				responseType: 'arraybuffer',
+			})
+			.subscribe({
+				next: (data) => {
+					if (data) sessionStorage.setItem('user_banner', data.toBase64());
+				},
+				error: () => sessionStorage.removeItem('user_banner'),
 			});
 	}
 
@@ -77,6 +97,10 @@ export class UserService {
 
 	public refreshUserPicture(): void {
 		if (this.isLoggedIn) this.fetchUserPicture(this.id ?? -1);
+	}
+
+	public refreshUserBanner(): void {
+		if (this.isLoggedIn) this.fetchUserBanner(this.id ?? -1);
 	}
 
 	public logout(): void {
@@ -94,6 +118,10 @@ export class UserService {
 
 	public get picture(): string | undefined {
 		return sessionStorage.getItem('user_picture') ?? undefined;
+	}
+
+	public get banner(): string | undefined {
+		return sessionStorage.getItem('user_banner') ?? undefined;
 	}
 
 	public get isLoggedIn(): boolean {
@@ -116,21 +144,19 @@ export class UserService {
 		return this.isLoggedIn && this.user ? this.user.subscriber_account : undefined;
 	}
 
+	// TODO
 	public get balance(): number {
 		return 0;
 		// return this.isLoggedIn && this.user ? this.user.balance : undefined;
 	}
 
-	public get banner(): string | undefined {
-		return undefined;
-		// return this.isLoggedIn && this.user ? this.user.profile_banner : undefined;
-	}
-
+	// TODO
 	public get notifications(): string[] | undefined {
 		return undefined;
 		// return this.isLoggedIn && this.user ? this.user.notifications : undefined;
 	}
 
+	// TODO
 	public get notificationsCount(): number | undefined {
 		return undefined;
 		// return this.isLoggedIn && this.user ? this.user.notifications.length : undefined;
