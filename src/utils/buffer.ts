@@ -1,15 +1,29 @@
-/**
- * Convert an ArrayBuffer to a base64 string
- * @param {ArrayBuffer} buffer The buffer to convert
- * @returns {string} The base64 string
- */
-export function toBase64(buffer: ArrayBuffer): string {
-	let binary = '';
-	const bytes = new Uint8Array(buffer);
-	const len = bytes.byteLength;
+import { base64 } from 'src/types';
 
-	for (let i = 0; i < len; i++) {
-		binary += String.fromCharCode(bytes[i]);
+export {};
+
+declare global {
+	interface ArrayBuffer {
+		/**
+		 * Convert an ArrayBuffer to a base64 string
+		 * @param {string} type The type of the file @default 'image'
+		 * @param {string} extension The extension of the file @default 'png'
+		 * @returns {string} The base64 string
+		 */
+		toBase64(type?: string, extension?: string): base64;
 	}
-	return window.btoa(binary);
+}
+
+if (!ArrayBuffer.prototype.toBase64) {
+	ArrayBuffer.prototype.toBase64 = function toBase64(type = 'image', extension = 'png'): base64 {
+		let binary = '';
+		const bytes = new Uint8Array(this);
+		const len = bytes.byteLength;
+
+		for (let i = 0; i < len; i++) {
+			binary += String.fromCharCode(bytes[i]);
+		}
+
+		return `data:${type}/${extension};base64,${window.btoa(binary)}`;
+	};
 }

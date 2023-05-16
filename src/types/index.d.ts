@@ -56,9 +56,11 @@ export interface ImageCropperSetting {
 	height: number;
 }
 
+export type base64 = `data:${string}/${string};base64,${string}`;
+
 export interface ImageCropperResult {
 	imageData: Cropper.ImageData;
 	cropData: Cropper.CropBoxData;
 	blob?: Blob;
-	dataUrl?: string;
+	dataUrl?: base64;
 }
