@@ -20,6 +20,9 @@ import { IconPasswordComponent } from './password/password.component';
 import { IconCalendarComponent } from './calendar/calendar.component';
 import { IconCloseComponent } from './close/close.component';
 import { IconPromotionComponent } from './promo_icon/promo_icon.component';
+import { IconPencilComponent } from './pencil/pencil.component';
+import { IconFlagComponent } from './flag/flag.component';
+import { IconUploadComponent } from './upload/upload.component';
 
 @NgModule({
 	declarations: [
@@ -43,6 +46,9 @@ import { IconPromotionComponent } from './promo_icon/promo_icon.component';
 		IconPasswordComponent,
 		IconCalendarComponent,
 		IconCloseComponent,
+		IconPencilComponent,
+		IconFlagComponent,
+		IconUploadComponent,
 	],
 	exports: [
 		IconBurgerMenuComponent,
@@ -65,6 +71,9 @@ import { IconPromotionComponent } from './promo_icon/promo_icon.component';
 		IconPasswordComponent,
 		IconCalendarComponent,
 		IconCloseComponent,
+		IconPencilComponent,
+		IconFlagComponent,
+		IconUploadComponent,
 	],
 	imports: [CommonModule],
 })
