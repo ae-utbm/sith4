@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { NotFoundComponent } from './components/pages/404/not-found.component';
-import { HomeComponent } from './components/pages/home/home.component';
-import { LoginComponent } from './components/pages/login/login.component';
-import { RegisterComponent } from './components/pages/register/register.component';
-import { ForgotPasswordComponent } from './components/pages/forgot_password/forgot_password.component';
-import { UserPaymentsComponent } from './components/pages/user/payments/payments.component';
-import { UserPicturesComponent } from './components/pages/user/pictures/pictures.component';
-import { UserProfileComponent } from './components/pages/user/profile/profile.component';
+import { NotFoundComponent } from './pages/404/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot_password/forgot_password.component';
+import { UserPaymentsComponent } from './pages/user/payments/payments.component';
+import { UserPicturesComponent } from './pages/user/pictures/pictures.component';
+import { UserProfileComponent } from './pages/user/profile/profile.component';
 
 const routes: Routes = [
 	{

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
-import { CommonComponentsModule } from '../../common/common.module';
+import { CommonComponentsModule } from '../../components/common/common.module';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 

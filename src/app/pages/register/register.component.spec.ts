@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { CommonComponentsModule } from '../../common/common.module';
+import { CommonComponentsModule } from '../../components/common/common.module';
 import { NgHcaptchaModule, NgHcaptchaService } from 'ng-hcaptcha';
 import { environment } from 'src/environments/environment.dev';
 

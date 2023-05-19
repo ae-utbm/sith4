@@ -1,10 +1,11 @@
-import type { Objected, UserObject } from 'src/types/objects';
+import type { Objected, PublicUserObject } from 'src/types/objects';
 
 import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from './page.service';
 import { environment } from 'src/environments/environment.dev';
 import { HttpClient } from '@angular/common/http';
+import { DEFAULT_HEADERS } from 'src/utils/http';
 
 @Injectable({
 	providedIn: 'root',
@@ -29,7 +30,7 @@ export class UserService {
 
 	public fetchUser(id: number) {
 		this.apollo
-			.query<Objected<UserObject>>({
+			.query<Objected<PublicUserObject>>({
 				query: gql`
 					query ($user_id: Int!) {
 						user(id: $user_id) {
@@ -60,10 +61,7 @@ export class UserService {
 	public fetchUserPicture(id: number) {
 		this.http
 			.get(`${environment.API_URL}/users/picture/${id}`, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': sessionStorage.getItem('lang') ?? 'en-US',
-				},
+				headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
@@ -77,10 +75,7 @@ export class UserService {
 	public fetchUserBanner(id: number) {
 		this.http
 			.get(`${environment.API_URL}/users/banner/${id}`, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': sessionStorage.getItem('lang') ?? 'en-US',
-				},
+				headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
@@ -112,7 +107,7 @@ export class UserService {
 		// this.p.route = '/';
 	}
 
-	public get user(): Partial<UserObject> {
+	public get user(): Partial<PublicUserObject> {
 		return JSON.parse(sessionStorage.getItem('user') ?? '{}');
 	}
 

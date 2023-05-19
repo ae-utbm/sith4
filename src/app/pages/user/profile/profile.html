@@ -12,6 +12,7 @@
 			<icon-user class="picture" (click)="pictureModal.open()" [url]="profilePicture" />
 			<icon-promotion class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
 		</div>
+
 		<div class="infos">
 			<div class="main" [ngClass]="{ 'rtl': p.isRTL }">
 				<div>
@@ -20,58 +21,59 @@
 				</div>
 				<icon-flag class="flag" *ngIf="!isOwner" />
 			</div>
+
 			<div class="tab">
-				<div class="tab-header">
+				<div class="header">
 					<div class="tabs">
-						<button class="tab-link" [ngClass]="{ 'shown': current === 'about' }" (click)="current = 'about'">{{ 'profile.about' |
+						<button class="link" [ngClass]="{ 'shown': current === 'about' }" (click)="current = 'about'">{{ 'profile.about' |
 							translate }}</button>
-						<button class="tab-link" [ngClass]="{ 'shown': current === 'contact' }" (click)="current = 'contact'">{{
+						<button class="link" [ngClass]="{ 'shown': current === 'contact' }" (click)="current = 'contact'">{{
 							'profile.contact' | translate }}</button>
 					</div>
 					<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" />
 				</div>
 
-				<div class="tab-content">
+				<div class="body">
 					<div class="details" [ngClass]="{ 'shown': current === 'about' }">
 						<!-- Profil -->
-						<div class="profile-line">
-							<div class="profile-column" *ngIf="user?.birthday">
+						<div class="row">
+							<div class="column" *ngIf="user?.birthday">
 								<span class="title">{{ 'profile.birthday' | translate }}</span>
 								<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.cursus">
+							<div class="column" *ngIf="user?.cursus">
 								<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
 								<span>{{ user?.cursus }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.created">
+							<div class="column" *ngIf="user?.created">
 								<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
 								<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
 							</div>
 						</div>
-						<div class="profile-line">
-							<div class="profile-column" *ngIf="user?.gender">
+						<div class="row">
+							<div class="column" *ngIf="user?.gender">
 								<span class="title">{{ 'profile.gender' | translate }}</span>
 								<span>{{ user?.gender }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.specialty">
+							<div class="column" *ngIf="user?.specialty">
 								<span class="title">{{ 'profile.specialty' | translate }}</span>
 								<span>{{ user?.specialty }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.last_seen">
+							<div class="column" *ngIf="user?.last_seen">
 								<span class="title">{{ 'profile.last_seen' | translate }}</span>
 								<span>{{ user?.last_seen | date: 'dd/MM/yyyy' }}</span>
 							</div>
 						</div>
-						<div class="profile-line">
-							<div class="profile-column" *ngIf="user?.pronouns">
+						<div class="row">
+							<div class="column" *ngIf="user?.pronouns">
 								<span class="title">{{ 'profile.pronouns' | translate }}</span>
 								<span>{{ user?.pronouns }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.promotion">
+							<div class="column" *ngIf="user?.promotion">
 								<span class="title">{{ 'profile.promotion' | translate }}</span>
 								<span>{{ user?.promotion }}</span>
 							</div>
-							<div class="profile-column" *ngIf="user?.subscription">
+							<div class="column" *ngIf="user?.subscription">
 								<span class="title">{{ 'profile.subscription' | translate }}</span>
 								<span>{{ user?.subscription | date: 'dd/MM/yyyy' }}</span>
 							</div>
@@ -79,7 +81,26 @@
 					</div>
 					<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
 						<!-- Contact -->
-						<span>OUI</span>
+						<div class="row">
+							<div class="column">
+								<span class="title">{{ 'profile.email' | translate }}</span>
+								<span>{{ user?.email }}</span>
+							</div>
+							<div class="column">
+								<span class="title">{{ 'profile.secondary_email' | translate }}</span>
+								<span>{{ user?.secondary_email }}</span>
+							</div>
+							<div class="column">
+								<span class="title">{{ 'profile.phone' | translate }}</span>
+								<span>{{ user?.phone }}</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="column">
+								<span class="title">{{ 'profile.parent_contact' | translate }}</span>
+								<span>{{ user?.parent_contact }}</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

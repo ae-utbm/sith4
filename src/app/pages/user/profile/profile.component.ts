@@ -5,12 +5,13 @@ import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { Objected, UserObject } from 'src/types/objects';
-import { UserProfilePictureEditModalComponent } from './picture/picture-edit-modal.component';
+import { Objected, PublicUserObject, UserObject } from 'src/types/objects';
+import { UserProfilePictureEditModalComponent } from './picture-modal/picture-edit-modal.component';
 import { environment } from 'src/environments/environment.dev';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { UserProfileBannerEditModalComponent } from './banner/banner-edit-modal.component';
+import { UserProfileBannerEditModalComponent } from './banner-modal/banner-edit-modal.component';
+import { DEFAULT_HEADERS } from 'src/utils/http';
 
 @Component({
 	selector: 'app-user-profile',
@@ -19,7 +20,7 @@ import { UserProfileBannerEditModalComponent } from './banner/banner-edit-modal.
 })
 export class UserProfileComponent {
 	public current: 'about' | 'contact' = 'about';
-	public user?: UserObject;
+	public user?: UserObject<typeof this.hasPermission>;
 	public age?: number;
 	public birthdayFormatted?: string;
 
@@ -60,7 +61,11 @@ export class UserProfileComponent {
 	 * TODO implement permission system
 	 */
 	public get isOwnerOrHasPermission(): boolean {
-		return this.isOwner;
+		return this.isOwner || this.hasPermission;
+	}
+
+	public get hasPermission(): boolean {
+		return true;
 	}
 
 	public get isOwner(): boolean {
@@ -78,40 +83,34 @@ export class UserProfileComponent {
 	public getUserData(user_id: number): void {
 		this.http
 			.get(`${environment.API_URL}/users/picture/${user_id}`, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
-				},
+				headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
 				next: (data) => {
 					this.profilePicture = data.toBase64();
 				},
-				error: (_) => {
+				error: () => {
 					// do nothing (default picture will be used)
 				},
 			});
 
 		this.http
 			.get(`${environment.API_URL}/users/banner/${user_id}`, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
-				},
+				headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
 				next: (data) => {
 					this.profileBanner = data.toBase64();
 				},
-				error: (_) => {
+				error: () => {
 					// do nothing (default picture will be used)
 				},
 			});
 
 		this.apollo
-			.query<Objected<UserObject>>({
+			.query<Objected<PublicUserObject>>({
 				query: gql`
 					query ($user_id: Int!) {
 						user(id: $user_id) {

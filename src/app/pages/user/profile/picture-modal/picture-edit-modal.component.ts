@@ -1,32 +1,33 @@
+import type { DateObject, Objected } from 'src/types/objects';
 import type { ImageCropperResult, base64 } from 'src/types';
 
-import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
+import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter } from '@angular/core';
+import { Apollo, gql } from 'apollo-angular';
 import { ImageCropperComponent } from 'src/app/components/common/image_cropper/image-cropper.component';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { DEFAULT_HEADERS } from 'src/utils/http';
 
 @Component({
-	selector: 'app-user-profile-banner-edit-modal',
-	templateUrl: './banner-edit-modal.html',
-	styleUrls: ['./banner-edit-modal.scss'],
+	selector: 'app-user-profile-picture-edit-modal',
+	templateUrl: './picture-edit-modal.html',
+	styleUrls: ['./picture-edit-modal.scss'],
 })
-export class UserProfileBannerEditModalComponent implements OnInit {
-	@ViewChild('banner', { static: true }) public modal!: ElementRef<HTMLDialogElement>;
+export class UserProfilePictureEditModalComponent implements OnInit {
+	@ViewChild('picture', { static: true }) public modal!: ElementRef<HTMLDialogElement>;
 	@ViewChild(ImageCropperComponent, { static: false }) public cropper!: ImageCropperComponent;
 
-	@Input() public existingBanner = false;
-
-	public bannerUncropped?: base64;
-	public bannerCropped?: ImageCropperResult;
+	public pictureUncropped?: base64;
+	public pictureCropped?: ImageCropperResult;
 
 	private userId = 0;
 
-	@Output() public bannerUpdated = new EventEmitter<base64>();
+	@Output() public pictureUpdated = new EventEmitter<base64>();
 
 	public readonly options: Cropper.Options = {
-		aspectRatio: 3,
+		aspectRatio: 1,
 		rotatable: true,
 		zoomable: true,
 		scalable: true,
@@ -35,12 +36,14 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 	public timeLeft?: Date;
 
 	public constructor(
+		@Inject(Apollo) private readonly apollo: Apollo,
 		@Inject(HttpClient) private readonly http: HttpClient,
 		@Inject(UserService) private readonly u: UserService,
 		private activeRoute: ActivatedRoute,
 	) {
 		this.activeRoute.params.subscribe((params) => {
 			this.userId = parseInt(params['id'], 10);
+			this.fetchData(this.userId);
 		});
 	}
 
@@ -59,6 +62,31 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 		});
 	}
 
+	public fetchData(id: number): void {
+		this.apollo
+			.query<Objected<DateObject>>({
+				query: gql`
+					query ($user_id: Int!) {
+						lastPictureUpdate(id: $user_id) {
+							date
+						}
+					}
+				`,
+				variables: {
+					user_id: id,
+				},
+				fetchPolicy: 'cache-first',
+				errorPolicy: 'all',
+			})
+			.subscribe(({ data }) => {
+				// The user can't update his picture more than once a week
+				const diff =
+					environment.DELAY_UPDATE_PROFILE_PICTURE * 1000 -
+					(new Date().getTime() - new Date(data['lastPictureUpdate'].date).getTime());
+				if (diff > 0) this.timeLeft = new Date(new Date().getTime() + diff);
+			});
+	}
+
 	public open() {
 		// Only the user can update his picture
 		// TODO: take into account the user's role ("admin" can update any user's picture)
@@ -71,31 +99,15 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 		this.modal.nativeElement.close();
 	}
 
-	public updateUncroppedBanner(file: base64) {
-		this.bannerUncropped = file;
+	public updateUncroppedPicture(file: base64) {
+		this.pictureUncropped = file;
 	}
 
-	public async deleteCurrentBanner() {
-		this.http
-			.delete(`${environment.API_URL}/users/banner/${this.activeRoute.snapshot.params['id']}`, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
-				},
-			})
-			.subscribe({
-				next: () => {
-					this.bannerUpdated.emit(undefined);
-					this.u.refreshUserBanner();
-				},
-			});
-	}
+	public async updateCroppedPicture(event: ImageCropperResult) {
+		this.pictureCropped = event;
+		if (this.pictureCropped.dataUrl) this.pictureUpdated.emit(this.pictureCropped.dataUrl);
 
-	public async updateCroppedBanner(event: ImageCropperResult) {
-		this.bannerCropped = event;
-		if (this.bannerCropped.dataUrl) this.bannerUpdated.emit(this.bannerCropped.dataUrl);
-
-		const res: Response = await fetch(this.bannerCropped.dataUrl ?? '');
+		const res: Response = await fetch(this.pictureCropped.dataUrl ?? '');
 		const blob: Blob = await res.blob();
 		const file = new File([blob], 'profile_picture.png', { type: 'image/png' });
 
@@ -103,18 +115,15 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 		formData.append('file', file, file.name);
 
 		this.http
-			.post(`${environment.API_URL}/users/banner/${this.activeRoute.snapshot.params['id']}`, formData, {
-				headers: {
-					Authorization: `${sessionStorage.getItem('token')}`,
-					'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
-				},
+			.post(`${environment.API_URL}/users/picture/${this.activeRoute.snapshot.params['id']}`, formData, {
+				headers: DEFAULT_HEADERS,
 			})
 			.subscribe({
 				next: () => {
 					if (this.userId !== this.u.user?.id) return;
 
 					setTimeout(() => {
-						this.u.refreshUserBanner();
+						this.u.refreshUserPicture();
 					}, 1000);
 				},
 			});

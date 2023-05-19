@@ -6,13 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { ComponentsModule } from './components/components.module';
 import { HttpLoaderFactory } from 'src/utils';
-import { MobileComponentsModule } from './components/mobile/mobile.module';
-import { DesktopComponentsModule } from './components/desktop/desktop.module';
 
 import { environment } from 'src/environments/environment.dev';
 import { GraphQLModule } from './graphql.module';
+import { PagesModule } from './pages/pages.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
 	declarations: [AppComponent],
@@ -20,8 +19,7 @@ import { GraphQLModule } from './graphql.module';
 		AppRoutingModule,
 		BrowserModule,
 		ComponentsModule,
-		MobileComponentsModule,
-		DesktopComponentsModule,
+		PagesModule,
 		HttpClientModule,
 		TranslateModule.forRoot({
 			defaultLanguage: 'en-US',

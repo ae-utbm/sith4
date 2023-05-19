@@ -171,14 +171,14 @@
 				width: 100%;
 				padding: 5px 0;
 
-				>.tab-header {
+				>.header {
 					display: flex;
 					gap: 10px;
 
 					>.tabs {
 						width: 100%;
 
-						>.tab-link {
+						>.link {
 							border: none;
 							background-color: transparent;
 
@@ -201,7 +201,7 @@
 					}
 				}
 
-				>.tab-content {
+				>.body {
 					display: flex;
 					flex-direction: row;
 
@@ -217,12 +217,12 @@
 							display: flex;
 						}
 
-						>.profile-line {
+						>.row {
 							display: block;
 							flex-direction: row;
 							width: 100%;
 
-							>.profile-column {
+							>.column {
 								display: flex;
 								flex-direction: column;
 								font-family: Roboto, sans-serif;

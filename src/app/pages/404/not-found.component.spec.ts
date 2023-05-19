@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { PageService } from 'src/app/services/page.service';
-import { CommonComponentsModule } from '../../common/common.module';
+import { CommonComponentsModule } from '../../components/common/common.module';
 import { NotFoundComponent } from './not-found.component';
 
 describe('NotFoundComponent', () => {

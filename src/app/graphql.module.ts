@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
  * @param httpLink Apollo HTTP Link
  */
 export function createApollo(httpLink: HttpLink) {
-	const lang = setContext((op, ctx) => {
+	const lang = setContext(() => {
 		const locale = localStorage.getItem('locale') ?? 'en-US';
 
 		return {
@@ -22,7 +22,7 @@ export function createApollo(httpLink: HttpLink) {
 		};
 	});
 
-	const auth = setContext((op, ctx) => {
+	const auth = setContext(() => {
 		const token = sessionStorage.getItem('user_token');
 
 		if (token === null) return {};
