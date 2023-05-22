@@ -1,4 +1,4 @@
-import type { DateObject, Objected } from 'src/types/objects';
+import type { Time, Objected } from 'src/types/objects';
 import type { ImageCropperResult, base64 } from 'src/types';
 
 import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter } from '@angular/core';
@@ -64,7 +64,7 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 
 	public fetchData(id: number): void {
 		this.apollo
-			.query<Objected<DateObject>>({
+			.query<Objected<{ lastPictureUpdate: Time }>>({
 				query: gql`
 					query ($user_id: Int!) {
 						lastPictureUpdate(id: $user_id) {

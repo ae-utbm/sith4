@@ -1,6 +1,6 @@
 import { Component, Inject, Input } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { Objected, PromotionObject } from 'src/types/objects';
+import { Objected, Promotion } from 'src/types/objects';
 
 @Component({
 	selector: 'icon-promotion',
@@ -14,7 +14,7 @@ export class IconPromotionComponent {
 
 	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {
 		this.apollo
-			.query<Objected<PromotionObject>>({
+			.query<Objected<{ promotion: Promotion }>>({
 				query: gql`
 					query ($number: Int!) {
 						promotion(number: $number) {

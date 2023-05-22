@@ -17,7 +17,10 @@
 			<div class="main" [ngClass]="{ 'rtl': p.isRTL }">
 				<div>
 					<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
-					<div class="nickname">{{ nickname }}<div *ngIf="age">&nbsp;{{ 'profile.age' | translate: { age} }}</div></div>
+					<div class="subname">
+						<div *ngIf="nickname" class="nickname">{{ nickname }}</div>
+						<div *ngIf="age">{{ 'profile.age' | translate: { age } }}</div>
+					</div>
 				</div>
 				<icon-flag class="flag" *ngIf="!isOwner" />
 			</div>

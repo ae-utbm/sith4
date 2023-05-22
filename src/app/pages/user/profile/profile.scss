@@ -154,9 +154,13 @@
 						font-weight: bold;
 					}
 
-					>.nickname {
+					>.subname {
 						font-weight: 300;
 						display: flex;
+
+						>.nickname {
+							margin-right: 5px;
+						}
 					}
 				}
 

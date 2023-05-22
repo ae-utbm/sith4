@@ -1,4 +1,4 @@
-import type { Objected, TokenObject } from 'src/types/objects';
+import type { Objected, Token } from 'src/types/objects';
 
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -76,7 +76,7 @@ export class RegisterComponent {
 
 	public register(): void {
 		this.apollo
-			.mutate<Objected<TokenObject>>({
+			.mutate<Objected<{ register: Token }>>({
 				mutation: gql`
 					mutation (
 						$birthday: DateTime!

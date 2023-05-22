@@ -1,4 +1,4 @@
-import type { Objected, PublicUserObject } from 'src/types/objects';
+import type { Objected, PublicUser } from 'src/types/objects';
 
 import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
@@ -30,7 +30,7 @@ export class UserService {
 
 	public fetchUser(id: number) {
 		this.apollo
-			.query<Objected<PublicUserObject>>({
+			.query<Objected<{ user: PublicUser }>>({
 				query: gql`
 					query ($user_id: Int!) {
 						user(id: $user_id) {
@@ -107,7 +107,7 @@ export class UserService {
 		// this.p.route = '/';
 	}
 
-	public get user(): Partial<PublicUserObject> {
+	public get user(): Partial<PublicUser> {
 		return JSON.parse(sessionStorage.getItem('user') ?? '{}');
 	}
 

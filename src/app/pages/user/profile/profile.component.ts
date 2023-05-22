@@ -5,7 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { Objected, PublicUserObject, UserObject } from 'src/types/objects';
+import { Objected, PrivateUser, PublicUser } from 'src/types/objects';
 import { UserProfilePictureEditModalComponent } from './picture-modal/picture-edit-modal.component';
 import { environment } from 'src/environments/environment.dev';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +20,7 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 })
 export class UserProfileComponent {
 	public current: 'about' | 'contact' = 'about';
-	public user?: UserObject<typeof this.hasPermission>;
+	public user?: PrivateUser | PublicUser;
 	public age?: number;
 	public birthdayFormatted?: string;
 
@@ -110,7 +110,7 @@ export class UserProfileComponent {
 			});
 
 		this.apollo
-			.query<Objected<PublicUserObject>>({
+			.query<Objected<{ user: PublicUser }>>({
 				query: gql`
 					query ($user_id: Int!) {
 						user(id: $user_id) {

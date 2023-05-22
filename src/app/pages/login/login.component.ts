@@ -1,4 +1,4 @@
-import type { Objected, TokenObject } from 'src/types/objects';
+import type { Objected, Token } from 'src/types/objects';
 
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -33,7 +33,7 @@ export class LoginComponent {
 
 	public login(): void {
 		this.apollo
-			.mutate<Objected<TokenObject>>({
+			.mutate<Objected<{ login: Token }>>({
 				mutation: gql`
 					mutation ($email: String!, $password: String!) {
 						login(email: $email, password: $password) {

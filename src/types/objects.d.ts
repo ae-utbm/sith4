@@ -1,8 +1,8 @@
-export type Objected<T> = {
-	[key: string]: T;
+type Objected<T extends Record<string, unknown>> = {
+	[K in keyof T]: T[K];
 };
 
-export interface TokenObject {
+export interface Token {
 	token: string;
 	user_id: number;
 }
@@ -10,7 +10,7 @@ export interface TokenObject {
 /**
  * Public user object, returned by the API.
  */
-export interface PublicUserObject {
+export interface PublicUser {
 	birthday?: Date;
 	created: Date;
 	cursus?: string;
@@ -36,15 +36,15 @@ export interface PublicUserObject {
  * Private user object, returned by the API.
  * Basically, it's the same as the public user object, but with all fields required.
  */
-export type PrivateUserObject = Required<PublicUserObject>;
+export type PrivateUser = Required<PublicUser>;
 
 /**
  * User object, returned by the API.
  * Configurable with the `filter` parameter.
  */
-export type UserObject<T> = T extends true ? PrivateUserObject : PublicUserObject;
+export type User<T> = T extends true ? PrivateUser : PublicUser;
 
-export interface DateObject {
+export interface Time {
 	year: number;
 	month: number;
 	day: number;
@@ -55,7 +55,7 @@ export interface DateObject {
 	date: Date;
 }
 
-export interface PromotionObject {
+export interface Promotion {
 	id: number;
 	number: number;
 	picture?: string;
