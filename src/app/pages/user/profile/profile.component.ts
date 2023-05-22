@@ -20,7 +20,7 @@ import { UserPermissionService } from 'src/app/services/user-permissions.service
 	styleUrls: ['./profile.scss'],
 })
 export class UserProfileComponent {
-	public current: 'about' | 'contact' = 'about';
+	public currentTab: 'about' | 'contact' = 'about';
 	public user?: PrivateUser | PublicUser;
 	public age?: number;
 	public birthdayFormatted?: string;
@@ -143,6 +143,7 @@ export class UserProfileComponent {
 				variables: {
 					user_id,
 				},
+				fetchPolicy: 'cache-first',
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data, error }) => {
@@ -159,6 +160,7 @@ export class UserProfileComponent {
 
 					const TimeDiff = Math.abs(Date.now() - new Date(this.user?.birthday ?? 0).getTime());
 					this.age = Math.floor(TimeDiff / (1000 * 3600 * 24) / 365.25);
+					this.currentTab = 'about';
 					this.t.get('profile.title', { name: this.user.first_name }).subscribe((title) => (this.page.title = title));
 				}
 

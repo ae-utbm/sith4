@@ -28,17 +28,23 @@
 			<div class="tab">
 				<div class="header">
 					<div class="tabs">
-						<button class="link" [ngClass]="{ 'shown': current === 'about' }" (click)="current = 'about'">{{ 'profile.about' |
+						<button class="link" [ngClass]="{ 'shown': currentTab === 'about' }" (click)="currentTab = 'about'">{{ 'profile.about' |
 							translate }}</button>
-						<button class="link" [ngClass]="{ 'shown': current === 'contact' }" (click)="current = 'contact'">{{
-							'profile.contact' | translate }}</button>
+						<button
+							class="link"
+							[ngClass]="{ 'shown': currentTab === 'contact' }"
+							(click)="currentTab = 'contact'"
+							*ngIf="shouldSeePrivateData || (user?.email || user?.secondary_email || user?.phone || user?.parent_contact)"
+						>
+							{{ 'profile.contact' | translate }}
+						</button>
 					</div>
 					<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" />
 				</div>
 
 				<div class="body">
 					<!-- About section -->
-					<div class="details" [ngClass]="{ 'shown': current === 'about' }">
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'about' }">
 						<div class="column" *ngIf="user?.birthday || shouldSeePrivateData">
 							<span class="title">{{ 'profile.birthday' | translate }}</span>
 							<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
@@ -78,7 +84,7 @@
 					</div>
 
 					<!-- Contact section -->
-					<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'contact' }">
 						<div class="column" *ngIf="user?.email || shouldSeePrivateData">
 							<span class="title">{{ 'profile.email' | translate }}</span>
 							<span>{{ user?.email ?? ('profile.field_unset' | translate ) }}</span>
