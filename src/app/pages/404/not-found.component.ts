@@ -10,8 +10,8 @@ import { PageService } from 'src/app/services/page.service';
 export class NotFoundComponent {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 	) {
-		t.get('404.title').subscribe((title) => (p.title = title));
+		t.get('404.title').subscribe((title) => (page.title = title));
 	}
 }
