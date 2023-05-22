@@ -133,10 +133,6 @@ $no-banner-height: 45px;
 			}
 		}
 
-		> .background-image.has-banner ~ main {
-			height: calc(100vh - $banner-height - 50px);
-		}
-
 		.logout {
 			cursor: pointer;
 			color: var(--red);
@@ -148,5 +144,9 @@ $no-banner-height: 45px;
 			text-align: center;
 			width: 100%;
 		}
+	}
+
+	>.background-image.has-banner~main {
+		height: calc(100vh - $banner-height - 50px);
 	}
 }
