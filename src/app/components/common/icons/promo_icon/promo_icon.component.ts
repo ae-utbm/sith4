@@ -1,36 +1,34 @@
-import { Component, Inject, Input } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { Objected, Promotion } from 'src/types/objects';
+import { HttpClient } from '@angular/common/http';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { DEFAULT_HEADERS } from 'src/utils/http';
 
 @Component({
 	selector: 'icon-promotion',
 	templateUrl: './promo_icon.html',
 	styleUrls: ['../icons.scss', './promo_icon.scss'],
 })
-export class IconPromotionComponent {
+export class IconPromotionComponent implements OnInit {
 	public picture?: string = undefined;
 
-	@Input() public number?: number = undefined;
+	@Input() public number?: number;
+	@Input() public id?: number;
 
-	public constructor(@Inject(Apollo) private readonly apollo: Apollo) {
-		this.apollo
-			.query<Objected<{ promotion: Promotion }>>({
-				query: gql`
-					query ($number: Int!) {
-						promotion(number: $number) {
-							picture
-						}
-					}
-				`,
-				variables: {
-					number: this.number,
-				},
-				fetchPolicy: 'cache-first',
-				errorPolicy: 'all',
+	public constructor(@Inject(HttpClient) private readonly http: HttpClient) {}
+
+	public ngOnInit(): void {
+		this.http
+			.get(`${environment.API_URL}/promotions/logo/${this.id}`, {
+				headers: DEFAULT_HEADERS,
+				responseType: 'arraybuffer',
 			})
-			.subscribe(({ data }) => {
-				if (!data) return;
-				this.picture = data['promotion']?.picture;
+			.subscribe({
+				next: (data) => {
+					this.picture = data.toBase64();
+				},
+				error: () => {
+					this.picture = undefined;
+				},
 			});
 	}
 }
