@@ -1,4 +1,4 @@
-import type { Objected, PublicUser } from 'src/types/objects';
+import type { PublicUser } from 'src/types/objects';
 
 import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
@@ -25,19 +25,21 @@ export class UserService {
 		this.fetchUserPicture(userId);
 		this.fetchUserBanner(userId);
 
-		this.p.route = `profile/${userId}`;
+		this.page.route = `profile/${userId}`;
 	}
 
 	public fetchUser(id: number) {
 		this.apollo
-			.query<Objected<{ user: PublicUser }>>({
+			.query<{ userPrivate: PublicUser }>({
 				query: gql`
 					query ($user_id: Int!) {
-						user(id: $user_id) {
+						userPrivate(id: $user_id) {
 							first_name
 							last_name
 							nickname
-							promotion
+							promotion {
+								number
+							}
 							id
 							subscriber_account
 						}
@@ -50,7 +52,7 @@ export class UserService {
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data, errors }) => {
-				if (data) sessionStorage.setItem('user', JSON.stringify(data['user']));
+				if (data) sessionStorage.setItem('user', JSON.stringify(data['userPrivate']));
 				else this.logout();
 
 				// Logout if the jwt token is invalid
