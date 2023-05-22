@@ -14,6 +14,7 @@ import { UserPicturesComponent } from './user/pictures/pictures.component';
 import { UserProfilePictureEditModalComponent } from './user/profile/picture-modal/picture-edit-modal.component';
 import { UserProfileBannerEditModalComponent } from './user/profile/banner-modal/banner-edit-modal.component';
 import { ComponentsModule } from '../components/components.module';
+import { UsersComponent } from './user/users.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +23,7 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
+		UsersComponent,
 		UserPaymentsComponent,
 		UserProfileComponent,
 		UserPicturesComponent,
@@ -34,6 +36,7 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
+		UsersComponent,
 		UserPaymentsComponent,
 		UserProfileComponent,
 		UserPicturesComponent,
