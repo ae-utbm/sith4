@@ -1,5 +1,5 @@
-<app-user-profile-picture-edit-modal #pictureModal (pictureUpdated)="updatePicture($event)" />
-<app-user-profile-banner-edit-modal #bannerModal (bannerUpdated)="updateBanner($event)" [existingBanner]="profileBanner !== undefined" />
+<app-user-profile-picture-edit-modal *ngIf="isOwnerOrHasPermission" #pictureModal (pictureUpdated)="updatePicture($event)" [username]="user?.first_name ?? 'unknown'" [existingPicture]="profilePicture !== undefined" />
+<app-user-profile-banner-edit-modal *ngIf="isOwnerOrHasPermission" #bannerModal (bannerUpdated)="updateBanner($event)" [username]="user?.first_name ?? 'unknown'" [existingBanner]="profileBanner !== undefined" />
 
 <div class="content">
 	<div class="profile">
@@ -8,13 +8,13 @@
 			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
 			<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()"/>
 		</div>
-		<div class="pictures" [ngClass]="{ 'rtl': p.isRTL }">
+		<div class="pictures" [ngClass]="{ 'rtl': page.isRTL }">
 			<icon-user class="picture" (click)="pictureModal.open()" [url]="profilePicture" />
-			<icon-promotion *ngIf="user?.promotion" class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
+			<icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL }" />
 		</div>
 
 		<div class="infos">
-			<div class="main" [ngClass]="{ 'rtl': p.isRTL }">
+			<div class="main" [ngClass]="{ 'rtl': page.isRTL }">
 				<div>
 					<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
 					<div class="subname">
@@ -37,72 +37,63 @@
 				</div>
 
 				<div class="body">
+					<!-- About section -->
 					<div class="details" [ngClass]="{ 'shown': current === 'about' }">
-						<!-- Profil -->
-						<div class="row">
-							<div class="column" *ngIf="user?.birthday">
-								<span class="title">{{ 'profile.birthday' | translate }}</span>
-								<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
-							</div>
-							<div class="column" *ngIf="user?.cursus">
-								<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
-								<span>{{ user?.cursus }}</span>
-							</div>
-							<div class="column" *ngIf="user?.created">
-								<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
-								<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
-							</div>
+						<div class="column" *ngIf="user?.birthday || shouldSeePrivateData">
+							<span class="title">{{ 'profile.birthday' | translate }}</span>
+							<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
 						</div>
-						<div class="row">
-							<div class="column" *ngIf="user?.gender">
-								<span class="title">{{ 'profile.gender' | translate }}</span>
-								<span>{{ user?.gender }}</span>
-							</div>
-							<div class="column" *ngIf="user?.specialty">
-								<span class="title">{{ 'profile.specialty' | translate }}</span>
-								<span>{{ user?.specialty }}</span>
-							</div>
-							<div class="column" *ngIf="user?.last_seen">
-								<span class="title">{{ 'profile.last_seen' | translate }}</span>
-								<span>{{ user?.last_seen | date: 'dd/MM/yyyy' }}</span>
-							</div>
+						<div class="column" *ngIf="user?.cursus || shouldSeePrivateData">
+							<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
+							<span>{{ user?.cursus ?? ('profile.field_unset' | translate) }}</span>
 						</div>
-						<div class="row">
-							<div class="column" *ngIf="user?.pronouns">
-								<span class="title">{{ 'profile.pronouns' | translate }}</span>
-								<span>{{ user?.pronouns }}</span>
-							</div>
-							<div class="column" *ngIf="user?.promotion">
-								<span class="title">{{ 'profile.promotion' | translate }}</span>
-								<span>{{ user?.promotion }}</span>
-							</div>
-							<div class="column" *ngIf="user?.subscription">
-								<span class="title">{{ 'profile.subscription' | translate }}</span>
-								<span>{{ user?.subscription | date: 'dd/MM/yyyy' }}</span>
-							</div>
+						<div class="column">
+							<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
+							<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.gender || shouldSeePrivateData">
+							<span class="title">{{ 'profile.gender' | translate }}</span>
+							<span>{{ user?.gender ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.specialty || shouldSeePrivateData">
+							<span class="title">{{ 'profile.specialty' | translate }}</span>
+							<span>{{ user?.specialty ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.last_seen || shouldSeePrivateData">
+							<span class="title">{{ 'profile.last_seen' | translate }}</span>
+							<span>{{ (user?.last_seen | date: 'dd/MM/yyyy') ?? ('profile.never_seen' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.pronouns || shouldSeePrivateData">
+							<span class="title">{{ 'profile.pronouns' | translate }}</span>
+							<span>{{ user?.pronouns ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.promotion?.number || shouldSeePrivateData">
+							<span class="title">{{ 'profile.promotion' | translate }}</span>
+							<span>{{ user?.promotion?.number ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.subscription || shouldSeePrivateData">
+							<span class="title">{{ 'profile.subscription' | translate }}</span>
+							<span>{{ (user?.subscription | date: 'dd/MM/yyyy') ?? ('profile.field_unset' | translate ) }}</span>
 						</div>
 					</div>
+
+					<!-- Contact section -->
 					<div class="details" [ngClass]="{ 'shown': current === 'contact' }">
-						<!-- Contact -->
-						<div class="row">
-							<div class="column">
-								<span class="title">{{ 'profile.email' | translate }}</span>
-								<span>{{ user?.email }}</span>
-							</div>
-							<div class="column">
-								<span class="title">{{ 'profile.secondary_email' | translate }}</span>
-								<span>{{ user?.secondary_email }}</span>
-							</div>
-							<div class="column">
-								<span class="title">{{ 'profile.phone' | translate }}</span>
-								<span>{{ user?.phone }}</span>
-							</div>
+						<div class="column" *ngIf="user?.email || shouldSeePrivateData">
+							<span class="title">{{ 'profile.email' | translate }}</span>
+							<span>{{ user?.email ?? ('profile.field_unset' | translate ) }}</span>
 						</div>
-						<div class="row">
-							<div class="column">
-								<span class="title">{{ 'profile.parent_contact' | translate }}</span>
-								<span>{{ user?.parent_contact }}</span>
-							</div>
+						<div class="column" *ngIf="user?.secondary_email || shouldSeePrivateData">
+							<span class="title">{{ 'profile.secondary_email' | translate }}</span>
+							<span>{{ user?.secondary_email ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.phone || shouldSeePrivateData">
+							<span class="title">{{ 'profile.phone' | translate }}</span>
+							<span>{{ user?.phone ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.parent_contact || shouldSeePrivateData">
+							<span class="title">{{ 'profile.parent_contact' | translate }}</span>
+							<span>{{ user?.parent_contact ?? ('profile.field_unset' | translate ) }}</span>
 						</div>
 					</div>
 				</div>

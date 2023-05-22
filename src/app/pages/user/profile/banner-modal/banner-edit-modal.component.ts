@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DEFAULT_HEADERS } from 'src/utils/http';
+import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
 	selector: 'app-user-profile-banner-edit-modal',
@@ -17,13 +18,13 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 	@ViewChild('banner', { static: true }) public modal!: ElementRef<HTMLDialogElement>;
 	@ViewChild(ImageCropperComponent, { static: false }) public cropper!: ImageCropperComponent;
 
-	@Input() public existingBanner = false;
-
 	public bannerUncropped?: base64;
 	public bannerCropped?: ImageCropperResult;
 
 	private userId = 0;
 
+	@Input() public username = '';
+	@Input() public existingBanner = false;
 	@Output() public bannerUpdated = new EventEmitter<base64>();
 
 	public readonly options: Cropper.Options = {
@@ -38,6 +39,7 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 	public constructor(
 		@Inject(HttpClient) private readonly http: HttpClient,
 		@Inject(UserService) private readonly u: UserService,
+		@Inject(UserPermissionService) private readonly perms: UserPermissionService,
 		private activeRoute: ActivatedRoute,
 	) {
 		this.activeRoute.params.subscribe((params) => {
@@ -62,14 +64,17 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 
 	public open() {
 		// Only the user can update his picture
-		// TODO: take into account the user's role ("admin" can update any user's picture)
-		if (this.userId !== this.u.user?.id) return;
+		if (!this.isSelf() && !this.perms.hasPermission('EDIT_USER')) return;
 
 		this.modal.nativeElement.showModal();
 	}
 
 	public close() {
 		this.modal.nativeElement.close();
+	}
+
+	public isSelf() {
+		return this.userId === this.u.id;
 	}
 
 	public updateUncroppedBanner(file: base64) {
@@ -84,7 +89,7 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 			.subscribe({
 				next: () => {
 					this.bannerUpdated.emit(undefined);
-					this.u.refreshUserBanner();
+					if (this.isSelf()) this.u.refreshUserBanner();
 				},
 			});
 	}
@@ -106,7 +111,7 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 			})
 			.subscribe({
 				next: () => {
-					if (this.userId !== this.u.user?.id) return;
+					if (!this.isSelf()) return;
 
 					setTimeout(() => {
 						this.u.refreshUserBanner();

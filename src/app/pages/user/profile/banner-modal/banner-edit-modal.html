@@ -1,7 +1,7 @@
 <dialog class="banner-dialog" #banner>
 	<!-- <icon-close class="close" (click)="closePictureModal()" /> -->
 
-	<app-title [text]="'profile.update_banner' | translate" [adaptColor]="true" />
+	<app-title [text]="isSelf() ? ('profile.update_banner' | translate) : ('profile.update_banner_of_user' | translate: { username })" [adaptColor]="true" />
 	<form method="dialog">
 		<app-file-input (change)="updateUncroppedBanner($event)" />
 

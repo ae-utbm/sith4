@@ -58,3 +58,10 @@ export interface Promotion {
 	created: Date;
 	updated: Date;
 }
+
+export interface UserPermission {
+	name: Uppercase<string>;
+	created: Date;
+	expires: Date;
+	revoked: boolean;
+}

@@ -1,7 +1,7 @@
 <dialog class="picture-dialog" #picture>
 	<!-- <icon-close class="close" (click)="closePictureModal()" /> -->
 
-	<app-title [text]="'profile.update_picture' | translate" [adaptColor]="true" />
+	<app-title [text]="isOwner ? ('profile.update_picture' | translate) : ('profile.update_picture_of_user' | translate: { username })" [adaptColor]="true" />
 	<form method="dialog">
 		<span *ngIf="timeLeft" class="warning">{{ 'profile.picture_too_recent' | translate: { date: timeLeft | date: 'dd/MM/yyyy HH:mm:ss' } }}</span>
 
@@ -16,5 +16,8 @@
 		/>
 
 		<app-button *ngIf="!timeLeft" [disabled]="!pictureUncropped" [text]="'global.save' | translate" type="submit" (click)="cropper.exportCanvas(true)" />
+
+		<app-button *ngIf="existingPicture && hasPermissions" [text]="'global.delete' | translate" aspect="danger"
+			(click)="deleteCurrentPicture()" />
 	</form>
 </dialog>

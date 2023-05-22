@@ -1,7 +1,7 @@
-import type { Time, Objected } from 'src/types/objects';
+import type { Time } from 'src/types/objects';
 import type { ImageCropperResult, base64 } from 'src/types';
 
-import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter } from '@angular/core';
+import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { ImageCropperComponent } from 'src/app/components/common/image_cropper/image-cropper.component';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { DEFAULT_HEADERS } from 'src/utils/http';
+import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
 	selector: 'app-user-profile-picture-edit-modal',
@@ -24,6 +25,8 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 
 	private userId = 0;
 
+	@Input() public username = '';
+	@Input() public existingPicture = false;
 	@Output() public pictureUpdated = new EventEmitter<base64>();
 
 	public readonly options: Cropper.Options = {
@@ -39,11 +42,12 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 		@Inject(Apollo) private readonly apollo: Apollo,
 		@Inject(HttpClient) private readonly http: HttpClient,
 		@Inject(UserService) private readonly u: UserService,
+		@Inject(UserPermissionService) private readonly perms: UserPermissionService,
 		private activeRoute: ActivatedRoute,
 	) {
 		this.activeRoute.params.subscribe((params) => {
 			this.userId = parseInt(params['id'], 10);
-			this.fetchData(this.userId);
+			this.perms.ready$.subscribe(() => this.fetchData(this.userId));
 		});
 	}
 
@@ -64,7 +68,7 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 
 	public fetchData(id: number): void {
 		this.apollo
-			.query<Objected<{ lastPictureUpdate: Time }>>({
+			.query<{ lastPictureUpdate: Time }>({
 				query: gql`
 					query ($user_id: Int!) {
 						lastPictureUpdate(id: $user_id) {
@@ -83,20 +87,29 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 				const diff =
 					environment.DELAY_UPDATE_PROFILE_PICTURE * 1000 -
 					(new Date().getTime() - new Date(data['lastPictureUpdate'].date).getTime());
+
 				if (diff > 0) this.timeLeft = new Date(new Date().getTime() + diff);
+				if (!this.isOwner || this.perms.hasPermission('EDIT_USER')) this.timeLeft = undefined;
 			});
 	}
 
 	public open() {
-		// Only the user can update his picture
-		// TODO: take into account the user's role ("admin" can update any user's picture)
-		if (this.userId !== this.u.user?.id) return;
+		// Only the user can update his picture (or an admin)
+		if (!this.isOwner && !this.perms.hasPermission('EDIT_USER')) return;
 
 		this.modal.nativeElement.showModal();
 	}
 
 	public close() {
 		this.modal.nativeElement.close();
+	}
+
+	public get isOwner(): boolean {
+		return this.userId === this.u.id;
+	}
+
+	public get hasPermissions(): boolean {
+		return this.perms.hasPermission('EDIT_USER');
 	}
 
 	public updateUncroppedPicture(file: base64) {
@@ -120,11 +133,24 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 			})
 			.subscribe({
 				next: () => {
-					if (this.userId !== this.u.user?.id) return;
+					if (!this.isOwner) return;
 
 					setTimeout(() => {
 						this.u.refreshUserPicture();
 					}, 1000);
+				},
+			});
+	}
+
+	public deleteCurrentPicture() {
+		this.http
+			.delete(`${environment.API_URL}/users/picture/${this.activeRoute.snapshot.params['id']}`, {
+				headers: DEFAULT_HEADERS,
+			})
+			.subscribe({
+				next: () => {
+					this.pictureUpdated.emit(undefined);
+					if (this.isOwner) this.u.refreshUserPicture();
 				},
 			});
 	}

@@ -1,8 +1,9 @@
+import type { FontSize, Theme, ThemeEvent } from 'src/types';
+
 import { Inject, Injectable } from '@angular/core';
 import { NavigationEnd, Router, UrlTree } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { FontSize, Theme, ThemeEvent } from 'src/types';
 import {
 	getLanguage,
 	getLanguageDirection,
@@ -36,6 +37,8 @@ export class PageService {
 	 * Set the current route
 	 * @param {string | UrlTree} route The route to set
 	 * @example p.route = '/login'; // set the route to '/login' (login page)
+	 *
+	 * TODO: redirect properly to 404 if the route is not found
 	 */
 	public set route(route: string | UrlTree) {
 		this.router.navigateByUrl(route);

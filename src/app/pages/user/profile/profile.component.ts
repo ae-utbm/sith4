@@ -1,17 +1,18 @@
 import type { base64 } from 'src/types';
+import type { PrivateUser, PublicUser } from 'src/types/objects';
 
 import { Component, Inject, ViewChild } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Apollo, gql } from 'apollo-angular';
 import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
-import { Objected, PrivateUser, PublicUser } from 'src/types/objects';
 import { UserProfilePictureEditModalComponent } from './picture-modal/picture-edit-modal.component';
 import { environment } from 'src/environments/environment.dev';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { UserProfileBannerEditModalComponent } from './banner-modal/banner-edit-modal.component';
 import { DEFAULT_HEADERS } from 'src/utils/http';
+import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
 	selector: 'app-user-profile',
@@ -37,39 +38,41 @@ export class UserProfileComponent {
 	@ViewChild('bannerModal', { static: false }) public bannerModal!: UserProfileBannerEditModalComponent;
 
 	public constructor(
-		@Inject(UserService) public readonly u: UserService,
-		@Inject(PageService) public readonly p: PageService,
 		@Inject(Apollo) private readonly apollo: Apollo,
-		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(HttpClient) private readonly http: HttpClient,
+		@Inject(UserService) public readonly u: UserService,
+		@Inject(PageService) public readonly page: PageService,
+		@Inject(TranslateService) public readonly t: TranslateService,
+		@Inject(UserPermissionService) public readonly perms: UserPermissionService,
 		private activeRoute: ActivatedRoute,
 	) {
 		this.activeRoute.params.subscribe((params) => {
 			this.userId = parseInt(params['id'], 10);
-			this.getUserData(this.userId);
+
+			if (this.perms.ready) this.getUserData(this.userId);
+			else this.perms.ready$.subscribe(() => this.getUserData(this.userId));
 		});
 	}
 
 	public get nickname(): string {
 		if (!this.user?.nickname) return '';
-		return `${this.user?.nickname} — `;
+		return `${this.user?.nickname} —`;
 	}
 
 	/**
 	 * Returns true if the current user is the owner of the profile or has the permission to edit it.
 	 * @returns {boolean} True if the current user is the owner of the profile or has the permission to edit it.
-	 * TODO implement permission system
 	 */
 	public get isOwnerOrHasPermission(): boolean {
-		return this.isOwner || this.hasPermission;
+		return this.isOwner || this.perms.hasPermission('EDIT_USER');
 	}
 
-	public get hasPermission(): boolean {
-		return true;
+	public get shouldSeePrivateData(): boolean {
+		return !this.isOwner && this.perms.hasPermission('EDIT_USER');
 	}
 
 	public get isOwner(): boolean {
-		return this.userId === this.u.user?.id;
+		return this.userId === this.u.id;
 	}
 
 	public updatePicture(output: base64) {
@@ -91,7 +94,7 @@ export class UserProfileComponent {
 					this.profilePicture = data.toBase64();
 				},
 				error: () => {
-					// do nothing (default picture will be used)
+					this.profilePicture = undefined;
 				},
 			});
 
@@ -105,15 +108,17 @@ export class UserProfileComponent {
 					this.profileBanner = data.toBase64();
 				},
 				error: () => {
-					// do nothing (default picture will be used)
+					this.profileBanner = undefined;
 				},
 			});
 
+		const endpoint = this.shouldSeePrivateData ? 'userPrivate' : 'userPublic';
+
 		this.apollo
-			.query<Objected<{ user: PublicUser }>>({
+			.query<{ userPublic: PublicUser; userPrivate: PrivateUser }>({
 				query: gql`
 					query ($user_id: Int!) {
-						user(id: $user_id) {
+						${endpoint}(id: $user_id) {
 							id
 							first_name
 							last_name
@@ -121,7 +126,10 @@ export class UserProfileComponent {
 							cursus
 							gender
 							birthday
-							promotion
+							promotion {
+								number
+								id
+							}
 							specialty
 							subscriber_account
 							last_seen
@@ -135,18 +143,27 @@ export class UserProfileComponent {
 				variables: {
 					user_id,
 				},
-				fetchPolicy: 'cache-first',
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data, error }) => {
 				if (data) {
-					this.user = data['user'];
+					switch (endpoint) {
+						case 'userPrivate':
+							this.user = data['userPrivate'];
+							break;
+
+						default:
+							this.user = data['userPublic'];
+							break;
+					}
+
 					const TimeDiff = Math.abs(Date.now() - new Date(this.user?.birthday ?? 0).getTime());
 					this.age = Math.floor(TimeDiff / (1000 * 3600 * 24) / 365.25);
+					this.t.get('profile.title', { name: this.user.first_name }).subscribe((title) => (this.page.title = title));
 				}
 
 				if (!data || error) {
-					this.p.router.navigate(['/404']);
+					this.page.route = '/404';
 				}
 			});
 	}

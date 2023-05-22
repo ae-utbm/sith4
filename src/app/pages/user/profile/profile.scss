@@ -214,6 +214,7 @@
 						visibility: hidden;
 						width: 100%;
 						display: flex;
+						flex-wrap: wrap;
 						display: none;
 						color: var(--text-color-dynamic);
 
@@ -222,24 +223,18 @@
 							display: flex;
 						}
 
-						>.row {
-							display: block;
-							flex-direction: row;
-							width: 100%;
+						>.column {
+							display: flex;
+							flex-direction: column;
+							font-family: Roboto, sans-serif;
+							font-size: 10px;
+							text-transform: uppercase;
+							padding-top: 10px;
+							width: calc(100% / 3);
+							height: 35px;
 
-							>.column {
-								display: flex;
-								flex-direction: column;
-								font-family: Roboto, sans-serif;
-								font-size: 10px;
-								text-transform: uppercase;
-								padding-top: 10px;
-								width: 100%;
-								height: 35px;
-
-								>.title {
-									font-weight: bold;
-								}
+							>.title {
+								font-weight: bold;
 							}
 						}
 					}
