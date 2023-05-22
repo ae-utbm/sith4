@@ -1,4 +1,4 @@
-<div class="side-menu" [ngClass]="{ 'rtl': p.isRTL }">
+<div class="side-menu" [ngClass]="{ 'rtl': page.isRTL }">
 	<div class="left" (click)="triggerClose()"></div>
 	<div class="right" [ngClass]="{ 'closing': closing }">
 		<ng-content></ng-content>

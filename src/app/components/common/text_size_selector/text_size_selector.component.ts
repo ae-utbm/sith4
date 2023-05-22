@@ -16,7 +16,7 @@ export class FontSizeSelectorComponent {
 	];
 
 	public constructor(
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 		@Inject(TranslateService) public readonly t: TranslateService,
 	) {
 		this.sizes.forEach((size) => {

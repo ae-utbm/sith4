@@ -14,7 +14,7 @@ export class MobileHeaderComponent {
 
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 	) {}
 
 	public triggerSideMenuProfile(): void {

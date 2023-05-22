@@ -1,4 +1,4 @@
-import type { Objected, Token } from 'src/types/objects';
+import type { Token } from 'src/types/objects';
 
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -23,17 +23,17 @@ export class LoginComponent {
 
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
 		@Inject(Apollo) private readonly apollo: Apollo,
 	) {
-		t.get('login.title').subscribe((title) => (p.title = title));
+		t.get('login.title').subscribe((title) => (page.title = title));
 	}
 
 	public login(): void {
 		this.apollo
-			.mutate<Objected<{ login: Token }>>({
+			.mutate<{ login: Token }>({
 				mutation: gql`
 					mutation ($email: String!, $password: String!) {
 						login(email: $email, password: $password) {
@@ -51,7 +51,7 @@ export class LoginComponent {
 			.subscribe(({ data }) => {
 				if (data) {
 					this.u.login(data['login'].token, data['login'].user_id);
-					this.p.route = '/';
+					this.page.route = '/';
 				} else {
 					this.formGroup.controls['email'].setErrors({ login_fail: true });
 					this.formGroup.controls['password'].setErrors({ login_fail: true });

@@ -1,15 +1,15 @@
-<div *ngIf="p.isDesktop">
-	<app-desktop-header *ngIf="!p.isHeadless" />
-	<app-desktop-alert *ngIf="!p.isHeadless && alerts.all.length > 0" />
-	<main [ngClass]="{ 'headless': p.isHeadless }">
-		<app-desktop-navbar *ngIf="!p.isHeadless" />
+<div *ngIf="page.isDesktop">
+	<app-desktop-header *ngIf="!page.isHeadless" />
+	<app-desktop-alert *ngIf="!page.isHeadless && alerts.all.length > 0" />
+	<main [ngClass]="{ 'headless': page.isHeadless }">
+		<app-desktop-navbar *ngIf="!page.isHeadless" />
 		<router-outlet></router-outlet>
 	</main>
 </div>
 
-<div *ngIf="p.isMobile">
-	<app-mobile-header *ngIf="!p.isHeadless"/>
-	<app-mobile-navbar *ngIf="!p.isHeadless"/>
-	<app-mobile-alert *ngIf="!p.isHeadless"/>
+<div *ngIf="page.isMobile">
+	<app-mobile-header *ngIf="!page.isHeadless"/>
+	<app-mobile-navbar *ngIf="!page.isHeadless"/>
+	<app-mobile-alert *ngIf="!page.isHeadless"/>
 	<router-outlet></router-outlet>
 </div>

@@ -12,9 +12,9 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 })
 export class UserService {
 	public constructor(
-		@Inject(PageService) private readonly p: PageService,
 		@Inject(Apollo) private readonly apollo: Apollo,
 		@Inject(HttpClient) private readonly http: HttpClient,
+		@Inject(PageService) private readonly page: PageService,
 	) {}
 
 	public login(token: string, userId: number): void {
@@ -104,10 +104,10 @@ export class UserService {
 		sessionStorage.removeItem('user_token');
 		sessionStorage.removeItem('user_picture');
 
-		// this.p.route = '/';
+		this.page.route = '/';
 	}
 
-	public get user(): Partial<PublicUser> {
+	private get user(): Partial<PublicUser> {
 		return JSON.parse(sessionStorage.getItem('user') ?? '{}');
 	}
 

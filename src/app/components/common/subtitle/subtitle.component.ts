@@ -11,5 +11,5 @@ export class MobileSubtitleComponent {
 	@Input() public bordered = false;
 	@Input() public onDarkBackground = false;
 
-	public constructor(@Inject(PageService) public readonly p: PageService) {}
+	public constructor(@Inject(PageService) public readonly page: PageService) {}
 }

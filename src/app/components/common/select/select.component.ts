@@ -22,7 +22,7 @@ export class SelectComponent {
 	/** Emit an event with a string being the `value` of the selected option */
 	@Output() public optionSelected = new EventEmitter<string>();
 
-	public constructor(@Inject(PageService) public readonly p: PageService) {}
+	public constructor(@Inject(PageService) public readonly page: PageService) {}
 
 	/**
 	 * Displays or hides the dropdown.

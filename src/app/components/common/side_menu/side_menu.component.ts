@@ -10,7 +10,7 @@ export class SideMenuComponent {
 	private _closing = false;
 	@Output() public close = new EventEmitter<void>();
 
-	public constructor(@Inject(PageService) public readonly p: PageService) {}
+	public constructor(@Inject(PageService) public readonly page: PageService) {}
 
 	public triggerClose(): void {
 		this._closing = true;

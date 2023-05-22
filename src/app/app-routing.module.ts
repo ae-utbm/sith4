@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule, inject } from '@angular/core';
 import { NotFoundComponent } from './pages/404/not-found.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -8,6 +8,7 @@ import { ForgotPasswordComponent } from './pages/forgot_password/forgot_password
 import { UserPaymentsComponent } from './pages/user/payments/payments.component';
 import { UserPicturesComponent } from './pages/user/pictures/pictures.component';
 import { UserProfileComponent } from './pages/user/profile/profile.component';
+import { UserService } from './services/user.service';
 
 const routes: Routes = [
 	{
@@ -25,14 +26,17 @@ const routes: Routes = [
 	},
 	{
 		path: 'login',
+		canActivate: [() => !inject(UserService).isLoggedIn],
 		component: LoginComponent,
 	},
 	{
 		path: 'register',
+		canActivate: [() => !inject(UserService).isLoggedIn],
 		component: RegisterComponent,
 	},
 	{
 		path: 'forgot_password',
+		canActivate: [() => !inject(UserService).isLoggedIn],
 		component: ForgotPasswordComponent,
 	},
 	{

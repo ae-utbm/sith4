@@ -1,4 +1,4 @@
-import type { Objected, Token } from 'src/types/objects';
+import type { Token } from 'src/types/objects';
 
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
@@ -54,12 +54,12 @@ export class RegisterComponent {
 
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
 		@Inject(Apollo) private readonly apollo: Apollo,
 	) {
-		t.get('register.title').subscribe((title) => (p.title = title));
+		t.get('register.title').subscribe((title) => (page.title = title));
 	}
 
 	public errors(field: string): string[] {
@@ -76,7 +76,7 @@ export class RegisterComponent {
 
 	public register(): void {
 		this.apollo
-			.mutate<Objected<{ register: Token }>>({
+			.mutate<{ register: Token }>({
 				mutation: gql`
 					mutation (
 						$birthday: DateTime!
@@ -109,7 +109,7 @@ export class RegisterComponent {
 			.subscribe(({ data, errors }) => {
 				if (data && !errors) {
 					this.u.login(data['register'].token, data['register'].user_id);
-					this.p.route = '/';
+					this.page.route = '/';
 				} else if (errors) {
 					this.formGroup.controls['email'].setErrors({ api: errors[0].message });
 				}

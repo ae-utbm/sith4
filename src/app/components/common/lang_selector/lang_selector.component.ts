@@ -23,7 +23,7 @@ export class LangSelectorComponent {
 	]);
 
 	public constructor(
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 		@Inject(TranslateService) public readonly t: TranslateService,
 	) {}
 
@@ -42,7 +42,7 @@ export class LangSelectorComponent {
 				label: lang.label,
 				value: lang.filename,
 				image: lang.image,
-			})).find((lang) => lang.value === this.p.lang) ?? {
+			})).find((lang) => lang.value === this.page.lang) ?? {
 				label: 'English',
 				value: 'en-US',
 				image: 'assets/flags/en-GB.svg',

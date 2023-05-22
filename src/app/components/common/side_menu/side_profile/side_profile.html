@@ -1,15 +1,19 @@
 <div class="profile-container">
-	<div class="background-image" [ngClass]="{ 'has-banner': u.banner !== undefined }" [ngStyle]="{ 'background-image': u.banner ? 'url(' + u.banner + ')' : '' }">
+	<div
+		class="background-image"
+		[ngClass]="{ 'has-banner': user.banner !== undefined }"
+		[ngStyle]="{ 'background-image': user.banner ? 'url(' + user.banner + ')' : '' }"
+	>
 		<div class="promotion"></div>
 		<div class="ae-sticker"></div>
 	</div>
-	<icon-user class="user-picture" [ngClass]="{ 'rtl': p.isRTL }" [url]="u.picture" />
-	<div class="infos" [ngClass]="{ 'rtl': p.isRTL }">
+	<icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL }" [url]="user.picture" />
+	<div class="infos" [ngClass]="{ 'rtl': page.isRTL }">
 		<div class="left">
-			<span class="name">{{ u.fullName }}</span>
-			<span>{{ u.balance }} €</span>
+			<span class="name">{{ user.fullName }}</span>
+			<span>{{ user.balance }} €</span>
 		</div>
-		<span class="right">{{ u.accountId }}</span>
+		<span class="right">{{ user.accountId }}</span>
 	</div>
 	<main>
 		<ul class="links">

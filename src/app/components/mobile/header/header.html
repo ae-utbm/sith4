@@ -1,5 +1,5 @@
 <div class="header">
-	<img class="logo" [src]="p.logo" alt="logo_ae" (click)="p.route = '/'">
+	<img class="logo" [src]="page.logo" alt="logo_ae" (click)="page.route = '/'">
 	<div class="icons">
 		<icon-cogwheel (click)="triggerSideMenuOptions()" />
 		<icon-user *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"

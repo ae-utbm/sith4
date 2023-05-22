@@ -1,5 +1,5 @@
 <app-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
 <div class="buttons">
-	<app-button *ngFor="let size of sizes" (click)="p.fontSize = size.value" [text]="size.label" [class]="size.class"
-		[ngClass]="{'active': size.value === p.fontSize }" />
+	<app-button *ngFor="let size of sizes" (click)="page.fontSize = size.value" [text]="size.label" [class]="size.class"
+		[ngClass]="{'active': size.value === page.fontSize }" />
 </div>

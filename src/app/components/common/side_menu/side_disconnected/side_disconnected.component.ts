@@ -7,5 +7,5 @@ import { PageService } from 'src/app/services/page.service';
 	styleUrls: ['./side_disconnected.scss'],
 })
 export class SideMenuDisconnectedComponent {
-	public constructor(@Inject(PageService) public readonly p: PageService) {}
+	public constructor(@Inject(PageService) public readonly page: PageService) {}
 }

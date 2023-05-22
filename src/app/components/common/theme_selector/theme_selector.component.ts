@@ -20,7 +20,7 @@ export class ThemeSelectorComponent {
 
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
-		@Inject(PageService) public readonly p: PageService,
+		@Inject(PageService) public readonly page: PageService,
 	) {}
 
 	public ngOnInit(): void {
@@ -29,14 +29,14 @@ export class ThemeSelectorComponent {
 		switch (now.getMonth()) {
 			case 11:
 				this.eventThemes.push({ name: 'header.options.event_themes.christmas', value: 'christmas' });
-				if (this.p.eventTheme !== 'christmas' && this.p.eventTheme !== null) this.p.eventTheme = 'christmas';
+				if (this.page.eventTheme !== 'christmas' && this.page.eventTheme !== null) this.page.eventTheme = 'christmas';
 				break;
 			case 9:
 				this.eventThemes.push({ name: 'header.options.event_themes.pinktober', value: 'pinktober' });
-				if (this.p.eventTheme !== 'pinktober' && this.p.eventTheme !== null) this.p.eventTheme = 'pinktober';
+				if (this.page.eventTheme !== 'pinktober' && this.page.eventTheme !== null) this.page.eventTheme = 'pinktober';
 				break;
 			default:
-				this.p.eventTheme = 'base';
+				this.page.eventTheme = 'base';
 				break;
 		}
 
