@@ -10,7 +10,7 @@
 		</div>
 		<div class="pictures" [ngClass]="{ 'rtl': p.isRTL }">
 			<icon-user class="picture" (click)="pictureModal.open()" [url]="profilePicture" />
-			<icon-promotion class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
+			<icon-promotion *ngIf="user?.promotion" class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': p.isRTL }" />
 		</div>
 
 		<div class="infos">
