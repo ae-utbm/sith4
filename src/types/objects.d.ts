@@ -1,7 +1,3 @@
-type Objected<T extends Record<string, unknown>> = {
-	[K in keyof T]: T[K];
-};
-
 export interface Token {
 	token: string;
 	user_id: number;
@@ -10,7 +6,7 @@ export interface Token {
 /**
  * Public user object, returned by the API.
  */
-export interface PublicUser {
+export interface PrivateUser {
 	birthday?: Date;
 	created: Date;
 	cursus?: string;
@@ -23,7 +19,7 @@ export interface PublicUser {
 	nickname?: string;
 	parent_contact?: string;
 	phone?: string;
-	promotion?: number;
+	promotion?: Promotion;
 	pronouns?: string;
 	secondary_email?: string;
 	specialty?: string;
@@ -36,7 +32,7 @@ export interface PublicUser {
  * Private user object, returned by the API.
  * Basically, it's the same as the public user object, but with all fields required.
  */
-export type PrivateUser = Required<PublicUser>;
+export type PublicUser = Partial<PrivateUser> & { id: number; first_name: string; last_name: string };
 
 /**
  * User object, returned by the API.
