@@ -83,6 +83,8 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data }) => {
+				if (!data) return;
+
 				// The user can't update his picture more than once a week
 				const diff =
 					environment.DELAY_UPDATE_PROFILE_PICTURE * 1000 -

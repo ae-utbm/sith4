@@ -1,4 +1,4 @@
-import type { ImageCropperResult, ImageCropperSetting } from 'src/types';
+import type { ImageCropperResult, ImageCropperSetting, base64 } from 'src/types';
 import Cropper from 'cropperjs';
 
 import {
@@ -73,7 +73,7 @@ export class ImageCropperComponent implements OnDestroy {
 
 		// Set crop options
 		// extend default with custom config
-		this.cropperOptions = Object.assign(
+		this.cropperOptions = Object.merge<Cropper.Options>(
 			{
 				aspectRatio,
 				movable: false,
@@ -82,7 +82,9 @@ export class ImageCropperComponent implements OnDestroy {
 				viewMode: 1,
 				checkCrossOrigin: true,
 			},
-			this.cropperOptions,
+			{
+				...this.cropperOptions,
+			},
 		);
 
 		// Set cropperjs
@@ -99,7 +101,7 @@ export class ImageCropperComponent implements OnDestroy {
 		this.isLoading = false;
 	}
 
-	public exportCanvas(base64 = false) {
+	public exportCanvas() {
 		if (!this.cropper) return;
 
 		// Get and set image, crop and canvas data
@@ -109,16 +111,14 @@ export class ImageCropperComponent implements OnDestroy {
 		const data = { imageData, cropData };
 
 		// Create promise to resolve canvas data
-		const promise = new Promise((resolve) => {
+		const promise = new Promise<Partial<ImageCropperResult>>((resolve) => {
 			// Validate base64 and resolve promise with dataUrl
-			if (base64) return resolve({ dataUrl: canvas.toDataURL('image/png') });
-
-			canvas.toBlob((blob) => resolve({ blob }));
+			return resolve({ dataUrl: canvas.toDataURL('image/png') as base64 });
 		});
 
 		// Emit export data when promise is ready
 		promise.then((res) => {
-			this.export.emit(Object.assign(data, res));
+			this.export.emit(Object.merge(data, res));
 		});
 	}
 }

@@ -15,7 +15,13 @@
 			(export)="updateCroppedPicture($event)"
 		/>
 
-		<app-button *ngIf="!timeLeft" [disabled]="!pictureUncropped" [text]="'global.save' | translate" type="submit" (click)="cropper.exportCanvas(true)" />
+		<app-button
+			type="submit"
+			*ngIf="!timeLeft"
+			[text]="'global.save' | translate"
+			[disabled]="!pictureUncropped"
+			(click)="cropper.exportCanvas()"
+		/>
 
 		<app-button *ngIf="existingPicture && hasPermissions" [text]="'global.delete' | translate" aspect="danger"
 			(click)="deleteCurrentPicture()" />
