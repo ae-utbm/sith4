@@ -28,12 +28,14 @@
 
 			font-family: 'Roboto', sans-serif;
 			font-size: 14px;
+			color: var(--text-color-dynamic);
 		}
 
 		> .icon {
 			width: 32px;
 			height: 32px;
 			padding: 4px;
+			fill: var(--text-color-dynamic);
 		}
 	}
 
