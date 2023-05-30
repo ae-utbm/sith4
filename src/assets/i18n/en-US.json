@@ -110,10 +110,13 @@
 		"email": "Email",
 		"field_unset": "Not set",
 		"gender": "Gender",
+		"identity": "Identity",
+		"identity_info": "Only administrators can change your first name, last name, and date of birth, upon presentation of supporting documentation.",
 		"joined_the_site": "Joined the site",
 		"last_seen": "Last seen",
 		"never_seen": "Never seen",
 		"parent_contact": "Parent contact",
+		"parent_contact_info": "This field will disappear as soon as you become of legal age. It is only visible to you and the moderators of the website.",
 		"phone": "Phone",
 		"picture_too_recent": "You can't change your profile picture before {{date}}",
 		"pronouns": "Pronouns",
@@ -125,6 +128,9 @@
 		"update_picture": "Update your picture",
 		"update_picture_of_user": "Update picture of {{username}}",
 		"update_banner": "Update your banner",
-		"update_banner_of_user": "Update banner of {{username}}"
+		"update_banner_of_user": "Update banner of {{username}}",
+		"update_infos": "Update your informations",
+		"update_infos_of_user": "Update informations of {{username}}",
+		"update_permissions_of_user": "Update permissions of {{username}}"
 	}
 }

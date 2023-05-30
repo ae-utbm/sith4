@@ -36,6 +36,7 @@ export class UserProfileComponent {
 
 	@ViewChild('pictureModal', { static: false }) public pictureModal!: UserProfilePictureEditModalComponent;
 	@ViewChild('bannerModal', { static: false }) public bannerModal!: UserProfileBannerEditModalComponent;
+	@ViewChild('infosModal', { static: false }) public infosModal!: UserProfileBannerEditModalComponent;
 
 	public constructor(
 		@Inject(Apollo) private readonly apollo: Apollo,

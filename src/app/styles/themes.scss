@@ -11,6 +11,7 @@
 
 :root[data-theme="light"] {
 	--background-color: #ecf2f8;
+	--background-color-lighter: #fafafa;
 	--red: #ff1a0a;
 	--red-hover: #ff1a0a80;
 	--orange: #faa356;
@@ -30,10 +31,12 @@
 	--gray2-hover: #a5afb980;
 	--gray1-hover: #c6cdd580;
 	--text-color-dynamic: #000;
+	--text-disabled-color-dynamic: #888;
 }
 
 :root[data-theme="dark"] {
 	--background-color: #0d1117;
+	--background-color-lighter: #131922;
 	--red: #aa3028;
 	--red-hover: #aa302880;
 	--orange: #e27c22;
@@ -53,6 +56,7 @@
 	--gray2-hover: #1c212880;
 	--gray1-hover: #21262d80;
 	--text-color-dynamic: #ddd;
+	--text-disabled-color-dynamic: #888;
 }
 
 :root[data-event-theme="pinktober"] {

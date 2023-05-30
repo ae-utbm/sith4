@@ -1,0 +1,138 @@
+<dialog class="infos-dialog" #modal>
+	<app-title [text]="isSelf() ? ('profile.update_infos' | translate) : ('profile.update_infos_of_user' | translate: { username })" [adaptColor]="true" />
+	<p class="infos-text">{{ 'profile.identity_info' | translate }}</p>
+
+	<form method="dialog">
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.identity' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" [disabled]="isSelf()" />
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="input no-subtitle">
+						<icon-eye class="icon" />
+						<input type="text" [disabled]="isSelf()" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.birthday' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="date" [disabled]="isSelf()" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.parent_contact' | translate }}</div>
+					<div class="infos-text">{{ 'profile.parent_contact_info' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.email' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="mail" />
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.secondary_email' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="mail" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.phone' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="phone" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.gender' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" />
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.pronouns' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.cursus_utbm' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" />
+					</div>
+				</div>
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.specialty' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="text" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="field">
+			<div class="inputs">
+				<div class="input-container">
+					<div class="subtitle">{{ 'profile.promotion' | translate }}</div>
+					<div class="input">
+						<icon-eye class="icon" />
+						<input type="number" />
+					</div>
+				</div>
+				<div class="logo">
+					<icon-promotion [number]="21" [id]="1" />
+				</div>
+			</div>
+		</div>
+
+	</form>
+
+	<app-title *ngIf="!isSelf()" [text]="'profile.update_permissions_of_user' | translate: { username }" [adaptColor]="true" />
+
+</dialog>
