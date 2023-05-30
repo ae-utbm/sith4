@@ -23,6 +23,7 @@ import { IconPromotionComponent } from './promo_icon/promo_icon.component';
 import { IconPencilComponent } from './pencil/pencil.component';
 import { IconFlagComponent } from './flag/flag.component';
 import { IconUploadComponent } from './upload/upload.component';
+import { IconEyeComponent } from './eye/eye.component';
 
 @NgModule({
 	declarations: [
@@ -49,6 +50,7 @@ import { IconUploadComponent } from './upload/upload.component';
 		IconPencilComponent,
 		IconFlagComponent,
 		IconUploadComponent,
+		IconEyeComponent,
 	],
 	exports: [
 		IconBurgerMenuComponent,
@@ -74,6 +76,7 @@ import { IconUploadComponent } from './upload/upload.component';
 		IconPencilComponent,
 		IconFlagComponent,
 		IconUploadComponent,
+		IconEyeComponent,
 	],
 	imports: [CommonModule],
 })
