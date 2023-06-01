@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
 	styleUrls: ['../icons.scss'],
 })
 export class IconEyeComponent {
-	@Input() public visible = true;
+	@Input() public open = true;
 }
