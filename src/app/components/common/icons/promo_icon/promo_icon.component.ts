@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
+import { Apollo, gql } from 'apollo-angular';
 import { environment } from 'src/environments/environment';
+import { Promotion } from 'src/types/objects';
 import { DEFAULT_HEADERS } from 'src/utils/http';
 
 @Component({
@@ -8,15 +10,53 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 	templateUrl: './promo_icon.html',
 	styleUrls: ['../icons.scss', './promo_icon.scss'],
 })
-export class IconPromotionComponent implements OnInit {
+export class IconPromotionComponent implements OnInit, OnChanges {
 	public picture?: string = undefined;
 
 	@Input() public number?: number;
-	@Input() public id?: number;
+	public id?: number;
 
-	public constructor(@Inject(HttpClient) private readonly http: HttpClient) {}
+	public constructor(
+		@Inject(Apollo) private readonly apollo: Apollo,
+		@Inject(HttpClient) private readonly http: HttpClient,
+	) {}
+
+	public ngOnChanges(): void {
+		this.setup();
+	}
 
 	public ngOnInit(): void {
+		this.setup();
+	}
+
+	public setup() {
+		if (!this.number) return;
+		this.id = undefined;
+
+		this.apollo
+			.query<{ promotion: Promotion }>({
+				query: gql`
+					query ($number: Int!) {
+						promotion(number: $number) {
+							id
+						}
+					}
+				`,
+				variables: {
+					number: this.number,
+				},
+				fetchPolicy: 'cache-first',
+				errorPolicy: 'all',
+			})
+			.subscribe(({ data, error }) => {
+				if (!data || error) return;
+				this.id = data['promotion'].id;
+
+				this.getPromoPicture();
+			});
+	}
+
+	public getPromoPicture() {
 		this.http
 			.get(`${environment.API_URL}/promotions/logo/${this.id}`, {
 				headers: DEFAULT_HEADERS,

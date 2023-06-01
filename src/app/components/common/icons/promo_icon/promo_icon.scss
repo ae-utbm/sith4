@@ -13,4 +13,9 @@ img,
 	font-family: Roboto, sans-serif;
 	font-size: larger;
 	color: var(--text-color-dynamic);
+
+	&.empty {
+		background-color: transparent;
+		border: dotted 1.5px var(--text-color-dark-bg);
+	}
 }
