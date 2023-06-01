@@ -7,16 +7,15 @@
 		<div class="field">
 			<div class="inputs">
 				<div class="input-container">
-					<div class="subtitle">{{ 'profile.identity' | translate }}</div>
+					<div class="subtitle">{{ 'profile.first_name' | translate }}</div>
 					<div class="input">
-						<icon-eye class="icon" />
-						<input type="text" [disabled]="isSelf()" />
+						<input formControlName="first_name" type="text" />
 					</div>
 				</div>
 				<div class="input-container">
-					<div class="input no-subtitle">
-						<icon-eye class="icon" />
-						<input type="text" [disabled]="isSelf()" />
+					<div class="subtitle">{{ 'profile.last_name' | translate }}</div>
+					<div class="input">
+						<input formControlName="last_name" type="text" />
 					</div>
 				</div>
 			</div>
