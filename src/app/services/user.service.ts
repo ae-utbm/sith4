@@ -1,4 +1,4 @@
-import type { PublicUser } from 'src/types/objects';
+import type { PrivateUser, PublicUser } from 'src/types/objects';
 
 import { Inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
@@ -18,6 +18,8 @@ export class UserService {
 	) {}
 
 	public login(token: string, userId: number): void {
+		if (this.isLoggedIn) return;
+
 		sessionStorage.setItem('user_token', token);
 		sessionStorage.setItem('user_id', userId.toString());
 
@@ -25,7 +27,14 @@ export class UserService {
 		this.fetchUserPicture(userId);
 		this.fetchUserBanner(userId);
 
-		this.page.route = `profile/${userId}`;
+		setTimeout(() => {
+			this.page.route = `users/${userId}`;
+		}, 300);
+	}
+
+	public logout(): void {
+		sessionStorage.clear();
+		this.page.route = '/';
 	}
 
 	public fetchUser(id: number) {
@@ -48,7 +57,7 @@ export class UserService {
 				variables: {
 					user_id: id,
 				},
-				fetchPolicy: 'cache-first',
+				fetchPolicy: 'no-cache',
 				errorPolicy: 'all',
 			})
 			.subscribe(({ data, errors }) => {
@@ -98,15 +107,6 @@ export class UserService {
 
 	public refreshUserBanner(): void {
 		if (this.isLoggedIn) this.fetchUserBanner(this.id ?? -1);
-	}
-
-	public logout(): void {
-		sessionStorage.removeItem('user');
-		sessionStorage.removeItem('user_id');
-		sessionStorage.removeItem('user_token');
-		sessionStorage.removeItem('user_picture');
-
-		this.page.route = '/';
 	}
 
 	private get user(): Partial<PublicUser> {
