@@ -4,17 +4,22 @@
 
 <div class="content">
 	<div class="profile">
-		<div class="banner" [ngStyle]="{ 'background-image': 'url(' + profileBanner + ')' }" [ngClass]="profileBanner ? 'has-banner' : ''">
+		<div class="banner" [ngClass]="profileBanner ? 'has-banner' : ''">
+			<img *ngIf="profileBanner" class="banner-image" [src]="profileBanner">
 			<span *ngIf="suspended" class="suspended">{{ 'profile.account_suspended' | translate }}</span>
 			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
 			<icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()"/>
 		</div>
-		<div class="pictures" [ngClass]="{ 'rtl': page.isRTL }">
-			<icon-user class="picture" (click)="pictureModal.open()" [url]="profilePicture" />
-			<icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL }" />
-		</div>
 
 		<div class="infos">
+			<div class="pictures" [ngClass]="{ 'rtl': page.isRTL }">
+				<icon-user class="picture" [url]="profilePicture" />
+				<div class="picture-hover" (click)="pictureModal.open()">
+					<icon-pencil class="pencil" />
+				</div>
+				<icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL }" />
+			</div>
+
 			<div class="main" [ngClass]="{ 'rtl': page.isRTL }">
 				<div>
 					<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
