@@ -34,11 +34,11 @@ export class PageService {
 	}
 
 	/**
+	 * TODO: redirect properly to 404 if the route is not found
+	 *
 	 * Set the current route
 	 * @param {string | UrlTree} route The route to set
 	 * @example p.route = '/login'; // set the route to '/login' (login page)
-	 *
-	 * TODO: redirect properly to 404 if the route is not found
 	 */
 	public set route(route: string | UrlTree) {
 		this.router.navigateByUrl(route);
@@ -65,7 +65,7 @@ export class PageService {
 	 * @return {boolean} True if the device is a mobile device, false otherwise
 	 */
 	public get isMobile(): boolean {
-		return this.deviceService.isMobile() || this.deviceService.isTablet();
+		return this.deviceService.isMobile() || this.deviceService.isTablet() || window.innerWidth <= 768;
 	}
 
 	/**
