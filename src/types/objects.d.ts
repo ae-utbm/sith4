@@ -7,7 +7,7 @@ export interface Token {
  * Public user object, returned by the API.
  */
 export interface PrivateUser {
-	birthday?: Date;
+	birthday: Date;
 	created: Date;
 	cursus?: string;
 	email?: string;
@@ -54,7 +54,6 @@ export interface Time {
 export interface Promotion {
 	id: number;
 	number: number;
-	picture?: string;
 	created: Date;
 	updated: Date;
 }

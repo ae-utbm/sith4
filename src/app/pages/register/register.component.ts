@@ -29,8 +29,8 @@ export class RegisterComponent {
 				null,
 				[
 					Validators.required,
-					CustomValidators.ageMinValidator(),
-					CustomValidators.ageMaxValidator(),
+					CustomValidators.ageMinValidator,
+					CustomValidators.ageMaxValidator,
 					CustomValidators.notInFutureValidator,
 				],
 			],
