@@ -24,7 +24,7 @@ export class LoginComponent {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly page: PageService,
-		@Inject(UserService) public readonly u: UserService,
+		@Inject(UserService) public readonly user: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
 		@Inject(Apollo) private readonly apollo: Apollo,
 	) {
@@ -32,6 +32,8 @@ export class LoginComponent {
 	}
 
 	public login(): void {
+		if (this.user.isLoggedIn) return;
+
 		this.apollo
 			.mutate<{ login: Token }>({
 				mutation: gql`
@@ -48,12 +50,13 @@ export class LoginComponent {
 				},
 				errorPolicy: 'all',
 			})
-			.subscribe(({ data }) => {
+			.subscribe(({ data, errors }) => {
 				if (data) {
-					this.u.login(data['login'].token, data['login'].user_id);
-					this.page.route = '/';
-				} else {
-					this.formGroup.controls['email'].setErrors({ login_fail: true });
+					this.user.login(data['login'].token, data['login'].user_id);
+				}
+
+				if (errors && !data) {
+					this.formGroup.controls['password'].setValue(undefined);
 					this.formGroup.controls['password'].setErrors({ login_fail: true });
 				}
 			});
