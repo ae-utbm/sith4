@@ -39,13 +39,14 @@ export class UserService {
 
 	public fetchUser(id: number) {
 		this.apollo
-			.query<{ userPrivate: PublicUser }>({
+			.query<{ userPrivate: PrivateUser }>({
 				query: gql`
 					query ($user_id: Int!) {
 						userPrivate(id: $user_id) {
 							first_name
 							last_name
 							nickname
+							birthday
 							promotion {
 								number
 							}
@@ -139,6 +140,21 @@ export class UserService {
 
 	public get accountId(): string | undefined {
 		return this.isLoggedIn && this.user ? this.user.subscriber_account : undefined;
+	}
+
+	public get birthday(): Date | undefined {
+		return this.isLoggedIn && this.user && this.user.birthday ? new Date(this.user.birthday) : undefined;
+	}
+
+	public get isMinor(): boolean | undefined {
+		const birthday = this.birthday;
+
+		if (!birthday) return undefined;
+		return birthday.getAge() < 18;
+	}
+
+	public get promotion(): number | undefined {
+		return this.isLoggedIn && this.user && this.user.promotion ? this.user.promotion.number : undefined;
 	}
 
 	// TODO
