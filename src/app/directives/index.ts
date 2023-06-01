@@ -1,5 +1,5 @@
 import { AbstractControl } from '@angular/forms';
-import { ageMinValidator, ageMaxValidator, notInFutureValidator } from './date.directive';
+import { ageMinValidator, ageMaxValidator, notInFutureValidator, requiredIfBelow } from './date.directive';
 import { forbiddenEmailValidator } from './forbidden_email.directive';
 import { nameValidator } from './name.directive';
 import {
@@ -13,6 +13,7 @@ import {
 
 export class CustomValidators {
 	public static forbiddenEmailValidator = forbiddenEmailValidator;
+	public static requiredIfBelow = requiredIfBelow;
 	public static ageMinValidator = ageMinValidator;
 	public static ageMaxValidator = ageMaxValidator;
 	public static notInFutureValidator = notInFutureValidator;
