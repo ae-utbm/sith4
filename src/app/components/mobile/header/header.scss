@@ -16,10 +16,11 @@
 		padding: 16px 5px;
 		gap: 16px;
 
-		> * {
+		> .icon {
 			width: 32px;
 			height: 32px;
 			fill: var(--navbar-text-color);
+			cursor: pointer;
 		}
 	}
 }

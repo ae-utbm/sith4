@@ -1,10 +1,10 @@
 <div class="header">
 	<img class="logo" [src]="page.logo" alt="logo_ae" (click)="page.route = '/'">
 	<div class="icons">
-		<icon-cogwheel (click)="triggerSideMenuOptions()" />
-		<icon-user *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
+		<icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
+		<icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
 			[notifications]="u.notificationsCount ?? 0" />
-		<icon-burger-menu *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
+		<icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
 
