@@ -23,6 +23,8 @@ $no-banner-height: 45px;
 		}
 
 		>.promotion {
+			display: block;
+			height: 35px;
 			width: 35px;
 			border-radius: 50%;
 		}
@@ -30,10 +32,6 @@ $no-banner-height: 45px;
 		>.ae-sticker {
 			width: 51px;
 			border-radius: 5px;
-		}
-
-		>.promotion,
-		>.ae-sticker {
 			display: block;
 			height: 35px;
 			border: dotted 1.5px var(--text-color-dark-bg);

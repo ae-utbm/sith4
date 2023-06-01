@@ -30,7 +30,7 @@ describe('SideMenuProfileComponent', () => {
 	describe('logout', () => {
 		it('should call close.emit and u.logout', () => {
 			const closeSpy = spyOn(component.close, 'emit');
-			const logoutSpy = spyOn(component.u, 'logout');
+			const logoutSpy = spyOn(component.user, 'logout');
 
 			component.logout();
 
