@@ -34,6 +34,21 @@ export interface PrivateUser {
  */
 export type PublicUser = Partial<PrivateUser> & { id: number; first_name: string; last_name: string };
 
+export type UserVisibility = {
+	[key in keyof Omit<
+		Required<PrivateUser>,
+		| 'last_name'
+		| 'first_name'
+		| 'nickname'
+		| 'id'
+		| 'updated'
+		| 'created'
+		| 'last_seen'
+		| 'subscription'
+		| 'subscriber_account'
+	>]: boolean;
+};
+
 /**
  * User object, returned by the API.
  * Configurable with the `filter` parameter.
