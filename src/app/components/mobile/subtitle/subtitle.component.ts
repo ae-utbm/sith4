@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { isRTL } from 'src/utils/document';
 
 @Component({
-	selector: 'app-mobile-subtitle',
+	selector: 'sith-mobile-subtitle',
 	templateUrl: './subtitle.html',
 	styleUrls: ['./subtitle.scss'],
 })
