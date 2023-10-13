@@ -5,7 +5,7 @@ import { ISelectOption } from '../../common/select/select.component';
 import { Observable } from 'rxjs';
 
 @Component({
-	selector: 'app-mobile-lang-selector',
+	selector: 'sith-mobile-lang-selector',
 	templateUrl: './lang-selector.html',
 	styleUrls: ['./lang-selector.scss'],
 })

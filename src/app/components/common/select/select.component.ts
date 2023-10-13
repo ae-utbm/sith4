@@ -8,7 +8,7 @@ export interface ISelectOption {
 }
 
 @Component({
-	selector: 'app-select',
+	selector: 'sith-select',
 	templateUrl: './select.html',
 	styleUrls: ['./select.scss'],
 })

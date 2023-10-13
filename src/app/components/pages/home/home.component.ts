@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-home',
+	selector: 'sith-home',
 	templateUrl: './home.html',
 	styleUrls: [],
 })

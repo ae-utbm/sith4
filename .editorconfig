@@ -7,6 +7,7 @@ indent_style = tab
 indent_size = 2
 insert_final_newline = true
 trim_trailing_whitespace = true
+end_of_line = lf
 
 [*.ts]
 quote_type = single
@@ -16,4 +17,7 @@ max_line_length = off
 trim_trailing_whitespace = false
 
 [*.yml]
+indent_style = space
+
+[*.json]
 indent_style = space

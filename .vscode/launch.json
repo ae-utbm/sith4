@@ -7,24 +7,33 @@
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "args": ["run", "start"],
-      "console": "integratedTerminal",
+      "args": [
+        "run",
+        "start"
+      ],
+      "console": "integratedTerminal"
     },
     {
       "name": "Run tests",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "args": ["run", "test"],
-      "console": "integratedTerminal",
+      "args": [
+        "run",
+        "test"
+      ],
+      "console": "integratedTerminal"
     },
     {
       "name": "Lint",
       "type": "node",
       "request": "launch",
       "runtimeExecutable": "pnpm",
-      "args": ["run", "lint"],
-      "console": "integratedTerminal",
+      "args": [
+        "run",
+        "lint"
+      ],
+      "console": "integratedTerminal"
     }
   ]
 }

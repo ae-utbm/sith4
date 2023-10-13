@@ -1,8 +1,8 @@
 name: 🐛 Rapport de bug
 description: Remplissez un rapport de bug
-title: "[BUG] "
-labels: ["type: bug", "status: triage"]
-assignees: "developers-v4"
+title: '[BUG] '
+labels: ['type: bug', 'status: triage']
+assignees: 'developers-v4'
 body:
   - type: markdown
     attributes:

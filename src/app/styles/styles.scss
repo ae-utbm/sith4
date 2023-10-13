@@ -8,21 +8,21 @@ $background-color: #21262d;
 // --
 
 :root {
-  --user-custom-color: $user-custom-color;
+	--user-custom-color: $user-custom-color;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 body,
 html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
 }
 
 /* Firefox */
@@ -48,8 +48,8 @@ html {
 
 // TODO: remove this once the theme is implemented
 body {
-  padding: 30px;
-  background-color: $background-color;
+	padding: 30px;
+	background-color: $background-color;
 }
 
 // --

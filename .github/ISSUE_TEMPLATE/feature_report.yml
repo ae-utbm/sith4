@@ -1,8 +1,8 @@
 name: ✨ Suggestion d'amélioration
 description: Suggérez une idée pour le projet
-title: "[FEATURE] "
-labels: ["type: feature", "status: triage"]
-assignees: "developers-v4"
+title: '[FEATURE] '
+labels: ['type: feature', 'status: triage']
+assignees: 'developers-v4'
 body:
   - type: markdown
     attributes:
@@ -37,4 +37,3 @@ body:
       options:
         - label: "J'accepte de suivre le code de conduite de ce projet"
           required: true
-      

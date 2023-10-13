@@ -1,14 +1,14 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { TranslateService } from '@ngx-translate/core';
 import { getLanguage, getLanguageDirection } from 'src/utils';
 
 @Component({
-	selector: 'app-root',
+	selector: 'sith-root',
 	template: '<router-outlet></router-outlet>',
 	styleUrls: [],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 	public title = 'sith4';
 
 	public constructor(
