@@ -1,4 +1,5 @@
 <!-- omit in toc -->
+
 # Contribuer au Sith 4
 
 Premièrement, merci de prendre le temps de contribuer ! ❤️
@@ -13,6 +14,7 @@ Tout type de contributions sont encouragée et valorisée. Veuillez consulter la
 > - Mentioner le projet lors de réunion locales et parler-en à vos amis/collègues
 
 <!-- omit in toc -->
+
 ## Table des matières
 
 - [Code de conduite](#code-de-conduite)
@@ -49,13 +51,14 @@ Nous nous occuperons alors du problème dans les plus brefs délais.
 ### Rapporter des Bugs
 
 <!-- omit in toc -->
+
 #### Avant de rapporter un bug
 
 Une bonne issue ne doit pas laisser les autres vous courir après afin d'obtenir davantage d'information. Ainsi, nous vous demandons d'enquêter attentivement, de collecter des informations et décrire le problème en détail dans votre rapport. Veuillez compléter les étapes suivantes à l'avance pour nous aider à résoudre le bug potentiel le plus rapidement possible.
 
 - Assurez-vous d'utiliser la dernière version.
 - Vérifiez si votre bug n'est pas en fait une erreur de votre côté, par exemple en utilisant des composants d'environnement/incompatibles (assurez-vous d'avoir lu la [documentation](https://github.com/ae-utbm/api/wiki).
-Si vous recherchez de l'aide, vous pouvez consulter [cette section](#jai-une-question)).
+  Si vous recherchez de l'aide, vous pouvez consulter [cette section](#jai-une-question)).
 - Pour voir si d'autres utilisateurs ont expérimentés (et potentiellement déjà résolu) le même problème que vous rencontrez, vérifiez si il n'y a pas déjà un rapport de bug existant pour votre bug ou erreur dans le [bug tracker](https://github.com/ae-utbm/sith4/issues?q=is%3Aissue+is%3Aclosed)
 - Assurez-vous de rechercher sur internet (y compris Stack Overflow) pour voir si d'autres utilisateurs hors de la communauté GitHub ont discuté du problème.
 - Collectez des informations sur le bug :
@@ -73,7 +76,7 @@ Nous utilisons les issues GitHub pour suivre les bugs et les erreurs. Si vous re
 
 - Ouvrez une [issue](https://github.com/ae-utbm/sith4/issues/new). (Comme nous ne pouvons pas être sûrs à ce stade de savoir si c'est un bug ou non, nous vous demandons de ne pas parler de bug et de ne pas ajouter de tag sur l'issue.)
 - Expliquer le comportement que vous attendez et le comportement réel.
-- Veuillez fournir autant de contexte que possible et décrire les *étapes de reproduction* que quelqu'un d'autre peut suivre pour recréer le problème sur son propre ordinateur. Cela inclut généralement votre code. Pour de bons rapports de bugs, vous devez isoler le problème et créer un cas de test réduit.
+- Veuillez fournir autant de contexte que possible et décrire les _étapes de reproduction_ que quelqu'un d'autre peut suivre pour recréer le problème sur son propre ordinateur. Cela inclut généralement votre code. Pour de bons rapports de bugs, vous devez isoler le problème et créer un cas de test réduit.
 - Si vous en avez la possibilité, incluez des captures d'écran et des vidéos qui montrent le problème.
 
 Une fois que c'est fait :
@@ -89,6 +92,7 @@ Cette section vous guide
 Cette section vous guide tout au long de la soumission d'une suggestion d'amélioration pour le Sith 4, **incluant des fonctionnalités entièrement nouvelles et des améliorations mineures des fonctionnalités existantes**. Suivre ces directives aidera les mainteneurs et la communauté à comprendre votre suggestion et à trouver des suggestions connexes.
 
 <!-- omit in toc -->
+
 #### Avant de soumettre une amélioration
 
 - Assurez-vous que vous utilisez la dernière version.

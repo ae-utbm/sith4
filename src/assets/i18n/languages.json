@@ -1,72 +1,103 @@
 [
   {
-    "codes": ["en", "en-US", "en-GB"],
+    "codes": [
+      "en",
+      "en-US",
+      "en-GB"
+    ],
     "filename": "en-US",
     "label": "English",
     "image": "assets/flags/en-GB.svg",
-		"direction": "ltr"
-	},
+    "direction": "ltr"
+  },
   {
-    "codes": ["fr", "fr-FR"],
+    "codes": [
+      "fr",
+      "fr-FR"
+    ],
     "filename": "fr-FR",
     "label": "Français",
     "image": "assets/flags/fr-FR.svg",
-		"direction": "ltr"
+    "direction": "ltr"
   },
-	{
-		"codes": ["es", "es-ES"],
-		"filename": "es-ES",
-		"label": "Español",
-		"image": "assets/flags/es-ES.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["de", "de-DE"],
-		"filename": "de-DE",
-		"label": "Deutsch",
-		"image": "assets/flags/de-DE.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["it", "it-IT"],
-		"filename": "it-IT",
-		"label": "Italiano",
-		"image": "assets/flags/it-IT.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["ru", "ru-RU"],
-		"filename": "ru-RU",
-		"label": "Русский",
-		"image": "assets/flags/ru-RU.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["uk", "uk-UA"],
-		"filename": "uk-UA",
-		"label": "Українська",
-		"image": "assets/flags/uk-UA.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["zh", "zh-CN"],
-		"filename": "zh-CN",
-		"label": "中文",
-		"image": "assets/flags/zh-CN.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["ja", "ja-JP"],
-		"filename": "ja-JP",
-		"label": "日本語",
-		"image": "assets/flags/ja-JP.svg",
-		"direction": "ltr"
-	},
-	{
-		"codes": ["ar", "ar-SA"],
-		"filename": "ar-SA",
-		"label": "العربية",
-		"image": "assets/flags/ar-SA.svg",
-		"direction": "rtl"
-	}
+  {
+    "codes": [
+      "es",
+      "es-ES"
+    ],
+    "filename": "es-ES",
+    "label": "Español",
+    "image": "assets/flags/es-ES.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "de",
+      "de-DE"
+    ],
+    "filename": "de-DE",
+    "label": "Deutsch",
+    "image": "assets/flags/de-DE.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "it",
+      "it-IT"
+    ],
+    "filename": "it-IT",
+    "label": "Italiano",
+    "image": "assets/flags/it-IT.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "ru",
+      "ru-RU"
+    ],
+    "filename": "ru-RU",
+    "label": "Русский",
+    "image": "assets/flags/ru-RU.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "uk",
+      "uk-UA"
+    ],
+    "filename": "uk-UA",
+    "label": "Українська",
+    "image": "assets/flags/uk-UA.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "zh",
+      "zh-CN"
+    ],
+    "filename": "zh-CN",
+    "label": "中文",
+    "image": "assets/flags/zh-CN.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "ja",
+      "ja-JP"
+    ],
+    "filename": "ja-JP",
+    "label": "日本語",
+    "image": "assets/flags/ja-JP.svg",
+    "direction": "ltr"
+  },
+  {
+    "codes": [
+      "ar",
+      "ar-SA"
+    ],
+    "filename": "ar-SA",
+    "label": "العربية",
+    "image": "assets/flags/ar-SA.svg",
+    "direction": "rtl"
+  }
 ]

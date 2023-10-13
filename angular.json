@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "sith",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -93,17 +93,29 @@
               "src/assets"
             ],
             "styles": [
-							"src/app/styles/styles.scss"
+              "src/app/styles/styles.scss"
             ],
             "scripts": [],
             "karmaConfig": "karma.conf.js",
-						"codeCoverage": true
+            "codeCoverage": true
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
