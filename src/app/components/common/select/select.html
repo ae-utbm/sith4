@@ -1,16 +1,27 @@
 <div class="select">
-  <button class="selector" [ngClass]="{ 'active': dropdownVisible }" (click)="toggleDropdown()" (keyup.enter)="toggleDropdown()">
-    <div class="content">
-      <img class="image" *ngIf="selectedOption.image" [src]="selectedOption.image" [alt]="selectOption.name">
-      <span class="label">{{ selectedOption.label }}</span>
-    </div>
-    <icon-expand-less class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="dropdownVisible" />
-    <icon-expand-more class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="!dropdownVisible" />
-  </button>
-  <ul *ngIf="dropdownVisible" class="dropdown">
-    <li class="item" *ngFor="let option of sortOptions()" (click)="selectOption(option)" (keyup.enter)="selectOption(option)" tabindex="0">
-      <img class="image" *ngIf="option.image" [src]="option.image" [alt]="option.label">
-      <span class="label">{{ option.label }}</span>
-    </li>
-  </ul>
+	<button
+		class="selector"
+		[ngClass]="{ 'active': dropdownVisible }"
+		(click)="toggleDropdown()"
+		(keyup.enter)="toggleDropdown()"
+	>
+		<div class="content">
+			<img class="image" *ngIf="selectedOption.image" [src]="selectedOption.image" [alt]="selectOption.name" />
+			<span class="label">{{ selectedOption.label }}</span>
+		</div>
+		<icon-expand-less class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="dropdownVisible" />
+		<icon-expand-more class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="!dropdownVisible" />
+	</button>
+	<ul *ngIf="dropdownVisible" class="dropdown">
+		<li
+			class="item"
+			*ngFor="let option of sortOptions()"
+			(click)="selectOption(option)"
+			(keyup.enter)="selectOption(option)"
+			tabindex="0"
+		>
+			<img class="image" *ngIf="option.image" [src]="option.image" [alt]="option.label" />
+			<span class="label">{{ option.label }}</span>
+		</li>
+	</ul>
 </div>

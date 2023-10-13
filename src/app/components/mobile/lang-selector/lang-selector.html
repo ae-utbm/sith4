@@ -1,7 +1,7 @@
 <div class="selector">
-  <sith-mobile-subtitle [onDarkBackground]="true" text="{{ 'i18n.switch_lang' | translate }}"/>
-  <div>
-    <sith-select [selectedOption]="getLang()" [options]="langs" (optionSelected)="selectLangage($event)" />
-    <a class="link" href="https://ae-utbm.crowdin.com/sith4">{{ 'i18n.help_us_translate' | translate }}</a>
-  </div>
+	<sith-mobile-subtitle [onDarkBackground]="true" text="{{ 'i18n.switch_lang' | translate }}" />
+	<div>
+		<sith-select [selectedOption]="getLang()" [options]="langs" (optionSelected)="selectLangage($event)" />
+		<a class="link" href="https://ae-utbm.crowdin.com/sith4">{{ 'i18n.help_us_translate' | translate }}</a>
+	</div>
 </div>
