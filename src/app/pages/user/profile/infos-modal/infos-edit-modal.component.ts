@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
 import { PrivateUser, Promotion, UserVisibility } from 'src/types/objects';
 
 @Component({
-	selector: 'app-user-profile-infos-edit-modal',
+	selector: 'sith-user-profile-infos-edit-modal',
 	templateUrl: './infos-edit-modal.html',
 	styleUrls: ['./infos-edit-modal.scss'],
 })

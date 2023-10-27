@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-user-pictures',
+	selector: 'sith-user-pictures',
 	templateUrl: './pictures.html',
 	styleUrls: ['./pictures.scss'],
 })

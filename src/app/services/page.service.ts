@@ -106,9 +106,9 @@ export class PageService {
 	 * @returns {FontSize} The current font size
 	 */
 	public get fontSize(): FontSize {
-		let size = localStorage.getItem('fontSize');
+		let size = localStorage.getItem('fontSize') as (FontSize | null);
 		if (size === null || (size !== '0.75' && size !== '1' && size !== '1.25')) size = '1';
-		return size as FontSize;
+		return size;
 	}
 
 	/**

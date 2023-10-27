@@ -2,7 +2,7 @@ import type { base64 } from 'src/types';
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-	selector: 'app-file-input',
+	selector: 'sith-file-input',
 	templateUrl: './file-input.html',
 	styleUrls: ['./file-input.scss'],
 })

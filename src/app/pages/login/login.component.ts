@@ -11,7 +11,7 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
 @Component({
-	selector: 'app-login',
+	selector: 'sith-login',
 	templateUrl: './login.html',
 	styleUrls: ['./login.scss'],
 })

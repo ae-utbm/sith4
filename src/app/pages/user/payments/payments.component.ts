@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-	selector: 'app-user-payments',
+	selector: 'sith-user-payments',
 	templateUrl: './payments.html',
 	styleUrls: ['./payments.scss'],
 })

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-	selector: 'app-title',
+	selector: 'sith-title',
 	templateUrl: './title.html',
 	styleUrls: ['./title.scss'],
 })

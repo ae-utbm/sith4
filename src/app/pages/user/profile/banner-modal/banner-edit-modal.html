@@ -1,9 +1,9 @@
 <dialog class="banner-dialog" #banner>
-	<app-title [text]="isSelf() ? ('profile.update_banner' | translate) : ('profile.update_banner_of_user' | translate: { username })" [adaptColor]="true" />
+	<sith-title [text]="isSelf() ? ('profile.update_banner' | translate) : ('profile.update_banner_of_user' | translate: { username })" [adaptColor]="true" />
 	<form method="dialog">
-		<app-file-input (change)="updateUncroppedBanner($event)" />
+		<sith-file-input (change)="updateUncroppedBanner($event)" />
 
-		<app-image-cropper
+		<sith-image-cropper
 			class="cropper"
 			*ngIf="bannerUncropped"
 			[imageUrl]="bannerUncropped"
@@ -11,8 +11,8 @@
 			(export)="updateCroppedBanner($event)"
 		/>
 
-		<app-button [disabled]="!bannerUncropped" [text]="'global.save' | translate" type="submit" (click)="cropper.exportCanvas()" />
+		<sith-button [disabled]="!bannerUncropped" [text]="'global.save' | translate" type="submit" (click)="cropper.exportCanvas()" />
 
-		<app-button *ngIf="existingBanner" [text]="'global.delete' | translate" aspect="danger" (click)="deleteCurrentBanner()"/>
+		<sith-button *ngIf="existingBanner" [text]="'global.delete' | translate" aspect="danger" (click)="deleteCurrentBanner()"/>
 	</form>
 </dialog>

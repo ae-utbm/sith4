@@ -1,11 +1,11 @@
 <dialog class="picture-dialog" #picture>
-	<app-title [text]="isOwner ? ('profile.update_picture' | translate) : ('profile.update_picture_of_user' | translate: { username })" [adaptColor]="true" />
+	<sith-title [text]="isOwner ? ('profile.update_picture' | translate) : ('profile.update_picture_of_user' | translate: { username })" [adaptColor]="true" />
 	<form method="dialog">
 		<span *ngIf="timeLeft" class="warning">{{ 'profile.picture_too_recent' | translate: { date: timeLeft | date: 'dd/MM/yyyy HH:mm:ss' } }}</span>
 
-		<app-file-input *ngIf="!timeLeft" (change)="updateUncroppedPicture($event)" />
+		<sith-file-input *ngIf="!timeLeft" (change)="updateUncroppedPicture($event)" />
 
-		<app-image-cropper
+		<sith-image-cropper
 			class="cropper"
 			*ngIf="pictureUncropped"
 			[imageUrl]="pictureUncropped"
@@ -13,7 +13,7 @@
 			(export)="updateCroppedPicture($event)"
 		/>
 
-		<app-button
+		<sith-button
 			type="submit"
 			*ngIf="!timeLeft"
 			[text]="'global.save' | translate"
@@ -21,7 +21,7 @@
 			(click)="cropper.exportCanvas()"
 		/>
 
-		<app-button *ngIf="existingPicture && hasPermissions" [text]="'global.delete' | translate" aspect="danger"
+		<sith-button *ngIf="existingPicture && hasPermissions" [text]="'global.delete' | translate" aspect="danger"
 			(click)="deleteCurrentPicture()" />
 	</form>
 </dialog>

@@ -1,11 +1,11 @@
 <div class="options-container">
-	<app-title [onDarkBackground]="true" [text]="'header.options.title' | translate" [isCentered]="true" />
-	<app-theme-selector />
-	<app-lang-selector />
-	<app-text-size-selector />
+	<sith-title [onDarkBackground]="true" [text]="'header.options.title' | translate" [isCentered]="true" />
+	<sith-theme-selector />
+	<sith-lang-selector />
+	<sith-text-size-selector />
 
 	<!-- Todo use a component there -->
 	<div *ngIf="u.isLoggedIn">
-		<app-subtitle [onDarkBackground]="true" [text]="'header.options.accent_color.title' | translate" />
+		<sith-subtitle [onDarkBackground]="true" [text]="'header.options.accent_color.title' | translate" />
 	</div>
 </div>

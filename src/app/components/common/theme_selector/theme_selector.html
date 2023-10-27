@@ -1,4 +1,4 @@
-<app-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
+<sith-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
 <ul class="themes">
 	<li *ngFor="let t of themes" (click)="page.theme = t.value" [ngClass]="{'selected': t.value === page.theme}">
 		<div class="selector"></div>

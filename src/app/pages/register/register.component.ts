@@ -10,7 +10,7 @@ import { CustomValidators, getErrors } from 'src/app/directives';
 import { Apollo, gql } from 'apollo-angular';
 
 @Component({
-	selector: 'app-register',
+	selector: 'sith-register',
 	templateUrl: './register.html',
 	styleUrls: ['./register.scss'],
 })

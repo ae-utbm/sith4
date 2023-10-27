@@ -1,5 +1,5 @@
-<app-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
+<sith-subtitle [onDarkBackground]="true" [text]="'header.options.font_size.title' | translate" />
 <div class="buttons">
-	<app-button *ngFor="let size of sizes" (click)="page.fontSize = size.value" [text]="size.label" [class]="size.class"
+	<sith-button *ngFor="let size of sizes" (click)="page.fontSize = size.value" [text]="size.label" [class]="size.class"
 		[ngClass]="{'active': size.value === page.fontSize }" />
 </div>

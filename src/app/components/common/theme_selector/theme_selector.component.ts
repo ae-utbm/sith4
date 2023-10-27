@@ -4,7 +4,7 @@ import { PageService } from 'src/app/services/page.service';
 import { Theme, ThemeEvent, ThemeSelectorComponentTheme } from 'src/types';
 
 @Component({
-	selector: 'app-theme-selector',
+	selector: 'sith-theme-selector',
 	templateUrl: './theme_selector.html',
 	styleUrls: ['./theme_selector.scss'],
 })

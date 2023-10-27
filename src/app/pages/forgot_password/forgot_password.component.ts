@@ -5,7 +5,7 @@ import { CustomValidators, getErrors } from 'src/app/directives';
 import { PageService } from 'src/app/services/page.service';
 
 @Component({
-	selector: 'app-forgot-password',
+	selector: 'sith-forgot-password',
 	templateUrl: './forgot_password.html',
 	styleUrls: ['./forgot_password.scss'],
 })

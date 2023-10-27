@@ -3,7 +3,7 @@ import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-	selector: 'app-desktop-navbar',
+	selector: 'sith-desktop-navbar',
 	templateUrl: './navbar.html',
 	styleUrls: ['./navbar.scss'],
 })

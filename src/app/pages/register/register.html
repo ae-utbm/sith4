@@ -9,7 +9,7 @@
 
   <form [formGroup]="formGroup" (ngSubmit)="register()" autocomplete="on" novalidate>
     <div class="form-head">
-      <app-title [text]="'global.register' | translate" [onDarkBackground]="true"/>
+      <sith-title [text]="'global.register' | translate" [onDarkBackground]="true"/>
       <a class="global-link" href="/login">{{ 'register.already_have_account' | translate }}</a>
     </div>
 
@@ -78,6 +78,6 @@
 
 		<ng-hcaptcha formControlName="captcha" class="form-captcha"></ng-hcaptcha>
 
-    <app-button type="submit" [disabled]="!formGroup.valid" height="large" class="form-button" [text]="'global.register' | translate"></app-button>
+    <sith-button type="submit" [disabled]="!formGroup.valid" height="large" class="form-button" [text]="'global.register' | translate"></sith-button>
   </form>
 </main>

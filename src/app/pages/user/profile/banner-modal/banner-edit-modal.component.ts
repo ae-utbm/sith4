@@ -10,7 +10,7 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
-	selector: 'app-user-profile-banner-edit-modal',
+	selector: 'sith-user-profile-banner-edit-modal',
 	templateUrl: './banner-edit-modal.html',
 	styleUrls: ['./banner-edit-modal.scss'],
 })

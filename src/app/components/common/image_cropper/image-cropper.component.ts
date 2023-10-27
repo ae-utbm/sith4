@@ -13,7 +13,7 @@ import {
 } from '@angular/core';
 
 @Component({
-	selector: 'app-image-cropper',
+	selector: 'sith-image-cropper',
 	templateUrl: './image-cropper.html',
 	styleUrls: ['./image-cropper.scss'],
 	encapsulation: ViewEncapsulation.None,

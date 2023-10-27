@@ -3,7 +3,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { Alert } from 'src/types';
 
 @Component({
-	selector: 'app-mobile-alert',
+	selector: 'sith-mobile-alert',
 	templateUrl: './alert.html',
 	styleUrls: ['./alert.scss'],
 })

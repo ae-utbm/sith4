@@ -15,7 +15,7 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
-	selector: 'app-user-profile',
+	selector: 'sith-user-profile',
 	templateUrl: './profile.html',
 	styleUrls: ['./profile.scss'],
 })

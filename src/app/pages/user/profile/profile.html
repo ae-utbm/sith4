@@ -1,6 +1,6 @@
-<app-user-profile-picture-edit-modal *ngIf="isOwnerOrHasPermission" #pictureModal (pictureUpdated)="updatePicture($event)" [username]="user?.first_name ?? 'unknown'" [existingPicture]="profilePicture !== undefined" />
-<app-user-profile-banner-edit-modal *ngIf="isOwnerOrHasPermission" #bannerModal (bannerUpdated)="updateBanner($event)" [username]="user?.first_name ?? 'unknown'" [existingBanner]="profileBanner !== undefined" />
-<app-user-profile-infos-edit-modal *ngIf="isOwnerOrHasPermission" #infosModal [username]="user?.first_name ?? 'unknown'" />
+<sith-user-profile-picture-edit-modal *ngIf="isOwnerOrHasPermission" #pictureModal (pictureUpdated)="updatePicture($event)" [username]="user?.first_name ?? 'unknown'" [existingPicture]="profilePicture !== undefined" />
+<sith-user-profile-banner-edit-modal *ngIf="isOwnerOrHasPermission" #bannerModal (bannerUpdated)="updateBanner($event)" [username]="user?.first_name ?? 'unknown'" [existingBanner]="profileBanner !== undefined" />
+<sith-user-profile-infos-edit-modal *ngIf="isOwnerOrHasPermission" #infosModal [username]="user?.first_name ?? 'unknown'" />
 
 <div class="content">
 	<div class="profile">

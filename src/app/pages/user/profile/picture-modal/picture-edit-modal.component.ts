@@ -12,7 +12,7 @@ import { DEFAULT_HEADERS } from 'src/utils/http';
 import { UserPermissionService } from 'src/app/services/user-permissions.service';
 
 @Component({
-	selector: 'app-user-profile-picture-edit-modal',
+	selector: 'sith-user-profile-picture-edit-modal',
 	templateUrl: './picture-edit-modal.html',
 	styleUrls: ['./picture-edit-modal.scss'],
 })

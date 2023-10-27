@@ -9,7 +9,7 @@
 
 	<form [formGroup]="formGroup" (ngSubmit)="login()" autocomplete="on" novalidate>
 		<div class="form-head">
-			<app-title [text]="'global.sign_in' | translate" [onDarkBackground]="true" />
+			<sith-title [text]="'global.sign_in' | translate" [onDarkBackground]="true" />
 			<a class="global-link" href="/register">{{ 'login.no_account' | translate}}</a>
 		</div>
 
@@ -39,6 +39,6 @@
 			</a>
 		</div>
 
-		<app-button [disabled]="!formGroup.valid" type="submit" height="large" class="form-button" [text]="'global.sign_in' | translate"></app-button>
+		<sith-button [disabled]="!formGroup.valid" type="submit" height="large" class="form-button" [text]="'global.sign_in' | translate"></sith-button>
 	</form>
 </main>

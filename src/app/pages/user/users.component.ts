@@ -4,7 +4,7 @@ import { PageService } from 'src/app/services/page.service';
 import { PublicUser } from 'src/types/objects';
 
 @Component({
-	selector: 'app-users',
+	selector: 'sith-users',
 	templateUrl: './users.html',
 	styleUrls: [],
 })

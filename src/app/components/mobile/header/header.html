@@ -8,14 +8,14 @@
 	</div>
 </div>
 
-<app-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
-	<app-side-menu-profile (close)="triggerSideMenuProfile()" />
-</app-side-menu>
+<sith-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
+	<sith-side-menu-profile (close)="triggerSideMenuProfile()" />
+</sith-side-menu>
 
-<app-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
-	<app-side-menu-disconnected />
-</app-side-menu>
+<sith-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
+	<sith-side-menu-disconnected />
+</sith-side-menu>
 
-<app-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
-	<app-side-menu-options />
-</app-side-menu>
+<sith-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
+	<sith-side-menu-options />
+</sith-side-menu>

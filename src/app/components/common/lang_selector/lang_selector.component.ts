@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { SelectComponentOption } from 'src/types';
 
 @Component({
-	selector: 'app-lang-selector',
+	selector: 'sith-lang-selector',
 	templateUrl: './lang_selector.html',
 	styleUrls: ['./lang_selector.scss'],
 })

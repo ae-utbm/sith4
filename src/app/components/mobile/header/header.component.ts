@@ -3,7 +3,7 @@ import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-	selector: 'app-mobile-header',
+	selector: 'sith-mobile-header',
 	templateUrl: './header.html',
 	styleUrls: ['./header.scss'],
 })

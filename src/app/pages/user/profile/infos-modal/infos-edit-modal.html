@@ -1,5 +1,5 @@
 <dialog class="infos-dialog" #modal>
-	<app-title [text]="isSelf() ? ('profile.update_infos' | translate) : ('profile.update_infos_of_user' | translate: { username })" [adaptColor]="true" />
+	<sith-title [text]="isSelf() ? ('profile.update_infos' | translate) : ('profile.update_infos_of_user' | translate: { username })" [adaptColor]="true" />
 	<p class="infos-text" *ngIf="isSelf()">{{ 'profile.identity_info' | translate }}</p>
 
 	<form method="dialog" [formGroup]="infosForm">
@@ -138,11 +138,11 @@
 
 	</form>
 
-	<app-title *ngIf="!isSelf()" [text]="'profile.update_permissions_of_user' | translate: { username }" [adaptColor]="true" />
+	<sith-title *ngIf="!isSelf()" [text]="'profile.update_permissions_of_user' | translate: { username }" [adaptColor]="true" />
 
 	<div class="buttons">
-		<app-button class="button" [text]="'global.save' | translate" [disabled]="!infosForm.valid" />
-		<app-button class="button" [text]="'global.cancel' | translate" (click)="cancel()" />
+		<sith-button class="button" [text]="'global.save' | translate" [disabled]="!infosForm.valid" />
+		<sith-button class="button" [text]="'global.cancel' | translate" (click)="cancel()" />
 	</div>
 
 </dialog>

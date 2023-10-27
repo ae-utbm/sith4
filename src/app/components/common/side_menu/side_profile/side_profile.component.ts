@@ -3,7 +3,7 @@ import { PageService } from 'src/app/services/page.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-	selector: 'app-side-menu-profile',
+	selector: 'sith-side-menu-profile',
 	templateUrl: './side_profile.html',
 	styleUrls: ['./side_profile.scss'],
 })

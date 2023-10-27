@@ -4,7 +4,7 @@ import { PageService } from 'src/app/services/page.service';
 import { FontSize } from 'src/types';
 
 @Component({
-	selector: 'app-text-size-selector',
+	selector: 'sith-text-size-selector',
 	templateUrl: './text_size_selector.html',
 	styleUrls: ['./text_size_selector.scss'],
 })

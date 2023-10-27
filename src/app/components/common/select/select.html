@@ -9,8 +9,8 @@
 			<img class="image" *ngIf="selectedOption.image" [src]="selectedOption.image" [alt]="selectOption.name" />
 			<span class="label">{{ selectedOption.label }}</span>
 		</div>
-		<icon-expand-less class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="dropdownVisible" />
-		<icon-expand-more class="icon" [ngClass]="{ 'rtl': isRTL }" *ngIf="!dropdownVisible" />
+		<icon-expand-less class="icon" [ngClass]="{ 'rtl': page.isRTL }" *ngIf="dropdownVisible" />
+		<icon-expand-more class="icon" [ngClass]="{ 'rtl': page.isRTL }" *ngIf="!dropdownVisible" />
 	</button>
 	<ul *ngIf="dropdownVisible" class="dropdown">
 		<li
