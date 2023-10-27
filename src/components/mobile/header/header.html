@@ -1,0 +1,22 @@
+<div class="header">
+	<!-- <img class="logo" [src]="page.logo" alt="logo_ae" (click)="page.route = '/'"> -->
+	<img class="logo" [src]="page.logo" alt="logo_ae" >
+	<div class="icons">
+		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
+		<sith-icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
+			[notifications]="u.notificationsCount ?? 0" />
+		<sith-icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
+	</div>
+</div>
+
+<sith-side-menu (close)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
+	<sith-side-menu-profile (close)="triggerSideMenuProfile()" />
+</sith-side-menu>
+
+<sith-side-menu (close)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
+	<sith-side-menu-disconnected />
+</sith-side-menu>
+
+<sith-side-menu (close)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }" >
+	<sith-side-menu-options />
+</sith-side-menu>

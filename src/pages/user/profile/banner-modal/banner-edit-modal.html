@@ -1,0 +1,18 @@
+<dialog class="banner-dialog" #banner>
+	<sith-title [text]="isSelf() ? ('profile.update_banner' | translate) : ('profile.update_banner_of_user' | translate: { username })" [adaptColor]="true" />
+	<form method="dialog">
+		<sith-file-input (fileChange)="updateUncroppedBanner($event)" />
+
+		<sith-image-cropper
+			class="cropper"
+			*ngIf="bannerUncropped"
+			[imageUrl]="bannerUncropped"
+			[cropperOptions]="options"
+			(export)="updateCroppedBanner($event)"
+		/>
+
+		<sith-button [disabled]="!bannerUncropped" [text]="'global.save' | translate" type="submit" (click)="cropper.exportCanvas()" />
+
+		<sith-button *ngIf="existingBanner" [text]="'global.delete' | translate" aspect="danger" (click)="deleteCurrentBanner()"/>
+	</form>
+</dialog>

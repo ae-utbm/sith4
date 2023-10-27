@@ -1,0 +1,15 @@
+<div class="disconnected-container">
+	<div class="title">
+		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + page.logo + ')' }"></div>
+		<div class="text-container">
+			<span class="text">Association des Étudiants</span>
+			<span class="text small">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+	<div class="buttons">
+		<!-- <sith-button height="large" [text]="'global.sign_in' | translate" (click)="page.route = '/login'" /> -->
+		<sith-button height="large" [text]="'global.sign_in' | translate"  />
+		<!-- <sith-button height="large" [text]="'global.register' | translate" (click)="page.route = '/register'" /> -->
+		<sith-button height="large" [text]="'global.register' | translate" />
+	</div>
+</div>

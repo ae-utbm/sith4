@@ -1,0 +1,12 @@
+<div class="container">
+	<div class="fake-input-file">
+		<sith-icon-upload class="icon" />
+		<span class="label">{{ filename }}</span>
+	</div>
+
+	<input
+		type="file"
+		accept="image/*"
+		(fileChange)="onFileChange($event)"
+	/>
+</div>

@@ -1,0 +1,115 @@
+<sith-user-profile-picture-edit-modal *ngIf="isOwnerOrHasPermission" #pictureModal (pictureUpdated)="updatePicture($event)" [username]="user?.first_name ?? 'unknown'" [existingPicture]="profilePicture !== undefined" />
+<sith-user-profile-banner-edit-modal *ngIf="isOwnerOrHasPermission" #bannerModal (bannerUpdated)="updateBanner($event)" [username]="user?.first_name ?? 'unknown'" [existingBanner]="profileBanner !== undefined" />
+<sith-user-profile-infos-edit-modal *ngIf="isOwnerOrHasPermission" #infosModal [username]="user?.first_name ?? 'unknown'" />
+
+<div class="content">
+	<div class="profile">
+		<div class="banner" [ngClass]="profileBanner ? 'has-banner' : ''">
+			<img *ngIf="profileBanner" class="banner-image" [src]="profileBanner" alt="user banner">
+			<span *ngIf="suspended" class="suspended">{{ 'profile.account_suspended' | translate }}</span>
+			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
+			<sith-icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()"/>
+		</div>
+
+		<div class="infos">
+			<div class="pictures" [ngClass]="{ 'rtl': page.isRTL() }">
+				<sith-icon-user class="picture" [url]="profilePicture" />
+				<div class="picture-hover" (click)="pictureModal.open()">
+					<sith-icon-pencil class="pencil" />
+				</div>
+				<sith-icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL() }" />
+			</div>
+
+			<div class="main" [ngClass]="{ 'rtl': page.isRTL() }">
+				<div>
+					<span class="name">{{ user?.first_name }} {{ user?.last_name }}</span>
+					<div class="subname">
+						<div *ngIf="nickname" class="nickname">{{ nickname }}</div>
+						<div *ngIf="age">{{ 'profile.age' | translate: { age } }}</div>
+					</div>
+				</div>
+				<sith-icon-flag class="flag" *ngIf="!isOwner" />
+			</div>
+
+			<div class="tab">
+				<div class="header">
+					<div class="tabs">
+						<button class="link" [ngClass]="{ 'shown': currentTab === 'about' }" (click)="currentTab = 'about'">{{ 'profile.about' |
+							translate }}</button>
+						<button
+							class="link"
+							[ngClass]="{ 'shown': currentTab === 'contact' }"
+							(click)="currentTab = 'contact'"
+							*ngIf="shouldSeePrivateData || (user?.email || user?.secondary_email || user?.phone || user?.parent_contact)"
+						>
+							{{ 'profile.contact' | translate }}
+						</button>
+					</div>
+					<sith-icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="infosModal.open()" />
+				</div>
+
+				<div class="body">
+					<!-- About section -->
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'about' }">
+						<div class="column" *ngIf="user?.birthday || shouldSeePrivateData">
+							<span class="title">{{ 'profile.birthday' | translate }}</span>
+							<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.cursus || shouldSeePrivateData">
+							<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
+							<span>{{ user?.cursus ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column">
+							<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
+							<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.gender || shouldSeePrivateData">
+							<span class="title">{{ 'profile.gender' | translate }}</span>
+							<span>{{ user?.gender ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.specialty || shouldSeePrivateData">
+							<span class="title">{{ 'profile.specialty' | translate }}</span>
+							<span>{{ user?.specialty ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.last_seen || shouldSeePrivateData">
+							<span class="title">{{ 'profile.last_seen' | translate }}</span>
+							<span>{{ (user?.last_seen | date: 'dd/MM/yyyy') ?? ('profile.never_seen' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.pronouns || shouldSeePrivateData">
+							<span class="title">{{ 'profile.pronouns' | translate }}</span>
+							<span>{{ user?.pronouns ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.promotion?.number || shouldSeePrivateData">
+							<span class="title">{{ 'profile.promotion' | translate }}</span>
+							<span>{{ user?.promotion?.number ?? ('profile.field_unset' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.subscription || shouldSeePrivateData">
+							<span class="title">{{ 'profile.subscription' | translate }}</span>
+							<span>{{ (user?.subscription | date: 'dd/MM/yyyy') ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+					</div>
+
+					<!-- Contact section -->
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'contact' }">
+						<div class="column" *ngIf="user?.email || shouldSeePrivateData">
+							<span class="title">{{ 'profile.email' | translate }}</span>
+							<span>{{ user?.email ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.secondary_email || shouldSeePrivateData">
+							<span class="title">{{ 'profile.secondary_email' | translate }}</span>
+							<span>{{ user?.secondary_email ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.phone || shouldSeePrivateData">
+							<span class="title">{{ 'profile.phone' | translate }}</span>
+							<span>{{ user?.phone ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.parent_contact || shouldSeePrivateData">
+							<span class="title">{{ 'profile.parent_contact' | translate }}</span>
+							<span>{{ user?.parent_contact ?? ('profile.field_unset' | translate ) }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

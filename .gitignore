@@ -43,3 +43,5 @@ Thumbs.db
 
 # Eslint reports
 eslint.json
+
+src/__old

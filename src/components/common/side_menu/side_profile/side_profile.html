@@ -1,0 +1,39 @@
+<div class="profile-container">
+	<div
+		class="background-image"
+		[ngClass]="{ 'has-banner': user.banner !== undefined }"
+		[ngStyle]="{ 'background-image': user.banner ? 'url(' + user.banner + ')' : '' }"
+	>
+		<sith-icon-promotion class="promotion" [number]="user.promotion" />
+		<div class="ae-sticker"></div>
+	</div>
+	<sith-icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL() }" [url]="user.picture" />
+	<div class="infos" [ngClass]="{ 'rtl': page.isRTL() }">
+		<div class="left">
+			<span class="name">{{ user.fullName }}</span>
+			<span>{{ user.balance }} €</span>
+		</div>
+		<span class="right">{{ user.accountId }}</span>
+	</div>
+	<main>
+		<ul class="links">
+			<!-- <li (click)="goto('profile')"> -->
+			<li>
+				<sith-icon-person class="icon" />
+				<span>{{ 'header.profile.profile' | translate }}</span>
+			</li>
+			<!-- <li (click)="goto('pictures')"> -->
+			<li>
+				<sith-icon-pictures class="icon" />
+				<span>{{ 'header.profile.pictures' | translate }}</span>
+			</li>
+			<!-- <li (click)="goto('payments')"> -->
+			<li>
+				<sith-icon-payments class="icon" />
+				<span>{{ 'header.profile.payments' | translate }}</span>
+			</li>
+		</ul>
+
+		<a (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
+	</main>
+</div>

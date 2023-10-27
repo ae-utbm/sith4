@@ -1,9 +1,11 @@
-import LANGS from '../assets/i18n/languages.json';
-import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs';
-import { TranslateLoader } from '@ngx-translate/core';
+import type { LangFile, Language } from '#types/sith';
+
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { LangFile, Language } from 'src/types';
+import { TranslateLoader } from '@ngx-translate/core';
+import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs';
+
+import LANGS from '@assets/i18n/languages.json';
 
 export const LANGUAGES: Language[] = LANGS as unknown as Language[];
 export const DEFAULT_LANGUAGE = 'en-US';
@@ -87,8 +89,8 @@ export class TranslateHttpLoader implements TranslateLoader {
 		const langFile = `${this.prefix}${lang}${this.suffix}`;
 		const baseLangFile = `${this.prefix}${DEFAULT_LANGUAGE}${this.suffix}`;
 
-		const langFile$ = this.http.get(langFile).pipe(catchError(() => of({}))) as Observable<LangFile | object>;
-		const baseLangFile$ = this.http.get(baseLangFile) as Observable<LangFile>;
+		const langFile$ = this.http.get<LangFile | NonNullable<unknown>>(langFile).pipe(catchError(() => of({})));
+		const baseLangFile$ = this.http.get<LangFile>(baseLangFile);
 
 		return forkJoin([langFile$, baseLangFile$]).pipe(
 			map(([langData, baseLangData]) => Object.merge(baseLangData, langData)),

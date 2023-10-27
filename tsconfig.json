@@ -21,11 +21,31 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "#types/api": [
+        "src/exported/api/@types/index.d.ts"
+      ],
+      "#types": [
+        "src/exported/global/@types/index.d.ts"
+      ],
+      "#types/sith": [
+        "src/exported/sith4/@types/index.d.ts"
+      ],
+      "@*": [
+        "src/*"
+      ]
+    },
     "lib": [
       "ES2022",
       "dom",
       "esnext.asynciterable"
-    ]
+    ],
+    "typeRoots": [
+      "src/exported/global/@types",
+      "src/exported/api/@types",
+      "src/exported/sith4/@types",
+      "node_modules/@types"
+    ],
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

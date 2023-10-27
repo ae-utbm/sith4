@@ -1,0 +1,19 @@
+<div *ngIf="page.isMobile(); else desktopBlock">
+	<sith-mobile-header *ngIf="!page.headless" />
+	<sith-mobile-navbar *ngIf="!page.headless" />
+	<router-outlet></router-outlet>
+</div>
+
+<ng-template #desktopBlock>
+	<sith-desktop-header *ngIf="!page.headless" />
+	<main [ngClass]="{ 'headless': page.headless }">
+		<sith-desktop-navbar *ngIf="!page.headless" />
+		<router-outlet></router-outlet>
+	</main>
+</ng-template>
+
+{{ page.theme }}<br>
+{{ page.theme_event.theme }}&nbsp;{{ page.theme_event.last_update }}&nbsp;{{ page.theme_event.disabled }}<br>
+{{ page.lang }}&nbsp;{{ page.isRTL() }}<br>
+{{ page.logo }}<br>
+{{ page.isMobile() }}&nbsp;{{ page.headless }}

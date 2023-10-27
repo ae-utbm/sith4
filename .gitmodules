@@ -1,0 +1,3 @@
+[submodule "src/exported"]
+	path = src/exported
+	url = https://github.com/ae-utbm/typings.git

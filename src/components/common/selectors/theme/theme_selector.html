@@ -1,0 +1,24 @@
+<sith-subtitle [onDarkBackground]="true" [text]="'header.options.themes.title' | translate" />
+<ul class="themes">
+	<li
+		*ngFor="let theme of themes"
+		tabindex="1" (click)="updateTheme(theme.value)" (keydown)="updateTheme(theme.value, $event)"
+		[ngClass]="{'selected': theme.value === page.theme}"
+	>
+		<div class="selector"></div>
+		<span>{{ theme.name | translate }}</span>
+	</li>
+</ul>
+
+<div *ngIf="themes_event.length > 0">
+	<ul class="themes">
+		<li
+			*ngFor="let theme of themes_event"
+			tabindex="2" (click)="updateThemeEvent(theme.value)" (keydown)="updateThemeEvent(theme.value, $event)"
+			[ngClass]="{'selected': page.theme_event.disabled && page.theme_event.theme === theme.value}"
+		>
+			<div class="selector square"></div>
+			<span>{{ theme.name | translate }}</span>
+		</li>
+	</ul>
+</div>

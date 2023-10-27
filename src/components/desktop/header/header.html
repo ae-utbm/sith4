@@ -1,0 +1,31 @@
+<div class="header">
+	<!-- <div class="title" (click)="page.route = '/'"> -->
+	<div class="title">
+		<img [src]="page.logo" alt="AE's logo" />
+		<div class="text">
+			<span class="big">Association des Étudiants</span>
+			<span class="small">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+
+	<div class="icons">
+		<sith-icon-search class="icon search" *ngIf="u.isLoggedIn" />
+		<sith-icon-shopping-basket class="icon" *ngIf="u.isLoggedIn" />
+		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
+		<sith-icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
+			[notifications]="u.notificationsCount ?? 0" />
+		<sith-icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
+	</div>
+</div>
+
+<sith-side-menu (sideMenuClose)="triggerSideMenuProfile()" class="side-menu" [ngClass]="{ 'open': profileOpened }">
+	<sith-side-menu-profile (sideMenuProfileClose)="triggerSideMenuProfile()" />
+</sith-side-menu>
+
+<sith-side-menu (sideMenuClose)="triggerSideMenuConnection()" class="side-menu" [ngClass]="{ 'open': connectionOpened }">
+	<sith-side-menu-disconnected />
+</sith-side-menu>
+
+<sith-side-menu (sideMenuClose)="triggerSideMenuOptions()" class="side-menu" [ngClass]="{ 'open': optionsOpened }">
+	<sith-side-menu-options />
+</sith-side-menu>

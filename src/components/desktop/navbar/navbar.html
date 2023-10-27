@@ -1,0 +1,26 @@
+<div class="navbar">
+	<div class="link" *ngIf="u.isLoggedIn">
+		<sith-icon-heart-plus class="icon" />
+		<span>{{ 'navbar.favorites' | translate }}</span>
+	</div>
+	<!-- <div class="link" (click)="page.route = '/shop'"> -->
+	<div class="link">
+		<sith-icon-shopping-cart class="icon" />
+		<span>{{ 'navbar.shop' | translate }}</span>
+	</div>
+	<!-- <div class="link" (click)="page.route = '/events'"> -->
+	<div class="link">
+		<sith-icon-party-hat class="icon" />
+		<span>{{ 'navbar.events' | translate }}</span>
+	</div>
+	<!-- <div class="link" (click)="page.route = '/forum'"> -->
+	<div class="link">
+		<sith-icon-messages class="icon" />
+		<span>{{ 'navbar.forum' | translate }}</span>
+	</div>
+	<!-- <div class="link" (click)="page.route = '/pictures'"> -->
+	<div class="link">
+		<sith-icon-pictures class="icon" />
+		<span>{{ 'navbar.pictures' | translate }}</span>
+	</div>
+</div>
