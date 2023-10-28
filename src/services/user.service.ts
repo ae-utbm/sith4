@@ -149,8 +149,7 @@ export class UserService {
 		const birthday = this.birthday;
 
 		if (!birthday) return undefined;
-		// return birthday.getAge() < 18;
-		return false;
+		return birthday.elapsedYears() < 18;
 	}
 
 	public get promotion(): number | undefined {

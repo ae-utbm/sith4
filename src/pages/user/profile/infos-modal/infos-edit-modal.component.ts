@@ -32,7 +32,7 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 		],
 		parent_contact: [
 			null,
-			// [CustomValidators.requiredIfBelow(18, this.user.birthday ? this.user.birthday.getAge() : 0)],
+			[CustomValidators.requiredIfBelow(18, this.user.birthday ? this.user.birthday.elapsedYears() : 0)],
 		],
 		secondary_email: [null, [Validators.email]],
 		phone: [null, []],
