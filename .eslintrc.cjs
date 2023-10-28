@@ -34,6 +34,7 @@ module.exports = {
 				'@typescript-eslint/explicit-module-boundary-types': 'off',
 				'@typescript-eslint/no-unsafe-enum-comparison': 'off',
 				'@typescript-eslint/no-namespace': 'off',
+				'@typescript-eslint/unbound-method': 'off',
 				'no-console': 'warn',
 				'prettier/prettier': ['error', { endOfLine: 'lf' }],
 				'import/export': 'off',
