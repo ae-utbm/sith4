@@ -3,11 +3,18 @@
 	display: flex;
 	flex-direction: row;
 	align-items: center;
-	justify-content: center;
 	background-color: var(--gray1);
 	height: 40px;
-	gap: 20px;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+	&.centered {
+		justify-content: center;
+		gap: 20px;
+	}
+
+	&.full {
+		justify-content: flex-start;
+	}
 
 	> .link {
 		cursor: pointer;

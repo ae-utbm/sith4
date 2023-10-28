@@ -1,4 +1,4 @@
-<div class="navbar">
+<div class="navbar" [ngClass]="page.full_width ? 'full' : 'centered'">
 	<div class="link" *ngIf="u.isLoggedIn">
 		<sith-icon-heart-plus class="icon" />
 		<span>{{ 'navbar.favorites' | translate }}</span>

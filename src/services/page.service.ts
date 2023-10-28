@@ -206,7 +206,17 @@ export class PageService {
 		return document.documentElement.dir === 'rtl';
 	}
 
+	/**
+	 * Control if the page is in headless mode or not
+	 * - If the page is in headless mode, the header, navbar will be hidden
+	 */
 	public headless = false;
+
+	/**
+	 * Control if the page is in full width mode or not
+	 * - Will make the navbar centered if false
+	 */
+	public full_width = true;
 
 	/**
 	 * Check if the device used by the user is a mobile device
