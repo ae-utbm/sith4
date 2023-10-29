@@ -12,7 +12,5 @@ export class HomeComponent {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly page: PageService,
-	) {
-		t.get('home.title').subscribe((title: string) => (page.title = title));
-	}
+	) {}
 }

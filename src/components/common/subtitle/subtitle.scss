@@ -5,8 +5,8 @@ h2 {
 	font-family: Inter, sans-serif;
 	font-style: normal;
 	font-weight: 400;
-	font-size: 12px;
-	line-height: 15px;
+	font-size: calc(12px * var(--font-size));
+	line-height: calc(15px * var(--font-size));
 	text-transform: uppercase;
 	margin: 0;
 }

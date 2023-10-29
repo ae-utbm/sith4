@@ -9,7 +9,6 @@ import { ImageCropperComponent } from '@components/common/image_cropper/image-cr
 import { environment } from '@environments/environment';
 import { UserPermissionService } from '@services/user-permissions.service';
 import { UserService } from '@services/user.service';
-import { DEFAULT_HEADERS } from '@utils/http';
 
 @Component({
 	selector: 'sith-user-profile-banner-edit-modal',

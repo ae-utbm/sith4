@@ -5,7 +5,6 @@ import { Inject, Injectable } from '@angular/core';
 
 import { environment } from '@environments/environment.dev';
 import { PageService } from '@services/page.service';
-import { DEFAULT_HEADERS } from '@utils/http';
 
 @Injectable({
 	providedIn: 'root',
@@ -72,7 +71,7 @@ export class UserService {
 	public fetchUserPicture(id: number) {
 		this.http
 			.get(`${environment.API_URL}/users/picture/${id}`, {
-				headers: DEFAULT_HEADERS,
+				// headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
@@ -86,7 +85,7 @@ export class UserService {
 	public fetchUserBanner(id: number) {
 		this.http
 			.get(`${environment.API_URL}/users/banner/${id}`, {
-				headers: DEFAULT_HEADERS,
+				// headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({

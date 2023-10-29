@@ -1,16 +1,18 @@
 import type { FontSize, Theme, ThemeEvent } from '#types/sith';
 
 import { Inject, Injectable } from '@angular/core';
+import { ActivationStart, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
+import { RouteData } from '@app-routing.module';
 import { getLanguage, getLanguageDirection } from '@utils/i18n';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class PageService {
-	public constructor(@Inject(TranslateService) public readonly t: TranslateService) {
+	public constructor(@Inject(TranslateService) public readonly t: TranslateService, private router: Router) {
 		// if language not set
 		if (localStorage.getItem('lang') === null) this.lang = this.DEFAULT_LANG;
 
@@ -30,6 +32,15 @@ export class PageService {
 		this.resizeSubscription$ = this.resizeObservable$.subscribe((evt) => {
 			this.width = (evt.target as Window).innerWidth;
 			this.height = (evt.target as Window).innerHeight;
+		});
+
+		this.router.events.subscribe((event) => {
+			if (event instanceof ActivationStart) {
+				const data = event.snapshot.data as RouteData;
+
+				if (data.title) t.get(data.title).subscribe((title: string) => (this.title = title));
+				this.headless = data.headless ?? false;
+			}
 		});
 	}
 

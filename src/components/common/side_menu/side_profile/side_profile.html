@@ -17,23 +17,20 @@
 	</div>
 	<main>
 		<ul class="links">
-			<!-- <li (click)="goto('profile')"> -->
-			<li>
+			<li tabindex="1" (click)="goto('profile')" (keydown)="goto('profile', $event)">
 				<sith-icon-person class="icon" />
 				<span>{{ 'header.profile.profile' | translate }}</span>
 			</li>
-			<!-- <li (click)="goto('pictures')"> -->
-			<li>
+			<li tabindex="1" (click)="goto('pictures')" (keydown)="goto('pictures', $event)">
 				<sith-icon-pictures class="icon" />
 				<span>{{ 'header.profile.pictures' | translate }}</span>
 			</li>
-			<!-- <li (click)="goto('payments')"> -->
-			<li>
+			<li tabindex="1" (click)="goto('payments')" (keydown)="goto('payments', $event)">
 				<sith-icon-payments class="icon" />
 				<span>{{ 'header.profile.payments' | translate }}</span>
 			</li>
 		</ul>
 
-		<a (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
+		<a tabindex="2" (keydown)="logout($event)" (click)="logout()" class="logout">{{ 'header.profile.disconnect' | translate }}</a>
 	</main>
 </div>

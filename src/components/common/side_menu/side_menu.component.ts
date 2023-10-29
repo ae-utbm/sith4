@@ -14,7 +14,7 @@ export class SideMenuComponent {
 	private _closing = false;
 
 	public triggerClose(event?: KeyboardEvent): void {
-		if (event && event.key !== 'Escape') return;
+		if (event && event.key !== 'Enter') return;
 
 		this._closing = true;
 

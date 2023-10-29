@@ -3,7 +3,6 @@ import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 
 // import { Promotion } from '@__old/types/objects';
 import { environment } from '@environments/environment';
-import { DEFAULT_HEADERS } from '@utils/http';
 
 @Component({
 	selector: 'sith-icon-promotion',

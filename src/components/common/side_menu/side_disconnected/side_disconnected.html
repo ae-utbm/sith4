@@ -7,9 +7,7 @@
 		</div>
 	</div>
 	<div class="buttons">
-		<!-- <sith-button height="large" [text]="'global.sign_in' | translate" (click)="page.route = '/login'" /> -->
-		<sith-button height="large" [text]="'global.sign_in' | translate"  />
-		<!-- <sith-button height="large" [text]="'global.register' | translate" (click)="page.route = '/register'" /> -->
-		<sith-button height="large" [text]="'global.register' | translate" />
+		<sith-button height="large" [text]="'global.sign_in' | translate" (click)="goto('login')" />
+		<sith-button height="large" [text]="'global.register' | translate" (click)="goto('register')" />
 	</div>
 </div>

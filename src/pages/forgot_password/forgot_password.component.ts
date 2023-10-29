@@ -19,9 +19,7 @@ export class ForgotPasswordComponent {
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
-	) {
-		t.get('forgot_password.title').subscribe((title: string) => (page.title = title));
-	}
+	) {}
 
 	public errors(field: string): string[] {
 		return getErrors(this.formGroup.controls[field]);

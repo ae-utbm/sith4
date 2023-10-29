@@ -12,7 +12,5 @@ export class NotFoundComponent {
 	public constructor(
 		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly page: PageService,
-	) {
-		t.get('404.title').subscribe((title) => (page.title = title));
-	}
+	) {}
 }

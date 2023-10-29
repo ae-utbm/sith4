@@ -1,11 +1,16 @@
-import type { UserTokenDto } from '#types/api';
+import type { email } from '#types';
+import type { ErrorResponseDto, MessageResponseDto, UserSignInDto, UserTokenDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { getErrors } from '@directives';
+import { environment } from '@environments/environment';
+import { APIService, ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
+import { SnackbarService } from '@services/snackbar.service';
 import { UserService } from '@services/user.service';
 
 @Component({
@@ -24,39 +29,34 @@ export class LoginComponent {
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly user: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
-	) {
-		t.get('login.title').subscribe((title: string) => (page.title = title));
+		@Inject(Router) private readonly router: Router,
+		@Inject(APIService) private readonly api: APIService,
+		@Inject(SnackbarService) private readonly snackbar: SnackbarService,
+	) {}
+
+	public goto(page: string[] | string, event?: KeyboardEvent) {
+		if (event && event.key !== 'Enter') return;
+
+		this.router.navigate(typeof page === 'string' ? [page] : page).catch(() => ({}));
 	}
 
 	public login(): void {
-		// if (this.user.isLoggedIn) return;
-
-		// this.apollo
-		// 	.mutate<{ login: Token }>({
-		// 		mutation: gql`
-		// 			mutation ($email: String!, $password: String!) {
-		// 				login(email: $email, password: $password) {
-		// 					token
-		// 					user_id
-		// 				}
-		// 			}
-		// 		`,
-		// 		variables: {
-		// 			email: this.formGroup.controls['email'].value,
-		// 			password: this.formGroup.controls['password'].value,
-		// 		},
-		// 		errorPolicy: 'all',
-		// 	})
-		// 	.subscribe(({ data, errors }) => {
-		// 		if (data) {
-		// 			this.user.login(data['login'].token, data['login'].user_id);
-		// 		}
-
-		// 		if (errors && !data) {
-		// 			this.formGroup.controls['password'].setValue(undefined);
-		// 			this.formGroup.controls['password'].setErrors({ login_fail: true });
-		// 		}
-		// 	});
+		this.api
+			.post<UserTokenDto, UserSignInDto>(`${environment.API_URL}/auth/login`, {
+				email: this.formGroup.controls['email'].value as email,
+				password: this.formGroup.controls['password'].value as string,
+			})
+			.subscribe({
+				next: (data) => {
+					this.user.login(data.token, data.user_id);
+					this.goto('/user');
+				},
+				error: (e: ApiError<ErrorResponseDto>) => {
+					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+					this.formGroup.controls['password'].setValue(undefined);
+					this.formGroup.controls['email'].setValue(undefined);
+				},
+			});
 	}
 
 	public errors(field: string): string[] {

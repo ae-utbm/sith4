@@ -1,7 +1,10 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PageService } from '@services/page.service';
 import { UserService } from '@services/user.service';
+
+import { SideMenuComponent } from '../side_menu.component';
 
 @Component({
 	selector: 'sith-side-menu-profile',
@@ -12,17 +15,21 @@ export class SideMenuProfileComponent {
 	public constructor(
 		@Inject(UserService) public readonly user: UserService,
 		@Inject(PageService) public readonly page: PageService,
+		@Inject(Router) public readonly router: Router,
+		private readonly sideMenu: SideMenuComponent,
 	) {}
 
-	@Output() public sideMenuProfileClose = new EventEmitter<void>();
+	public logout(event?: KeyboardEvent): void {
+		if (event && event.key !== 'Enter') return;
 
-	public logout(): void {
-		this.sideMenuProfileClose.emit();
+		this.sideMenu.triggerClose();
 		this.user.logout();
 	}
 
-	public goto(route: 'profile' | 'payments' | 'pictures'): void {
-		// this.page.route = `users/${this.user.id}${route === 'profile' ? '' : `/${route}`}`;
-		this.sideMenuProfileClose.emit();
+	public async goto(page: string, event?: KeyboardEvent) {
+		if (event && event.key !== 'Enter') return;
+
+		this.sideMenu.triggerClose();
+		await this.router.navigate(['users', this.user.id, page]);
 	}
 }

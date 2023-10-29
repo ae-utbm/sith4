@@ -10,7 +10,6 @@ import { environment } from '@environments/environment.dev';
 import { PageService } from '@services/page.service';
 import { UserPermissionService } from '@services/user-permissions.service';
 import { UserService } from '@services/user.service';
-import { DEFAULT_HEADERS } from '@utils/http';
 
 import { UserProfileBannerEditModalComponent } from './banner-modal/banner-edit-modal.component';
 import { UserProfilePictureEditModalComponent } from './picture-modal/picture-edit-modal.component';
@@ -88,12 +87,12 @@ export class UserProfileComponent {
 	public getUserData(user_id: number): void {
 		this.http
 			.get(`${environment.API_URL}/users/picture/${user_id}`, {
-				headers: DEFAULT_HEADERS,
+				// headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
 				next: (data: ArrayBuffer) => {
-					// this.profilePicture = data.toBase64();
+					this.profilePicture = data.toBase64();
 				},
 				error: () => {
 					this.profilePicture = undefined;
@@ -102,7 +101,7 @@ export class UserProfileComponent {
 
 		this.http
 			.get(`${environment.API_URL}/users/banner/${user_id}`, {
-				headers: DEFAULT_HEADERS,
+				// headers: DEFAULT_HEADERS,
 				responseType: 'arraybuffer',
 			})
 			.subscribe({
