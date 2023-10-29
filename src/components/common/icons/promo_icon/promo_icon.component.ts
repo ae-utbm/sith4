@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import type { imageURL } from '#types';
+
 import { Component, Inject, Input, OnChanges, OnInit } from '@angular/core';
 
-// import { Promotion } from '@__old/types/objects';
-import { environment } from '@environments/environment';
+import { PromotionService } from '@services/promotion.service';
 
 @Component({
 	selector: 'sith-icon-promotion',
@@ -10,12 +10,11 @@ import { environment } from '@environments/environment';
 	styleUrls: ['../icons.scss', './promo_icon.scss'],
 })
 export class IconPromotionComponent implements OnInit, OnChanges {
-	public picture?: string = undefined;
+	public constructor(@Inject(PromotionService) private readonly promotionService: PromotionService) {}
 
 	@Input() public number?: number;
-	public id?: number;
 
-	public constructor(@Inject(HttpClient) private readonly http: HttpClient) {}
+	public picture?: imageURL;
 
 	public ngOnChanges(): void {
 		this.setup();
@@ -27,44 +26,12 @@ export class IconPromotionComponent implements OnInit, OnChanges {
 
 	public setup() {
 		if (!this.number) return;
-		this.id = undefined;
 
-		// this.apollo
-		// 	.query<{ promotion: Promotion }>({
-		// 		query: gql`
-		// 			query ($number: Int!) {
-		// 				promotion(number: $number) {
-		// 					id
-		// 				}
-		// 			}
-		// 		`,
-		// 		variables: {
-		// 			number: this.number,
-		// 		},
-		// 		fetchPolicy: 'cache-first',
-		// 		errorPolicy: 'all',
-		// 	})
-		// 	.subscribe(({ data, error }) => {
-		// 		if (!data || error) return;
-		// 		this.id = data['promotion'].id;
-
-		// 		this.getPromoPicture();
-		// 	});
-	}
-
-	public getPromoPicture() {
-		// this.http
-		// 	.get(`${environment.API_URL}/promotions/logo/${this.id}`, {
-		// 		headers: DEFAULT_HEADERS,
-		// 		responseType: 'arraybuffer',
-		// 	})
-		// 	.subscribe({
-		// 		next: (data) => {
-		// 			this.picture = data.toBase64();
-		// 		},
-		// 		error: () => {
-		// 			this.picture = undefined;
-		// 		},
-		// 	});
+		this.promotionService.promotionPicture(this.number).subscribe({
+			next: (data) => {
+				this.picture = data;
+			},
+			error: (err) => console.error(err),
+		});
 	}
 }
