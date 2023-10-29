@@ -1,5 +1,5 @@
 <div class="side-menu" [ngClass]="{ 'rtl': page.isRTL() }">
-	<div class="left" tabindex="0" (click)="triggerClose()" (keydown)="triggerClose($event)"></div>
+	<div class="left" tabindex="0" (click)="triggerClose()" (keydown.enter)="triggerClose()"></div>
 	<div class="right" [ngClass]="{ 'closing': closing }">
 		<ng-content (menuClose)="triggerClose()"></ng-content>
 	</div>

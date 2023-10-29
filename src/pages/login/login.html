@@ -1,5 +1,5 @@
 <main>
-	<div tabindex="0" class="header" (click)="goto('')" (keydown)="goto('', $event)">
+	<div tabindex="0" class="header" (click)="goto('')" (keydown.enter)="goto('')">
 		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + page.logo + ')' }"></div>
 		<div class="text">
 			<span class="title">Association des Étudiants</span>

@@ -32,9 +32,7 @@ export class SnackbarComponent implements OnInit {
 		}, 3000);
 	}
 
-	public hide(event?: KeyboardEvent) {
-		if (event && event.key !== 'Enter') return;
-
+	public hide() {
 		this.shown = false;
 		this.hiding = false;
 	}

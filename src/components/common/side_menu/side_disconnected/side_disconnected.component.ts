@@ -17,9 +17,7 @@ export class SideMenuDisconnectedComponent {
 		private readonly sideMenu: SideMenuComponent,
 	) {}
 
-	public async goto(page: string, event?: KeyboardEvent) {
-		if (event && event.key !== 'Enter') return;
-
+	public async goto(page: string) {
 		this.sideMenu.triggerClose();
 		await this.router.navigate([page]);
 	}

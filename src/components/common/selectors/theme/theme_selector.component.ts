@@ -42,15 +42,11 @@ export class ThemeSelectorComponent {
 		}
 	}
 
-	public updateTheme(theme: Theme, event?: KeyboardEvent): void {
-		if (event && event.key !== 'Enter') return;
-
+	public updateTheme(theme: Theme): void {
 		this.page.theme = theme;
 	}
 
-	public updateThemeEvent(theme: ThemeEvent['theme'], event?: KeyboardEvent): void {
-		if (event && event.key !== 'Enter') return;
-
+	public updateThemeEvent(theme: ThemeEvent['theme']): void {
 		this.page.toggleThemeEvent(theme);
 	}
 }

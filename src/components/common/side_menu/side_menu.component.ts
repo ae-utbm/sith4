@@ -13,9 +13,7 @@ export class SideMenuComponent {
 	@Output() public sideMenuClose = new EventEmitter<void>();
 	private _closing = false;
 
-	public triggerClose(event?: KeyboardEvent): void {
-		if (event && event.key !== 'Enter') return;
-
+	public triggerClose(): void {
 		this._closing = true;
 
 		setTimeout(() => {

@@ -19,16 +19,14 @@ export class SideMenuProfileComponent {
 		private readonly sideMenu: SideMenuComponent,
 	) {}
 
-	public logout(event?: KeyboardEvent): void {
-		if (event && event.key !== 'Enter') return;
 
 		this.sideMenu.triggerClose();
 		this.user.logout();
 	}
 
-	public async goto(page: string, event?: KeyboardEvent) {
-		if (event && event.key !== 'Enter') return;
+	public logout(): void {
 
+	public async goto(page: string) {
 		this.sideMenu.triggerClose();
 		await this.router.navigate(['users', this.user.id, page]);
 	}

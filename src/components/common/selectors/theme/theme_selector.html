@@ -2,7 +2,7 @@
 <ul class="themes">
 	<li
 		*ngFor="let theme of themes"
-		tabindex="1" (click)="updateTheme(theme.value)" (keydown)="updateTheme(theme.value, $event)"
+		tabindex="1" (click)="updateTheme(theme.value)" (keydown.enter)="updateTheme(theme.value)"
 		[ngClass]="{'selected': theme.value === page.theme}"
 	>
 		<div class="selector"></div>
@@ -14,8 +14,8 @@
 	<ul class="themes">
 		<li
 			*ngFor="let theme of themes_event"
-			tabindex="2" (click)="updateThemeEvent(theme.value)" (keydown)="updateThemeEvent(theme.value, $event)"
-			[ngClass]="{'selected': page.theme_event.disabled && page.theme_event.theme === theme.value}"
+			tabindex="2" (click)="updateThemeEvent(theme.value)" (keydown.enter)="updateThemeEvent(theme.value)"
+			[ngClass]="{'selected': !(page.theme_event.disabled && page.theme_event.theme === theme.value)}"
 		>
 			<div class="selector square"></div>
 			<span>{{ theme.name | translate }}</span>

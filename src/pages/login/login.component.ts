@@ -1,5 +1,5 @@
 import type { email } from '#types';
-import type { ErrorResponseDto, MessageResponseDto, UserSignInDto, UserTokenDto } from '#types/api';
+import type { ErrorResponseDto, UserSignInDto, UserTokenDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -34,9 +34,7 @@ export class LoginComponent {
 		@Inject(SnackbarService) private readonly snackbar: SnackbarService,
 	) {}
 
-	public goto(page: string[] | string, event?: KeyboardEvent) {
-		if (event && event.key !== 'Enter') return;
-
+	public goto(page: string[] | string) {
 		this.router.navigate(typeof page === 'string' ? [page] : page).catch(() => ({}));
 	}
 
