@@ -17,7 +17,7 @@
 				<div tabindex="1" class="picture-hover" (click)="pictureModal.open()" (keydown.enter)="pictureModal.open()">
 					<sith-icon-pencil class="pencil" />
 				</div>
-				<sith-icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL() }" />
+				<sith-icon-promotion *ngIf="user?.promotion" class="promotion" [number]="user?.promotion" [ngClass]="{ 'rtl': page.isRTL() }" />
 			</div>
 
 			<div class="main" [ngClass]="{ 'rtl': page.isRTL() }">
@@ -51,14 +51,14 @@
 				<div class="body">
 					<!-- About section -->
 					<div class="details" [ngClass]="{ 'shown': currentTab === 'about' }">
-						<div class="column" *ngIf="user?.birthday || shouldSeePrivateData">
-							<span class="title">{{ 'profile.birthday' | translate }}</span>
-							<span>{{ user?.birthday | date: 'dd/MM/yyyy' }}</span>
+						<div class="column" *ngIf="user?.birth_date || shouldSeePrivateData">
+							<span class="title">{{ 'profile.birth_date' | translate }}</span>
+							<span>{{ user?.birth_date | date: 'dd/MM/yyyy' }}</span>
 						</div>
-						<div class="column" *ngIf="user?.cursus || shouldSeePrivateData">
+						<!-- <div class="column" *ngIf="user?.cursus || shouldSeePrivateData">
 							<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
 							<span>{{ user?.cursus ?? ('profile.field_unset' | translate) }}</span>
-						</div>
+						</div> -->
 						<div class="column">
 							<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
 							<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
@@ -67,10 +67,10 @@
 							<span class="title">{{ 'profile.gender' | translate }}</span>
 							<span>{{ user?.gender ?? ('profile.field_unset' | translate) }}</span>
 						</div>
-						<div class="column" *ngIf="user?.specialty || shouldSeePrivateData">
+						<!-- <div class="column" *ngIf="user?.specialty || shouldSeePrivateData">
 							<span class="title">{{ 'profile.specialty' | translate }}</span>
 							<span>{{ user?.specialty ?? ('profile.field_unset' | translate) }}</span>
-						</div>
+						</div> -->
 						<div class="column" *ngIf="user?.last_seen || shouldSeePrivateData">
 							<span class="title">{{ 'profile.last_seen' | translate }}</span>
 							<span>{{ (user?.last_seen | date: 'dd/MM/yyyy') ?? ('profile.never_seen' | translate) }}</span>
@@ -79,14 +79,14 @@
 							<span class="title">{{ 'profile.pronouns' | translate }}</span>
 							<span>{{ user?.pronouns ?? ('profile.field_unset' | translate) }}</span>
 						</div>
-						<div class="column" *ngIf="user?.promotion?.number || shouldSeePrivateData">
+						<div class="column" *ngIf="user?.promotion || shouldSeePrivateData">
 							<span class="title">{{ 'profile.promotion' | translate }}</span>
-							<span>{{ user?.promotion?.number ?? ('profile.field_unset' | translate) }}</span>
+							<span>{{ user?.promotion ?? ('profile.field_unset' | translate) }}</span>
 						</div>
-						<div class="column" *ngIf="user?.subscription || shouldSeePrivateData">
+						<!-- <div class="column" *ngIf="user?.subscription || shouldSeePrivateData">
 							<span class="title">{{ 'profile.subscription' | translate }}</span>
 							<span>{{ (user?.subscription | date: 'dd/MM/yyyy') ?? ('profile.field_unset' | translate ) }}</span>
-						</div>
+						</div> -->
 					</div>
 
 					<!-- Contact section -->

@@ -1,15 +1,10 @@
 <div class="navbar">
 	<div class="left">
-		<!-- <sith-icon-shopping-cart class="icon" (click)="page.route = '/shop'"/>
-		<sith-icon-party-hat class="icon" (click)="page.route = '/events'"/>
-		<sith-icon-messages class="icon" (click)="page.route = '/forum'"/>
-		<sith-icon-pictures class="icon" (click)="page.route = '/pictures'"/> -->
-
-		<sith-icon-shopping-cart class="icon" />
-		<sith-icon-party-hat class="icon" />
-		<sith-icon-messages class="icon" />
-		<sith-icon-pictures class="icon" />
 		<sith-icon-heart-plus *ngIf="u.isLoggedIn()" class="icon"/>
+		<sith-icon-shopping-cart class="icon" tabindex="0" (keydown.enter)="goto('')" (click)="goto('/shop')"/>
+		<sith-icon-party-hat class="icon" tabindex="0" (keydown.enter)="goto('')" (click)="goto('/events')"/>
+		<sith-icon-messages class="icon" tabindex="0" (keydown.enter)="goto('')" (click)="goto('/forum')"/>
+		<sith-icon-pictures class="icon" tabindex="0" (keydown.enter)="goto('')" (click)="goto('/pictures')"/>
 	</div>
 	<div class="right" *ngIf="u.isLoggedIn()">
 		<sith-icon-search class="icon"/>

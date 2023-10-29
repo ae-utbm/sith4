@@ -1,12 +1,12 @@
 import type { base64, imageURL } from '#types';
+import type { UserPrivateDto, UserPublicDto } from '#types/api';
 
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
-import { PrivateUser, PublicUser } from '@__old/types/objects';
-import { environment } from '@environments/environment.dev';
+// import { environment } from '@environments/environment.dev';
 import { PageService } from '@services/page.service';
 import { UserPermissionService } from '@services/user-permissions.service';
 import { UserService } from '@services/user.service';
@@ -21,7 +21,7 @@ import { UserProfilePictureEditModalComponent } from './picture-modal/picture-ed
 })
 export class UserProfileComponent {
 	public currentTab: 'about' | 'contact' = 'about';
-	public user?: PublicUser | PrivateUser;
+	public user?: UserPublicDto | UserPrivateDto;
 	public age?: number;
 	public birthdayFormatted?: string;
 
@@ -29,8 +29,8 @@ export class UserProfileComponent {
 	public profileBanner?: base64 | imageURL;
 
 	// TODO implement those fields
-	public suspended = false;
-	public banned = false;
+	public suspended = true;
+	public banned = true;
 
 	private userId = 0;
 

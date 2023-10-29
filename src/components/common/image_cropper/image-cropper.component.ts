@@ -1,5 +1,5 @@
 import type { base64 } from '#types';
-import type { ImageCropperResult, ImageCropperSetting } from '@__old/types/index';
+import type { ImageCropperResult, ImageCropperSetting } from '#types/sith';
 
 import {
 	Component,

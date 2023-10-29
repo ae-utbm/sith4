@@ -3,23 +3,19 @@
 		<sith-icon-heart-plus class="icon" />
 		<span>{{ 'navbar.favorites' | translate }}</span>
 	</div>
-	<!-- <div class="link" (click)="page.route = '/shop'"> -->
-	<div class="link">
+	<div class="link" tabindex="0" (keydown.enter)="goto('/shop')" (click)="goto('/shop')">
 		<sith-icon-shopping-cart class="icon" />
 		<span>{{ 'navbar.shop' | translate }}</span>
 	</div>
-	<!-- <div class="link" (click)="page.route = '/events'"> -->
-	<div class="link">
+	<div class="link" tabindex="0" (keydown.enter)="goto('/events')" (click)="goto('/events')">
 		<sith-icon-party-hat class="icon" />
 		<span>{{ 'navbar.events' | translate }}</span>
 	</div>
-	<!-- <div class="link" (click)="page.route = '/forum'"> -->
-	<div class="link">
+	<div class="link" tabindex="0" (keydown.enter)="goto('/forum')" (click)="goto('/forum')">
 		<sith-icon-messages class="icon" />
 		<span>{{ 'navbar.forum' | translate }}</span>
 	</div>
-	<!-- <div class="link" (click)="page.route = '/pictures'"> -->
-	<div class="link">
+	<div class="link" tabindex="0" (keydown.enter)="goto('/pictures')" (click)="goto('/pictures')">
 		<sith-icon-pictures class="icon" />
 		<span>{{ 'navbar.pictures' | translate }}</span>
 	</div>

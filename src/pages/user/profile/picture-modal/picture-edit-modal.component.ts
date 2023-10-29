@@ -1,13 +1,12 @@
 import type { base64 } from '#types';
-import type { ImageCropperResult } from '@__old/types/index';
-import type { Time } from '@__old/types/objects';
+import type { ImageCropperResult } from '#types/sith';
 
 import { HttpClient } from '@angular/common/http';
 import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ImageCropperComponent } from '@components/common/image_cropper/image-cropper.component';
-import { environment } from '@environments/environment';
+// import { environment } from '@environments/environment';
 import { UserPermissionService } from '@services/user-permissions.service';
 import { UserService } from '@services/user.service';
 

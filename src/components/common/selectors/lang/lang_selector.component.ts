@@ -1,8 +1,9 @@
+import type { SelectComponentOption } from '#types/sith';
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 
-import { SelectComponentOption } from '@__old/types';
 import { PageService } from '@services/page.service';
 import { getLanguageCompletion, LANGUAGES } from '@utils/i18n';
 

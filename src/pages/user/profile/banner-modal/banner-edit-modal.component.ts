@@ -1,5 +1,5 @@
 import type { base64 } from '#types';
-import type { ImageCropperResult } from '@__old/types/index';
+import type { ImageCropperResult } from '#types/sith';
 
 import { HttpClient } from '@angular/common/http';
 import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
