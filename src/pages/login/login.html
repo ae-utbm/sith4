@@ -27,7 +27,7 @@
 			<div class="input-container">
 				<div class="input">
 					<sith-icon-password class="icon" />
-					<input formControlName="password" type="password" name="password" placeholder="********" />
+					<sith-password-input class="custom-input" autocomplete="current-password" formControlName="password" />
 				</div>
 				<div *ngIf="errors('password').length > 0" class="error no-margin">
 					<span *ngFor="let error of errors('password')">{{ getError(error) | translate }}</span>

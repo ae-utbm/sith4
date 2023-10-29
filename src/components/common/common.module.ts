@@ -1,11 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { ButtonComponent } from './button/button.component';
-import { FileInputComponent } from './file_input/file-input.component';
 import { IconsModule } from './icons/icons.module';
 import { ImageCropperComponent } from './image_cropper/image-cropper.component';
+import { FileInputComponent } from './inputs/file_input/file-input.component';
+import { PasswordInputComponent } from './inputs/password_input/pass-input.component';
 import { FontSizeSelectorComponent } from './selectors/font_size/font_size_selector.component';
 import { LangSelectorComponent } from './selectors/lang/lang_selector.component';
 import { SelectComponent } from './selectors/select/select.component';
@@ -34,6 +36,7 @@ import { TitleComponent } from './title/title.component';
 		ImageCropperComponent,
 		FileInputComponent,
 		SnackbarComponent,
+		PasswordInputComponent,
 	],
 	exports: [
 		IconsModule,
@@ -51,7 +54,8 @@ import { TitleComponent } from './title/title.component';
 		ImageCropperComponent,
 		FileInputComponent,
 		SnackbarComponent,
+		PasswordInputComponent,
 	],
-	imports: [IconsModule, CommonModule, TranslateModule],
+	imports: [IconsModule, CommonModule, TranslateModule, FormsModule],
 })
 export class CommonComponentsModule {}

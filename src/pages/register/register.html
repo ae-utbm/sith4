@@ -57,7 +57,7 @@
 			<div class="input-container">
 				<div class="input">
 					<sith-icon-password class="icon" />
-					<input formControlName="password" type="password" placeholder="********" />
+					<sith-password-input class="custom-input" autocomplete="new-password" formControlName="password" />
 				</div>
 				<span class="info">{{ 'register.min_password' | translate }}</span>
 				<div *ngIf="errors('password').length > 0" class="error">
@@ -68,7 +68,7 @@
       <div class="input-container">
 				<div class="input">
 					<sith-icon-password class="icon" />
-					<input formControlName="passwordConfirm" type="password" placeholder="********" />
+					<sith-password-input class="custom-input" autocomplete="off" formControlName="password_confirm" />
 				</div>
 				<span class="info">{{ 'register.confirm_password' | translate }}</span>
 				<div *ngIf="errors('passwordConfirm').length > 0" class="error">

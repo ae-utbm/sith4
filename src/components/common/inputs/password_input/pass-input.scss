@@ -1,0 +1,46 @@
+$icon-size: 20px;
+$input-height: 32px;
+
+div {
+	position: relative;
+
+	> .icon {
+		opacity: 0;
+		right: 5px;
+		top: calc(($input-height - $icon-size) / 2);
+		fill: var(--text-color-dark-bg);
+		position: absolute;
+		height: $icon-size;
+		width: $icon-size;
+
+		&:focus,
+		&:hover {
+			cursor: pointer;
+			opacity: 1;
+		}
+	}
+
+	> input {
+		font-family: Roboto, sans-serif;
+		font-weight: normal;
+		color: var(--text-color-dark-bg);
+		background-color: var(--gray4);
+		width: 100%;
+		border: none;
+		border-radius: 5px;
+		height: $input-height;
+		padding: 5px 5px 5px 10px;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+
+		&::placeholder {
+			color: var(--text-color-dark-bg-placeholder);
+			font-size: calc(14px * var(--font-size));
+		}
+
+		&:hover ~ .icon, &:focus ~ .icon {
+			opacity: 1;
+		}
+	}
+}
