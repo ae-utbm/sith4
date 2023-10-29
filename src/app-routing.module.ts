@@ -9,11 +9,11 @@ import { RegisterComponent } from '@pages/register/register.component';
 import { UserPaymentsComponent } from '@pages/user/payments/payments.component';
 import { UserPicturesComponent } from '@pages/user/pictures/pictures.component';
 import { UserProfileComponent } from '@pages/user/profile/profile.component';
-import { UsersComponent } from '@pages/user/users.component';
 import { UserPermissionService } from '@services/user-permissions.service';
 import { UserService } from '@services/user.service';
 
 export type RouteData = {
+	full_width?: boolean;
 	headless?: boolean;
 	title?: string;
 };
@@ -71,15 +71,15 @@ const routes: Routes = [
 		canActivate: [() => inject(UserService).isLoggedIn],
 		children: [
 			{
-				path: '',
-				component: UsersComponent,
-				pathMatch: 'full',
-			},
-			{
 				path: ':id',
 				children: [
 					{
 						path: '',
+						redirectTo: 'profile',
+						pathMatch: 'prefix',
+					},
+					{
+						path: 'profile',
 						component: UserProfileComponent,
 						pathMatch: 'full',
 					},
@@ -87,14 +87,14 @@ const routes: Routes = [
 						path: 'pictures',
 						component: UserPicturesComponent,
 					},
-					{
-						path: 'payments',
-						component: UserPaymentsComponent,
-						canActivate: [
-							// (route: ActivatedRouteSnapshot) =>
-							// 	inject(UserPermissionService).canReadPrivateUser(parseInt(route.params['id'], 10)),
-						],
-					},
+					// {
+					// 	path: 'payments',
+					// 	component: UserPaymentsComponent,
+					// 	canActivate: [
+					// 		(route: ActivatedRouteSnapshot) =>
+					// 		inject(UserPermissionService).canReadPrivateUser(parseInt(route.params['id'], 10)),
+					// 	],
+					// },
 				],
 			},
 		],

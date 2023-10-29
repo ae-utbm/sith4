@@ -40,6 +40,7 @@ export class PageService {
 
 				if (data.title) t.get(data.title).subscribe((title: string) => (this.title = title));
 				this.headless = data.headless ?? false;
+				this.full_width = data.full_width ?? false;
 			}
 		});
 	}
@@ -227,7 +228,7 @@ export class PageService {
 	 * Control if the page is in full width mode or not
 	 * - Will make the navbar centered if false
 	 */
-	public full_width = true;
+	public full_width = false;
 
 	/**
 	 * Check if the device used by the user is a mobile device
