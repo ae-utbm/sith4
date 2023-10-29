@@ -1,5 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 export type ApiError<T> = Omit<HttpErrorResponse, 'error'> & { error: T };
 
@@ -10,12 +11,20 @@ export class APIService {
 	public constructor(@Inject(HttpClient) private readonly http: HttpClient) {}
 
 	private readonly DEFAULT_HEADERS = {
-		Authorization: `${sessionStorage.getItem('user_token') ?? ''}`,
+		Authorization: `Bearer ${sessionStorage.getItem('user_token') ?? 'invalid'}`,
 		'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
 		'Content-Type': 'application/json',
 	};
 
-	public get<R>(url: string) {
+	// FIXME fix method overloads (not working properly)
+
+	public get<R extends ArrayBuffer>(url: string, responseType: 'arraybuffer'): Observable<R>;
+	public get<R>(url: string, responseType?: 'json'): Observable<R>;
+
+	public get<R>(url: string, responseType = 'json'): Observable<R> {
+		if (responseType === 'arraybuffer')
+			return this.http.get(url, { headers: this.DEFAULT_HEADERS, responseType: 'arraybuffer' }) as Observable<R>;
+
 		return this.http.get<R>(url, { headers: this.DEFAULT_HEADERS });
 	}
 
