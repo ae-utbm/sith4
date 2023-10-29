@@ -1,4 +1,4 @@
-import type { base64 } from '#types';
+import type { base64, imageURL } from '#types';
 
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, ViewChild } from '@angular/core';
@@ -25,8 +25,8 @@ export class UserProfileComponent {
 	public age?: number;
 	public birthdayFormatted?: string;
 
-	public profilePicture?: base64;
-	public profileBanner?: base64;
+	public profilePicture?: base64 | imageURL;
+	public profileBanner?: base64 | imageURL;
 
 	// TODO implement those fields
 	public suspended = false;
@@ -73,7 +73,7 @@ export class UserProfileComponent {
 	}
 
 	public get isOwner(): boolean {
-		return this.userId === this.u.id;
+		return this.userId === this.u.logged_user_id;
 	}
 
 	public updatePicture(output: base64) {
@@ -85,36 +85,33 @@ export class UserProfileComponent {
 	}
 
 	public getUserData(user_id: number): void {
-		this.http
-			.get(`${environment.API_URL}/users/picture/${user_id}`, {
-				// headers: DEFAULT_HEADERS,
-				responseType: 'arraybuffer',
-			})
-			.subscribe({
-				next: (data: ArrayBuffer) => {
-					this.profilePicture = data.toBase64();
-				},
-				error: () => {
-					this.profilePicture = undefined;
-				},
-			});
-
-		this.http
-			.get(`${environment.API_URL}/users/banner/${user_id}`, {
-				// headers: DEFAULT_HEADERS,
-				responseType: 'arraybuffer',
-			})
-			.subscribe({
-				next: (data) => {
-					// this.profileBanner = data.toBase64();
-				},
-				error: () => {
-					this.profileBanner = undefined;
-				},
-			});
-
-		const endpoint = this.shouldSeePrivateData ? 'userPrivate' : 'userPublic';
-
+		// this.http
+		// 	.get(`${environment.API_URL}/users/picture/${user_id}`, {
+		// 		// headers: DEFAULT_HEADERS,
+		// 		responseType: 'arraybuffer',
+		// 	})
+		// 	.subscribe({
+		// 		next: (data: ArrayBuffer) => {
+		// 			this.profilePicture = data.toBase64();
+		// 		},
+		// 		error: () => {
+		// 			this.profilePicture = undefined;
+		// 		},
+		// 	});
+		// this.http
+		// 	.get(`${environment.API_URL}/users/banner/${user_id}`, {
+		// 		// headers: DEFAULT_HEADERS,
+		// 		responseType: 'arraybuffer',
+		// 	})
+		// 	.subscribe({
+		// 		next: (data) => {
+		// 			// this.profileBanner = data.toBase64();
+		// 		},
+		// 		error: () => {
+		// 			this.profileBanner = undefined;
+		// 		},
+		// 	});
+		// const endpoint = this.shouldSeePrivateData ? 'userPrivate' : 'userPublic';
 		// this.apollo
 		// 	.query<{ userPublic: PublicUser; userPrivate: PrivateUser }>({
 		// 		query: gql`
@@ -153,18 +150,15 @@ export class UserProfileComponent {
 		// 				case 'userPrivate':
 		// 					this.user = data['userPrivate'];
 		// 					break;
-
 		// 				default:
 		// 					this.user = data['userPublic'];
 		// 					break;
 		// 			}
-
 		// 			const TimeDiff = Math.abs(Date.now() - new Date(this.user?.birthday ?? 0).getTime());
 		// 			this.age = Math.floor(TimeDiff / (1000 * 3600 * 24) / 365.25);
 		// 			this.currentTab = 'about';
 		// 			this.t.get('profile.title', { name: this.user.first_name }).subscribe((title) => (this.page.title = title));
 		// 		}
-
 		// 		if (!data || error) {
 		// 			// this.page.route = '/404';
 		// 		}

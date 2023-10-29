@@ -41,7 +41,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'login',
-		canActivate: [() => !inject(UserService).isLoggedIn],
+		canActivate: [() => !inject(UserService).isLoggedIn()],
 		component: LoginComponent,
 		data: {
 			headless: true,
@@ -50,7 +50,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'register',
-		canActivate: [() => !inject(UserService).isLoggedIn],
+		canActivate: [() => !inject(UserService).isLoggedIn()],
 		component: RegisterComponent,
 		data: {
 			headless: true,
@@ -59,7 +59,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'forgot_password',
-		canActivate: [() => !inject(UserService).isLoggedIn],
+		canActivate: [() => !inject(UserService).isLoggedIn()],
 		component: ForgotPasswordComponent,
 		data: {
 			headless: true,
@@ -68,7 +68,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'users',
-		canActivate: [() => inject(UserService).isLoggedIn],
+		canActivate: [() => inject(UserService).isLoggedIn()],
 		children: [
 			{
 				path: ':id',

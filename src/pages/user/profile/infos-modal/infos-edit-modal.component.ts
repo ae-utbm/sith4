@@ -114,7 +114,6 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 		// 	})
 		// 	.subscribe(({ data, error }) => {
 		// 		if (!data || error) return;
-
 		// 		this.infosForm.patchValue({
 		// 			...data.userPrivate,
 		// 			birthday: data.userPrivate.birthday.toString().split('T')[0],
@@ -169,7 +168,6 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 		// 	})
 		// 	.subscribe(({ data, error }) => {
 		// 		if (!data || error) return;
-
 		// 		this.maxPromotion = data['latestPromotion'].number;
 		// 	});
 	}
@@ -185,7 +183,7 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 	}
 
 	public isSelf() {
-		return this.userId === this.user.id;
+		return this.userId === this.user.logged_user_id;
 	}
 
 	public open() {

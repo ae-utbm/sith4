@@ -1,10 +1,25 @@
 <div class="header">
 	<img class="logo" [src]="page.logo" alt="logo_ae" tabindex (click)="goto('')" (keydown.enter)="goto('')">
 	<div class="icons">
-		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
-		<sith-icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
-			[notifications]="u.notificationsCount ?? 0" />
-		<sith-icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
+		<sith-icon-cogwheel
+			class="icon"
+			tabindex="0"
+			(click)="triggerSideMenuOptions()"
+			(keydown.enter)="triggerSideMenuOptions()"
+		/>
+		<sith-icon-user *ngIf="userService.isLoggedIn()"
+			class="icon"
+			tabindex="0"
+			(click)="triggerSideMenuProfile()"
+			(keydown.enter)="triggerSideMenuProfile()"
+			[url]="userPicture"
+			[notifications]="1"
+		/>
+		<sith-icon-burger-menu *ngIf="!userService.isLoggedIn()"
+			class="icon"
+			(click)="triggerSideMenuConnection()"
+			(keydown.enter)="triggerSideMenuConnection()"
+		/>
 	</div>
 </div>
 

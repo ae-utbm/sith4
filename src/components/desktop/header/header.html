@@ -8,12 +8,17 @@
 	</div>
 
 	<div class="icons">
-		<sith-icon-search class="icon search" *ngIf="u.isLoggedIn" />
-		<sith-icon-shopping-basket class="icon" *ngIf="u.isLoggedIn" />
+		<sith-icon-search class="icon search" *ngIf="userService.isLoggedIn()" />
+		<sith-icon-shopping-basket class="icon" *ngIf="userService.isLoggedIn()" />
 		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
-		<sith-icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"
-			[notifications]="u.notificationsCount ?? 0" />
-		<sith-icon-burger-menu class="icon" *ngIf="!u.isLoggedIn" (click)="triggerSideMenuConnection()" />
+		<sith-icon-user
+			class="icon"
+			*ngIf="userService.isLoggedIn()"
+			(click)="triggerSideMenuProfile()"
+			[url]="userPicture"
+			[notifications]="1"
+		/>
+		<sith-icon-burger-menu class="icon" *ngIf="!userService.isLoggedIn()" (click)="triggerSideMenuConnection()" />
 	</div>
 </div>
 

@@ -75,7 +75,7 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 	}
 
 	public isSelf() {
-		return this.userId === this.u.id;
+		return this.userId === this.u.logged_user_id;
 	}
 
 	public updateUncroppedBanner(file: base64) {

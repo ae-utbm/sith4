@@ -5,7 +5,7 @@
 	<sith-font-size-selector />
 
 	<!-- Todo use a component there -->
-	<div *ngIf="u.isLoggedIn">
+	<div *ngIf="u.isLoggedIn()">
 		<sith-subtitle [onDarkBackground]="true" [text]="'header.options.accent_color.title' | translate" />
 	</div>
 </div>

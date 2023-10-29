@@ -1,175 +1,143 @@
-import type { PrivateUser, PublicUser } from '@__old/types/objects';
+import type { imageURL } from '#types';
+import type { ErrorResponseDto, UserPrivateDto, UserPublicDto } from '#types/api';
 
-import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
+import { Observable, catchError, map, of, throwError } from 'rxjs';
 
 import { environment } from '@environments/environment.dev';
-import { PageService } from '@services/page.service';
+
+import { APIService, ApiError } from './api.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class UserService {
-	public constructor(
-		@Inject(HttpClient) private readonly http: HttpClient,
-		@Inject(PageService) private readonly page: PageService,
-	) {}
+	public constructor(@Inject(APIService) private readonly api: APIService) {}
+
+	/** @deprecated */
+	fetchUserBanner = (id: number) => '';
+	/** @deprecated */
+	fetchUserPicture = (id: number) => '';
+	/** @deprecated */
+	fetchUser = (id: number) => '';
+
+	/** @deprecated */
+	get picture(): string {
+		return '';
+	}
+	/** @deprecated */
+	get banner(): string {
+		return '';
+	}
+	/** @deprecated */
+	get fullName(): string {
+		return '';
+	}
+	/** @deprecated */
+	get nickname(): string {
+		return '';
+	}
+	/** @deprecated */
+	get accountId(): string {
+		return '';
+	}
+	/** @deprecated */
+	get birthday(): Date {
+		return new Date();
+	}
+	/** @deprecated */
+	get isMinor(): boolean {
+		return true;
+	}
+	/** @deprecated */
+	get promotion(): string {
+		return '';
+	}
+	/** @deprecated */
+	get balance(): string {
+		return '';
+	}
+	/** @deprecated */
+	get notifications(): [] {
+		return [];
+	}
+	/** @deprecated */
+	get notificationsCount(): number {
+		return 0;
+	}
 
 	public login(token: string, userId: number): void {
-		if (this.isLoggedIn) return;
-
 		sessionStorage.setItem('user_token', token);
 		sessionStorage.setItem('user_id', userId.toString());
+	}
 
-		this.fetchUser(userId);
-		this.fetchUserPicture(userId);
-		this.fetchUserBanner(userId);
+	public isLoggedIn(): boolean {
+		return sessionStorage.getItem('user_token') !== null && sessionStorage.getItem('user_id') !== null;
+	}
 
-		setTimeout(() => {
-			// this.page.route = `users/${userId}`;
-		}, 300);
+	public get logged_user_id(): number {
+		const id = sessionStorage.getItem('user_id');
+		if (id === null) {
+			this.logout();
+			return -1; // TODO throw ?
+		}
+
+		return parseInt(id, 10);
 	}
 
 	public logout(): void {
 		sessionStorage.clear();
-		// this.page.route = '/';
 	}
 
-	public fetchUser(id: number) {
-		// this.apollo
-		// 	.query<{ userPrivate: PrivateUser }>({
-		// 		query: gql`
-		// 			query ($user_id: Int!) {
-		// 				userPrivate(id: $user_id) {
-		// 					first_name
-		// 					last_name
-		// 					nickname
-		// 					birthday
-		// 					promotion {
-		// 						number
-		// 					}
-		// 					id
-		// 					subscriber_account
-		// 				}
-		// 			}
-		// 		`,
-		// 		variables: {
-		// 			user_id: id,
-		// 		},
-		// 		fetchPolicy: 'no-cache',
-		// 		errorPolicy: 'all',
-		// 	})
-		// 	.subscribe(({ data, errors }) => {
-		// 		if (data) sessionStorage.setItem('user', JSON.stringify(data['userPrivate']));
-		// 		else this.logout();
-
-		// 		// Logout if the jwt token is invalid
-		// 		if (errors) this.logout();
-		// 	});
+	public user(id: number): Observable<UserPublicDto> {
+		return this.api.get<UserPublicDto>(`${environment.API_URL}/users/${id}/data/public`);
 	}
 
-	public fetchUserPicture(id: number) {
-		this.http
-			.get(`${environment.API_URL}/users/picture/${id}`, {
-				// headers: DEFAULT_HEADERS,
-				responseType: 'arraybuffer',
-			})
-			.subscribe({
-				next: (data) => {
-					if (data) sessionStorage.setItem('user_picture', data.toBase64());
-				},
-				error: () => sessionStorage.removeItem('user_picture'),
-			});
+	public userPrivate(id: number): Observable<UserPrivateDto> {
+		return this.api.get<UserPrivateDto>(`${environment.API_URL}/users/${id}/data`);
 	}
 
-	public fetchUserBanner(id: number) {
-		this.http
-			.get(`${environment.API_URL}/users/banner/${id}`, {
-				// headers: DEFAULT_HEADERS,
-				responseType: 'arraybuffer',
-			})
-			.subscribe({
-				next: (data) => {
-					if (data) sessionStorage.setItem('user_banner', data.toBase64());
-				},
-				error: () => sessionStorage.removeItem('user_banner'),
-			});
+	public userPicture(id: number): Observable<imageURL | undefined> {
+		return this.api.get<ArrayBuffer>(`${environment.API_URL}/users/${id}/picture`, 'arraybuffer').pipe(
+			catchError((err: ApiError<ArrayBuffer>) => {
+				const error: ErrorResponseDto = err.error.toJSON();
+
+				// If the user has no picture, return undefined
+				if (error.statusCode === 404) return of(undefined);
+
+				// If any other error, throw it for later handling
+				return throwError(() => error);
+			}),
+			map((data) => {
+				// convert the arraybuffer to base64
+				if (data) return data.toImageURL();
+
+				// If the user has no picture, return undefined
+				// (should not happen as we catch the 404 error)
+				return undefined;
+			}),
+		);
 	}
 
-	public refreshUser(): void {
-		if (this.isLoggedIn) this.fetchUser(this.id ?? -1);
-	}
+	public userBanner(id: number): Observable<imageURL | undefined> {
+		return this.api.get<ArrayBuffer>(`${environment.API_URL}/users/${id}/banner`, 'arraybuffer').pipe(
+			catchError((err: ApiError<ArrayBuffer>) => {
+				const error: ErrorResponseDto = err.error.toJSON();
 
-	public refreshUserPicture(): void {
-		if (this.isLoggedIn) this.fetchUserPicture(this.id ?? -1);
-	}
+				// If the user has no picture, return undefined
+				if (error.statusCode === 404) return of(undefined);
 
-	public refreshUserBanner(): void {
-		if (this.isLoggedIn) this.fetchUserBanner(this.id ?? -1);
-	}
+				// If any other error, throw it for later handling
+				return throwError(() => error);
+			}),
+			map((data) => {
+				// convert the arraybuffer to base64
+				if (data) return data.toImageURL();
 
-	private get user(): Partial<PublicUser> {
-		return JSON.parse(sessionStorage.getItem('user') ?? '{}');
-	}
-
-	public get picture(): string | undefined {
-		return sessionStorage.getItem('user_picture') ?? undefined;
-	}
-
-	public get banner(): string | undefined {
-		return sessionStorage.getItem('user_banner') ?? undefined;
-	}
-
-	public get isLoggedIn(): boolean {
-		return sessionStorage.getItem('user_token') !== null && sessionStorage.getItem('user') !== null;
-	}
-
-	public get id(): number | undefined {
-		return this.isLoggedIn && this.user ? this.user.id : undefined;
-	}
-
-	public get fullName(): string | undefined {
-		return this.isLoggedIn && this.user ? `${this.user.first_name} ${this.user.last_name}` : undefined;
-	}
-
-	public get nickname(): string | undefined {
-		return this.isLoggedIn && this.user ? this.user.nickname : undefined;
-	}
-
-	public get accountId(): string | undefined {
-		return this.isLoggedIn && this.user ? this.user.subscriber_account : undefined;
-	}
-
-	public get birthday(): Date | undefined {
-		return this.isLoggedIn && this.user && this.user.birthday ? new Date(this.user.birthday) : undefined;
-	}
-
-	public get isMinor(): boolean | undefined {
-		const birthday = this.birthday;
-
-		if (!birthday) return undefined;
-		return birthday.elapsedYears() < 18;
-	}
-
-	public get promotion(): number | undefined {
-		return this.isLoggedIn && this.user && this.user.promotion ? this.user.promotion.number : undefined;
-	}
-
-	// TODO
-	public get balance(): number {
-		return 0;
-		// return this.isLoggedIn && this.user ? this.user.balance : undefined;
-	}
-
-	// TODO
-	public get notifications(): string[] | undefined {
-		return undefined;
-		// return this.isLoggedIn && this.user ? this.user.notifications : undefined;
-	}
-
-	// TODO
-	public get notificationsCount(): number | undefined {
-		return undefined;
-		// return this.isLoggedIn && this.user ? this.user.notifications.length : undefined;
+				// If the user has no picture, return undefined
+				// (should not happen as we catch the 404 error)
+				return undefined;
+			}),
+		);
 	}
 }

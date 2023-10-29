@@ -1,19 +1,19 @@
 <div class="profile-container">
 	<div
 		class="background-image"
-		[ngClass]="{ 'has-banner': user.banner !== undefined }"
-		[ngStyle]="{ 'background-image': user.banner ? 'url(' + user.banner + ')' : '' }"
+		[ngClass]="{ 'has-banner': userBanner !== undefined }"
+		[ngStyle]="{ 'background-image': userBanner ? 'url(' + userBanner + ')' : '' }"
 	>
-		<sith-icon-promotion class="promotion" [number]="user.promotion" />
+		<sith-icon-promotion class="promotion" [number]="user?.promotion" />
 		<div class="ae-sticker"></div>
 	</div>
-	<sith-icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL() }" [url]="user.picture" />
+	<sith-icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL() }" [url]="userPicture" />
 	<div class="infos" [ngClass]="{ 'rtl': page.isRTL() }">
 		<div class="left">
-			<span class="name">{{ user.fullName }}</span>
-			<span>{{ user.balance }} €</span>
+			<span class="name">{{ user?.full_name }}</span>
+			<span>0 €</span>
 		</div>
-		<span class="right">{{ user.accountId }}</span>
+		<span class="right">{{ user?.id }}</span>
 	</div>
 	<main>
 		<ul class="links">

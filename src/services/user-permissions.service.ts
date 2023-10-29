@@ -63,12 +63,13 @@ export class UserPermissionService {
 	 * @returns {Promise<boolean>} true if the user can read the private information of another user or if the user is itself
 	 */
 	public async canReadPrivateUser(id: number): Promise<boolean> {
-		if (this.ready) return this.user.isLoggedIn && (this.hasPermission('CAN_READ_USER_PRIVATE') || this.user.id === id);
+		if (this.ready)
+			return this.user.isLoggedIn() && (this.hasPermission('CAN_READ_USER_PRIVATE') || this.user.logged_user_id === id);
 
 		await new Promise<void>((resolve) => {
 			this.ready$.subscribe(() => resolve());
 		});
 
-		return this.user.isLoggedIn && (this.hasPermission('CAN_READ_USER_PRIVATE') || this.user.id === id);
+		return this.user.isLoggedIn() && (this.hasPermission('CAN_READ_USER_PRIVATE') || this.user.logged_user_id === id);
 	}
 }

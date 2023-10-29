@@ -83,12 +83,10 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 		// 	})
 		// 	.subscribe(({ data }) => {
 		// 		if (!data) return;
-
 		// 		// The user can't update his picture more than once a week
 		// 		const diff =
 		// 			environment.DELAY_UPDATE_PROFILE_PICTURE * 1000 -
 		// 			(new Date().getTime() - new Date(data['lastPictureUpdate'].date).getTime());
-
 		// 		if (diff > 0) this.timeLeft = new Date(new Date().getTime() + diff);
 		// 		if (!this.isOwner || this.perms.hasPermission('CAN_EDIT_USER')) this.timeLeft = undefined;
 		// 	});
@@ -106,7 +104,7 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 	}
 
 	public get isOwner(): boolean {
-		return this.userId === this.u.id;
+		return this.userId === this.u.logged_user_id;
 	}
 
 	public get hasPermissions(): boolean {

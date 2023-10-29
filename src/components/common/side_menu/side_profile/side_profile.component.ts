@@ -1,7 +1,12 @@
+import type { imageURL } from '#types';
+import type { ErrorResponseDto, UserPublicDto } from '#types/api';
+
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
+import { SnackbarService } from '@services/snackbar.service';
 import { UserService } from '@services/user.service';
 
 import { SideMenuComponent } from '../side_menu.component';
@@ -13,21 +18,51 @@ import { SideMenuComponent } from '../side_menu.component';
 })
 export class SideMenuProfileComponent {
 	public constructor(
-		@Inject(UserService) public readonly user: UserService,
-		@Inject(PageService) public readonly page: PageService,
 		@Inject(Router) public readonly router: Router,
-		private readonly sideMenu: SideMenuComponent,
-	) {}
+		@Inject(UserService) public readonly userService: UserService,
+		@Inject(PageService) public readonly page: PageService,
+		@Inject(SnackbarService) public readonly snackbar: SnackbarService,
+		@Inject(SideMenuComponent) private readonly sideMenu: SideMenuComponent,
+	) {
+		if (this.userService.isLoggedIn()) {
+			this.userService.user(this.userService.logged_user_id).subscribe({
+				next: (user) => (this.user = user),
+				error: (e: ApiError<ErrorResponseDto>) => {
+					console.error(e);
+					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+				},
+			});
 
+			this.userService.userPicture(this.userService.logged_user_id).subscribe({
+				next: (picture) => (this.userPicture = picture),
+				error: (e: ApiError<ErrorResponseDto>) => {
+					console.error(e);
+					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+				},
+			});
 
-		this.sideMenu.triggerClose();
-		this.user.logout();
+			this.userService.userBanner(this.userService.logged_user_id).subscribe({
+				next: (banner) => (this.userBanner = banner),
+				error: (e: ApiError<ErrorResponseDto>) => {
+					console.error(e);
+					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+				},
+			});
+		}
 	}
 
-	public logout(): void {
+	public user?: UserPublicDto;
+	public userPicture?: imageURL;
+	public userBanner?: imageURL;
+
+	public async logout(): Promise<void> {
+		this.sideMenu.triggerClose();
+		this.userService.logout();
+		await this.router.navigate(['home']);
+	}
 
 	public async goto(page: string) {
 		this.sideMenu.triggerClose();
-		await this.router.navigate(['users', this.user.id, page]);
+		await this.router.navigate(['users', this.userService.logged_user_id, page]);
 	}
 }

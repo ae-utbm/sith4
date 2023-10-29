@@ -1,4 +1,5 @@
 import type { email } from '#types';
+import type { ErrorResponseDto, UserPostDto, UserPublicDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,8 +8,10 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { CustomValidators, getErrors } from '@directives';
 import { environment } from '@environments/environment';
+import { APIService, ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
-import { UserService } from '@services/user.service';
+import { SnackbarService } from '@services/snackbar.service';
+
 type RegisterForm = typeof REGISTER_FORM_GROUP;
 type RegisterFormKeys = keyof RegisterForm['controls'];
 const REGISTER_FORM_GROUP = new FormGroup(
@@ -71,9 +74,10 @@ export class RegisterComponent {
 	public constructor(
 		@Inject(Router) private readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
-		@Inject(UserService) public readonly u: UserService,
+		@Inject(APIService) private readonly api: APIService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
 		@Inject(TranslateService) private readonly t: TranslateService,
+		@Inject(SnackbarService) private readonly snackbar: SnackbarService,
 	) {}
 
 	public readonly formGroup = REGISTER_FORM_GROUP;
@@ -95,45 +99,25 @@ export class RegisterComponent {
 	}
 
 	public register(): void {
-		// this.apollo
-		// 	.mutate<{ register: Token }>({
-		// 		mutation: gql`
-		// 			mutation (
-		// 				$birthday: DateTime!
-		// 				$email: String!
-		// 				$first_name: String!
-		// 				$last_name: String!
-		// 				$password: String!
-		// 			) {
-		// 				register(
-		// 					birthday: $birthday
-		// 					email: $email
-		// 					first_name: $first_name
-		// 					last_name: $last_name
-		// 					password: $password
-		// 				) {
-		// 					token
-		// 					user_id
-		// 				}
-		// 			}
-		// 		`,
-		// 		variables: {
-		// 			birthday: this.formGroup.controls['birthDate'].value,
-		// 			email: this.formGroup.controls['email'].value,
-		// 			first_name: this.formGroup.controls['firstName'].value,
-		// 			last_name: this.formGroup.controls['lastName'].value,
-		// 			password: this.formGroup.controls['password'].value,
-		// 		},
-		// 		errorPolicy: 'all',
-		// 	})
-		// 	.subscribe(({ data, errors }) => {
-		// 		if (data && !errors) {
-		// 			this.u.login(data['register'].token, data['register'].user_id);
-		// 			this.page.route = '/';
-		// 		} else if (errors) {
-		// 			this.formGroup.controls['email'].setErrors({ api: errors[0].message });
-		// 		}
-		// 	});
+		this.api
+			.post<UserPublicDto, UserPostDto>('/users', {
+				first_name: this.formGroup.controls.first_name.value,
+				last_name: this.formGroup.controls.last_name.value,
+				email: this.formGroup.controls.email.value,
+				birth_date: this.formGroup.controls.birth_date.value,
+				password: this.formGroup.controls.password.value,
+			})
+			.subscribe({
+				next: (user) => {
+					console.log(user);
+				},
+				error: (err: ApiError<ErrorResponseDto>) => {
+					console.error(err);
+					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+				},
+			});
+	}
+
 	public async goto(path: string): Promise<void> {
 		await this.router.navigate([path]);
 	}
