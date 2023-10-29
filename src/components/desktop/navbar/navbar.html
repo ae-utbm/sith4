@@ -1,5 +1,5 @@
 <div class="navbar" [ngClass]="page.full_width ? 'full' : 'centered'">
-	<div class="link" *ngIf="u.isLoggedIn">
+	<div class="link" *ngIf="u.isLoggedIn()" tabindex="0" (keydown.enter)="openFavorites()" (click)="openFavorites()">
 		<sith-icon-heart-plus class="icon" />
 		<span>{{ 'navbar.favorites' | translate }}</span>
 	</div>

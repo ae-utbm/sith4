@@ -13,4 +13,7 @@ export class DesktopNavbarComponent {
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(PageService) public readonly page: PageService,
 	) {}
+	public openFavorites() {
+		window.alert('Not implemented yet');
+	}
 }
