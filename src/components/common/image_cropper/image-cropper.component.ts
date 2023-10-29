@@ -1,4 +1,5 @@
-import type { ImageCropperResult, ImageCropperSetting, base64 } from '@__old/types/index';
+import type { base64 } from '#types';
+import type { ImageCropperResult, ImageCropperSetting } from '@__old/types/index';
 
 import {
 	Component,
