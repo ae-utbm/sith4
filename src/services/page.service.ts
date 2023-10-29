@@ -74,6 +74,21 @@ export class PageService {
 		this.updateHTML();
 	}
 
+	public get theme_is_dark(): boolean {
+		switch (this.theme) {
+			case 'auto':
+				return window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+			case 'dark':
+			case 'high_contrast':
+				return true;
+
+			case 'light':
+			default:
+				return false;
+		}
+	}
+
 	public get theme_event(): ThemeEvent {
 		const local = localStorage.getItem('theme_event');
 		if (local === null) {
