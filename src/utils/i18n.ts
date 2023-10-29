@@ -5,6 +5,7 @@ import { Inject, Injectable } from '@angular/core';
 import { TranslateLoader } from '@ngx-translate/core';
 import { Observable, catchError, forkJoin, from, map, of, switchMap } from 'rxjs';
 
+import DEfAULT_LANG from '@assets/i18n/en-US.json';
 import LANGS from '@assets/i18n/languages.json';
 
 export const LANGUAGES: Language[] = LANGS as unknown as Language[];
@@ -35,35 +36,17 @@ export function getLanguageDirection(lang: string): Language['direction'] {
 }
 
 /**
- * Get all keys of an object recursively
- * @param {Record<string, unknown>} obj the object to get the keys from
- * @returns {Array<string>} The keys of the object & its nested objects
- *
- * @example getAllKeysOfObject({ a: 1, b: { c: 2, d: 3 } }) // ['a', 'b.c', 'b.d']
- */
-export function getAllKeysOfObject(obj: Record<string, unknown>): string[] {
-	const keys: string[] = [];
-	for (const key in obj) {
-		if (typeof obj[key] === 'object') {
-			const nestedKeys = getAllKeysOfObject(obj[key] as Record<string, unknown>);
-			keys.push(...nestedKeys.map((nestedKey) => `${key}.${nestedKey}`));
-		} else keys.push(key);
-	}
-	return keys;
-}
-
-/**
  * Get the completion of a language based on the default language (English)
  * @param {string} lang the language to get the completion of
  * @returns {Observable<number>} The completion of the language in percentage
  */
 export function getLanguageCompletion(lang: string): Observable<number> {
 	return from(import(`../assets/i18n/${DEFAULT_LANGUAGE}.json`)).pipe(
-		switchMap((base) =>
+		switchMap((base: typeof DEfAULT_LANG) =>
 			from(import(`../assets/i18n/${getLanguage(lang)}.json`)).pipe(
-				map((language) => {
-					const baseKeys = getAllKeysOfObject(base);
-					const languageKeys = getAllKeysOfObject(language);
+				map((language: typeof DEfAULT_LANG) => {
+					const baseKeys = Object.keysRecursive(base);
+					const languageKeys = Object.keysRecursive(language);
 					const missingKeys = baseKeys.filter((key) => !languageKeys.includes(key));
 					return Math.floor((1 - missingKeys.length / baseKeys.length) * 100);
 				}),
