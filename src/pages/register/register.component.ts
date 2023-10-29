@@ -1,13 +1,66 @@
-import type { UserTokenDto } from '#types/api';
+import type { email } from '#types';
 
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 
 import { CustomValidators, getErrors } from '@directives';
 import { environment } from '@environments/environment';
 import { PageService } from '@services/page.service';
 import { UserService } from '@services/user.service';
+type RegisterForm = typeof REGISTER_FORM_GROUP;
+type RegisterFormKeys = keyof RegisterForm['controls'];
+const REGISTER_FORM_GROUP = new FormGroup(
+	{
+		first_name: new FormControl('', {
+			nonNullable: true,
+			validators: [
+				Validators.required,
+				Validators.minLength(environment.USERS.MIN_NAME_LENGTH),
+				Validators.maxLength(environment.USERS.MAX_NAME_LENGTH),
+				CustomValidators.nameValidator,
+			],
+		}),
+		last_name: new FormControl('', {
+			nonNullable: true,
+			validators: [
+				Validators.required,
+				Validators.minLength(environment.USERS.MIN_NAME_LENGTH),
+				Validators.maxLength(environment.USERS.MAX_NAME_LENGTH),
+				CustomValidators.nameValidator,
+			],
+		}),
+		email: new FormControl<email>('' as email, {
+			nonNullable: true,
+			validators: [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')],
+		}),
+		birth_date: new FormControl(new Date(), {
+			nonNullable: true,
+			validators: [
+				Validators.required,
+				CustomValidators.ageMinValidator(environment.USERS.MIN_AGE),
+				CustomValidators.ageMaxValidator(environment.USERS.MAX_AGE),
+				CustomValidators.notInFutureValidator,
+			],
+		}),
+		password: new FormControl('', {
+			nonNullable: true,
+			validators: [
+				Validators.required,
+				Validators.minLength(8),
+				CustomValidators.hasOneDigit,
+				CustomValidators.hasOneSpecialCharacter,
+				CustomValidators.hasOneUppercase,
+				CustomValidators.hasOneLowercase,
+				CustomValidators.hasNoDuplicateCharacters,
+			],
+		}),
+		password_confirm: new FormControl('', { nonNullable: true, validators: [Validators.required] }),
+		captcha: new FormControl('', { nonNullable: true, validators: Validators.required }),
+	},
+	{ validators: CustomValidators.passwordsMatchValidator() },
+);
 
 @Component({
 	selector: 'sith-register',
@@ -16,59 +69,29 @@ import { UserService } from '@services/user.service';
 })
 export class RegisterComponent {
 	public constructor(
-		@Inject(TranslateService) public readonly t: TranslateService,
+		@Inject(Router) private readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly u: UserService,
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
+		@Inject(TranslateService) private readonly t: TranslateService,
 	) {}
 
-	public readonly MIN_AGE = environment.REGISTER_AGE_MIN;
-	public readonly MAX_AGE = environment.REGISTER_AGE_MAX;
-	public readonly MIN_NAME = 2;
-	public readonly MIN_PASSWORD = 8;
+	public readonly formGroup = REGISTER_FORM_GROUP;
+	public readonly MIN_NAME = environment.USERS.MIN_NAME_LENGTH;
+	public readonly MAX_NAME = environment.USERS.MAX_NAME_LENGTH;
+	public readonly MIN_AGE = environment.USERS.MIN_AGE;
+	public readonly MAX_AGE = environment.USERS.MAX_AGE;
+	public readonly MIN_PASSWORD = environment.USERS.MIN_PASSWORD_LENGTH;
 
-	public readonly formGroup: FormGroup = this.fb.group(
-		{
-			lastName: [null, [Validators.required, Validators.minLength(this.MIN_NAME), CustomValidators.nameValidator]],
-			firstName: [null, [Validators.required, Validators.minLength(this.MIN_NAME), CustomValidators.nameValidator]],
-			email: [null, [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')]],
-			birthDate: [
-				null,
-				[
-					Validators.required,
-					CustomValidators.ageMinValidator,
-					CustomValidators.ageMaxValidator,
-					CustomValidators.notInFutureValidator,
-				],
-			],
-			password: [
-				null,
-				[
-					Validators.required,
-					Validators.minLength(this.MIN_PASSWORD),
-					CustomValidators.hasOneDigit,
-					CustomValidators.hasOneSpecialCharacter,
-					CustomValidators.hasOneUppercase,
-					CustomValidators.hasOneLowercase,
-					CustomValidators.hasNoDuplicateCharacters,
-				],
-			],
-			passwordConfirm: [null, [Validators.required]],
-			captcha: [null, Validators.required],
-		},
-		{ validators: CustomValidators.passwordsMatchValidator() },
-	);
-
-	public errors(field: string): string[] {
-		if ('passwordConfirm' === field)
+	public errors(field: RegisterFormKeys): string[] {
+		if ('password_confirm' === field)
 			return [...getErrors(this.formGroup.controls[field]), ...getErrors(this.formGroup)];
 
 		return getErrors(this.formGroup.controls[field]);
 	}
 
-	public getError(field: string, control = ''): string {
-		if (field === 'api') return this.formGroup.controls[control].getError(field) as string;
-		return `global.errors.${field}`;
+	public getError(key: string): string {
+		return `global.errors.${key}`;
 	}
 
 	public register(): void {
@@ -111,5 +134,7 @@ export class RegisterComponent {
 		// 			this.formGroup.controls['email'].setErrors({ api: errors[0].message });
 		// 		}
 		// 	});
+	public async goto(path: string): Promise<void> {
+		await this.router.navigate([path]);
 	}
 }

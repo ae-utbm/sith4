@@ -1,6 +1,5 @@
 <main>
-  <!-- <div class="header" (click)="page.route = '/'"> -->
-  <div class="header">
+  <div class="header" tabindex="0" (click)="goto('')" (keydown.enter)="goto('')">
 		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + page.logo + ')' }"></div>
 		<div class="text">
 			<span class="title">Association des Étudiants</span>
@@ -17,30 +16,30 @@
     <div class="form-body">
       <div class="input-container">
         <div class="input">
-          <input formControlName="lastName" type="text" placeholder="{{ 'global.last_name' | translate }}" />
+          <input formControlName="last_name" type="text" placeholder="{{ 'global.last_name' | translate }}" />
         </div>
-        <div *ngIf="errors('lastName').length > 0" class="error no-margin">
-					<span *ngFor="let error of errors('lastName')">{{ getError(error) | translate: { min: MIN_NAME } }}</span>
+        <div *ngIf="errors('last_name').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('last_name')">{{ getError(error) | translate: { min: MIN_NAME, max: MAX_NAME } }}</span>
 				</div>
       </div>
 
       <div class="input-container">
         <div class="input">
-          <input formControlName="firstName" type="text" placeholder="{{ 'global.first_name' | translate }}" />
+          <input formControlName="first_name" type="text" placeholder="{{ 'global.first_name' | translate }}" />
         </div>
-				<div *ngIf="errors('firstName').length > 0" class="error no-margin">
-					<span *ngFor="let error of errors('firstName')">{{ getError(error) | translate: { min: MIN_NAME } }}</span>
+				<div *ngIf="errors('first_name').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('first_name')">{{ getError(error) | translate: { min: MIN_NAME, max: MAX_NAME } }}</span>
 				</div>
       </div>
 
       <div class="input-container">
 				<div class="input">
 					<sith-icon-calendar class="icon" />
-					<input formControlName="birthDate" type="date" />
+					<input formControlName="birth_date" type="date" />
 				</div>
 				<span class="info">{{ 'register.date_birth_no_modif' | translate }}</span>
-				<div *ngIf="errors('birthDate').length > 0" class="error">
-					<span *ngFor="let error of errors('birthDate')">{{ getError(error) | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
+				<div *ngIf="errors('birth_date').length > 0" class="error">
+					<span *ngFor="let error of errors('birth_date')">{{ getError(error) | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
 				</div>
 			</div>
 
@@ -50,7 +49,7 @@
 					<input formControlName="email" type="text" placeholder="{{ 'global.email_template' | translate }}" />
 				</div>
 				<div *ngIf="errors('email').length > 0" class="error">
-					<span *ngFor="let error of errors('email')">{{ getError(error, 'email') | translate }}</span>
+					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
 				</div>
 			</div>
 
@@ -71,8 +70,8 @@
 					<sith-password-input class="custom-input" autocomplete="off" formControlName="password_confirm" />
 				</div>
 				<span class="info">{{ 'register.confirm_password' | translate }}</span>
-				<div *ngIf="errors('passwordConfirm').length > 0" class="error">
-					<span *ngFor="let error of errors('passwordConfirm')">{{ getError(error) | translate }}</span>
+				<div *ngIf="errors('password_confirm').length > 0" class="error">
+					<span *ngFor="let error of errors('password_confirm')">{{ getError(error) | translate }}</span>
 				</div>
 			</div>
     </div>

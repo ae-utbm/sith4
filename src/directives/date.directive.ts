@@ -22,8 +22,8 @@ export function requiredIfBelow(minAge: number, age: number): ValidatorFn | null
  * @param {number} min The minimum age to be accepted
  * @returns {ValidatorFn} The angular validator function
  */
-export function ageMinValidator(min = environment.REGISTER_AGE_MIN): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
+export function ageMinValidator(min = environment.USERS.MIN_AGE): ValidatorFn {
 		if (!control.value) return null;
 
 		const year = new Date().getFullYear();
@@ -37,8 +37,8 @@ export function ageMinValidator(min = environment.REGISTER_AGE_MIN): ValidatorFn
  * @param {number} max The maximum age to be accepted
  * @returns {ValidatorFn} The angular validator function
  */
-export function ageMaxValidator(max = environment.REGISTER_AGE_MAX): ValidatorFn {
 	return (control: AbstractControl): ValidationErrors | null => {
+export function ageMaxValidator(max = environment.USERS.MAX_AGE): ValidatorFn {
 		if (!control.value) return null;
 
 		const year = new Date().getFullYear();
