@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PageService } from '@services/page.service';
 import { UserService } from '@services/user.service';
@@ -15,8 +16,12 @@ export class DesktopHeaderComponent {
 
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
+		@Inject(Router) public readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 	) {}
+	public async goto(path: string): Promise<void> {
+		await this.router.navigate([path]);
+	}
 
 	public triggerSideMenuProfile(): void {
 		this.profileOpened = !this.profileOpened;

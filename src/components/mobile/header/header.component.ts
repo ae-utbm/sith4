@@ -1,4 +1,5 @@
 import { Component, Inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PageService } from '@services/page.service';
 import { UserService } from '@services/user.service';
@@ -15,6 +16,7 @@ export class MobileHeaderComponent {
 
 	public constructor(
 		@Inject(UserService) public readonly u: UserService,
+		@Inject(Router) private readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 	) {}
 
@@ -28,5 +30,9 @@ export class MobileHeaderComponent {
 
 	public triggerSideMenuOptions(): void {
 		this.optionsOpened = !this.optionsOpened;
+	}
+
+	public async goto(path: string): Promise<void> {
+		await this.router.navigate([path]);
 	}
 }

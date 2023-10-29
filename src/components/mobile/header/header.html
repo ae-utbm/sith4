@@ -1,6 +1,5 @@
 <div class="header">
-	<!-- <img class="logo" [src]="page.logo" alt="logo_ae" (click)="page.route = '/'"> -->
-	<img class="logo" [src]="page.logo" alt="logo_ae" >
+	<img class="logo" [src]="page.logo" alt="logo_ae" tabindex (click)="goto('')" (keydown.enter)="goto('')">
 	<div class="icons">
 		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
 		<sith-icon-user class="icon" *ngIf="u.isLoggedIn" (click)="triggerSideMenuProfile()" [url]="u.picture"

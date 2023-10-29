@@ -8,13 +8,13 @@
 			<img *ngIf="profileBanner" class="banner-image" [src]="profileBanner" alt="user banner">
 			<span *ngIf="suspended" class="suspended">{{ 'profile.account_suspended' | translate }}</span>
 			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
-			<sith-icon-pencil class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()"/>
+			<sith-icon-pencil tabindex="0" class="pencil" *ngIf="isOwnerOrHasPermission" (click)="bannerModal.open()" (keydown.enter)="bannerModal.open()"/>
 		</div>
 
 		<div class="infos">
 			<div class="pictures" [ngClass]="{ 'rtl': page.isRTL() }">
 				<sith-icon-user class="picture" [url]="profilePicture" />
-				<div class="picture-hover" (click)="pictureModal.open()">
+				<div tabindex="1" class="picture-hover" (click)="pictureModal.open()" (keydown.enter)="pictureModal.open()">
 					<sith-icon-pencil class="pencil" />
 				</div>
 				<sith-icon-promotion *ngIf="user?.promotion?.number" class="promotion" [id]="user?.promotion?.id" [number]="user?.promotion?.number" [ngClass]="{ 'rtl': page.isRTL() }" />
