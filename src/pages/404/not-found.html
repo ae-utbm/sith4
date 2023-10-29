@@ -1,1 +1,10 @@
-<h1>404</h1>
+<div class="content">
+	<img class="logo" [src]="page.logo" alt="AE's logo" />
+
+	<sith-title class="title" [onDarkBackground]="true" text="404" [center]="true" />
+	<sith-subtitle class="subtitle" [onDarkBackground]="true" [text]="'404.title' | translate" />
+
+	<p class="description">{{ '404.description' | translate }}</p>
+
+	<sith-button class="button" [text]="'404.return_home' | translate" tabindex="0" (click)="goHome()" (keydown.enter)="goHome()" />
+</div>
