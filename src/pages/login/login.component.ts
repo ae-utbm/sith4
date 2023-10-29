@@ -47,7 +47,12 @@ export class LoginComponent {
 			.subscribe({
 				next: (data) => {
 					this.user.login(data.token, data.user_id);
-					this.goto('/user');
+
+					// Wait for the user to be logged in before redirecting
+					// -> avoid race condition with the user token
+					setTimeout(() => {
+						this.goto(['users', `${data.user_id}`, 'profile']);
+					}, 500);
 				},
 				error: (e: ApiError<ErrorResponseDto>) => {
 					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
