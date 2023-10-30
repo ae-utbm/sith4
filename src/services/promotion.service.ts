@@ -4,8 +4,6 @@ import type { ErrorResponseDto } from '#types/api';
 import { Inject, Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 
-import { environment } from '@environments/environment';
-
 import { APIService, ApiError } from './api.service';
 
 @Injectable({
@@ -15,7 +13,7 @@ export class PromotionService {
 	public constructor(@Inject(APIService) private readonly api: APIService) {}
 
 	public promotionPicture(id: number): Observable<imageURL | undefined> {
-		return this.api.get<ArrayBuffer>(`${environment.API_URL}/promotions/${id}/logo`, 'arraybuffer').pipe(
+		return this.api.get<ArrayBuffer>(`/promotions/${id}/logo`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
 				const error: ErrorResponseDto = err.error.toJSON();
 

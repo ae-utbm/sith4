@@ -90,15 +90,15 @@ export class UserService {
 	}
 
 	public user(id: number): Observable<UserPublicDto> {
-		return this.api.get<UserPublicDto>(`${environment.API_URL}/users/${id}/data/public`);
+		return this.api.get<UserPublicDto>(`/users/${id}/data/public`);
 	}
 
 	public userPrivate(id: number): Observable<UserPrivateDto> {
-		return this.api.get<UserPrivateDto>(`${environment.API_URL}/users/${id}/data`);
+		return this.api.get<UserPrivateDto>(`/users/${id}/data`);
 	}
 
 	public userPicture(id: number): Observable<imageURL | undefined> {
-		return this.api.get<ArrayBuffer>(`${environment.API_URL}/users/${id}/picture`, 'arraybuffer').pipe(
+		return this.api.get<ArrayBuffer>(`/users/${id}/picture`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
 				const error: ErrorResponseDto = err.error.toJSON();
 
@@ -120,7 +120,7 @@ export class UserService {
 	}
 
 	public userBanner(id: number): Observable<imageURL | undefined> {
-		return this.api.get<ArrayBuffer>(`${environment.API_URL}/users/${id}/banner`, 'arraybuffer').pipe(
+		return this.api.get<ArrayBuffer>(`/users/${id}/banner`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
 				const error: ErrorResponseDto = err.error.toJSON();
 
