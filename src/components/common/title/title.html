@@ -1,1 +1,14 @@
-<h1 [ngClass]="{ 'dark-mode': onDarkBackground, 'centered': center, 'themed': adaptColor }">{{ text }}</h1>
+<h1
+	[ngClass]="
+		{
+			'dark-mode': onDarkBackground,
+			'centered': center,
+			'themed': adaptColor,
+		}"
+
+	[ngStyle]="
+		{
+			'text-transform': textTransform,
+		}
+	"
+>{{ text }}</h1>

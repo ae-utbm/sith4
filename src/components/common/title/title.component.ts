@@ -10,4 +10,5 @@ export class TitleComponent {
 	@Input() public onDarkBackground = false;
 	@Input() public adaptColor = false;
 	@Input() public center = false;
+	@Input() public textTransform: 'capitalize' | 'uppercase' = 'uppercase';
 }
