@@ -1,3 +1,4 @@
+import type { KeysRecursiveOf } from '#types';
 import type { LangFile, Language } from '#types/sith';
 
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +11,7 @@ import LANGS from '@assets/i18n/languages.json';
 
 export const LANGUAGES: Language[] = LANGS as unknown as Language[];
 export const DEFAULT_LANGUAGE = 'en-US';
+export type LangKeys = KeysRecursiveOf<typeof DEfAULT_LANG>;
 
 /**
  * Get the language filename from the given language code
