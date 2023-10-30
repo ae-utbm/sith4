@@ -4,8 +4,6 @@ import type { ErrorResponseDto, UserPrivateDto, UserPublicDto } from '#types/api
 import { Inject, Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
 
-import { environment } from '@environments/environment.dev';
-
 import { APIService, ApiError } from './api.service';
 
 @Injectable({
@@ -13,58 +11,6 @@ import { APIService, ApiError } from './api.service';
 })
 export class UserService {
 	public constructor(@Inject(APIService) private readonly api: APIService) {}
-
-	/** @deprecated */
-	fetchUserBanner = (id: number) => '';
-	/** @deprecated */
-	fetchUserPicture = (id: number) => '';
-	/** @deprecated */
-	fetchUser = (id: number) => '';
-
-	/** @deprecated */
-	get picture(): string {
-		return '';
-	}
-	/** @deprecated */
-	get banner(): string {
-		return '';
-	}
-	/** @deprecated */
-	get fullName(): string {
-		return '';
-	}
-	/** @deprecated */
-	get nickname(): string {
-		return '';
-	}
-	/** @deprecated */
-	get accountId(): string {
-		return '';
-	}
-	/** @deprecated */
-	get birthday(): Date {
-		return new Date();
-	}
-	/** @deprecated */
-	get isMinor(): boolean {
-		return true;
-	}
-	/** @deprecated */
-	get promotion(): string {
-		return '';
-	}
-	/** @deprecated */
-	get balance(): string {
-		return '';
-	}
-	/** @deprecated */
-	get notifications(): [] {
-		return [];
-	}
-	/** @deprecated */
-	get notificationsCount(): number {
-		return 0;
-	}
 
 	public login(token: string, userId: number): void {
 		sessionStorage.setItem('user_token', token);
@@ -139,5 +85,10 @@ export class UserService {
 				return undefined;
 			}),
 		);
+	}
+
+	// TODO: to be implemented (waiting for API)
+	public userNotifications(id: number): number {
+		return id;
 	}
 }
