@@ -2,16 +2,26 @@ import type { email } from '#types';
 import type { ErrorResponseDto, UserSignInDto, UserTokenDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { getErrors } from '@directives';
-import { environment } from '@environments/environment';
 import { APIService, ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
 import { SnackbarService } from '@services/snackbar.service';
 import { UserService } from '@services/user.service';
+
+type LoginForm = typeof LOGIN_FORM_GROUP;
+type LoginFormKeys = keyof LoginForm['controls'];
+const LOGIN_FORM_GROUP = new FormGroup({
+	email: new FormControl<email>('' as email, {
+		nonNullable: true,
+		validators: [Validators.required, Validators.email],
+	}),
+	password: new FormControl('', {
+		nonNullable: true,
+		validators: [Validators.required],
+	}),
+});
 
 @Component({
 	selector: 'sith-login',
@@ -19,30 +29,20 @@ import { UserService } from '@services/user.service';
 	styleUrls: ['./login.scss'],
 })
 export class LoginComponent {
-	public readonly formGroup: FormGroup = this.fb.group({
-		email: ['', [Validators.required, Validators.email]],
-		password: ['', [Validators.required]],
-	});
-
 	public constructor(
-		@Inject(TranslateService) public readonly t: TranslateService,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly user: UserService,
-		@Inject(FormBuilder) private readonly fb: FormBuilder,
-		@Inject(Router) private readonly router: Router,
 		@Inject(APIService) private readonly api: APIService,
 		@Inject(SnackbarService) private readonly snackbar: SnackbarService,
 	) {}
 
-	public goto(page: string[] | string) {
-		this.router.navigate(typeof page === 'string' ? [page] : page).catch(() => ({}));
-	}
+	public readonly formGroup = LOGIN_FORM_GROUP;
 
 	public login(): void {
 		this.api
-			.post<UserTokenDto, UserSignInDto>(`${environment.API_URL}/auth/login`, {
-				email: this.formGroup.controls['email'].value as email,
-				password: this.formGroup.controls['password'].value as string,
+			.post<UserTokenDto, UserSignInDto>(`/auth/login`, {
+				email: this.formGroup.controls['email'].value,
+				password: this.formGroup.controls['password'].value,
 			})
 			.subscribe({
 				next: (data) => {
@@ -51,18 +51,33 @@ export class LoginComponent {
 					// Wait for the user to be logged in before redirecting
 					// -> avoid race condition with the user token
 					setTimeout(() => {
-						this.goto(['users', `${data.user_id}`, 'profile']);
+						this.page.to(['users', `${data.user_id}`, 'profile']);
 					}, 500);
 				},
 				error: (e: ApiError<ErrorResponseDto>) => {
-					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
-					this.formGroup.controls['password'].setValue(undefined);
-					this.formGroup.controls['email'].setValue(undefined);
+					switch (e.error.statusCode) {
+						case 401:
+							this.formGroup.controls['password'].setErrors({ password_wrong: true });
+							break;
+
+						case 403:
+							setTimeout(() => {
+								this.page.to('verify');
+							}, 500);
+							break;
+
+						case 404:
+							this.formGroup.controls['email'].setErrors({ email_not_found: true });
+							break;
+
+						default:
+							this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+					}
 				},
 			});
 	}
 
-	public errors(field: string): string[] {
+	public errors(field: LoginFormKeys): string[] {
 		return getErrors(this.formGroup.controls[field]);
 	}
 

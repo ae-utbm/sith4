@@ -1,0 +1,24 @@
+.content {
+	min-height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	font-family: Inter, sans-serif;
+
+	>.description {
+		color: var(--text-color-dynamic);
+	}
+
+	>.logo {
+		width: 200px;
+		height: 200px;
+		margin-bottom: 20px;
+	}
+
+	>.button {
+		margin-top: 20px;
+	}
+}

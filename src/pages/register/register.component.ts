@@ -36,7 +36,7 @@ const REGISTER_FORM_GROUP = new FormGroup(
 			nonNullable: true,
 			validators: [Validators.required, Validators.email, CustomValidators.forbiddenEmailValidator('@utbm.fr')],
 		}),
-		birth_date: new FormControl(new Date(), {
+		birth_date: new FormControl('', {
 			nonNullable: true,
 			validators: [
 				Validators.required,
@@ -95,16 +95,18 @@ export class RegisterComponent {
 
 	public register(): void {
 		this.api
-			.post<UserPublicDto, UserPostDto>('/users', {
+			.post<UserPublicDto, UserPostDto>('/auth/register', {
 				first_name: this.formGroup.controls.first_name.value,
 				last_name: this.formGroup.controls.last_name.value,
 				email: this.formGroup.controls.email.value,
-				birth_date: this.formGroup.controls.birth_date.value,
+				birth_date: new Date(this.formGroup.controls.birth_date.value),
 				password: this.formGroup.controls.password.value,
 			})
 			.subscribe({
 				next: (user) => {
-					console.log(user);
+					setTimeout(() => {
+						this.page.to('verify', { state: { email: user.email } });
+					}, 1000);
 				},
 				error: (err: ApiError<ErrorResponseDto>) => {
 					console.error(err);
