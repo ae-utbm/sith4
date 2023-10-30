@@ -6,6 +6,7 @@ import { NgHcaptchaModule } from 'ng-hcaptcha';
 
 import { ComponentsModule } from '@components/components.module';
 import { environment } from '@environments/environment.dev';
+import { AuthGuard } from '@guards/auth.guard';
 import { PagesModule } from '@pages/pages.module';
 import { HttpLoaderFactory } from '@utils/i18n';
 
@@ -32,7 +33,7 @@ import { AppComponent } from './app.component';
 			siteKey: environment.HCAPTCHA_SITE_KEY,
 		}),
 	],
-	providers: [],
+	providers: [AuthGuard],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

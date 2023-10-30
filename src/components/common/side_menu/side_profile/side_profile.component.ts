@@ -2,7 +2,6 @@ import type { imageURL } from '#types';
 import type { ErrorResponseDto, UserPublicDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
@@ -18,7 +17,6 @@ import { SideMenuComponent } from '../side_menu.component';
 })
 export class SideMenuProfileComponent {
 	public constructor(
-		@Inject(Router) public readonly router: Router,
 		@Inject(UserService) public readonly userService: UserService,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(SnackbarService) public readonly snackbar: SnackbarService,
@@ -55,14 +53,14 @@ export class SideMenuProfileComponent {
 	public userPicture?: imageURL;
 	public userBanner?: imageURL;
 
-	public async logout(): Promise<void> {
+	public logout(): void {
 		this.sideMenu.triggerClose();
 		this.userService.logout();
-		await this.router.navigate(['home']);
+		this.page.to(['home']);
 	}
 
-	public async goto(page: string) {
+	public to(page: string) {
 		this.sideMenu.triggerClose();
-		await this.router.navigate(['users', this.userService.logged_user_id, page]);
+		this.page.to(['users', `${this.userService.logged_user_id}`, page]);
 	}
 }

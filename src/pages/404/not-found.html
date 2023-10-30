@@ -6,5 +6,5 @@
 
 	<p class="description">{{ '404.description' | translate }}</p>
 
-	<sith-button class="button" [text]="'404.return_home' | translate" tabindex="0" (click)="goHome()" (keydown.enter)="goHome()" />
+	<sith-button class="button" [text]="'404.return_home' | translate" tabindex="0" (click)="page.to('')" (keydown.enter)="page.to('')" />
 </div>

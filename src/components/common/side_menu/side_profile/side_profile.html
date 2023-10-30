@@ -17,15 +17,15 @@
 	</div>
 	<main>
 		<ul class="links">
-			<li tabindex="1" (click)="goto('profile')" (keydown.enter)="goto('profile')">
+			<li tabindex="1" (click)="to('profile')" (keydown.enter)="to('profile')">
 				<sith-icon-person class="icon" />
 				<span>{{ 'header.profile.profile' | translate }}</span>
 			</li>
-			<li tabindex="1" (click)="goto('pictures')" (keydown.enter)="goto('pictures')">
+			<li tabindex="1" (click)="to('pictures')" (keydown.enter)="to('pictures')">
 				<sith-icon-pictures class="icon" />
 				<span>{{ 'header.profile.pictures' | translate }}</span>
 			</li>
-			<li tabindex="1" (click)="goto('payments')" (keydown.enter)="goto('payments')">
+			<li tabindex="1" (click)="to('payments')" (keydown.enter)="to('payments')">
 				<sith-icon-payments class="icon" />
 				<span>{{ 'header.profile.payments' | translate }}</span>
 			</li>

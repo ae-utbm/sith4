@@ -2,9 +2,7 @@ import type { email } from '#types';
 import type { ErrorResponseDto, UserPostDto, UserPublicDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { CustomValidators, getErrors } from '@directives';
 import { environment } from '@environments/environment';
@@ -72,11 +70,8 @@ const REGISTER_FORM_GROUP = new FormGroup(
 })
 export class RegisterComponent {
 	public constructor(
-		@Inject(Router) private readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(APIService) private readonly api: APIService,
-		@Inject(FormBuilder) private readonly fb: FormBuilder,
-		@Inject(TranslateService) private readonly t: TranslateService,
 		@Inject(SnackbarService) private readonly snackbar: SnackbarService,
 	) {}
 
@@ -116,9 +111,5 @@ export class RegisterComponent {
 					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
 				},
 			});
-	}
-
-	public async goto(path: string): Promise<void> {
-		await this.router.navigate([path]);
 	}
 }

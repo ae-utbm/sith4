@@ -1,24 +1,23 @@
 import { NgModule, inject } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Route, RouterModule } from '@angular/router';
 
+import { AuthGuard } from '@guards/auth.guard';
 import { NotFoundComponent } from '@pages/404/not-found.component';
 import { ForgotPasswordComponent } from '@pages/forgot_password/forgot_password.component';
 import { HomeComponent } from '@pages/home/home.component';
 import { LoginComponent } from '@pages/login/login.component';
 import { RegisterComponent } from '@pages/register/register.component';
-import { UserPaymentsComponent } from '@pages/user/payments/payments.component';
-import { UserPicturesComponent } from '@pages/user/pictures/pictures.component';
 import { UserProfileComponent } from '@pages/user/profile/profile.component';
-import { UserPermissionService } from '@services/user-permissions.service';
-import { UserService } from '@services/user.service';
+import { VerifyComponent } from '@pages/verify/verify.component';
+import { LangKeys } from '@utils/i18n';
 
 export type RouteData = {
 	full_width?: boolean;
 	headless?: boolean;
-	title?: string;
+	title?: LangKeys;
 };
 
-const routes: Routes = [
+const routes: Array<Omit<Route, 'data'> & { data?: RouteData }> = [
 	{
 		path: '',
 		redirectTo: '/home',
@@ -41,7 +40,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'login',
-		canActivate: [() => !inject(UserService).isLoggedIn()],
+		canActivate: [() => inject(AuthGuard).isLoggedOut()],
 		component: LoginComponent,
 		data: {
 			headless: true,
@@ -50,7 +49,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'register',
-		canActivate: [() => !inject(UserService).isLoggedIn()],
+		canActivate: [() => inject(AuthGuard).isLoggedOut()],
 		component: RegisterComponent,
 		data: {
 			headless: true,
@@ -59,7 +58,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'forgot_password',
-		canActivate: [() => !inject(UserService).isLoggedIn()],
+		canActivate: [() => inject(AuthGuard).isLoggedOut()],
 		component: ForgotPasswordComponent,
 		data: {
 			headless: true,
@@ -67,8 +66,17 @@ const routes: Routes = [
 		},
 	},
 	{
+		path: 'verify',
+		canActivate: [() => inject(AuthGuard).isLoggedOut()],
+		component: VerifyComponent,
+		data: {
+			headless: true,
+			title: 'verify.page_title',
+		},
+	},
+	{
 		path: 'users',
-		canActivate: [() => inject(UserService).isLoggedIn()],
+		canActivate: [() => inject(AuthGuard).isLoggedIn()],
 		children: [
 			{
 				path: ':id',
@@ -83,10 +91,10 @@ const routes: Routes = [
 						component: UserProfileComponent,
 						pathMatch: 'full',
 					},
-					{
-						path: 'pictures',
-						component: UserPicturesComponent,
-					},
+					// {
+					// 	path: 'pictures',
+					// 	component: UserPicturesComponent,
+					// },
 					// {
 					// 	path: 'payments',
 					// 	component: UserPaymentsComponent,

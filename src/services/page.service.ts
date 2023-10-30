@@ -1,7 +1,7 @@
 import type { FontSize, Theme, ThemeEvent } from '#types/sith';
 
 import { Inject, Injectable } from '@angular/core';
-import { ActivationStart, Router } from '@angular/router';
+import { ActivationStart, NavigationExtras, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { fromEvent, Observable, Subscription } from 'rxjs';
 
@@ -47,6 +47,12 @@ export class PageService {
 
 	resizeObservable$: Observable<Event>;
 	resizeSubscription$: Subscription;
+
+	public to(path: string | string[], extras?: NavigationExtras) {
+		this.router.navigate(typeof path === 'string' ? [path] : path, extras).catch((err) => {
+			console.error(err);
+		});
+	}
 
 	private updateHTML() {
 		document.documentElement.setAttribute('dir', this.isRTL() ? 'rtl' : 'ltr');

@@ -2,7 +2,6 @@ import type { imageURL } from '#types';
 import type { ErrorResponseDto, UserPublicDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
@@ -20,7 +19,6 @@ export class MobileHeaderComponent {
 	public connectionOpened = false;
 
 	public constructor(
-		@Inject(Router) private readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly userService: UserService,
 		@Inject(SnackbarService) public readonly snackbar: SnackbarService,
@@ -57,9 +55,5 @@ export class MobileHeaderComponent {
 
 	public triggerSideMenuOptions(): void {
 		this.optionsOpened = !this.optionsOpened;
-	}
-
-	public async goto(path: string): Promise<void> {
-		await this.router.navigate([path]);
 	}
 }

@@ -2,7 +2,6 @@ import type { imageURL } from '#types';
 import type { ErrorResponseDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { ApiError } from '@services/api.service';
 import { PageService } from '@services/page.service';
@@ -20,7 +19,6 @@ export class DesktopHeaderComponent {
 	public connectionOpened = false;
 
 	public constructor(
-		@Inject(Router) public readonly router: Router,
 		@Inject(PageService) public readonly page: PageService,
 		@Inject(UserService) public readonly userService: UserService,
 		@Inject(SnackbarService) public readonly snackbar: SnackbarService,
@@ -37,10 +35,6 @@ export class DesktopHeaderComponent {
 	}
 
 	public userPicture?: imageURL;
-
-	public async goto(path: string): Promise<void> {
-		await this.router.navigate([path]);
-	}
 
 	public triggerSideMenuProfile(): void {
 		this.profileOpened = !this.profileOpened;
