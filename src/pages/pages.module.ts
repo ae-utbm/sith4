@@ -9,12 +9,11 @@ import { ForgotPasswordComponent } from './forgot_password/forgot_password.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserPaymentsComponent } from './user/payments/payments.component';
-import { UserPicturesComponent } from './user/pictures/pictures.component';
 import { UserProfileBannerEditModalComponent } from './user/profile/banner-modal/banner-edit-modal.component';
 import { UserProfileInfosEditModalComponent } from './user/profile/infos-modal/infos-edit-modal.component';
 import { UserProfilePictureEditModalComponent } from './user/profile/picture-modal/picture-edit-modal.component';
 import { UserProfileComponent } from './user/profile/profile.component';
+import { VerifyComponent } from './verify/verify.component';
 import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
@@ -24,12 +23,11 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
-		UserPaymentsComponent,
 		UserProfileComponent,
-		UserPicturesComponent,
 		UserProfilePictureEditModalComponent,
 		UserProfileBannerEditModalComponent,
 		UserProfileInfosEditModalComponent,
+		VerifyComponent,
 	],
 	exports: [
 		NotFoundComponent,
@@ -37,12 +35,11 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
-		UserPaymentsComponent,
 		UserProfileComponent,
-		UserPicturesComponent,
 		UserProfilePictureEditModalComponent,
 		UserProfileBannerEditModalComponent,
 		UserProfileInfosEditModalComponent,
+		VerifyComponent,
 	],
 	imports: [
 		FormsModule,
