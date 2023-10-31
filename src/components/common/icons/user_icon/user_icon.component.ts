@@ -7,7 +7,7 @@ import { Component, Input } from '@angular/core';
 })
 export class IconUserComponent {
 	@Input() public url?: string;
-	@Input() public notifications = 0;
+	@Input() public notifications? = 0;
 
 	public hasPicture(): boolean {
 		return this.url !== undefined && this.url !== null;

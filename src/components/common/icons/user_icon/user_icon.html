@@ -10,6 +10,6 @@
 		</svg>
 	</div>
 
-	<div *ngIf="notifications > 0 && notifications < 10" class="notification">{{ notifications }}</div>
-	<div *ngIf="notifications >= 10" class="notification"><span></span></div>
+	<div *ngIf="notifications && notifications > 0 && notifications < 10" class="notification">{{ notifications }}</div>
+	<div *ngIf="notifications && notifications >= 10" class="notification"><span></span></div>
 </div>
