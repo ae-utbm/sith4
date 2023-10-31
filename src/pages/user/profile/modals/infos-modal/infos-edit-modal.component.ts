@@ -1,6 +1,5 @@
 import { Component, ElementRef, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 
 import { CustomValidators } from '@directives';
 import { UserService } from '@services/user.service';
@@ -51,19 +50,18 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 	public constructor(
 		@Inject(FormBuilder) private readonly fb: FormBuilder,
 		@Inject(UserService) public readonly user: UserService,
-		@Inject(ActivatedRoute) private activeRoute: ActivatedRoute,
 	) {
-		this.activeRoute.params.subscribe((params) => {
-			this.userId = parseInt(params['id'] as string, 10); // FIXME params['id'] might be undefined
-			this.fetchUserData();
-			this.fetchUserVisibility();
+		// this.activeRoute.params.subscribe((params) => {
+		// 	this.userId = parseInt(params['id'] as string, 10); // FIXME params['id'] might be undefined
+		// 	this.fetchUserData();
+		// 	this.fetchUserVisibility();
 
-			if (this.isSelf()) {
-				this.infosForm.get('first_name')?.disable();
-				this.infosForm.get('last_name')?.disable();
-				this.infosForm.get('birthday')?.disable();
-			}
-		});
+		// 	if (this.isSelf()) {
+		// 		this.infosForm.get('first_name')?.disable();
+		// 		this.infosForm.get('last_name')?.disable();
+		// 		this.infosForm.get('birthday')?.disable();
+		// 	}
+		// });
 	}
 
 	public ngOnInit(): void {

@@ -21,7 +21,7 @@ export class PromotionService {
 				if (error.statusCode === 404) return of(undefined);
 
 				// If any other error, throw it for later handling
-				return throwError(() => error);
+				return throwError(() => ({ error: error }));
 			}),
 			map((data) => {
 				// convert the arraybuffer to blob url

@@ -20,7 +20,7 @@ export class SnackbarService {
 		this.show(message, title, 'success');
 	}
 
-	error(message: string, title: string, status_code: number) {
+	error(message = 'Error', title: string, status_code: number) {
 		this.show(message, `${status_code}: ${title}`, 'error');
 	}
 }

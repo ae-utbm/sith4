@@ -50,9 +50,10 @@ export class LoginComponent {
 
 					// Wait for the user to be logged in before redirecting
 					// -> avoid race condition with the user token
+					// FIXME: this does not always work, 401 errors may be thrown!
 					setTimeout(() => {
 						this.page.to(['users', `${data.user_id}`, 'profile']);
-					}, 500);
+					}, 1000);
 				},
 				error: (e: ApiError<ErrorResponseDto>) => {
 					switch (e.error.statusCode) {

@@ -9,10 +9,7 @@ import { ForgotPasswordComponent } from './forgot_password/forgot_password.compo
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { UserProfileBannerEditModalComponent } from './user/profile/banner-modal/banner-edit-modal.component';
-import { UserProfileInfosEditModalComponent } from './user/profile/infos-modal/infos-edit-modal.component';
-import { UserProfilePictureEditModalComponent } from './user/profile/picture-modal/picture-edit-modal.component';
-import { UserProfileComponent } from './user/profile/profile.component';
+import { UserPageModule } from './user/profile/profile.module';
 import { VerifyComponent } from './verify/verify.component';
 import { ComponentsModule } from '../components/components.module';
 
@@ -23,10 +20,6 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
-		UserProfileComponent,
-		UserProfilePictureEditModalComponent,
-		UserProfileBannerEditModalComponent,
-		UserProfileInfosEditModalComponent,
 		VerifyComponent,
 	],
 	exports: [
@@ -35,10 +28,6 @@ import { ComponentsModule } from '../components/components.module';
 		LoginComponent,
 		RegisterComponent,
 		ForgotPasswordComponent,
-		UserProfileComponent,
-		UserProfilePictureEditModalComponent,
-		UserProfileBannerEditModalComponent,
-		UserProfileInfosEditModalComponent,
 		VerifyComponent,
 	],
 	imports: [
@@ -46,7 +35,7 @@ import { ComponentsModule } from '../components/components.module';
 		CommonModule,
 		TranslateModule,
 		NgHcaptchaModule,
-		FormsModule,
+		UserPageModule,
 		ReactiveFormsModule,
 		ComponentsModule,
 	],

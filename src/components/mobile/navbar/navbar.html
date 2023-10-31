@@ -7,7 +7,7 @@
 		<sith-icon-pictures class="icon" tabindex="0" (keydown.enter)="page.to('')" (click)="page.to('/pictures')"/>
 	</div>
 	<div class="right" *ngIf="u.isLoggedIn()">
-		<sith-icon-search class="icon"/>
-		<sith-icon-shopping-basket class="icon"/>
+		<sith-icon-search class="icon search"/>
+		<sith-icon-shopping-basket class="icon" tabindex="0" (keydown.enter)="page.to('')" (click)="page.to('/shop/basket')"/>
 	</div>
 </div>

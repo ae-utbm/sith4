@@ -1,13 +1,10 @@
 import type { base64 } from '#types';
 import type { ImageCropperResult } from '#types/sith';
 
-import { HttpClient } from '@angular/common/http';
 import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 import { ImageCropperComponent } from '@components/common/image_cropper/image-cropper.component';
-import { environment } from '@environments/environment';
-import { UserPermissionService } from '@services/user-permissions.service';
+import { PermissionService } from '@services/permissions.service';
 import { UserService } from '@services/user.service';
 
 @Component({
@@ -38,14 +35,12 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 	public timeLeft?: Date;
 
 	public constructor(
-		@Inject(HttpClient) private readonly http: HttpClient,
 		@Inject(UserService) private readonly u: UserService,
-		@Inject(UserPermissionService) private readonly perms: UserPermissionService,
-		private activeRoute: ActivatedRoute,
+		@Inject(PermissionService) private readonly perms: PermissionService,
 	) {
-		this.activeRoute.params.subscribe((params) => {
-			this.userId = parseInt(params['id'] as string, 10); // FIXME params['id'] might be undefined
-		});
+		// this.activeRoute.params.subscribe((params) => {
+		// 	this.userId = parseInt(params['id'] as string, 10); // FIXME params['id'] might be undefined
+		// });
 	}
 
 	public ngOnInit(): void {
@@ -65,7 +60,7 @@ export class UserProfileBannerEditModalComponent implements OnInit {
 
 	public open() {
 		// Only the user can update his picture
-		if (!this.isSelf() && !this.perms.hasPermission('CAN_EDIT_USER')) return;
+		// if (!this.isSelf() && !this.perms.hasPermission('CAN_EDIT_USER')) return;
 
 		this.modal.nativeElement.showModal();
 	}

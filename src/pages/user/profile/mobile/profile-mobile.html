@@ -1,0 +1,112 @@
+<div class="content">
+	<div class="profile">
+		<div class="banner" [ngClass]="userBanner ? 'has-banner' : ''">
+			<img *ngIf="userBanner" class="banner-image" [src]="userBanner" alt="user banner">
+			<span *ngIf="suspended" class="suspended">{{ 'profile.account_suspended' | translate }}</span>
+			<span *ngIf="banned" class="banned">{{ 'profile.account_banned' | translate }}</span>
+			<sith-icon-pencil tabindex="0" class="pencil" *ngIf="userCanEdit" (click)="openModal.emit('banner')" (keydown.enter)="openModal.emit('banner')" />
+		</div>
+
+		<div class="infos">
+			<div class="pictures" [ngClass]="{ 'rtl': page.isRTL() }">
+				<sith-icon-user class="picture" [url]="userPicture" />
+				<div tabindex="1" class="picture-hover" (click)="openModal.emit('picture')" (keydown.enter)="openModal.emit('picture')">
+					<sith-icon-pencil class="pencil" />
+				</div>
+				<sith-icon-promotion *ngIf="user?.promotion" class="promotion" [number]="user?.promotion"
+					[ngClass]="{ 'rtl': page.isRTL() }" />
+			</div>
+
+			<div class="main" [ngClass]="{ 'rtl': page.isRTL() }">
+				<div>
+					<span class="name">{{ user?.full_name }}</span>
+					<div class="subname">
+						<div *ngIf="user?.nickname" class="nickname">{{ user?.nickname }}</div>
+						<div>{{ 'profile.age' | translate: { age: user?.age } }}</div>
+					</div>
+				</div>
+				<sith-icon-flag class="flag" *ngIf="!self" />
+			</div>
+
+			<div class="tab">
+				<div class="header">
+					<div class="tabs">
+						<button class="link" [ngClass]="{ 'shown': currentTab === 'about' }" (click)="currentTab = 'about'">{{
+							'profile.about' |
+							translate }}</button>
+						<button class="link" [ngClass]="{ 'shown': currentTab === 'contact' }" (click)="currentTab = 'contact'"
+							*ngIf="userCanReadPrivate || (user?.email || user?.secondary_email || user?.phone || user?.parent_contact)">
+							{{ 'profile.contact' | translate }}
+						</button>
+					</div>
+					<sith-icon-pencil class="pencil" *ngIf="userCanEdit" tabindex="0" (keydown.enter)="openModal.emit('infos')" (click)="openModal.emit('infos')" />
+				</div>
+
+				<div class="body">
+					<!-- About section -->
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'about' }">
+						<div class="column" *ngIf="user?.birth_date || userCanReadPrivate">
+							<span class="title">{{ 'profile.birth_date' | translate }}</span>
+							<span>{{ user?.birth_date | date: 'dd/MM/yyyy' }}</span>
+						</div>
+						<!-- TODO -->
+						<div class="column" *ngIf="userCanReadPrivate">
+							<span class="title">{{ 'profile.cursus_utbm' | translate }}</span>
+							<span>NYI</span>
+						</div>
+						<div class="column">
+							<span class="title">{{ 'profile.joined_the_site' | translate }}</span>
+							<span>{{ user?.created | date: 'dd/MM/yyyy' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.gender || userCanReadPrivate">
+							<span class="title">{{ 'profile.gender' | translate }}</span>
+							<span>{{ user?.gender ?? '-' }}</span>
+						</div>
+						<!-- TODO -->
+						<div class="column" *ngIf="userCanReadPrivate">
+							<span class="title">{{ 'profile.specialty' | translate }}</span>
+							<span>NYI</span>
+						</div>
+						<div class="column" *ngIf="user?.last_seen || userCanReadPrivate">
+							<span class="title">{{ 'profile.last_seen' | translate }}</span>
+							<span>{{ (user?.last_seen | date: 'dd/MM/yyyy') ?? ('profile.never_seen' | translate) }}</span>
+						</div>
+						<div class="column" *ngIf="user?.pronouns || userCanReadPrivate">
+							<span class="title">{{ 'profile.pronouns' | translate }}</span>
+							<span>{{ user?.pronouns ?? '-' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.promotion || userCanReadPrivate">
+							<span class="title">{{ 'profile.promotion' | translate }}</span>
+							<span>{{ user?.promotion ?? '-' }}</span>
+						</div>
+						<!-- TODO -->
+						<div class="column" *ngIf="userCanReadPrivate">
+							<span class="title">{{ 'profile.subscription' | translate }}</span>
+							<span>NYI</span>
+						</div>
+					</div>
+
+					<!-- Contact section -->
+					<div class="details" [ngClass]="{ 'shown': currentTab === 'contact' }">
+						<div class="column" *ngIf="user?.email || userCanReadPrivate">
+							<span class="title">{{ 'profile.email' | translate }}</span>
+							<span>{{ user?.email ?? '-' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.secondary_email || userCanReadPrivate">
+							<span class="title">{{ 'profile.secondary_email' | translate }}</span>
+							<span>{{ user?.secondary_email ?? '-' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.phone || userCanReadPrivate">
+							<span class="title">{{ 'profile.phone' | translate }}</span>
+							<span>{{ user?.phone ?? '-' }}</span>
+						</div>
+						<div class="column" *ngIf="user?.parent_contact || userCanReadPrivate">
+							<span class="title">{{ 'profile.parent_contact' | translate }}</span>
+							<span>{{ user?.parent_contact ?? '-' }}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

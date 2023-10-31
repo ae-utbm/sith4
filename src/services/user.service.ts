@@ -1,5 +1,5 @@
 import type { imageURL } from '#types';
-import type { ErrorResponseDto, UserPrivateDto, UserPublicDto } from '#types/api';
+import type { ErrorResponseDto, UserPictureEntity, UserPrivateDto, UserPublicDto } from '#types/api';
 
 import { Inject, Injectable } from '@angular/core';
 import { Observable, catchError, map, of, throwError } from 'rxjs';
@@ -35,12 +35,12 @@ export class UserService {
 		sessionStorage.clear();
 	}
 
-	public user(id: number): Observable<UserPublicDto> {
-		return this.api.get<UserPublicDto>(`/users/${id}/data/public`);
-	}
+	public user(id: number, private_data?: boolean): Observable<UserPublicDto | UserPrivateDto>;
+	public user(id: number, private_data: true): Observable<UserPrivateDto>;
 
-	public userPrivate(id: number): Observable<UserPrivateDto> {
-		return this.api.get<UserPrivateDto>(`/users/${id}/data`);
+	public user(id: number, private_data = false): Observable<UserPublicDto> {
+		if (private_data) return this.api.get<UserPrivateDto>(`/users/${id}/data`);
+		return this.api.get<UserPublicDto>(`/users/${id}/data/public`);
 	}
 
 	public userPicture(id: number): Observable<imageURL | undefined> {
@@ -52,7 +52,7 @@ export class UserService {
 				if (error.statusCode === 404) return of(undefined);
 
 				// If any other error, throw it for later handling
-				return throwError(() => error);
+				return throwError(() => ({ error: error }));
 			}),
 			map((data) => {
 				// convert the arraybuffer to base64
@@ -65,6 +65,10 @@ export class UserService {
 		);
 	}
 
+	public userPictureData(file_id: number): Observable<UserPictureEntity<number>> {
+		return this.api.get<UserPictureEntity<number>>(`/files/${file_id}/data`);
+	}
+
 	public userBanner(id: number): Observable<imageURL | undefined> {
 		return this.api.get<ArrayBuffer>(`/users/${id}/banner`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
@@ -74,7 +78,7 @@ export class UserService {
 				if (error.statusCode === 404) return of(undefined);
 
 				// If any other error, throw it for later handling
-				return throwError(() => error);
+				return throwError(() => ({ error: error }));
 			}),
 			map((data) => {
 				// convert the arraybuffer to base64
@@ -88,7 +92,23 @@ export class UserService {
 	}
 
 	// TODO: to be implemented (waiting for API)
-	public userNotifications(id: number): number {
-		return id;
+	// maybe in its own service ?
+	public userNotifications(id: number): Observable<[]> {
+		console.warn('NYI: userNotifications');
+
+		return new Observable((subscriber) => {
+			subscriber.next([]);
+			subscriber.complete();
+		});
+	}
+
+	// TODO: to be implemented (waiting for API)
+	public userNotificationsCount(id: number): Observable<number> {
+		console.warn('NYI: userNotificationsCount');
+
+		return new Observable((subscriber) => {
+			subscriber.next(id);
+			subscriber.complete();
+		});
 	}
 }
