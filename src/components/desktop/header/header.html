@@ -9,14 +9,14 @@
 
 	<div class="icons">
 		<sith-icon-search class="icon search" *ngIf="userService.isLoggedIn()" />
-		<sith-icon-shopping-basket class="icon" *ngIf="userService.isLoggedIn()" />
-		<sith-icon-cogwheel class="icon" (click)="triggerSideMenuOptions()" />
+		<sith-icon-shopping-basket class="icon" *ngIf="userService.isLoggedIn()" tabindex="0" (keydown.enter)="page.to('')" (click)="page.to('/shop/basket')"/>
+		<sith-icon-cogwheel class="icon"  tabindex="0" (keydown.enter)="triggerSideMenuOptions()" (click)="triggerSideMenuOptions()" />
 		<sith-icon-user
 			class="icon"
 			*ngIf="userService.isLoggedIn()"
 			(click)="triggerSideMenuProfile()"
 			[url]="userPicture"
-			[notifications]="1"
+			[notifications]="userNotificationsCount"
 		/>
 		<sith-icon-burger-menu class="icon" *ngIf="!userService.isLoggedIn()" (click)="triggerSideMenuConnection()" />
 	</div>

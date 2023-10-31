@@ -39,11 +39,20 @@ export class MobileHeaderComponent {
 					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
 				},
 			});
+
+			this.userService.userNotificationsCount(this.userService.logged_user_id).subscribe({
+				next: (count) => (this.userNotificationsCount = count),
+				error: (err: ApiError<ErrorResponseDto>) => {
+					console.error(err);
+					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+				},
+			});
 		}
 	}
 
 	public user?: UserPublicDto;
 	public userPicture?: imageURL;
+	public userNotificationsCount?: number;
 
 	public triggerSideMenuProfile(): void {
 		this.profileOpened = !this.profileOpened;

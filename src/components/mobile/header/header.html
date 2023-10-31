@@ -13,7 +13,7 @@
 			(click)="triggerSideMenuProfile()"
 			(keydown.enter)="triggerSideMenuProfile()"
 			[url]="userPicture"
-			[notifications]="1"
+			[notifications]="userNotificationsCount"
 		/>
 		<sith-icon-burger-menu *ngIf="!userService.isLoggedIn()"
 			class="icon"
