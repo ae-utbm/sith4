@@ -1,0 +1,44 @@
+<main>
+	<div tabindex="0" class="header" (click)="page.to('')" (keydown.enter)="page.to('')">
+		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + page.logo + ')' }"></div>
+		<div class="text">
+			<span class="title">Association des Étudiants</span>
+			<span class="subtitle">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+
+	<form [formGroup]="formGroup" (ngSubmit)="login()" autocomplete="on" novalidate>
+		<div class="form-head">
+			<sith-title [text]="'global.sign_in' | translate" [onDarkBackground]="true" />
+			<a class="global-link" href="/register">{{ 'login.no_account' | translate}}</a>
+		</div>
+
+		<div class="form-body">
+			<div class="input-container">
+				<div class="input">
+					<sith-icon-at class="icon" />
+					<input formControlName="email" type="text" name="email" placeholder="{{ 'global.email_template' | translate }}" />
+				</div>
+        <div *ngIf="errors('email').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
+				</div>
+			</div>
+
+			<div class="input-container">
+				<div class="input">
+					<sith-icon-password class="icon" />
+					<sith-password-input class="custom-input" autocomplete="current-password" formControlName="password" />
+				</div>
+				<div *ngIf="errors('password').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('password')">{{ getError(error) | translate }}</span>
+				</div>
+			</div>
+
+			<a class="global-link" href="/forgot_password">
+				{{ 'login.forgot_password' | translate }}
+			</a>
+		</div>
+
+		<sith-button [disabled]="!formGroup.valid" type="submit" height="large" class="form-button" [text]="'global.sign_in' | translate"></sith-button>
+	</form>
+</main>

@@ -1,0 +1,22 @@
+<div class="navbar" [ngClass]="page.full_width ? 'full' : 'centered'">
+	<div class="link" *ngIf="u.isLoggedIn()" tabindex="0" (keydown.enter)="openFavorites()" (click)="openFavorites()">
+		<sith-icon-heart-plus class="icon" />
+		<span>{{ 'navbar.favorites' | translate }}</span>
+	</div>
+	<div class="link" tabindex="0" (keydown.enter)="page.to('/shop')" (click)="page.to('/shop')">
+		<sith-icon-shopping-cart class="icon" />
+		<span>{{ 'navbar.shop' | translate }}</span>
+	</div>
+	<div class="link" tabindex="0" (keydown.enter)="page.to('/events')" (click)="page.to('/events')">
+		<sith-icon-party-hat class="icon" />
+		<span>{{ 'navbar.events' | translate }}</span>
+	</div>
+	<div class="link" tabindex="0" (keydown.enter)="page.to('/forum')" (click)="page.to('/forum')">
+		<sith-icon-messages class="icon" />
+		<span>{{ 'navbar.forum' | translate }}</span>
+	</div>
+	<div class="link" tabindex="0" (keydown.enter)="page.to('/pictures')" (click)="page.to('/pictures')">
+		<sith-icon-pictures class="icon" />
+		<span>{{ 'navbar.pictures' | translate }}</span>
+	</div>
+</div>

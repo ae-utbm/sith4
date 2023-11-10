@@ -1,0 +1,20 @@
+h1 {
+  font-family: Inter, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: calc(18px * var(--font-size));
+	margin: calc(17px / 2) 0;
+	color: var(--text-color);
+}
+
+.dark-mode {
+  color: var(--text-color-dark-bg);
+}
+
+.centered {
+	text-align: center;
+}
+
+.themed {
+	color: var(--text-color-dynamic);
+}

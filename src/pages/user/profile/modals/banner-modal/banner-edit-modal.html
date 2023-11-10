@@ -1,0 +1,38 @@
+<dialog class="banner-dialog" #banner>
+	<sith-title
+		[text]="self
+			? ('profile.update_banner' | translate)
+			: ('profile.update_banner_of_user' | translate: { username })"
+		[adaptColor]="true"
+	/>
+
+	<form method="dialog">
+		<span *ngIf="timeLeft" class="warning">
+			{{ 'profile.banner_too_recent' | translate: { date: timeLeft | date: 'dd/MM/yyyy HH:mm:ss' } }}
+		</span>
+
+		<sith-image-cropper
+			class="cropper"
+			*ngIf="bannerUncropped"
+			[imageUrl]="bannerUncropped"
+			[cropperOptions]="options"
+			(export)="updateCroppedBanner($event)"
+		/>
+
+		<sith-file-input *ngIf="!timeLeft" (fileChange)="updateUncroppedBanner($event)" />
+
+		<sith-button
+			type="submit"
+			*ngIf="!timeLeft"
+			[text]="'global.save' | translate"
+			[disabled]="!bannerUncropped"
+			tabindex="0" (keydown.enter)="cropper.exportCanvas()" (click)="cropper.exportCanvas()"
+		/>
+
+		<sith-button *ngIf="userBanner && userCanEdit"
+			[text]="'global.delete' | translate"
+			aspect="danger"
+			tabindex="0" (keydown.enter)="deleteCurrentBanner()" (click)="deleteCurrentBanner()"
+		/>
+	</form>
+</dialog>

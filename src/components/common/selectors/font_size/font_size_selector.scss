@@ -1,0 +1,26 @@
+.buttons {
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+	gap: 10px;
+
+	> * ::ng-deep button {
+		border: 1px solid transparent;
+	}
+
+	>.active ::ng-deep button {
+		border: 1px solid var(--gray2);
+	}
+
+	>.small ::ng-deep button {
+		font-size: calc(12px * .75);
+	}
+
+	>.medium ::ng-deep button {
+		font-size: 12px;
+	}
+
+	>.large ::ng-deep button {
+		font-size: calc(12px * 1.25);
+	}
+}

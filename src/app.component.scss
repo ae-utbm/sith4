@@ -1,0 +1,19 @@
+main {
+	max-width: var(--max-page-width);
+	width: 100%;
+	margin: 0 auto;
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+
+	&.headless {
+		margin: 0;
+		max-width: none;
+		padding: 0;
+	}
+}
+
+router-outlet {
+	display: none;
+}

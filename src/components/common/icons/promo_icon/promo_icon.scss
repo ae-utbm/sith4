@@ -1,0 +1,15 @@
+img,
+.placeholder {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+}
+
+.placeholder {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-family: Roboto, sans-serif;
+	color: var(--text-color-dynamic);
+	border: dotted 1.25px var(--text-color-dark-bg);
+}

@@ -1,0 +1,35 @@
+.banner-dialog {
+	width: 90%;
+	max-width: 500px;
+
+	position: relative;
+	border: none;
+	border-radius: 5px;
+	padding: 0 10px 10px;
+	background-color: var(--background-color);
+
+	>form {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+
+		>.cropper {
+			max-height: 600px;
+		}
+
+		>.warning {
+			color: var(--red);
+			font-family: 'Roboto', sans-serif;
+			text-align: center;
+		}
+	}
+
+	>.close {
+		position: absolute;
+		width: 16px;
+		height: 16px;
+		top: 10px;
+		right: 10px;
+		fill: var(--text-color-dynamic);
+	}
+}

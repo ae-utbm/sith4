@@ -1,0 +1,17 @@
+# https://docs.github.com/en/actions/using-workflows/reusing-workflows
+name: PR/Push update
+
+on:
+  pull_request:
+    branches: [main, develop]
+  push:
+    branches: [main, develop]
+
+jobs:
+  execute-lint:
+    uses: ./.github/workflows/linting.yml
+
+  execute-tests:
+    needs: execute-lint
+    if: ${{ needs.execute-lint.result == 'success' }}
+    uses: ./.github/workflows/testing.yml

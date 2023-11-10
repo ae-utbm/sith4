@@ -1,0 +1,36 @@
+$text-color: #000;
+$dark-mode-text-color: #fff;
+
+h2 {
+	font-family: Inter, sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: calc(12px * var(--font-size));
+	line-height: calc(15px * var(--font-size));
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.bordered {
+	border-left: 4px solid $text-color;
+	padding-left: 6px;
+
+	&.rtl {
+		border-left: none !important;
+		padding-left: 0 !important;
+		border-right: 4px solid $text-color;
+		padding-right: 6px;
+
+		&.dark-mode {
+			border-right: 4px solid $dark-mode-text-color;
+		}
+	}
+
+	&.dark-mode {
+		border-left: 4px solid $dark-mode-text-color;
+	}
+}
+
+.dark-mode {
+	color: $dark-mode-text-color;
+}

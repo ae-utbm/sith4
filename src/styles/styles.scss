@@ -1,0 +1,86 @@
+@import './roboto';
+@import './inter';
+@import './themes';
+@import './animations';
+
+:root {
+	--max-page-width: 1080px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background-color: var(--background-color);
+}
+
+/* Firefox */
+* {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(0 0 0 / 25%) transparent;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+	background-color: rgb(0 0 0 / 25%);
+	border-radius: 10px;
+	border: none;
+}
+
+input[type="date"] {
+
+	&::-webkit-inner-spin-button,
+	&::-webkit-calendar-picker-indicator {
+		display: none;
+		appearance: none;
+	}
+}
+
+// "deactivate" autofill white background
+// you can't directly change the background color of the autofill
+// so we have to change the transition time to a very long time (1 week here)
+input {
+
+	&:-webkit-autofill,
+	&:-webkit-autofill:focus {
+		transition: background-color 604800s 0s, color 604800s 0s;
+	}
+
+	&[data-autocompleted] {
+		background-color: transparent !important;
+	}
+}
+
+.global-link {
+	font-family: Inter, sans-serif;
+	font-size: calc(14px * var(--font-size));
+	font-style: italic;
+	line-height: 17px;
+	text-decoration: none;
+	color: var(--dark-blue);
+
+	&:hover {
+		color: var(--blue);
+	}
+
+	&:visited {
+		color: var(--purple);
+	}
+}

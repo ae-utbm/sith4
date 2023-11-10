@@ -1,0 +1,14 @@
+import { Component, Input } from '@angular/core';
+
+@Component({
+	selector: 'sith-title',
+	templateUrl: './title.html',
+	styleUrls: ['./title.scss'],
+})
+export class TitleComponent {
+	@Input() public text = '';
+	@Input() public onDarkBackground = false;
+	@Input() public adaptColor = false;
+	@Input() public center = false;
+	@Input() public textTransform: 'capitalize' | 'uppercase' = 'uppercase';
+}

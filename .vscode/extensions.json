@@ -1,0 +1,19 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "aaron-bond.better-comments",
+    "streetsidesoftware.code-spell-checker",
+    "exodiusstudios.comment-anchors",
+    "leonardssh.vscord",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "github.copilot",
+    "github.vscode-pull-request-github",
+    "eamodio.gitlens",
+    "chrisbibby.hide-node-modules",
+    "esbenp.prettier-vscode",
+    "yoavbls.pretty-ts-errors",
+    "pkief.material-icon-theme"
+  ]
+}

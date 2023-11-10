@@ -1,0 +1,41 @@
+.header {
+	background-color: var(--navbar-background-color);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 10px;
+	height: 70px;
+
+	> .logo {
+		width: 64px;
+		height: 64px;
+	}
+
+	> .icons {
+		display: flex;
+		padding: 16px 5px;
+		gap: 16px;
+
+		> .icon {
+			width: 32px;
+			height: 32px;
+			fill: var(--navbar-text-color);
+			cursor: pointer;
+		}
+	}
+}
+
+.side-menu {
+	position: absolute;
+	top: 0;
+	z-index: 1;
+	height: 100vh;
+	width: 100vw;
+	animation: fade 0.5s ease-in-out;
+	background-color: var(--darkened);
+	display: none;
+
+	&.open {
+		display: block;
+	}
+}

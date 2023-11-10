@@ -1,0 +1,109 @@
+$height: 26px;
+$border-radius: 5px;
+$icon-size: 20px;
+$padding: 5px;
+
+.select {
+	width: 100%;
+	height: $height;
+	position: relative;
+
+	> .selector {
+		cursor: pointer;
+		position: relative;
+		background-color: var(--gray4);
+		border: 0;
+		border-radius: $border-radius;
+		display: flex;
+		flex-direction: row;
+		height: $height;
+		width: 100%;
+		align-items: center;
+		justify-content: space-between;
+		padding: $padding;
+
+		&.active {
+			border-radius: $border-radius $border-radius 0 0;
+		}
+
+		> .content {
+			height: 100%;
+			display: flex;
+			flex-direction: row;
+			gap: $padding;
+			align-items: center;
+
+			> .image {
+				width: 16px;
+				height: 16px;
+				border-radius: 50%;
+			}
+
+			> .label {
+				font-family: Inter, sans-serif;
+				font-size: 12px;
+				color: var(--text-color-dark-bg);
+			}
+		}
+
+		> .icon {
+			position: absolute;
+			display: block;
+			fill: var(--text-color-dark-bg);
+			height: $icon-size;
+			width: $icon-size;
+			right: calc(($height - $icon-size) / 2);
+			top: calc(($height - $icon-size) / 2);
+
+			&.rtl {
+				right: unset;
+				left: calc(($height - $icon-size) / 2);
+			}
+		}
+	}
+
+	> .dropdown {
+		position: absolute;
+		top: $height;
+		background-color: var(--gray4);
+		width: 100%;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid var(--user-custom-color);
+		border-radius: 0 0 $border-radius $border-radius;
+		max-height: 200px;
+		overflow-y: scroll;
+
+		> .item {
+			cursor: pointer;
+			list-style-type: none;
+			height: $height;
+			padding: $padding;
+			display: flex;
+			flex-direction: row;
+			gap: $padding;
+			align-items: center;
+
+			&:hover {
+				background-color: var(--gray2);
+				color: var(--text-color-dynamic);
+
+				&:last-of-type {
+					border-radius: 0 0 $border-radius $border-radius;
+				}
+			}
+
+			> .image {
+				width: 16px;
+				height: 16px;
+				object-fit: contain;
+			}
+
+			> .label {
+				font-family: Inter, sans-serif;
+				font-size: 12px;
+				color: var(--text-color-dark-bg);
+			}
+		}
+	}
+}

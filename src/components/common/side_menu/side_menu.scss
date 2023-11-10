@@ -1,0 +1,33 @@
+$slide: slide 0.5s ease-in-out;
+$slide-rtl: slide-rtl 0.5s ease-in-out;
+
+.side-menu {
+	position: fixed;
+	display: flex;
+	animation: $slide;
+
+	> .right {
+		background-color: var(--gray3);
+		display: block;
+		width: 316px;
+		height: 100vh;
+
+		&.closing {
+			animation: reverse $slide;
+		}
+	}
+
+	> .left {
+		display: block;
+		width: calc(100vw - 316px);
+		height: 100vh;
+	}
+
+	&.rtl {
+		animation: $slide-rtl;
+
+		> .right.closing {
+			animation: reverse $slide-rtl;
+		}
+	}
+}

@@ -8,19 +8,19 @@ Dans le but de favoriser un environnement ouvert et accueillant, nous, en tant q
 
 Les exemples de comportements qui contribuent à un environnement positif pour notre communauté :
 
-* Faire preuve d'empathie et de gentillesse envers les autres.
-* Respecter les opinions, les points de vue et les expériences différentes.
-* Émettre et accepter les commentaires constructifs
-* Accepter la responsabilité et s'excuser auprès des personnes affectées par nos erreurs, et apprendre de l'expérience
-* Se concentrer sur ce qui est le mieux non seulement pour nous en tant qu'individus, mais pour la communauté dans son ensemble
+- Faire preuve d'empathie et de gentillesse envers les autres.
+- Respecter les opinions, les points de vue et les expériences différentes.
+- Émettre et accepter les commentaires constructifs
+- Accepter la responsabilité et s'excuser auprès des personnes affectées par nos erreurs, et apprendre de l'expérience
+- Se concentrer sur ce qui est le mieux non seulement pour nous en tant qu'individus, mais pour la communauté dans son ensemble
 
 Voici quelques exemples de comportements inacceptables :
 
-* l'utilisation d'un langage ou d'images à caractère sexuel, et les attentions ou avances sexuelles.
-* le trollage, les commentaires insultants ou désobligeants et les attaques personnelles ou politiques
-* le harcèlement public ou privé
-* la publication d'informations privées d'autrui, telles qu'une adresse physique ou électronique, sans leur permission explicite.
-* toute autre conduite qui pourrait raisonnablement être considérée comme inappropriée dans un cadre professionnel.
+- l'utilisation d'un langage ou d'images à caractère sexuel, et les attentions ou avances sexuelles.
+- le trollage, les commentaires insultants ou désobligeants et les attaques personnelles ou politiques
+- le harcèlement public ou privé
+- la publication d'informations privées d'autrui, telles qu'une adresse physique ou électronique, sans leur permission explicite.
+- toute autre conduite qui pourrait raisonnablement être considérée comme inappropriée dans un cadre professionnel.
 
 ## Nos responsabilités
 

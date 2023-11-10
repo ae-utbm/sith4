@@ -1,0 +1,39 @@
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Start",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "args": [
+        "run",
+        "start"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Run tests",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "args": [
+        "run",
+        "test"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Lint",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "args": [
+        "run",
+        "lint"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

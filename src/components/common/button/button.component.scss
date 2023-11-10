@@ -1,0 +1,52 @@
+button {
+	background-color: var(--gray4);
+	color: var(--text-color-dark-bg);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 5px 20px;
+	width: 100%;
+	border-radius: 5px;
+	border: none;
+	font-family: Inter, sans-serif;
+	text-transform: uppercase;
+	cursor: pointer;
+
+	&.large {
+		height: 40px;
+	}
+
+	&.medium {
+		height: 30px;
+	}
+
+	&.small {
+		height: 20px;
+	}
+
+	&:hover {
+		background-color: var(--gray2);
+		color: var(--text-color-dynamic);
+	}
+
+	&:disabled {
+		background-color: var(--gray2-hover);
+		color: var(--text-color-dark-bg);
+		cursor: not-allowed;
+	}
+
+	&.danger {
+		background-color: var(--red);
+		color: var(--text-color-dark-bg);
+
+		&:hover {
+			background-color: var(--red-hover);
+			color: var(--text-color-dark-bg);
+		}
+
+		&:disabled {
+			background-color: var(--gray2-hover);
+			color: var(--text-color-dark-bg);
+		}
+	}
+}

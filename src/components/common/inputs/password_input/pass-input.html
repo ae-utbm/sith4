@@ -1,0 +1,8 @@
+<div>
+	<input
+		[(ngModel)]="input" (ngModelChange)="onChange($event)" (blur)="onTouch()"
+		[type]="type" placeholder="********"
+		[autocomplete]="autocomplete"
+	/>
+	<sith-icon-eye class="icon" [open]="type === 'text'" tabindex="0" (click)="toggleVisibility()" (keydown.enter)="toggleVisibility()"/>
+</div>

@@ -1,0 +1,34 @@
+.navbar {
+	height: 40px;
+	background-color: var(--gray1);
+	display: flex;
+	justify-content: space-between;
+
+	> .left {
+		width: 100%;
+		justify-content: flex-start;
+		gap: 16px;
+	}
+
+	> .right {
+		justify-content: flex-end;
+		gap: 8px;
+	}
+
+	> .left,
+	> .right {
+		display: flex;
+		align-items: center;
+		padding: 0 10px;
+
+		> .icon {
+			width: 20px;
+			height: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			fill: var(--text-color-dynamic);
+			cursor: pointer;
+		}
+	}
+}

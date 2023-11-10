@@ -1,0 +1,146 @@
+{
+  "i18n": {
+    "switch_lang": "Language selection",
+    "select_lang": "Select a language",
+    "help_us_translate": "Help us translate this website"
+  },
+  "navbar": {
+    "favorites": "Favorites",
+    "shop": "Shop",
+    "events": "Events",
+    "forum": "Forum",
+    "pictures": "Pictures"
+  },
+  "header": {
+    "options": {
+      "title": "Accessibility Parameters",
+      "themes": {
+        "title": "Theme selection",
+        "light": "Light",
+        "dark": "Dark",
+        "auto": "Auto",
+        "high_contrast": "High contrast"
+      },
+      "themes_event": {
+        "pinktober": "Pinktober",
+        "christmas": "Christmas"
+      },
+      "font_size": {
+        "title": "Font size",
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      },
+      "accent_color": {
+        "title": "Accent color"
+      }
+    },
+    "profile": {
+      "profile": "Profile",
+      "pictures": "Pictures",
+      "payments": "Payments",
+      "disconnect": "Disconnect"
+    }
+  },
+  "global": {
+    "back": "Back",
+    "sign_in": "Sign in",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "register": "Register",
+    "last_name": "Last name",
+    "first_name": "First name",
+    "email_template": "example@website.com",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+    "date_birth": "Date of birth",
+    "errors": {
+      "required": "This field is required",
+      "forbidden_email": "This email is forbidden",
+      "age_minimum": "You must be at least {{ min }} years old",
+      "age_maximum": "You must be at most {{ max }} years old",
+      "not_in_future": "This date cannot be in the future",
+      "invalid_name": "This name is invalid",
+      "has_one_digit": "This password must contain at least one digit",
+      "has_one_special_character": "This password must contain at least one special character",
+      "has_one_lowercase": "This password must contain at least one lowercase letter",
+      "has_one_uppercase": "This password must contain at least one uppercase letter",
+      "has_no_duplicate_characters": "This password must not contain duplicate characters next to each other",
+      "passwords_mismatch": "The passwords do not match",
+      "password_wrong": "Wrong password",
+      "minlength": "This field must contain at least {{ min }} characters",
+      "maxlength": "This field must contain at most {{ max }} characters",
+      "email": "This email is invalid",
+      "email_not_found": "No user found with this email"
+    }
+  },
+  "404": {
+    "title": "Page not found",
+    "description": "The page you are looking for does not exist or has been moved.",
+    "return_home": "Return to home page"
+  },
+  "home": {
+    "title": "Home"
+  },
+  "forgot_password": {
+    "title": "Forgot password",
+    "description": "If you have forgotten your password, enter your email address below to reset your password.",
+    "send_email": "Send email"
+  },
+  "login":{
+    "title": "Login",
+    "no_account": "No account ? Register",
+    "forgot_password": "Forgot your password ?",
+    "external_connection": "Or connect with",
+    "already_logged_as_x": "You are already logged as {{name}}"
+  },
+  "register":{
+    "title": "Register",
+    "already_have_account": "Already have an account ? Log In",
+    "date_birth_no_modif": "Your date of birth cannot be changed",
+    "min_password": "Minimum of 8 characters including 1 special",
+    "confirm_password": "Type your password again",
+    "already_registered_and_logged_as_x": "You are already registered and logged as {{name}}"
+  },
+  "profile":{
+    "about": "About",
+    "account_suspended": "Account suspended",
+    "account_banned": "Account banned : {{time}} left",
+    "age": "{{age}} years old",
+    "birthday": "Birth date",
+    "contact": "Contact",
+    "cursus_utbm": "UTBM Curriculum",
+    "email": "Email",
+    "first_name": "First name",
+    "gender": "Gender",
+    "identity_info": "Only administrators can change your first name, last name, and date of birth, upon presentation of supporting documentation.",
+    "joined_the_site": "Joined the site",
+    "last_name": "Last name",
+    "last_seen": "Last seen",
+    "never_seen": "Never seen",
+    "nickname": "Nickname",
+    "parent_contact": "Parent contact",
+    "parent_contact_info": "This field will disappear as soon as you become of legal age. It is only visible to you and the moderators of the website.",
+    "phone": "Phone",
+    "picture_too_recent": "You can't change your profile picture before {{date}}",
+    "pronouns": "Pronouns",
+    "promotion": "Promotion",
+    "specialty": "Specialty",
+    "secondary_email": "Secondary email",
+    "subscription" : "Subscription date",
+    "title": "Profile of {{name}}",
+    "update_picture": "Update your picture",
+    "update_picture_of_user": "Update picture of {{username}}",
+    "update_banner": "Update your banner",
+    "update_banner_of_user": "Update banner of {{username}}",
+    "update_infos": "Update your informations",
+    "update_infos_of_user": "Update informations of {{username}}",
+    "update_permissions_of_user": "Update permissions of {{username}}"
+  },
+  "verify": {
+    "page_title": "Verify your email address",
+    "title": "Please verify your email address",
+    "description": "A verification email has been sent to you. Please click on the link in the email to verify your email address."
+  }
+}

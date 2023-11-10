@@ -1,0 +1,10 @@
+<div class="content">
+	<img class="logo" [src]="page.logo" alt="AE's logo" />
+
+	<sith-title class="title" [onDarkBackground]="page.theme_is_dark" text="404" [center]="true" />
+	<sith-subtitle class="subtitle" [onDarkBackground]="page.theme_is_dark" [text]="'404.title' | translate" />
+
+	<p class="description">{{ '404.description' | translate }}</p>
+
+	<sith-button class="button" [text]="'404.return_home' | translate" tabindex="0" (click)="page.to('')" (keydown.enter)="page.to('')" />
+</div>

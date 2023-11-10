@@ -1,0 +1,7 @@
+<div class="selector">
+	<sith-subtitle [onDarkBackground]="true" text="{{ 'i18n.switch_lang' | translate }}" />
+	<div>
+		<sith-select [selectedOption]="selection" [options]="langs" (optionSelected)="page.lang = $event" />
+		<a class="link" href="https://ae-utbm.crowdin.com/sith4">{{ 'i18n.help_us_translate' | translate }}</a>
+	</div>
+</div>

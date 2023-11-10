@@ -1,0 +1,83 @@
+<main>
+  <div class="header" tabindex="0" (click)="page.to('')" (keydown.enter)="page.to('')">
+		<div class="logo" [ngStyle]="{ 'background-image': 'url(' + page.logo + ')' }"></div>
+		<div class="text">
+			<span class="title">Association des Étudiants</span>
+			<span class="subtitle">de l'université de technologie de Belfort-Montbéliard</span>
+		</div>
+	</div>
+
+  <form [formGroup]="formGroup" (ngSubmit)="register()" autocomplete="on" novalidate>
+    <div class="form-head">
+      <sith-title [text]="'global.register' | translate" [onDarkBackground]="true"/>
+      <a class="global-link" href="/login">{{ 'register.already_have_account' | translate }}</a>
+    </div>
+
+    <div class="form-body">
+      <div class="input-container">
+        <div class="input">
+          <input formControlName="last_name" type="text" placeholder="{{ 'global.last_name' | translate }}" />
+        </div>
+        <div *ngIf="errors('last_name').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('last_name')">{{ getError(error) | translate: { min: MIN_NAME, max: MAX_NAME } }}</span>
+				</div>
+      </div>
+
+      <div class="input-container">
+        <div class="input">
+          <input formControlName="first_name" type="text" placeholder="{{ 'global.first_name' | translate }}" />
+        </div>
+				<div *ngIf="errors('first_name').length > 0" class="error no-margin">
+					<span *ngFor="let error of errors('first_name')">{{ getError(error) | translate: { min: MIN_NAME, max: MAX_NAME } }}</span>
+				</div>
+      </div>
+
+      <div class="input-container">
+				<div class="input">
+					<sith-icon-calendar class="icon" />
+					<input formControlName="birth_date" type="date" />
+				</div>
+				<span class="info">{{ 'register.date_birth_no_modif' | translate }}</span>
+				<div *ngIf="errors('birth_date').length > 0" class="error">
+					<span *ngFor="let error of errors('birth_date')">{{ getError(error) | translate: { min: MIN_AGE, max: MAX_AGE } }}</span>
+				</div>
+			</div>
+
+      <div class="input-container">
+				<div class="input">
+					<sith-icon-at class="icon" />
+					<input formControlName="email" type="text" placeholder="{{ 'global.email_template' | translate }}" />
+				</div>
+				<div *ngIf="errors('email').length > 0" class="error">
+					<span *ngFor="let error of errors('email')">{{ getError(error) | translate }}</span>
+				</div>
+			</div>
+
+			<div class="input-container">
+				<div class="input">
+					<sith-icon-password class="icon" />
+					<sith-password-input class="custom-input" autocomplete="new-password" formControlName="password" />
+				</div>
+				<span class="info">{{ 'register.min_password' | translate }}</span>
+				<div *ngIf="errors('password').length > 0" class="error">
+					<span *ngFor="let error of errors('password')">{{ getError(error) | translate: { min: MIN_PASSWORD } }}</span>
+				</div>
+			</div>
+
+      <div class="input-container">
+				<div class="input">
+					<sith-icon-password class="icon" />
+					<sith-password-input class="custom-input" autocomplete="off" formControlName="password_confirm" />
+				</div>
+				<span class="info">{{ 'register.confirm_password' | translate }}</span>
+				<div *ngIf="errors('password_confirm').length > 0" class="error">
+					<span *ngFor="let error of errors('password_confirm')">{{ getError(error) | translate }}</span>
+				</div>
+			</div>
+    </div>
+
+		<ng-hcaptcha formControlName="captcha" class="form-captcha"></ng-hcaptcha>
+
+    <sith-button type="submit" [disabled]="!formGroup.valid" height="large" class="form-button" [text]="'global.register' | translate"></sith-button>
+  </form>
+</main>
