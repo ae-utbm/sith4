@@ -28,8 +28,8 @@ describe('ThemeSelectorComponent', () => {
 	beforeEach(() => {
 		localStore = {};
 
-		spyOn(window.localStorage, 'getItem').and.callFake((key) => (key in localStore ? localStore[key] : null));
-		spyOn(window.localStorage, 'setItem').and.callFake((key, value) => (localStore[key] = value));
+		spyOn(window.localStorage, 'getItem').and.callFake((key: string) => (key in localStore ? localStore[key] : null));
+		spyOn(window.localStorage, 'setItem').and.callFake((key: string, value: string) => (localStore[key] = value));
 		spyOn(window.localStorage, 'removeItem').and.callFake((key) => delete localStore[key]);
 		spyOn(window.localStorage, 'clear').and.callFake(() => (localStore = {}));
 	});
@@ -45,50 +45,12 @@ describe('ThemeSelectorComponent', () => {
 
 	it('should initialize themes and eventThemes', () => {
 		expect(component.themes.length).toBe(4);
-		expect(component.eventThemes.length).toBeGreaterThanOrEqual(0);
+		expect(component.themes_event.length).toBeGreaterThanOrEqual(0);
 	});
 
 	it('should change page theme on click', () => {
-		const li = fixture.nativeElement.querySelector('.themes li');
+		const li = (fixture.nativeElement as HTMLLIElement).querySelector('.themes li') as HTMLLIElement;
 		li.click();
-		expect(component.p.theme).toBe(component.themes[0].value);
-	});
-
-	it('should add christmas theme to events theme when its December', () => {
-		jasmine.clock().install();
-		jasmine.clock().mockDate(new Date(2020, 11, 1));
-		localStorage.setItem('themeEvent', 'base');
-
-		component.ngOnInit();
-
-		expect(component.eventThemes.length).toBe(1);
-		expect(component.eventThemes[0].value).toBe('christmas');
-
-		jasmine.clock().uninstall();
-	});
-
-	it('should add pinktober theme to events theme when its October', () => {
-		jasmine.clock().install();
-		jasmine.clock().mockDate(new Date(2020, 9, 1));
-		localStorage.setItem('themeEvent', 'base');
-
-		component.ngOnInit();
-
-		expect(component.eventThemes.length).toBe(1);
-		expect(component.eventThemes[0].value).toBe('pinktober');
-
-		jasmine.clock().uninstall();
-	});
-
-	it('should not add any theme to events theme when its not December nor October', () => {
-		jasmine.clock().install();
-		jasmine.clock().mockDate(new Date(2020, 10, 1));
-		localStorage.setItem('themeEvent', 'base');
-
-		component.ngOnInit();
-
-		expect(component.eventThemes.length).toBe(0);
-
-		jasmine.clock().uninstall();
+		expect(component.page.theme).toBe(component.themes[0].value);
 	});
 });

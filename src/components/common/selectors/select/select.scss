@@ -2,9 +2,6 @@ $height: 26px;
 $border-radius: 5px;
 $icon-size: 20px;
 $padding: 5px;
-$background-color: #161b22;
-$background-color-hover: #1e242e;
-$text-color: #fff;
 
 .select {
 	width: 100%;
@@ -14,7 +11,7 @@ $text-color: #fff;
 	> .selector {
 		cursor: pointer;
 		position: relative;
-		background-color: $background-color;
+		background-color: var(--gray4);
 		border: 0;
 		border-radius: $border-radius;
 		display: flex;
@@ -45,14 +42,14 @@ $text-color: #fff;
 			> .label {
 				font-family: Inter, sans-serif;
 				font-size: 12px;
-				color: $text-color;
+				color: var(--text-color-dark-bg);
 			}
 		}
 
 		> .icon {
 			position: absolute;
 			display: block;
-			fill: $text-color;
+			fill: var(--text-color-dark-bg);
 			height: $icon-size;
 			width: $icon-size;
 			right: calc(($height - $icon-size) / 2);
@@ -68,7 +65,7 @@ $text-color: #fff;
 	> .dropdown {
 		position: absolute;
 		top: $height;
-		background-color: $background-color;
+		background-color: var(--gray4);
 		width: 100%;
 		margin: 0;
 		padding: 0;
@@ -88,7 +85,8 @@ $text-color: #fff;
 			align-items: center;
 
 			&:hover {
-				background-color: $background-color-hover;
+				background-color: var(--gray2);
+				color: var(--text-color-dynamic);
 
 				&:last-of-type {
 					border-radius: 0 0 $border-radius $border-radius;
@@ -104,7 +102,7 @@ $text-color: #fff;
 			> .label {
 				font-family: Inter, sans-serif;
 				font-size: 12px;
-				color: $text-color;
+				color: var(--text-color-dark-bg);
 			}
 		}
 	}

@@ -8,7 +8,7 @@ const WHITELIST = ['ae@utbm.fr', 'ae.info@utbm.fr'];
  * @returns {ValidatorFn} The angular validator function
  */
 export function forbiddenEmailValidator(...emails: string[]): ValidatorFn {
-	return (control: AbstractControl): ValidationErrors | null => {
+	return (control: AbstractControl<string>): ValidationErrors | null => {
 		const forbidden = emails.find(
 			(e) => control.value && control.value.endsWith(e) && !WHITELIST.includes(control.value),
 		);

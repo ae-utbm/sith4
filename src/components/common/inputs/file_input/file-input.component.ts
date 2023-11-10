@@ -1,6 +1,6 @@
 import type { base64 } from '#types';
 
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
 	selector: 'sith-file-input',
@@ -10,6 +10,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 export class FileInputComponent {
 	public filename = '';
 
+	@Input() public inputAccept = 'image/*';
 	@Output() public fileChange: EventEmitter<base64> = new EventEmitter<base64>();
 
 	public onFileChange(event: Event): void {

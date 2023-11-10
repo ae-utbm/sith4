@@ -6,8 +6,8 @@ describe('ImageCropperComponent', () => {
 	let component: ImageCropperComponent;
 	let fixture: ComponentFixture<ImageCropperComponent>;
 
-	beforeEach(() => {
-		TestBed.configureTestingModule({
+	beforeEach(async () => {
+		await TestBed.configureTestingModule({
 			declarations: [ImageCropperComponent],
 		}).compileComponents();
 	});

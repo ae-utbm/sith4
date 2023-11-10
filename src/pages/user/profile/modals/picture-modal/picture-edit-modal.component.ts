@@ -1,9 +1,10 @@
 import type { base64, imageURL } from '#types';
-import type { ImageCropperResult } from '#types/sith';
+import type { ImageCropperResult } from 'types';
 
 import { OnInit, ViewChild, ElementRef, Component, Inject, Output, EventEmitter, Input } from '@angular/core';
 
 import { ImageCropperComponent } from '@components/common/image_cropper/image-cropper.component';
+import { SnackbarService } from '@services/snackbar.service';
 import { UserService } from '@services/user.service';
 
 @Component({
@@ -12,18 +13,23 @@ import { UserService } from '@services/user.service';
 	styleUrls: ['./picture-edit-modal.scss'],
 })
 export class UserProfilePictureEditModalComponent implements OnInit {
-	public constructor(@Inject(UserService) private readonly userService: UserService) {
-		this.userService.userPictureData(this.userPictureId ?? 0).subscribe({
-			next: (data) => {
-				console.log(data);
-			},
-			error: (err) => {
-				console.error(err);
-			},
-		});
+	public constructor(
+		@Inject(UserService) private readonly userService: UserService,
+		@Inject(SnackbarService) private readonly snackbarService: SnackbarService,
+	) {
+		if (this.userPictureId)
+			this.userService.userFileData(this.userPictureId).subscribe({
+				next: (data) => {
+					console.warn(data);
+				},
+				error: (err) => {
+					console.error(err);
+				},
+			});
 	}
 
 	@Input() public username?: string;
+	@Input() public userId?: number;
 	@Input() public userPicture?: base64 | imageURL;
 	@Input() public userPictureId?: number;
 	@Input() public userCanEdit = false;
@@ -64,36 +70,9 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 		});
 	}
 
-	public fetchData(id: number): void {
-		// this.apollo
-		// 	.query<{ lastPictureUpdate: Time }>({
-		// 		query: gql`
-		// 			query ($user_id: Int!) {
-		// 				lastPictureUpdate(id: $user_id) {
-		// 					date
-		// 				}
-		// 			}
-		// 		`,
-		// 		variables: {
-		// 			user_id: id,
-		// 		},
-		// 		fetchPolicy: 'cache-first',
-		// 		errorPolicy: 'all',
-		// 	})
-		// 	.subscribe(({ data }) => {
-		// 		if (!data) return;
-		// 		// The user can't update his picture more than once a week
-		// 		const diff =
-		// 			environment.DELAY_UPDATE_PROFILE_PICTURE * 1000 -
-		// 			(new Date().getTime() - new Date(data['lastPictureUpdate'].date).getTime());
-		// 		if (diff > 0) this.timeLeft = new Date(new Date().getTime() + diff);
-		// 		if (!this.isOwner || this.perms.hasPermission('CAN_EDIT_USER')) this.timeLeft = undefined;
-		// 	});
-	}
-
 	public open() {
 		// Only the user can update his picture (or an admin)
-		// if (!this.isOwner && !this.perms.hasPermissions(this.u.logged_user_id, ['CAN_EDIT_USER'])) return;
+		if (!this.self && !this.userCanEdit) return;
 
 		this.modal.nativeElement.showModal();
 	}
@@ -107,38 +86,37 @@ export class UserProfilePictureEditModalComponent implements OnInit {
 	}
 
 	public async updateCroppedPicture(event: unknown) {
-		//ImageCropperResult) {
-		// this.pictureCropped = event;
-		// if (this.pictureCropped.dataUrl) this.pictureUpdated.emit(this.pictureCropped.dataUrl);
-		// const res: Response = await fetch(this.pictureCropped.dataUrl ?? '');
-		// const blob: Blob = await res.blob();
-		// const file = new File([blob], 'profile_picture.png', { type: 'image/png' });
-		// const formData = new FormData();
-		// formData.append('file', file, file.name);
-		// this.http
-		// 	.post(`${environment.API_URL}/users/picture/${this.activeRoute.snapshot.params['id']}`, formData, {
-		// 		headers: DEFAULT_HEADERS,
-		// 	})
-		// 	.subscribe({
-		// 		next: () => {
-		// 			if (!this.isOwner) return;
-		// 			setTimeout(() => {
-		// 				this.u.refreshUserPicture();
-		// 			}, 1000);
-		// 		},
-		// 	});
+		this.pictureCropped = event as ImageCropperResult;
+		if (!this.pictureCropped.dataUrl) return;
+
+		const dataUrl: base64 = this.pictureCropped.dataUrl;
+		const res: Response = await fetch(dataUrl);
+		const blob: Blob = await res.blob();
+		const file = new File([blob], 'profile_picture.png', { type: 'image/png' });
+
+		const formData = new FormData();
+		formData.append('file', file, file.name);
+
+		this.userService.updateUserPicture(this.userId ?? 0, formData).subscribe({
+			next: (data) => {
+				console.warn(data);
+				this.pictureUpdated.emit(dataUrl);
+			},
+			error: (err) => {
+				console.error(err);
+			},
+		});
 	}
 
 	public deleteCurrentPicture() {
-		// this.http
-		// 	.delete(`${environment.API_URL}/users/picture/${this.activeRoute.snapshot.params['id']}`, {
-		// 		headers: DEFAULT_HEADERS,
-		// 	})
-		// 	.subscribe({
-		// 		next: () => {
-		// 			this.pictureUpdated.emit(undefined);
-		// 			if (this.isOwner) this.u.refreshUserPicture();
-		// 		},
-		// 	});
+		this.userService.deleteUserPicture(this.userId ?? 0).subscribe({
+			next: (data) => {
+				this.pictureUpdated.emit();
+				this.snackbarService.success(data.message, 'Success');
+			},
+			error: (err) => {
+				console.error(err);
+			},
+		});
 	}
 }

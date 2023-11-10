@@ -1,20 +1,35 @@
 <div class="profile-container">
-	<div
-		class="background-image"
-		[ngClass]="{ 'has-banner': userBanner !== undefined }"
-		[ngStyle]="{ 'background-image': userBanner ? 'url(' + userBanner + ')' : '' }"
-	>
-		<sith-icon-promotion class="promotion" [number]="user?.promotion" />
-		<div class="ae-sticker"></div>
-	</div>
-	<sith-icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL() }" [url]="userPicture" />
-	<div class="infos" [ngClass]="{ 'rtl': page.isRTL() }">
-		<div class="left">
-			<span class="name">{{ user?.full_name }}</span>
-			<span>0 €</span>
+
+	<div *ngIf="userBanner !== undefined; else noBanner" class="banner">
+		<div class="background-image" [ngStyle]="{ 'background-image': userBanner ? 'url(' + userBanner + ')' : '' }">
+			<sith-icon-promotion class="promotion" [number]="user?.promotion" />
+			<div class="ae-sticker"></div>
 		</div>
-		<span class="right">{{ user?.id }}</span>
+		<sith-icon-user class="user-picture" [ngClass]="{ 'rtl': page.isRTL() }" [url]="userPicture" />
+		<div class="infos" [ngClass]="{ 'rtl': page.isRTL() }">
+			<div class="left">
+				<span class="name">{{ user?.full_name }}</span>
+				<span>200 €</span>
+			</div>
+		</div>
 	</div>
+
+	<ng-template #noBanner>
+		<div class="no-banner">
+			<div class="left">
+				<sith-icon-user class="user-picture" [url]="userPicture" />
+				<div class="infos">
+					<span class="name">{{ user?.full_name }}</span>
+					<span>200 €</span>
+				</div>
+			</div>
+			<div class="right">
+				<sith-icon-promotion class="promotion" [number]="user?.promotion" />
+				<div class="ae-sticker"></div>
+			</div>
+		</div>
+	</ng-template>
+
 	<main>
 		<ul class="links">
 			<li tabindex="1" (click)="to('profile')" (keydown.enter)="to('profile')">

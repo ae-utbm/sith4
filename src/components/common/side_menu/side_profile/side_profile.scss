@@ -1,89 +1,134 @@
-$banner-height: 130px;
-$no-banner-height: 45px;
+$banner-height: calc(316px / 3);
+$no-banner-height: 35px;
+$padding: 16px;
+
+.ae-sticker {
+	width: 51px;
+	border-radius: 5px;
+	display: block;
+	height: 35px;
+	border: dotted 1.25px var(--text-color-dark-bg);
+}
 
 .profile-container {
 	position: relative;
 	height: 100%;
 
-	>.background-image {
-		width: 100%;
-		height: $no-banner-height;
-		background-color: var(--navbar-background-color);
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center;
-		display: flex;
-		align-items: flex-end;
-		justify-content: flex-end;
-		padding: 5px;
-		gap: 5px;
+	>.banner {
 
-		&.has-banner {
+		>.background-image {
+			width: 100%;
 			height: $banner-height;
-		}
-
-		>.promotion {
-			display: block;
-			height: 35px;
-			width: 35px;
-			border-radius: 50%;
-		}
-
-		>.ae-sticker {
-			width: 51px;
-			border-radius: 5px;
-			display: block;
-			height: 35px;
-			border: dotted 1.5px var(--text-color-dark-bg);
-		}
-	}
-
-	>.infos {
-		margin-left: 105px;
-		color: var(--text-color-dark-bg);
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		padding: 5px;
-		min-height: 50px;
-		font-family: Roboto, sans-serif;
-		font-weight: 500;
-		font-size: calc(14px * var(--font-size));
-
-		&.rtl {
-			margin-left: 0;
-			margin-right: 110px;
-		}
-
-		>.left {
+			background-color: var(--navbar-background-color);
+			background-size: cover;
+			background-repeat: no-repeat;
+			background-position: center;
 			display: flex;
-			flex-direction: column;
+			align-items: flex-end;
+			justify-content: flex-end;
+			padding: 5px;
+			gap: 5px;
 
-			> .name {
-				text-transform: capitalize;
+			>.promotion {
+				display: block;
+				height: 35px;
+				width: 35px;
+				border-radius: 50%;
+			}
+		}
+
+		>.user-picture {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			left: 5px;
+			top: calc($banner-height - 50px);
+
+			&.rtl {
+				left: unset;
+				right: 5px;
+			}
+		}
+
+		>.infos {
+			margin-left: 105px;
+			color: var(--text-color-dark-bg);
+			display: flex;
+			justify-content: space-between;
+			align-items: flex-start;
+			padding: 5px;
+			min-height: 50px;
+			font-family: Roboto, sans-serif;
+			font-weight: 500;
+			font-size: calc(14px * var(--font-size));
+
+			&.rtl {
+				margin-left: 0;
+				margin-right: 110px;
+			}
+
+			>.left {
+				display: flex;
+				flex-direction: column;
+
+				> .name {
+					text-transform: capitalize;
+				}
 			}
 		}
 	}
 
-	>.user-picture {
-		position: absolute;
-		width: 100px;
-		height: 100px;
-		left: 5px;
-		top: 5px;
+	>.no-banner {
+		padding: $padding $padding 0;
+		display: flex;
+		flex-direction: row;
+		max-height: calc($no-banner-height + $padding);
 
-		&.rtl {
-			left: unset;
-			right: 5px;
+		>.left {
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			gap: 5px;
+
+			>.user-picture {
+				height: $no-banner-height;
+				width: $no-banner-height;
+			}
+
+			>.infos {
+				color: var(--text-color-dark-bg);
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				padding: 5px;
+				font-family: Roboto, sans-serif;
+				font-weight: 500;
+				font-size: calc(14px * var(--font-size));
+			}
+		}
+
+		>.right {
+			display: flex;
+			flex-direction: row;
+			gap: 5px;
+
+			>.promotion {
+				display: block;
+				height: $no-banner-height;
+				width: $no-banner-height;
+				border-radius: 50%;
+			}
 		}
 	}
 
-	>.background-image.has-banner ~ .user-picture {
-		top: calc($banner-height - 50px);
-	}
+
+	// >.background-image.has-banner ~ .user-picture {
+	// 	top: calc($banner-height - 50px);
+	// }
 
 	> main {
-		padding: 16px 16px 40px;
+		padding: $padding $padding calc(2 * $padding);
 		height: calc(100vh - $no-banner-height - 50px);
 		display: flex;
 		flex-direction: column;
@@ -97,6 +142,7 @@ $no-banner-height: 45px;
 			align-items: center;
 			justify-content: space-evenly;
 			border-radius: 5px;
+			margin: 0;
 
 			> li {
 				cursor: pointer;
@@ -144,7 +190,7 @@ $no-banner-height: 45px;
 		}
 	}
 
-	>.background-image.has-banner~main {
+	>.banner~main {
 		height: calc(100vh - $banner-height - 50px);
 	}
 }

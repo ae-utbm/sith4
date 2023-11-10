@@ -55,7 +55,6 @@ export class UserProfileInfosEditModalComponent implements OnInit {
 		// 	this.userId = parseInt(params['id'] as string, 10); // FIXME params['id'] might be undefined
 		// 	this.fetchUserData();
 		// 	this.fetchUserVisibility();
-
 		// 	if (this.isSelf()) {
 		// 		this.infosForm.get('first_name')?.disable();
 		// 		this.infosForm.get('last_name')?.disable();

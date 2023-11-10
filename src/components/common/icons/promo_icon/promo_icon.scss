@@ -6,16 +6,10 @@ img,
 }
 
 .placeholder {
-	background-color: var(--background-color);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-family: Roboto, sans-serif;
-	font-size: larger;
 	color: var(--text-color-dynamic);
-
-	&.empty {
-		background-color: transparent;
-		border: dotted 1.5px var(--text-color-dark-bg);
-	}
+	border: dotted 1.25px var(--text-color-dark-bg);
 }

@@ -1,5 +1,5 @@
 import type { email } from '#types';
-import type { ErrorResponseDto, UserSignInDto, UserTokenDto } from '#types/api';
+import type { OutputErrorResponseDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -39,43 +39,29 @@ export class LoginComponent {
 	public readonly formGroup = LOGIN_FORM_GROUP;
 
 	public login(): void {
-		this.api
-			.post<UserTokenDto, UserSignInDto>(`/auth/login`, {
-				email: this.formGroup.controls['email'].value,
-				password: this.formGroup.controls['password'].value,
-			})
-			.subscribe({
-				next: (data) => {
-					this.user.login(data.token, data.user_id);
+		this.user.login(this.formGroup.controls['email'].value, this.formGroup.controls['password'].value).subscribe({
+			next: () => this.page.to(['users', `${this.user.logged_user_id}`, 'profile']),
+			error: (e: ApiError<OutputErrorResponseDto>) => {
+				switch (e.error.statusCode) {
+					case 401:
+						this.formGroup.controls['password'].setErrors({ password_wrong: true });
+						break;
 
-					// Wait for the user to be logged in before redirecting
-					// -> avoid race condition with the user token
-					// FIXME: this does not always work, 401 errors may be thrown!
-					setTimeout(() => {
-						this.page.to(['users', `${data.user_id}`, 'profile']);
-					}, 1000);
-				},
-				error: (e: ApiError<ErrorResponseDto>) => {
-					switch (e.error.statusCode) {
-						case 401:
-							this.formGroup.controls['password'].setErrors({ password_wrong: true });
-							break;
+					case 403:
+						setTimeout(() => {
+							this.page.to('verify');
+						}, 500);
+						break;
 
-						case 403:
-							setTimeout(() => {
-								this.page.to('verify');
-							}, 500);
-							break;
+					case 404:
+						this.formGroup.controls['email'].setErrors({ email_not_found: true });
+						break;
 
-						case 404:
-							this.formGroup.controls['email'].setErrors({ email_not_found: true });
-							break;
-
-						default:
-							this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
-					}
-				},
-			});
+					default:
+						this.snackbar.error(e.error.message, e.error.errors, e.error.statusCode);
+				}
+			},
+		});
 	}
 
 	public errors(field: LoginFormKeys): string[] {

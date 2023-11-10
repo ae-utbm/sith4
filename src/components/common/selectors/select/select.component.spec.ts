@@ -1,9 +1,9 @@
+import type { SelectComponentOption } from 'types';
+
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { TranslateModule } from '@ngx-translate/core';
-
-import type { SelectComponentOption } from 'src/types';
 
 import { SelectComponent } from './select.component';
 import { IconsModule } from '../../icons/icons.module';
@@ -50,11 +50,11 @@ describe('SelectComponent', () => {
 	it('should toggle dropdown visibility on button click', () => {
 		expect(component.dropdownVisible).toBeFalse();
 
-		button.nativeElement.click();
+		(button.nativeElement as HTMLButtonElement).click();
 		fixture.detectChanges();
 		expect(component.dropdownVisible).toBeTrue();
 
-		button.nativeElement.click();
+		(button.nativeElement as HTMLButtonElement).click();
 		fixture.detectChanges();
 		expect(component.dropdownVisible).toBeFalse();
 	});
@@ -85,15 +85,15 @@ describe('SelectComponent', () => {
 		const label = fixture.debugElement.query(By.css('.label'));
 		let image = fixture.debugElement.query(By.css('.image'));
 
-		expect(label.nativeElement.textContent).toEqual(selectedOption.label);
+		expect((label.nativeElement as HTMLLabelElement).textContent).toEqual(selectedOption.label);
 		expect(image).toBeNull();
 
 		component.selectedOption = selectedOptionWithImage;
 		fixture.detectChanges();
 		image = fixture.debugElement.query(By.css('.image'));
 
-		expect(label.nativeElement.textContent).toEqual(selectedOptionWithImage.label);
-		expect(image.nativeElement.getAttribute('src')).toEqual(selectedOptionWithImage.image);
+		expect((label.nativeElement as HTMLLabelElement).textContent).toEqual(selectedOptionWithImage.label);
+		expect((image.nativeElement as HTMLImageElement).getAttribute('src')).toEqual(selectedOptionWithImage.image);
 	});
 
 	it('should display dropdown options and select option on click', () => {
@@ -102,7 +102,7 @@ describe('SelectComponent', () => {
 		expect(component.dropdownVisible).toBeFalse();
 		expect(dropdown).toBeNull();
 
-		button.nativeElement.click();
+		(button.nativeElement as HTMLButtonElement).click();
 		fixture.detectChanges();
 
 		dropdown = fixture.debugElement.query(By.css('.dropdown'));
@@ -112,7 +112,7 @@ describe('SelectComponent', () => {
 		expect(component.dropdownVisible).toBeTrue();
 		expect(optionsElements.length).toEqual(sortedOptions.length);
 
-		optionsElements[1].nativeElement.click();
+		(optionsElements[1].nativeElement as HTMLLIElement).click();
 		fixture.detectChanges();
 		dropdown = fixture.debugElement.query(By.css('.dropdown'));
 

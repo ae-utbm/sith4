@@ -1,4 +1,4 @@
-import type { SelectComponentOption } from '#types/sith';
+import type { SelectComponentOption } from 'types';
 
 import { Component, Inject, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';

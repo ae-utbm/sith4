@@ -1,8 +1,15 @@
-import type { imageURL } from '#types';
-import type { ErrorResponseDto, UserPictureEntity, UserPrivateDto, UserPublicDto } from '#types/api';
+import type { email, imageURL } from '#types';
+import type {
+	OutputErrorResponseDto,
+	OutputFileDto,
+	OutputUserDto,
+	OutputResponseDto,
+	OutputTokenDto,
+	InputSignInDto,
+} from '#types/api';
 
 import { Inject, Injectable } from '@angular/core';
-import { Observable, catchError, map, of, throwError } from 'rxjs';
+import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 
 import { APIService, ApiError } from './api.service';
 
@@ -12,9 +19,19 @@ import { APIService, ApiError } from './api.service';
 export class UserService {
 	public constructor(@Inject(APIService) private readonly api: APIService) {}
 
-	public login(token: string, userId: number): void {
-		sessionStorage.setItem('user_token', token);
-		sessionStorage.setItem('user_id', userId.toString());
+	public login(email: email, password: string): Observable<void> {
+		return this.api
+			.post<OutputTokenDto, InputSignInDto>(`/auth/login`, {
+				email,
+				password,
+			})
+			.pipe(
+				tap((data) => {
+					sessionStorage.setItem('user_token', data.token);
+					sessionStorage.setItem('user_id', data.user_id.toString());
+				}),
+				map(() => void 0),
+			);
 	}
 
 	public isLoggedIn(): boolean {
@@ -31,22 +48,24 @@ export class UserService {
 		return parseInt(id, 10);
 	}
 
-	public logout(): void {
-		sessionStorage.clear();
+	public logout(): Observable<void> {
+		return new Observable((subscriber) => {
+			sessionStorage.clear();
+
+			subscriber.next();
+			subscriber.complete();
+		});
 	}
 
-	public user(id: number, private_data?: boolean): Observable<UserPublicDto | UserPrivateDto>;
-	public user(id: number, private_data: true): Observable<UserPrivateDto>;
-
-	public user(id: number, private_data = false): Observable<UserPublicDto> {
-		if (private_data) return this.api.get<UserPrivateDto>(`/users/${id}/data`);
-		return this.api.get<UserPublicDto>(`/users/${id}/data/public`);
+	public user(id: number, private_data = false): Observable<OutputUserDto> {
+		if (private_data) return this.api.get<OutputUserDto>(`/users/${id}/data`);
+		return this.api.get<OutputUserDto>(`/users/${id}/data/public`);
 	}
 
 	public userPicture(id: number): Observable<imageURL | undefined> {
 		return this.api.get<ArrayBuffer>(`/users/${id}/picture`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
-				const error: ErrorResponseDto = err.error.toJSON();
+				const error: OutputResponseDto = err.error.toJSON();
 
 				// If the user has no picture, return undefined
 				if (error.statusCode === 404) return of(undefined);
@@ -65,14 +84,18 @@ export class UserService {
 		);
 	}
 
-	public userPictureData(file_id: number): Observable<UserPictureEntity<number>> {
-		return this.api.get<UserPictureEntity<number>>(`/files/${file_id}/data`);
+	public updateUserPicture(user_id: number, form: FormData): Observable<OutputFileDto> {
+		return this.api.post<OutputFileDto, FormData>(`/users/${user_id}/picture`, form);
+	}
+
+	public deleteUserPicture(user_id: number): Observable<OutputResponseDto> {
+		return this.api.delete<OutputResponseDto, never>(`/users/${user_id}/picture`);
 	}
 
 	public userBanner(id: number): Observable<imageURL | undefined> {
 		return this.api.get<ArrayBuffer>(`/users/${id}/banner`, 'arraybuffer').pipe(
 			catchError((err: ApiError<ArrayBuffer>) => {
-				const error: ErrorResponseDto = err.error.toJSON();
+				const error: OutputErrorResponseDto = err.error.toJSON();
 
 				// If the user has no picture, return undefined
 				if (error.statusCode === 404) return of(undefined);
@@ -91,10 +114,22 @@ export class UserService {
 		);
 	}
 
+	public updateUserBanner(user_id: number, form: FormData): Observable<OutputFileDto> {
+		return this.api.post<OutputFileDto, FormData>(`/users/${user_id}/banner`, form);
+	}
+
+	public deleteUserBanner(user_id: number): Observable<OutputResponseDto> {
+		return this.api.delete<OutputResponseDto, never>(`/users/${user_id}/banner`);
+	}
+
+	public userFileData(file_id: number): Observable<OutputFileDto> {
+		return this.api.get<OutputFileDto>(`/files/${file_id}/data`);
+	}
+
 	// TODO: to be implemented (waiting for API)
 	// maybe in its own service ?
 	public userNotifications(id: number): Observable<[]> {
-		console.warn('NYI: userNotifications');
+		console.warn('NYI: userNotifications', id);
 
 		return new Observable((subscriber) => {
 			subscriber.next([]);

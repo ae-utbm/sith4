@@ -1,4 +1,4 @@
-import type { PERMISSION_NAMES, PermissionGetDto, UserPermissionsGetDto, UserRolesGetDto } from '#types/api';
+import type { PERMISSION_NAMES, OutputPermissionDto, OutputRoleDto } from '#types/api';
 
 import { Inject, Injectable } from '@angular/core';
 import { Observable, map, switchMap } from 'rxjs';
@@ -11,8 +11,8 @@ import { APIService } from './api.service';
 export class PermissionService {
 	public constructor(@Inject(APIService) private readonly api: APIService) {}
 
-	public userPermissions(id: number): Observable<PermissionGetDto> {
-		return this.api.get<PermissionGetDto>(`/permissions/${id}`);
+	public userPermissions(id: number): Observable<OutputPermissionDto> {
+		return this.api.get<OutputPermissionDto>(`/permissions/${id}`);
 	}
 
 	// FIXME Move that to the API !!
@@ -20,9 +20,9 @@ export class PermissionService {
 	// -> this avoid useless requests as the result of this method might decided if another request (with required perms)
 	//    is made or not
 	public hasPermissions(id: number, permissions: PERMISSION_NAMES[]): Observable<Record<PERMISSION_NAMES, boolean>> {
-		return this.api.get<UserPermissionsGetDto[]>(`/users/${id}/permissions`).pipe(
+		return this.api.get<OutputPermissionDto[]>(`/users/${id}/permissions`).pipe(
 			switchMap((perms) => {
-				return this.api.get<UserRolesGetDto[]>(`/users/${id}/roles`).pipe(map((roles) => ({ perms, roles })));
+				return this.api.get<OutputRoleDto[]>(`/users/${id}/roles`).pipe(map((roles) => ({ perms, roles })));
 			}),
 			map((res) => {
 				const out: Record<string, boolean> = {};

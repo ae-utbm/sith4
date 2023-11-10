@@ -1,7 +1,7 @@
 <div *ngIf="shown" class="snackbar" [ngClass]="hiding ? 'hiding ' + type : type">
 	<div class="content">
 		<sith-icon-close tabindex="0" class="close" (click)="hide()" (keydown.enter)="hide()" />
-		<div>
+		<div class="text">
 			<h4>{{ title }}</h4>
 			{{ message }}
 		</div>

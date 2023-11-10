@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import { HttpLoaderFactory, TranslateHttpLoader, getAllKeysOfObject, getLanguage, getLanguageDirection } from './i18n';
+import { HttpLoaderFactory, TranslateHttpLoader, getLanguage, getLanguageDirection } from './i18n';
+
+import '@exported/global/@types';
 
 describe('i18n', () => {
 	let httpTestingController: HttpTestingController;
@@ -45,7 +47,7 @@ describe('i18n', () => {
 	describe('getAllKeysOfObject', () => {
 		it('should return all keys of the object and its nested objects', () => {
 			const obj = { a: 1, b: { c: 2, d: 3 } };
-			expect(getAllKeysOfObject(obj)).toEqual(['a', 'b.c', 'b.d']);
+			expect(Object.keysRecursive(obj)).toEqual(['a', 'b.c', 'b.d']);
 		});
 	});
 

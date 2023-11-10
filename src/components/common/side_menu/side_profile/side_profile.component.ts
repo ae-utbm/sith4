@@ -1,5 +1,5 @@
 import type { imageURL } from '#types';
-import type { ErrorResponseDto, UserPublicDto } from '#types/api';
+import type { OutputErrorResponseDto, OutputUserDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 
@@ -25,38 +25,39 @@ export class SideMenuProfileComponent {
 		if (this.userService.isLoggedIn()) {
 			this.userService.user(this.userService.logged_user_id).subscribe({
 				next: (user) => (this.user = user),
-				error: (e: ApiError<ErrorResponseDto>) => {
-					console.error(e);
-					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+				error: (e: ApiError<OutputErrorResponseDto>) => {
+					console.warn(e);
+					this.snackbar.error(e.error.message, e.error.errors, e.error.statusCode);
 				},
 			});
 
 			this.userService.userPicture(this.userService.logged_user_id).subscribe({
 				next: (picture) => (this.userPicture = picture),
-				error: (e: ApiError<ErrorResponseDto>) => {
+				error: (e: ApiError<OutputErrorResponseDto>) => {
 					console.error(e);
-					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+					this.snackbar.error(e.error.message, e.error.errors, e.error.statusCode);
 				},
 			});
 
 			this.userService.userBanner(this.userService.logged_user_id).subscribe({
 				next: (banner) => (this.userBanner = banner),
-				error: (e: ApiError<ErrorResponseDto>) => {
+				error: (e: ApiError<OutputErrorResponseDto>) => {
 					console.error(e);
-					this.snackbar.error(e.error.message, e.error.error, e.error.statusCode);
+					this.snackbar.error(e.error.message, e.error.errors, e.error.statusCode);
 				},
 			});
 		}
 	}
 
-	public user?: UserPublicDto;
+	public user?: OutputUserDto;
 	public userPicture?: imageURL;
 	public userBanner?: imageURL;
 
 	public logout(): void {
 		this.sideMenu.triggerClose();
-		this.userService.logout();
-		this.page.to(['home']);
+		this.userService.logout().subscribe({
+			next: () => this.page.to(['home']),
+		});
 	}
 
 	public to(page: string) {

@@ -1,15 +1,28 @@
 <sith-user-profile-picture-edit-modal *ngIf="userCanEdit"
 	#pictureModal
 	(pictureUpdated)="userPicture = $event"
-	[username]="user?.first_name ?? 'unknown'"
+	[username]="user?.first_name"
+	[userId]="user?.id"
 	[userPicture]="userPicture"
-	[userPictureId]="user?.picture"
+	[userPictureId]="user?.picture_id"
 	[userCanEdit]="userCanEdit"
 	[self]="isOwner()"
 />
 
-<sith-user-profile-banner-edit-modal *ngIf="userCanEdit" #bannerModal (bannerUpdated)="userBanner = $event" [username]="user?.first_name ?? 'unknown'" [existingBanner]="userBanner !== undefined" />
-<sith-user-profile-infos-edit-modal *ngIf="userCanEdit" #infosModal [username]="user?.first_name ?? 'unknown'" />
+<sith-user-profile-banner-edit-modal *ngIf="userCanEdit"
+	#bannerModal
+	(bannerUpdated)="userBanner = $event"
+	[username]="user?.first_name"
+	[userId]="user?.id"
+	[userBanner]="userBanner"
+	[userBannerId]="user?.banner_id"
+	[userCanEdit]="userCanEdit"
+	[self]="isOwner()"
+/>
+
+<sith-user-profile-infos-edit-modal *ngIf="userCanEdit" #infosModal
+	[username]="user?.first_name ?? ''"
+/>
 
 <sith-user-profile-desktop *ngIf="!page.isMobile()" />
 <sith-user-profile-mobile *ngIf="page.isMobile()"

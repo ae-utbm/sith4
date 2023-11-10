@@ -1,11 +1,14 @@
+$padding: 10px;
+
 .snackbar {
-	bottom: 10px;
-	right: 10px;
+	bottom: $padding;
+	right: $padding;
 	position: absolute;
 	z-index: 1000;
 
 	min-width: 350px;
-	border-radius: 5px;
+	max-width: calc(100% - (2 * $padding));
+	border-radius: calc($padding / 2);
 
 	font-size: calc(12px * var(--font-size));
 	font-family: Inter, sans-serif;
@@ -24,22 +27,27 @@
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		padding: 15px;
-		gap: 15px;
-
-		> div > h4 {
-			margin: 0;
-			margin-bottom: 5px;
-		}
+		padding: $padding;
+		gap: $padding;
 
 		> .close {
-			width: calc(25px * var(--font-size));
+			min-width: calc(25px * var(--font-size));
 			height: calc(25px * var(--font-size));
 			border-radius: 50%;
 
 			&:hover {
 				cursor: pointer;
 				background-color: rgba(0, 0, 0, 0.1);
+			}
+		}
+
+		> .text {
+			max-width: calc(100% - 25px * var(--font-size));
+			overflow-wrap: break-word;
+
+			> h4 {
+				margin: 0;
+				margin-bottom: 5px;
 			}
 		}
 	}

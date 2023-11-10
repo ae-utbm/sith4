@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -20,6 +20,12 @@ export type ResponseType<T> = {
 type ResponseTypeKeys = keyof ResponseTypeMap | 'json';
 type ResponseTypes = ResponseTypeMap[keyof ResponseTypeMap];
 
+type Headers =
+	| HttpHeaders
+	| {
+			[header: string]: string | string[];
+	  };
+
 @Injectable({
 	providedIn: 'root',
 })
@@ -29,7 +35,6 @@ export class APIService {
 	private readonly DEFAULT_HEADERS = {
 		Authorization: `Bearer ${sessionStorage.getItem('user_token') ?? 'invalid'}`,
 		'Accept-Language': localStorage.getItem('lang') ?? 'en-US',
-		'Content-Type': 'application/json',
 	};
 
 	/**
@@ -41,6 +46,7 @@ export class APIService {
 	public get<Res extends object>(
 		url: Endpoint,
 		responseType?: 'json',
+		headers?: Headers,
 	): Res extends ResponseTypes ? never : Observable<Res>;
 
 	/**
@@ -54,10 +60,14 @@ export class APIService {
 	public get<Res, ResType = Res extends ResponseTypes ? ResponseType<Res> : never>(
 		url: Endpoint,
 		responseType: ResType,
+		headers?: Headers,
 	): Observable<Res>;
 
-	public get<R>(url: Endpoint, responseType: ResponseTypeKeys = 'json'): Observable<R> {
-		return this.http.get<R>(url, { headers: this.DEFAULT_HEADERS, responseType: responseType as 'json' });
+	public get<R>(url: Endpoint, responseType: ResponseTypeKeys = 'json', headers: Headers = {}): Observable<R> {
+		return this.http.get<R>(`${environment.API_URL}${url}`, {
+			headers: { ...this.DEFAULT_HEADERS, ...headers },
+			responseType: responseType as 'json',
+		});
 	}
 
 	/**
@@ -70,6 +80,7 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType?: 'json',
+		headers?: Headers,
 	): Res extends ResponseTypes ? never : Observable<Res>;
 
 	/**
@@ -85,11 +96,17 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType: ResType,
+		headers?: Headers,
 	): Observable<Res>;
 
-	public post<R, B>(url: Endpoint, body: B, responseType: ResponseTypeKeys = 'json'): Observable<R> {
+	public post<R, B>(
+		url: Endpoint,
+		body: B,
+		responseType: ResponseTypeKeys = 'json',
+		headers: Headers = {},
+	): Observable<R> {
 		return this.http.post<R>(`${environment.API_URL}${url}`, body, {
-			headers: this.DEFAULT_HEADERS,
+			headers: { ...this.DEFAULT_HEADERS, ...headers },
 			responseType: responseType as 'json',
 		});
 	}
@@ -104,6 +121,7 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType?: 'json',
+		headers?: Headers,
 	): Res extends ResponseTypes ? never : Observable<Res>;
 
 	/**
@@ -119,11 +137,17 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType: ResType,
+		headers?: Headers,
 	): Observable<Res>;
 
-	public put<R, B>(url: Endpoint, body: B, responseType: ResponseTypeKeys = 'json'): Observable<R> {
+	public put<R, B>(
+		url: Endpoint,
+		body: B,
+		responseType: ResponseTypeKeys = 'json',
+		headers: Headers = {},
+	): Observable<R> {
 		return this.http.put<R>(`${environment.API_URL}${url}`, body, {
-			headers: this.DEFAULT_HEADERS,
+			headers: { ...this.DEFAULT_HEADERS, ...headers },
 			responseType: responseType as 'json',
 		});
 	}
@@ -138,6 +162,7 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType?: 'json',
+		headers?: Headers,
 	): Res extends ResponseTypes ? never : Observable<Res>;
 
 	/**
@@ -153,11 +178,17 @@ export class APIService {
 		url: Endpoint,
 		body: Body,
 		responseType: ResType,
+		headers?: Headers,
 	): Observable<Res>;
 
-	public patch<R, B>(url: Endpoint, body: B, responseType: ResponseTypeKeys = 'json'): Observable<R> {
+	public patch<R, B>(
+		url: Endpoint,
+		body: B,
+		responseType: ResponseTypeKeys = 'json',
+		headers: Headers = {},
+	): Observable<R> {
 		return this.http.patch<R>(`${environment.API_URL}${url}`, body, {
-			headers: this.DEFAULT_HEADERS,
+			headers: { ...this.DEFAULT_HEADERS, ...headers },
 			responseType: responseType as 'json',
 		});
 	}
@@ -172,6 +203,7 @@ export class APIService {
 		url: Endpoint,
 		responseType?: 'json',
 		body?: Body,
+		headers?: Headers,
 	): Res extends ResponseTypes ? never : Observable<Res>;
 
 	/**
@@ -187,11 +219,17 @@ export class APIService {
 		url: Endpoint,
 		responseType: ResType,
 		body?: Body,
+		headers?: Headers,
 	): Observable<Res>;
 
-	public delete<R, B>(url: Endpoint, responseType: ResponseTypeKeys = 'json', body?: B): Observable<R> {
+	public delete<R, B>(
+		url: Endpoint,
+		responseType: ResponseTypeKeys = 'json',
+		body?: B,
+		headers: Headers = {},
+	): Observable<R> {
 		return this.http.delete<R>(`${environment.API_URL}${url}`, {
-			headers: this.DEFAULT_HEADERS,
+			headers: { ...this.DEFAULT_HEADERS, ...headers },
 			responseType: responseType as 'json',
 			body,
 		});

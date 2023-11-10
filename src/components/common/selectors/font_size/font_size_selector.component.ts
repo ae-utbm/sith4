@@ -1,4 +1,4 @@
-import type { FontSize } from '#types/sith';
+import type { FontSize } from 'types';
 
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';

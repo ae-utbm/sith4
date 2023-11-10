@@ -18,7 +18,7 @@ describe('ButtonComponent', () => {
 	});
 
 	beforeEach(() => {
-		button = fixture.debugElement.query(By.css('button')).nativeElement;
+		button = fixture.debugElement.query(By.css('button')).nativeElement as HTMLButtonElement;
 	});
 
 	it('should create', () => {

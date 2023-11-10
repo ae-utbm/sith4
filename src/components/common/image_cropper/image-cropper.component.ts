@@ -1,5 +1,5 @@
 import type { base64 } from '#types';
-import type { ImageCropperResult, ImageCropperSetting } from '#types/sith';
+import type { ImageCropperResult, ImageCropperSetting } from 'types';
 
 import {
 	Component,
@@ -74,19 +74,19 @@ export class ImageCropperComponent implements OnDestroy {
 
 		// Set crop options
 		// extend default with custom config
-		// this.cropperOptions = Object.merge<Cropper.Options>(
-		// 	{
-		// 		aspectRatio,
-		// 		movable: false,
-		// 		scalable: false,
-		// 		zoomable: false,
-		// 		viewMode: 1,
-		// 		checkCrossOrigin: true,
-		// 	},
-		// 	{
-		// 		...this.cropperOptions,
-		// 	},
-		// );
+		this.cropperOptions = Object.merge(
+			{
+				aspectRatio,
+				movable: false,
+				scalable: false,
+				zoomable: false,
+				viewMode: 1,
+				checkCrossOrigin: true,
+			},
+			{
+				...this.cropperOptions,
+			},
+		);
 
 		// Set cropperjs
 		if (this.cropper) {
@@ -102,7 +102,7 @@ export class ImageCropperComponent implements OnDestroy {
 		this.isLoading = false;
 	}
 
-	public exportCanvas() {
+	public async exportCanvas() {
 		if (!this.cropper) return;
 
 		// Get and set image, crop and canvas data
@@ -118,8 +118,8 @@ export class ImageCropperComponent implements OnDestroy {
 		});
 
 		// Emit export data when promise is ready
-		// promise.then((res) => {
-		// 	this.export.emit(Object.merge(data, res));
-		// });
+		await promise.then((res) => {
+			this.export.emit(Object.merge(data, res));
+		});
 	}
 }

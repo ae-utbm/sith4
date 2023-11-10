@@ -1,4 +1,4 @@
-import type { FontSize, Theme, ThemeEvent } from '#types/sith';
+import type { FontSize, Theme, ThemeEvent } from 'types';
 
 import { Inject, Injectable } from '@angular/core';
 import { ActivationStart, NavigationExtras, Router } from '@angular/router';
@@ -55,8 +55,8 @@ export class PageService {
 	}
 
 	private updateHTML() {
-		document.documentElement.setAttribute('dir', this.isRTL() ? 'rtl' : 'ltr');
 		document.documentElement.setAttribute('lang', this.lang);
+		document.documentElement.setAttribute('dir', this.isRTL() ? 'rtl' : 'ltr');
 		document.documentElement.style.setProperty('--font-size', this.font_size);
 
 		if (!this.theme_event.disabled) document.documentElement.setAttribute('data-event-theme', this.theme_event.theme);

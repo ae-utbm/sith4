@@ -21,7 +21,7 @@
 				<div>
 					<span class="name">{{ user?.full_name }}</span>
 					<div class="subname">
-						<div *ngIf="user?.nickname" class="nickname">{{ user?.nickname }}</div>
+						<div *ngIf="user?.nickname" class="nickname">{{ user?.nickname }}&nbsp;&dash;</div>
 						<div>{{ 'profile.age' | translate: { age: user?.age } }}</div>
 					</div>
 				</div>
@@ -35,7 +35,7 @@
 							'profile.about' |
 							translate }}</button>
 						<button class="link" [ngClass]="{ 'shown': currentTab === 'contact' }" (click)="currentTab = 'contact'"
-							*ngIf="userCanReadPrivate || (user?.email || user?.secondary_email || user?.phone || user?.parent_contact)">
+							*ngIf="userCanReadPrivate || (user?.email || user?.secondary_email || user?.phone || user?.parents_phone)">
 							{{ 'profile.contact' | translate }}
 						</button>
 					</div>
@@ -100,9 +100,9 @@
 							<span class="title">{{ 'profile.phone' | translate }}</span>
 							<span>{{ user?.phone ?? '-' }}</span>
 						</div>
-						<div class="column" *ngIf="user?.parent_contact || userCanReadPrivate">
-							<span class="title">{{ 'profile.parent_contact' | translate }}</span>
-							<span>{{ user?.parent_contact ?? '-' }}</span>
+						<div class="column" *ngIf="user?.parents_phone || userCanReadPrivate">
+							<span class="title">{{ 'profile.parents_phone' | translate }}</span>
+							<span>{{ user?.parents_phone ?? '-' }}</span>
 						</div>
 					</div>
 				</div>

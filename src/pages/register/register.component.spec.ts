@@ -46,7 +46,7 @@ describe('RegisterComponent', () => {
 			component.formGroup.controls['captcha'].setErrors({ required: true }); // invalid captacha
 
 			Object.keys(component.formGroup.controls['email'].errors ?? {}).forEach((key) => {
-				expect(component.getError(key)).toEqual(`global.errors.${key}`);
+				expect(component.getError(key.toString())).toEqual(`global.errors.${key}`);
 			});
 		});
 	});
@@ -55,10 +55,10 @@ describe('RegisterComponent', () => {
 		it('should register the user', () => {
 			component.formGroup.controls['email'].setValue('exemple@domain.com');
 			component.formGroup.controls['password'].setValue('Password!0');
-			component.formGroup.controls['passwordConfirm'].setValue('Password!0');
-			component.formGroup.controls['firstName'].setValue('John');
-			component.formGroup.controls['lastName'].setValue('Doe');
-			component.formGroup.controls['birthDate'].setValue('01/01/2000');
+			component.formGroup.controls['password_confirm'].setValue('Password!0');
+			component.formGroup.controls['first_name'].setValue('John');
+			component.formGroup.controls['last_name'].setValue('Doe');
+			component.formGroup.controls['birth_date'].setValue('01/01/2000');
 			component.register(); // TODO: add a test once the API is ready
 			expect(true).toBeTrue();
 		});

@@ -1,4 +1,4 @@
-import type { SelectComponentOption } from '#types/sith';
+import type { SelectComponentOption } from 'types';
 
 import { Component, EventEmitter, Inject, Input, Output } from '@angular/core';
 

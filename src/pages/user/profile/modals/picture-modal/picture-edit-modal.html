@@ -11,8 +11,6 @@
 			{{ 'profile.picture_too_recent' | translate: { date: timeLeft | date: 'dd/MM/yyyy HH:mm:ss' } }}
 		</span>
 
-		<sith-file-input *ngIf="!timeLeft" (fileChange)="updateUncroppedPicture($event)" />
-
 		<sith-image-cropper
 			class="cropper"
 			*ngIf="pictureUncropped"
@@ -20,6 +18,8 @@
 			[cropperOptions]="options"
 			(export)="updateCroppedPicture($event)"
 		/>
+
+		<sith-file-input *ngIf="!timeLeft" (fileChange)="updateUncroppedPicture($event)" />
 
 		<sith-button
 			type="submit"

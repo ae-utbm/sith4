@@ -5,8 +5,6 @@
 	padding: 5px;
 	min-height: calc(100vh - 110px);
 
-	background-color: var(--user-custom-color);
-
 	>.profile {
 		display: flex;
 		flex-direction: column;
@@ -30,6 +28,11 @@
 				position: absolute;
 				top: 0;
 				right: 0;
+
+				&.rtl {
+					right: unset;
+					left: 0;
+				}
 			}
 
 			>.suspended {
@@ -93,7 +96,7 @@
 			flex-direction: column;
 			position: relative;
 			gap: 10px;
-			background-color: var(--background-color);
+			background-color: var(--background-color-lighter);
 			padding: 10px;
 			border-radius: 5px;
 			min-height: 100%;
@@ -105,9 +108,9 @@
 				width: 95px;
 				height: 95px;
 
-				border: 5px solid var(--background-color);
+				border: 5px solid var(--background-color-lighter);
 				border-radius: 50%;
-				background-color: var(--background-color);
+				background-color: var(--background-color-lighter);
 
 				>.picture-hover {
 					display: none;
@@ -150,7 +153,7 @@
 					width: 40px;
 					height: 40px;
 
-					border: 2.5px solid var(--background-color);
+					background-color: var(--background-color-lighter);
 					border-radius: 50%;
 
 					&.rtl {

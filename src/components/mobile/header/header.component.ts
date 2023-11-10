@@ -1,5 +1,5 @@
 import type { imageURL } from '#types';
-import type { ErrorResponseDto, UserPublicDto } from '#types/api';
+import type { OutputErrorResponseDto, OutputUserDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 
@@ -26,31 +26,31 @@ export class MobileHeaderComponent {
 		if (userService.isLoggedIn()) {
 			this.userService.user(this.userService.logged_user_id).subscribe({
 				next: (user) => (this.user = user),
-				error: (err: ApiError<ErrorResponseDto>) => {
+				error: (err: ApiError<OutputErrorResponseDto>) => {
 					console.error(err);
-					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+					this.snackbar.error(err.error.message, err.error.errors, err.error.statusCode);
 				},
 			});
 
 			this.userService.userPicture(this.userService.logged_user_id).subscribe({
 				next: (picture) => (this.userPicture = picture),
-				error: (err: ApiError<ErrorResponseDto>) => {
+				error: (err: ApiError<OutputErrorResponseDto>) => {
 					console.error(err);
-					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+					this.snackbar.error(err.error.message, err.error.errors, err.error.statusCode);
 				},
 			});
 
 			this.userService.userNotificationsCount(this.userService.logged_user_id).subscribe({
 				next: (count) => (this.userNotificationsCount = count),
-				error: (err: ApiError<ErrorResponseDto>) => {
+				error: (err: ApiError<OutputErrorResponseDto>) => {
 					console.error(err);
-					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+					this.snackbar.error(err.error.message, err.error.errors, err.error.statusCode);
 				},
 			});
 		}
 	}
 
-	public user?: UserPublicDto;
+	public user?: OutputUserDto;
 	public userPicture?: imageURL;
 	public userNotificationsCount?: number;
 

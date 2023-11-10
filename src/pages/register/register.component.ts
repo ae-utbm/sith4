@@ -1,5 +1,5 @@
 import type { email } from '#types';
-import type { ErrorResponseDto, UserPostDto, UserPublicDto } from '#types/api';
+import type { OutputErrorResponseDto, InputRegisterUserDto, OutputUserDto } from '#types/api';
 
 import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -95,7 +95,7 @@ export class RegisterComponent {
 
 	public register(): void {
 		this.api
-			.post<UserPublicDto, UserPostDto>('/auth/register', {
+			.post<OutputUserDto, InputRegisterUserDto>('/auth/register', {
 				first_name: this.formGroup.controls.first_name.value,
 				last_name: this.formGroup.controls.last_name.value,
 				email: this.formGroup.controls.email.value,
@@ -108,9 +108,9 @@ export class RegisterComponent {
 						this.page.to('verify', { state: { email: user.email } });
 					}, 1000);
 				},
-				error: (err: ApiError<ErrorResponseDto>) => {
+				error: (err: ApiError<OutputErrorResponseDto>) => {
 					console.error(err);
-					this.snackbar.error(err.error.message, err.error.error, err.error.statusCode);
+					this.snackbar.error(err.error.message, err.error.errors, err.error.statusCode);
 				},
 			});
 	}

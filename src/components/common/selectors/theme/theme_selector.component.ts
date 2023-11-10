@@ -1,4 +1,4 @@
-import type { Theme, ThemeEvent } from '#types/sith';
+import type { Theme, ThemeEvent } from 'types';
 
 import { Component, Inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';

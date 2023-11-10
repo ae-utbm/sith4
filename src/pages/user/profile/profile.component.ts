@@ -1,5 +1,5 @@
 import type { base64, imageURL } from '#types';
-import type { UserPrivateDto, UserPublicDto } from '#types/api';
+import type { OutputUserDto } from '#types/api';
 
 import { Component, Inject, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -52,6 +52,15 @@ export class UserProfileComponent {
 								console.error(err);
 							},
 						});
+
+						this.userService.userBanner(this.pageUserId).subscribe({
+							next: (banner) => {
+								this.userBanner = banner;
+							},
+							error: (err) => {
+								console.error(err);
+							},
+						});
 					},
 					error: () => ({}), // silently fail (default values are false)
 				});
@@ -78,7 +87,7 @@ export class UserProfileComponent {
 
 	private pageUserId = 0;
 
-	public user?: UserPublicDto | UserPrivateDto;
+	public user?: OutputUserDto;
 	public userPicture?: base64 | imageURL;
 	public userBanner?: base64 | imageURL;
 
